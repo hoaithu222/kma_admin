@@ -1,0 +1,50 @@
+{
+  "header": {
+    "title": "Khoa công nghệ thông tin",
+    "description": "Học Viện Kỹ Thuật Mật Mã",
+    "placeholder": "Vui lòng nhập từ khóa tìm kiếm"
+  },
+  "navigation": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "blog": "Bài viết",
+    "news": "Tin tức",
+    "contact": "Liên hệ",
+    "forum": "Diễn đàn"
+  },
+  "footer": {
+    "units": {
+      "title": "Các đơn vị",
+      "unit1": "Khoa công nghệ thông tin",
+      "unit2": "Khoa học máy tính",
+      "unit3": "Điện tử - Viễn thông",
+      "unit4": "Văn phòng Trường",
+      "unit5": "Trung tâm Máy tính và Thực hành",
+      "unit6": "Trung tâm Đổi mới Sáng tạo"
+    },
+    "training": {
+      "title": "Chương trình đào tạo",
+      "training1": "Hệ đại học",
+      "training2": "Hệ thạc sĩ",
+      "training3": "Hệ tiến sĩ"
+    },
+    "system": {
+      "title": "Hệ thống và tài nguyên",
+      "system1": "Hệ thống quản lý đào tạo",
+      "system2": "Hệ thống quản lý nghiên cứu",
+      "system3": "Hệ thống quản lý công nghệ"
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "contact1": "141-Chiến thắng-Thanh trì-Hà nội",
+      "contact2": "acbd@actvn.edu.vn",
+      "contact3": "(+84) 24 3869 2463"
+    },
+    "news": {
+      "title": "Tin tức mới nhất",
+      "buttonMore": "Xem thêm"
+    },
+
+    "copyright": "© 2025 Học Viện Kỹ Thuật Mật Mã. All rights reserved."
+  }
+}

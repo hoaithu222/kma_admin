@@ -1,0 +1,45 @@
+{
+  "header": {
+    "title": "Faculty of Information Technology",
+    "description": "Academy of Cryptography Techniques",
+    "placeholder": "Please enter search keywords"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "news": "News",
+    "contact": "Contact",
+    "forum": "Forum"
+  },
+  "footer": {
+    "units": {
+      "title": "Departments",
+      "unit1": "Faculty of Information Technology",
+      "unit2": "Computer Science",
+      "unit3": "Electronics and Telecommunications",
+      "unit4": "School Office",
+      "unit5": "Center for Computing and Practice",
+      "unit6": "Innovation Center"
+    },
+    "training": {
+      "title": "Training Programs",
+      "training1": "Undergraduate Program",
+      "training2": "Master's Program",
+      "training3": "Doctoral Program"
+    },
+    "system": {
+      "title": "Systems and Resources",
+      "system1": "Training Management System",
+      "system2": "Research Management System",
+      "system3": "Technology Management System"
+    },
+    "contact": {
+      "title": "Contact",
+      "contact1": "141-Chien Thang-Thanh Tri-Hanoi",
+      "contact2": "acbd@actvn.edu.vn",
+      "contact3": "(+84) 24 3869 2463"
+    },
+    "copyright": "© 2025 Academy of Cryptography Techniques. All rights reserved."
+  }
+}
