@@ -185,7 +185,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
               className={`
                 absolute left-4 pointer-events-none transition-all duration-200
 
-                ${iconLeft ? "left-12" : "left-4"}
+                ${iconLeft ? `left-12 ${iconLeft ? "ml-8" : "-ml-1"}` : "left-4"}
                 ${
                   isFloating
                     ? labelClasses[size].floating
@@ -194,7 +194,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
                 ${status !== "default" ? labelColor[status] : labelColor.default}
                 ${
                   isFloating && variant === "outlined"
-                    ? `bg-transparent px-1 rounded-lg  -ml-1 ${iconLeft ? "-ml-10" : "-ml-1"}`
+                    ? `bg-transparent px-1 rounded-lg  -ml-1  ${iconLeft ? "-ml-2" : "-ml-1"}`
                     : isFloating && variant === "filled"
                       ? "bg-transparent px-1 -ml-1"
                       : ""
