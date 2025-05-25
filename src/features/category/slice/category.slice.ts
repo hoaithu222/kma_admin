@@ -1,5 +1,10 @@
+import {
+  IRequestCreateCategory,
+  IRequestUpdateCategory,
+} from "@/core/api/category/types";
 import { initialStateType } from "./category.type";
 import { createResettableSlice } from "@/app/store/create-resettabable-slice";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: initialStateType = {
   categories: [],
@@ -10,6 +15,7 @@ const initialState: initialStateType = {
   isSearchCategory: false,
   isFilterCategory: false,
   isSortCategory: false,
+  confirmDeleteCategory: false,
   isLoading: false,
   error: null,
 };
@@ -23,6 +29,7 @@ const { slice, reducer } = createResettableSlice({
     },
     getCategoriesSuccess: (state, action) => {
       state.categories = action.payload;
+
       state.isLoading = false;
     },
     getCategoriesError: (state, action) => {
@@ -53,7 +60,10 @@ const { slice, reducer } = createResettableSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
-    addCategory: (state) => {
+    addCategoryRequest: (
+      state,
+      _action: PayloadAction<IRequestCreateCategory>
+    ) => {
       state.isAddCategory = true;
     },
     addCategorySuccess: (state, action) => {
@@ -64,7 +74,10 @@ const { slice, reducer } = createResettableSlice({
       state.isAddCategory = false;
       state.error = action.payload;
     },
-    editCategory: (state) => {
+    editCategoryRequest: (
+      state,
+      _action: PayloadAction<IRequestUpdateCategory>
+    ) => {
       state.isEditCategory = true;
     },
     editCategorySuccess: (state, action) => {
@@ -76,6 +89,22 @@ const { slice, reducer } = createResettableSlice({
     editCategoryError: (state, action) => {
       state.isEditCategory = false;
       state.error = action.payload;
+    },
+    deleteCategoryRequest: (state, _action: PayloadAction<string>) => {
+      state.isDeleteCategory = true;
+    },
+    deleteCategorySuccess: (state, action) => {
+      state.categories = state.categories.filter(
+        (category) => category.id !== action.payload.id
+      );
+      state.isDeleteCategory = false;
+    },
+    deleteCategoryError: (state, action) => {
+      state.isDeleteCategory = false;
+      state.error = action.payload;
+    },
+    setConfirmDeleteCategory: (state, action) => {
+      state.confirmDeleteCategory = action.payload;
     },
   },
 });
@@ -92,8 +121,15 @@ export const {
   setIsFilterCategory,
   setIsSortCategory,
   setError,
-  addCategory,
+  addCategoryRequest,
   addCategorySuccess,
   addCategoryError,
+  editCategoryRequest,
+  editCategorySuccess,
+  editCategoryError,
+  deleteCategoryRequest,
+  deleteCategorySuccess,
+  deleteCategoryError,
+  setConfirmDeleteCategory,
 } = slice.actions;
 export default reducer;

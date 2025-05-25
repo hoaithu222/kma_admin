@@ -18,6 +18,7 @@ export enum AppReducerType {
   LANGUAGE = "language",
   TOAST = "toast",
   THEME = "theme",
+  AUTH = "auth",
   HOME = "home",
   CATEGORY = "category",
   SUBCATEGORY = "subcategory",

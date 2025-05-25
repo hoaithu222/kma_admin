@@ -1,10 +1,9 @@
+const BASE_PATH = "/api/v1/sub_category";
+
 export const SUBCATEGORY_PATH = {
-  GET_SUBCATEGORIES: "/subcategories",
-  ADD_SUBCATEGORY: "/subcategories",
-  EDIT_SUBCATEGORY: "/subcategories/:id",
-  DELETE_SUBCATEGORY: "/subcategories/:id",
-  GET_SUBCATEGORY: "/subcategories/:id",
-  SEARCH_SUBCATEGORY: "/subcategories/search",
-  FILTER_SUBCATEGORY: "/subcategories/filter",
-  SORT_SUBCATEGORY: "/subcategories/sort",
+  GET_ALL_SUBCATEGORIES: `${BASE_PATH}/all`,
+  GET_SUBCATEGORIES: `${BASE_PATH}/filter?categoryId=:id`,
+  ADD_SUBCATEGORY: `${BASE_PATH}/create`,
+  EDIT_SUBCATEGORY: `${BASE_PATH}/update/:id`,
+  DELETE_SUBCATEGORY: `${BASE_PATH}/delete`,
 };

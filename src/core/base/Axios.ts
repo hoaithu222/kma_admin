@@ -9,7 +9,12 @@ const Axios = axios.create({
 
 Axios.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const accessToken = localStorage.getItem("accessToken");
+    const authData = localStorage.getItem("persist:auth");
+    // Parse dữ liệu auth
+    const parsedAuth = JSON.parse(authData || "{}");
+    const user = parsedAuth?.user ? JSON.parse(parsedAuth.user) : null;
+    const accessToken = user?.token;
+
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }

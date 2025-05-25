@@ -15,4 +15,6 @@ export interface Subcategory {
   id: string;
   name: string;
   description: string;
+  slug: string;
+  categoryId: string;
 }

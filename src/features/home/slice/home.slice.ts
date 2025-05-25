@@ -4,7 +4,7 @@ import { PAGE_SIZE, PAGE_SIZE_SMALL } from "@/shared/consts/consts";
 import { createResettableSlice } from "@/app/store/create-resettabable-slice";
 
 const initialState: initialStateType = {
-  posts: [],
+  articles: [],
   status: ReduxStateType.INIT,
   error: null,
   filter: {
@@ -18,14 +18,14 @@ const { slice, reducer } = createResettableSlice({
   name: AppReducerType.HOME,
   initialState,
   reducers: {
-    getPosts: (state) => {
+    getArticles: (state) => {
       state.status = ReduxStateType.LOADING;
     },
-    getPostsSuccess: (state, action) => {
-      state.posts = action.payload;
+    getArticlesSuccess: (state, action) => {
+      state.articles = action.payload;
       state.status = ReduxStateType.SUCCESS;
     },
-    getPostsError: (state, action) => {
+    getArticlesError: (state, action) => {
       state.error = action.payload;
     },
     getCategory: (state) => {
@@ -42,9 +42,9 @@ const { slice, reducer } = createResettableSlice({
 });
 
 export const {
-  getPosts,
-  getPostsSuccess,
-  getPostsError,
+  getArticles,
+  getArticlesSuccess,
+  getArticlesError,
   getCategory,
   getCategorySuccess,
   getCategoryError,

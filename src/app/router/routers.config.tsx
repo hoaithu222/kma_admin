@@ -1,6 +1,7 @@
+import NotPermisstion from "@/layout/NotPermisstion";
 import { lazy } from "react";
 
-const LoginPage = lazy(() => import("@/features/auth/Login.tsx"));
+const AuthPage = lazy(() => import("@/features/auth/AuthPage"));
 const SubcategoryPage = lazy(
   () => import("@/features/subcategory/SubcategoryPage")
 );
@@ -42,11 +43,20 @@ export const ROUTE = {
     layout: "main",
     options: defaultAuthOptions,
   },
-  login: {
-    path: "/login",
-    element: <LoginPage />,
-    layout: "login",
-    options: defaultOptions,
+  auth: {
+    path: "/auth",
+    element: <AuthPage />,
+    layout: "auth",
+    options: {
+      requireAuth: false,
+      hideInMenu: false,
+    },
+  },
+  notPermisstion: {
+    path: "/not-permisstion",
+    element: <NotPermisstion />,
+    layout: "main",
+    options: defaultAuthOptions,
   },
 } satisfies Record<
   string,

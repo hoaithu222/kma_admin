@@ -5,22 +5,24 @@ import { FolderPen, PlusIcon } from "lucide-react";
 import Textarea from "@/foundation/components/inputs/TextArea";
 import Button from "@/foundation/components/buttons/Button";
 import { useState } from "react";
-
-const AddCategory = () => {
+import { Category } from "../slice/category.type";
+const EditCategory = ({ category }: { category: Category }) => {
   const [data, setData] = useState({
-    name: "",
-    description: "",
+    id: category.id,
+    name: category.name,
+    description: category.description,
   });
-  const { handleAddCategory, addCategoryDispatch } = useCategory();
+
+  const { handleEditCategory, editCategoryDispatch } = useCategory();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addCategoryDispatch(data);
+    editCategoryDispatch(data);
   };
   return (
     <Modal
       isOpen={true}
-      onOpenChange={() => handleAddCategory(false)}
-      title="Thêm danh mục"
+      onOpenChange={() => handleEditCategory(false)}
+      title="Sửa danh mục"
       size="large"
       animation="slide"
     >
@@ -49,7 +51,7 @@ const AddCategory = () => {
             loading={false}
             iconLeft={<PlusIcon className="w-4 h-4" />}
           >
-            Thêm danh mục
+            Sửa danh mục
           </Button>
         </div>
       </form>
@@ -57,4 +59,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default EditCategory;

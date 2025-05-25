@@ -1,5 +1,10 @@
 import { initialStateType } from "./subcategory.type";
 import { createResettableSlice } from "@/app/store/create-resettabable-slice";
+import { PayloadAction } from "@reduxjs/toolkit";
+import {
+  IRequestAddSubcategory,
+  IRequestEditSubcategory,
+} from "@/core/api/subcategory/types";
 
 const initialState: initialStateType = {
   subcategories: [],
@@ -18,6 +23,17 @@ const { slice, reducer } = createResettableSlice({
   name: "category",
   initialState,
   reducers: {
+    getAllSubcategories: (state) => {
+      state.isLoading = true;
+    },
+    getAllSubcategoriesSuccess: (state, action) => {
+      state.subcategories = action.payload;
+      state.isLoading = false;
+    },
+    getAllSubcategoriesError: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
     getSubcategories: (state) => {
       state.isLoading = true;
     },
@@ -53,7 +69,7 @@ const { slice, reducer } = createResettableSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
-    addSubcategory: (state) => {
+    addSubcategory: (state, _action: PayloadAction<IRequestAddSubcategory>) => {
       state.isAddSubcategory = true;
     },
     addSubcategorySuccess: (state, action) => {
@@ -64,7 +80,10 @@ const { slice, reducer } = createResettableSlice({
       state.isAddSubcategory = false;
       state.error = action.payload;
     },
-    editSubcategory: (state) => {
+    editSubcategory: (
+      state,
+      _action: PayloadAction<IRequestEditSubcategory>
+    ) => {
       state.isEditSubcategory = true;
     },
     editSubcategorySuccess: (state, action) => {
@@ -77,6 +96,19 @@ const { slice, reducer } = createResettableSlice({
       state.isEditSubcategory = false;
       state.error = action.payload;
     },
+    deleteSubcategory: (state, _action: PayloadAction<string>) => {
+      state.isDeleteSubcategory = true;
+    },
+    deleteSubcategorySuccess: (state, action) => {
+      state.subcategories = state.subcategories.filter(
+        (subcategory) => subcategory.id !== action.payload
+      );
+      state.isDeleteSubcategory = false;
+    },
+    deleteSubcategoryError: (state, action) => {
+      state.isDeleteSubcategory = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -84,6 +116,9 @@ export const {
   getSubcategories,
   getSubcategoriesSuccess,
   getSubcategoriesError,
+  getAllSubcategories,
+  getAllSubcategoriesSuccess,
+  getAllSubcategoriesError,
   setIsAddSubcategory,
   setIsEditSubcategory,
   setIsDeleteSubcategory,
@@ -95,5 +130,11 @@ export const {
   addSubcategory,
   addSubcategorySuccess,
   addSubcategoryError,
+  editSubcategory,
+  editSubcategorySuccess,
+  editSubcategoryError,
+  deleteSubcategory,
+  deleteSubcategorySuccess,
+  deleteSubcategoryError,
 } = slice.actions;
 export default reducer;

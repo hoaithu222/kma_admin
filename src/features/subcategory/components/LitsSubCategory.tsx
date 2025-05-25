@@ -1,10 +1,128 @@
 import Empty from "@/foundation/components/empty/Empty";
 import Table from "@/foundation/components/table/Table";
+import { useSubcategory } from "../hooks/useSubcategory";
+import { useEffect, useState } from "react";
+import { MdModeEdit, MdOutlineDeleteForever } from "react-icons/md";
+import moment from "moment";
+import { Subcategory } from "../slice/subcategory.type";
+
+import { useCategory } from "@/features/category/hooks/useCategory";
+import EditSubCategory from "./EditSubCategory";
+
+import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
 
 const LitsSubCategory = () => {
+  const {
+    getAllSubcategoriesAction,
+    subcategories,
+    isEditSubcategory,
+    isDeleteSubcategory,
+    handleEditSubcategory,
+    handleDeleteSubcategory,
+    handleDeleteSubcategoryAction,
+  } = useSubcategory();
+  const [editSubcategory, setEditSubcategory] = useState<Subcategory | null>(
+    null
+  );
+  const [idDelete, setIdDelete] = useState<string | null>(null);
+  const { categories, getCategoriesAction } = useCategory();
+
+  const columns = [
+    {
+      key: "name",
+      title: "Name",
+      width: "100px",
+      render: (value: any, _record: any, _index: number) => {
+        return <div>{value}</div>;
+      },
+    },
+    {
+      key: "categoryId",
+      title: "Category",
+      width: "100px",
+      render: (value: any, _record: any, _index: number) => {
+        return (
+          <div>
+            {categories.find((category) => category.id === value)?.name}
+          </div>
+        );
+      },
+    },
+    {
+      key: "description",
+      title: "Description",
+      width: "100px",
+      render: (value: any, _record: any, _index: number) => {
+        return <div>{value}</div>;
+      },
+    },
+    {
+      key: "createdAt",
+      title: "Created At",
+      width: "100px",
+      render: (value: any, _record: any, _index: number) => {
+        return <div>{moment(value).format("DD/MM/YYYY")}</div>;
+      },
+    },
+    {
+      key: "action",
+      title: "Action",
+      width: "100px",
+      render: (_value: any, record: any, _index: number) => {
+        return (
+          <div className="flex gap-2">
+            <MdModeEdit
+              className="text-xl cursor-pointer text-secondary"
+              onClick={() => {
+                setEditSubcategory(record);
+                handleEditSubcategory(true);
+              }}
+            />
+            <MdOutlineDeleteForever
+              className="text-xl cursor-pointer text-error"
+              onClick={() => {
+                setIdDelete(record.id);
+                handleDeleteSubcategory(true);
+              }}
+            />
+          </div>
+        );
+      },
+    },
+  ];
+  useEffect(() => {
+    getAllSubcategoriesAction();
+    getCategoriesAction();
+  }, [isDeleteSubcategory]);
+
   return (
     <div>
-      <Table columns={[]} data={[]} emptyText={<Empty variant="data" />} />
+      <Table
+        columns={columns}
+        data={subcategories}
+        emptyText={<Empty variant="data" />}
+        pagination={true}
+        pageSize={20}
+        hoverColor="primary"
+        hover={true}
+        size="small"
+        striped={true}
+      />
+      {isEditSubcategory && editSubcategory && (
+        <EditSubCategory subcategory={editSubcategory} />
+      )}
+      {isDeleteSubcategory && (
+        <ModalConfirm
+          title="Xóa danh mục con"
+          onConfirm={() => {
+            handleDeleteSubcategoryAction(idDelete as string);
+            handleDeleteSubcategory(false);
+            setIdDelete(null);
+          }}
+          isOpen={true}
+          onClose={() => handleDeleteSubcategory(false)}
+        />
+      )}
     </div>
   );
 };

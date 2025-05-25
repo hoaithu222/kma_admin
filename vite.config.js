@@ -6,10 +6,19 @@ import { fileURLToPath } from "url";
 var __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [react()],
-    resolve: {
-        alias: {
-            "@": path.resolve(__dirname, "./src"),
-        },
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://36.50.54.109:8080',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      }
+    }
+  }
 });

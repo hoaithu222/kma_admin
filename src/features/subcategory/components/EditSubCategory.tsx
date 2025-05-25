@@ -7,22 +7,25 @@ import Button from "@/foundation/components/buttons/Button";
 import Select from "@/foundation/components/inputs/SelectOption";
 import { useCategory } from "@/features/category/hooks/useCategory";
 import { useState } from "react";
-import { IRequestAddSubcategory } from "@/core/api/subcategory/types";
+import { IRequestEditSubcategory } from "@/core/api/subcategory/types";
+import { Subcategory } from "../slice/subcategory.type";
 
-const AddCategory = () => {
-  const { handleAddSubcategoryAction, handleAddSubcategory } = useSubcategory();
+const EditSubCategory = ({ subcategory }: { subcategory: Subcategory }) => {
+  const { handleEditSubcategoryAction, handleEditSubcategory } =
+    useSubcategory();
   const { categories } = useCategory();
-  const [form, setForm] = useState<IRequestAddSubcategory>({
-    name: "",
-    categoryId: "",
-    description: "",
-    slug: "",
+  const [form, setForm] = useState<IRequestEditSubcategory>({
+    id: subcategory.id,
+    name: subcategory.name,
+    description: subcategory.description,
+    categoryId: subcategory.categoryId as string,
+    slug: subcategory.slug,
   });
   return (
     <Modal
       isOpen={true}
-      onOpenChange={() => handleAddSubcategory(false)}
-      title="Thêm danh mục con"
+      onOpenChange={() => handleEditSubcategory(false)}
+      title="Sửa danh mục con"
       size="large"
       animation="slide"
     >
@@ -30,7 +33,7 @@ const AddCategory = () => {
         className="space-y-4"
         onSubmit={(e) => {
           e.preventDefault();
-          handleAddSubcategoryAction(form);
+          handleEditSubcategoryAction(form);
         }}
       >
         <Input
@@ -82,7 +85,7 @@ const AddCategory = () => {
             loading={false}
             iconLeft={<PlusIcon className="w-4 h-4" />}
           >
-            Thêm danh mục
+            Sửa danh mục
           </Button>
         </div>
       </form>
@@ -90,4 +93,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default EditSubCategory;

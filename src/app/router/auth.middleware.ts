@@ -1,17 +1,54 @@
-// import { Navigate } from "react-router-dom";
+import { LoaderFunctionArgs, redirect } from "react-router-dom";
 
 export const authMiddleware = (options: { requireAuth: boolean }) => {
-  return async (params: { pathname: string }) => {
-    const { pathname } = params;
-    console.log(options, pathname);
-    // const isLoginPage = pathname.includes("/login");
-    // const isAuthenticated = false;
-    // if (options.requireAuth && !isAuthenticated && !isLoginPage) {
-    //   return <Navigate to="/login" />;
-    // }
-    // if (isAuthenticated && isLoginPage) {
-    //   return <Navigate to="/" />;
-    // }
-    return null;
+  return async ({ request }: LoaderFunctionArgs) => {
+    const pathname = new URL(request.url).pathname;
+    const isLoginPage = pathname.includes("/auth");
+
+    try {
+      // Lấy dữ liệu từ localStorage
+      const authData = localStorage.getItem("persist:auth");
+
+      if (!authData) {
+        // Nếu không có dữ liệu auth và cần authentication
+        if (options.requireAuth && !isLoginPage) {
+          return redirect("/auth");
+        }
+        return null;
+      }
+
+      // Parse dữ liệu auth
+      const parsedAuth = JSON.parse(authData);
+
+      // Kiểm tra isAuthenticated - có thể là string hoặc boolean
+      let isAuthenticated = false;
+
+      if (typeof parsedAuth.isAuthenticated === "string") {
+        isAuthenticated = parsedAuth.isAuthenticated === "true";
+      } else {
+        isAuthenticated = Boolean(parsedAuth.isAuthenticated);
+      }
+
+      // Nếu cần authentication nhưng chưa đăng nhập và không phải trang login
+      if (options.requireAuth && !isAuthenticated && !isLoginPage) {
+        return redirect("/auth");
+      }
+
+      // Nếu đã đăng nhập mà vào trang login thì redirect về home
+      if (isAuthenticated && isLoginPage) {
+        return redirect("/");
+      }
+
+      return null;
+    } catch (error) {
+      console.error("Auth middleware error:", error);
+
+      // Nếu có lỗi parse và cần authentication
+      if (options.requireAuth && !isLoginPage) {
+        return redirect("/auth");
+      }
+
+      return null;
+    }
   };
 };

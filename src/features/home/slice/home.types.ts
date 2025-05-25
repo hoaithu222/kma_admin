@@ -1,8 +1,8 @@
 import { ReduxStateType } from "@/app/store/types";
-import { IPost } from "@/core/api/home/types";
+// import { IArticle } from "@/core/api/home/types";
 
 interface initialStateType {
-  posts: IPost[];
+  articles: any[];
   status: ReduxStateType;
   error: string | null;
   filter: {

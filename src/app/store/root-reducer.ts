@@ -6,6 +6,7 @@ import homeReducer from "@/features/home/slice/home.slice.ts";
 import categoryReducer from "@/features/category/slice/category.slice.ts";
 import subcategoryReducer from "@/features/subcategory/slice/subcategory.slice.ts";
 import postReducer from "@/features/posts/slice/posts.slice.ts";
+import authReducer from "@/features/auth/slice/auth.slice.ts";
 
 export const rootReducer = combineReducers({
   [AppReducerType.LANGUAGE]: languageReducer,
@@ -14,4 +15,5 @@ export const rootReducer = combineReducers({
   [AppReducerType.CATEGORY]: categoryReducer,
   [AppReducerType.SUBCATEGORY]: subcategoryReducer,
   [AppReducerType.POST]: postReducer,
+  [AppReducerType.AUTH]: authReducer,
 });

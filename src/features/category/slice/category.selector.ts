@@ -14,7 +14,12 @@ export const isAddCategorySelector = createSelector(
   (state) => state.isAddCategory
 );
 
-export const isEditCategory = createSelector(
+export const isEditCategorySelector = createSelector(
   [selectCategory],
   (state) => state.isEditCategory
+);
+
+export const isConfirmDeleteCategorySelector = createSelector(
+  [selectCategory],
+  (state) => state.confirmDeleteCategory
 );

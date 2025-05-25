@@ -4,16 +4,19 @@ import { initialStateType } from "./home.types";
 
 const selectHome = (state: RootState) => state.home as initialStateType;
 
-export const selectPosts = createSelector([selectHome], (state) => state.posts);
-export const selectStatus = createSelector(
+export const selectArticles = createSelector(
   [selectHome],
-  (state) => state.status
+  (state) => state.articles
 );
-export const selectFilter = createSelector(
-  [selectHome],
-  (state) => state.filter
-);
-export const selectCategory = createSelector(
-  [selectHome],
-  (state) => state.category
-);
+// export const selectStatus = createSelector(
+//   [selectHome],
+//   (state) => state.status
+// );
+// export const selectFilter = createSelector(
+//   [selectHome],
+//   (state) => state.filter
+// );
+// export const selectCategory = createSelector(
+//   [selectHome],
+//   (state) => state.category
+// );

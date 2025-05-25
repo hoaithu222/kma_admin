@@ -4,7 +4,7 @@ const NotPermisstion = () => {
   const navigate = useNavigate();
 
   const goLogin = () => {
-    navigate("/login");
+    navigate("/auth");
   };
 
   return (
