@@ -234,7 +234,7 @@ const UploadFile = ({
 
       {canAddMore && (
         <div
-          className={`relative border-2 border-dashed rounded-lg p-8 cursor-pointer transition-colors
+          className={`relative border-2 border-dashed rounded-lg p-4 sm:p-6 md:p-8 cursor-pointer transition-colors
           ${isDragging ? "border-primary bg-background-subtle" : "hover:border-gray-400"}
           ${disabled ? "opacity-50 cursor-not-allowed" : ""}
           ${error ? "border-error" : ""} ${dropzoneClassName}`}
@@ -254,16 +254,16 @@ const UploadFile = ({
             className="hidden"
           />
           <div className="text-center">
-            <p className="text-sm text-secondary">{placeholder}</p>
-            <p className="text-xs text-muted">{dragText}</p>
+            <p className="text-xs sm:text-sm text-secondary">{placeholder}</p>
+            <p className="text-[10px] sm:text-xs text-muted">{dragText}</p>
             <button
               type="button"
-              className="px-4 py-2 mt-4 rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 mt-3 sm:mt-4 text-xs sm:text-sm rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover"
               disabled={disabled}
             >
               {uploadText}
             </button>
-            <p className="mt-2 text-xs text-muted">
+            <p className="mt-2 text-[10px] sm:text-xs text-muted">
               Tối đa {maxFiles} file, mỗi file ≤{" "}
               {(maxSize / 1024 / 1024).toFixed(1)}MB
             </p>
@@ -272,24 +272,26 @@ const UploadFile = ({
       )}
 
       {showPreview && value.length > 0 && (
-        <div className={`mt-4 space-y-2 ${previewClassName}`}>
+        <div
+          className={`mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 ${previewClassName}`}
+        >
           {value.map((doc) => (
             <div
               key={doc.id}
-              className="flex items-center p-3 border rounded-lg bg-background-muted hover:bg-background-subtle"
+              className="flex items-center p-2 border rounded-lg sm:p-3 bg-background-muted hover:bg-background-subtle"
             >
-              <div className="mr-3 text-2xl">
+              <div className="mr-2 text-xl sm:mr-3 sm:text-2xl">
                 {getFileIcon(doc.type, doc.name)}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate text-primary">
+                <p className="text-xs font-medium truncate sm:text-sm text-primary">
                   {doc.name}
                 </p>
-                <p className="text-sm text-secondary">
+                <p className="text-xs text-secondary">
                   {formatFileSize(doc.size)}
                 </p>
                 {showProgress && typeof doc.progress === "number" && (
-                  <div className="w-full h-2 mt-1 rounded bg-background-muted">
+                  <div className="w-full h-1.5 sm:h-2 mt-1 rounded bg-background-muted">
                     <div
                       className="h-full rounded bg-button-primary-bg"
                       style={{ width: `${doc.progress}%` }}
@@ -300,7 +302,7 @@ const UploadFile = ({
               <button
                 type="button"
                 onClick={() => handleRemove(doc)}
-                className="ml-4 text-sm text-error hover:underline"
+                className="ml-2 text-xs sm:ml-4 sm:text-sm text-error hover:underline"
               >
                 {removeText}
               </button>

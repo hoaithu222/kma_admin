@@ -10,22 +10,29 @@ import { useCategory } from "@/features/category/hooks/useCategory";
 import EditSubCategory from "./EditSubCategory";
 
 import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
+import { setIdDelete } from "../slice/subcategory.slice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  idDeleteSelector,
+  selectSubcategories,
+} from "../slice/subcategory.selector";
 
 const LitsSubCategory = () => {
   const {
-    getAllSubcategoriesAction,
-    subcategories,
     isEditSubcategory,
     isDeleteSubcategory,
     handleEditSubcategory,
     handleDeleteSubcategory,
     handleDeleteSubcategoryAction,
+    getAllSubcategoriesAction,
   } = useSubcategory();
   const [editSubcategory, setEditSubcategory] = useState<Subcategory | null>(
     null
   );
-  const [idDelete, setIdDelete] = useState<string | null>(null);
-  const { categories, getCategoriesAction } = useCategory();
+  const dispatch = useDispatch();
+  const subcategories = useSelector(selectSubcategories);
+  const idDelete = useSelector(idDeleteSelector);
+  const { categories } = useCategory();
 
   const columns = [
     {
@@ -81,7 +88,7 @@ const LitsSubCategory = () => {
             <MdOutlineDeleteForever
               className="text-xl cursor-pointer text-error"
               onClick={() => {
-                setIdDelete(record.id);
+                dispatch(setIdDelete(record.id));
                 handleDeleteSubcategory(true);
               }}
             />
@@ -92,9 +99,7 @@ const LitsSubCategory = () => {
   ];
   useEffect(() => {
     getAllSubcategoriesAction();
-    getCategoriesAction();
-  }, [isDeleteSubcategory]);
-
+  }, []);
   return (
     <div>
       <Table
@@ -103,8 +108,10 @@ const LitsSubCategory = () => {
         emptyText={<Empty variant="data" />}
         pagination={true}
         pageSize={20}
-        hoverColor="primary"
+        hoverColor="accent"
         hover={true}
+        hoverEffect="border"
+        hoverIntensity="strong"
         size="small"
         striped={true}
       />

@@ -51,13 +51,31 @@ const Table = ({
     direction: "asc" | "desc";
   } | null>(null);
 
+  // Helper function to safely get value from record
+  const getSafeValue = (record: any, key: string) => {
+    if (record === null || record === undefined) return null;
+    return record[key] !== undefined ? record[key] : null;
+  };
+
+  // Helper function to display value safely
+  const displayValue = (value: any) => {
+    if (value === null || value === undefined) return "-";
+    if (typeof value === "object") return JSON.stringify(value);
+    return String(value);
+  };
+
   // Sorting logic
   const sortedData = React.useMemo(() => {
     if (!sortConfig) return data;
 
     return [...data].sort((a, b) => {
-      const aValue = a[sortConfig.key];
-      const bValue = b[sortConfig.key];
+      const aValue = getSafeValue(a, sortConfig.key);
+      const bValue = getSafeValue(b, sortConfig.key);
+
+      // Handle null values - put them at the end
+      if (aValue === null && bValue === null) return 0;
+      if (aValue === null) return 1;
+      if (bValue === null) return -1;
 
       if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
       if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
@@ -130,7 +148,7 @@ const Table = ({
 
     const effectClasses = {
       background: hoverColorMap[hoverColor].split(" ")[0],
-      border: hoverColorMap[hoverColor].split(" ")[1],
+      border: hoverColorMap[hoverColor].split(" ")[1] || "",
       both: hoverColorMap[hoverColor],
     };
 
@@ -152,7 +170,7 @@ const Table = ({
       <div className={`w-full ${className}`}>
         <div
           className={clsx(
-            "flex items-center justify-center p-8 text-center ",
+            "flex items-center justify-center p-8 text-center",
             "border rounded-lg shadow-lg shadow-navbar-active-bg text-text-muted bg-background-elevated border-border-primary"
           )}
         >
@@ -210,20 +228,24 @@ const Table = ({
                 `}
                 onClick={() => onRowClick?.(record, index)}
               >
-                {columns.map((column) => (
-                  <td
-                    key={column.key}
-                    className={`
-                      ${getCellPadding()}
-                      ${bordered ? "border-b border-border-primary" : ""}
-                      ${column.align === "center" ? "text-center" : column.align === "right" ? "text-right" : "text-left"}
-                    `}
-                  >
-                    {column.render
-                      ? column.render(record[column.key], record, index)
-                      : record[column.key]}
-                  </td>
-                ))}
+                {columns.map((column) => {
+                  const value = getSafeValue(record, column.key);
+
+                  return (
+                    <td
+                      key={column.key}
+                      className={`
+                        ${getCellPadding()}
+                        ${bordered ? "border-b border-border-primary" : ""}
+                        ${column.align === "center" ? "text-center" : column.align === "right" ? "text-right" : "text-left"}
+                      `}
+                    >
+                      {column.render
+                        ? column.render(value, record, index)
+                        : displayValue(value)}
+                    </td>
+                  );
+                })}
               </tr>
             ))}
           </tbody>

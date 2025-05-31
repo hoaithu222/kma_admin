@@ -66,54 +66,53 @@ const Button = ({
   // Variant classes
   const variantClasses = {
     primary:
-      "bg-button-primary-bg text-button-primary-text border-transparent hover:bg-button-primary-hover active:bg-button-primary-active disabled:bg-button-primary-disabled",
+      "bg-primary text-on-primary border-transparent hover:bg-primary-dark disabled:bg-primary-light disabled:text-disabled",
     secondary:
-      "bg-button-secondary-bg text-button-secondary-text border-transparent hover:bg-button-secondary-hover active:bg-button-secondary-active",
+      "bg-secondary text-on-secondary border-transparent hover:bg-secondary-dark disabled:bg-secondary-light disabled:text-disabled",
     outlined:
-      "bg-button-outline-bg border border-button-outline-border text-button-outline-text hover:bg-button-outline-hover active:bg-button-outline-active disabled:bg-background-muted disabled:text-text-disabled",
-    text: "bg-button-ghost-bg text-text-primary hover:bg-button-ghost-hover active:bg-button-ghost-active disabled:bg-background-muted disabled:text-text-disabled",
-    textSecondary:
-      "bg-button-ghost-bg text-text-secondary hover:bg-button-ghost-hover active:bg-button-ghost-active",
+      "bg-transparent border border-primary text-primary hover:border-primary-dark disabled:bg-gray-200 disabled:text-disabled",
+    text: "bg-transparent text-primary hover:underline disabled:bg-gray-200 disabled:text-disabled",
+    textSecondary: "bg-transparent text-secondary hover:opacity-90",
     outlinedSecondary:
-      "bg-button-outline-bg border border-button-outline-border text-button-outline-text hover:bg-button-outline-hover active:bg-button-outline-active",
+      "bg-transparent border border-secondary text-secondary hover:border-info focus:border-info hover:opacity-90",
     success:
-      "bg-success text-text-on-primary border-transparent hover:bg-success-dark disabled:bg-success-light disabled:text-text-disabled",
+      "bg-success text-on-success border-transparent hover:bg-success-dark disabled:bg-success-light disabled:text-disabled",
     danger:
-      "bg-button-danger-bg text-button-danger-text border-transparent hover:bg-button-danger-hover active:bg-button-danger-active disabled:bg-error-light disabled:text-text-disabled",
+      "bg-error text-on-error border-transparent hover:bg-error-dark disabled:bg-error-light disabled:text-disabled",
     warning:
-      "bg-warning text-text-on-primary border-transparent hover:bg-warning-dark disabled:bg-warning-light disabled:text-text-disabled",
+      "bg-warning text-on-warning border-transparent hover:bg-warning-dark disabled:bg-warning-light disabled:text-disabled",
     gradientPrimary:
-      "bg-gradient-to-r from-primary via-primary-dark to-primary-darker text-text-on-primary border-transparent hover:from-primary-dark hover:to-primary disabled:bg-primary-light disabled:text-text-disabled",
+      "bg-gradient-to-r from-primary via-primary-dark to-primary-darker text-white border-transparent hover:from-primary-dark hover:to-primary disabled:bg-primary-light disabled:text-disabled",
     gradientSubtle:
-      "bg-gradient-to-r from-secondary via-secondary-light to-secondary-dark text-text-on-secondary border-transparent hover:from-secondary-dark hover:to-secondary-light disabled:bg-secondary-light disabled:text-text-disabled",
+      "bg-gradient-to-r from-secondary via-secondary-light to-secondary-dark text-on-secondary border-transparent hover:from-secondary-dark hover:to-secondary-light disabled:bg-secondary-light disabled:text-disabled",
     gradientCool:
-      "bg-gradient-to-r from-secondary via-primary to-primary-dark text-text-on-primary border-transparent hover:from-primary-dark hover:to-primary disabled:bg-primary-light disabled:text-text-disabled",
+      "bg-gradient-to-r from-secondary via-primary to-primary-dark text-white border-transparent hover:from-primary-dark hover:to-primary disabled:bg-primary-light disabled:text-disabled",
     gradientDark:
-      "bg-gradient-to-r from-primary-dark to-warning text-text-on-primary border-transparent hover:from-primary-darker hover:to-primary disabled:bg-primary-light disabled:text-text-disabled",
+      "bg-gradient-to-r from-primary-dark to-primary-darker text-white border-transparent hover:from-primary-darker hover:to-primary disabled:bg-primary-light disabled:text-disabled",
     gradientInverse:
-      "bg-gradient-to-r from-background-muted to-background-subtle text-text-on-primary border-transparent hover:from-background-subtle hover:to-background-muted disabled:bg-background-muted disabled:text-text-disabled",
+      "bg-gradient-to-r from-gray-700 to-gray-900 text-white border-transparent hover:from-gray-900 hover:to-gray-700 disabled:bg-gray-300 disabled:text-disabled",
     gradientFire:
-      "bg-gradient-to-r from-error via-error-light to-error-dark text-text-on-primary border-transparent hover:from-error-dark hover:to-error disabled:bg-error-light disabled:text-text-disabled",
+      "bg-gradient-to-r from-red-500 to-orange-500 text-white border-transparent hover:from-orange-600 hover:to-red-600 disabled:bg-red-200 disabled:text-disabled",
   };
 
   // Size-specific styling
   const sizeClasses = {
     small:
       shape === "round" || shape === "square"
-        ? "h-8 w-8 text-sm p-0"
-        : "h-8 px-3 text-sm",
+        ? "w-4 h-4 md:w-6 md:h-6 lg:h-8 lg:w-8 text-xs md:text-sm lg:text-base p-0"
+        : "h-6 md:h-7 lg:h-8 px-2 md:px-2.5 lg:px-3 text-xs md:text-sm lg:text-base",
     medium:
       shape === "round" || shape === "square"
-        ? "h-10 w-10 text-base p-0"
-        : "h-10 min-w-[100px] px-4 text-base",
+        ? "h-6 w-6 md:h-8 md:w-8 lg:h-10 lg:w-10 text-xs md:text-sm lg:text-base p-0"
+        : "h-8 md:h-9 lg:h-10 min-w-[100px] px-2 md:px-3 lg:px-4 text-xs md:text-sm lg:text-base",
     large:
       shape === "round" || shape === "square"
-        ? "h-12 w-12 text-lg p-0"
-        : "h-12 px-4 py-3 text-lg",
+        ? "h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 text-xs md:text-sm lg:text-base p-0"
+        : "h-8 md:h-9 lg:h-10 min-w-[100px] px-2 md:px-3 lg:px-4 text-xs md:text-sm lg:text-base",
     xl:
       shape === "round" || shape === "square"
-        ? "h-16 w-16 text-xl p-0"
-        : "h-16 px-6 py-4 text-xl",
+        ? "h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 text-xs md:text-sm lg:text-base p-0"
+        : "h-10 md:h-11 lg:h-12 min-w-[100px] px-2 md:px-3 lg:px-4 text-xs md:text-sm lg:text-base",
   };
 
   // Combine all classes

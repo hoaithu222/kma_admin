@@ -8,19 +8,24 @@ import { MdModeEdit, MdOutlineDeleteForever } from "react-icons/md";
 import EditCategory from "./EditCategory";
 import { Category } from "../slice/category.type";
 import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { idDeleteSelector } from "../slice/category.selector";
+import { setIdDelete } from "../slice/category.slice";
 
 const LitsCategory = () => {
   const {
-    getCategoriesAction,
     categories,
     isEditCategory,
     isConfirmDeleteCategory,
     handleEditCategory,
     handleConfirmDeleteCategory,
     handleDeleteCategory,
+    getCategoriesAction,
   } = useCategory();
   const [editCategory, setEditCategory] = useState<Category | null>(null);
-  const [idDelete, setIdDelete] = useState<string | null>(null);
+  const dispatch = useDispatch();
+  const idDelete = useSelector(idDeleteSelector);
   const columns = [
     {
       key: "name",
@@ -63,7 +68,7 @@ const LitsCategory = () => {
             <MdOutlineDeleteForever
               className="text-xl text-error"
               onClick={() => {
-                setIdDelete(record.id);
+                dispatch(setIdDelete(record.id));
                 handleConfirmDeleteCategory(true);
               }}
             />
@@ -74,7 +79,7 @@ const LitsCategory = () => {
   ];
   useEffect(() => {
     getCategoriesAction();
-  }, [isConfirmDeleteCategory]);
+  }, []);
 
   return (
     <div>

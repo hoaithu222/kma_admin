@@ -8,7 +8,6 @@ import {
   CameraIcon,
   CogIcon,
   FolderIcon,
-  MessageCircleIcon,
   NewspaperIcon,
   TagIcon,
 } from "lucide-react";
@@ -39,12 +38,12 @@ export const NavbarItems: NavbarItem[] = [
       {
         label: "Danh sách người dùng",
         icon: UserIcon,
-        path: "/users",
+        path: "/user-management",
       },
       {
         label: "Phân quyền",
         icon: ClipboardIcon,
-        path: "/roles",
+        path: "/decentralization",
       },
     ],
   },
@@ -70,25 +69,52 @@ export const NavbarItems: NavbarItem[] = [
       },
     ],
   },
-  {
-    label: "Quản lý bình luận",
-    icon: MessageCircleIcon,
-    path: "/comments",
-  },
+  // {
+  //   label: "Quản lý bình luận",
+  //   icon: MessageCircleIcon,
+  //   path: "/comments",
+  // },
   {
     label: "Thông báo & sự kiện",
     icon: BellIcon,
-    path: "/notifications",
+    path: "/event",
     children: [
-      {
-        label: "Danh sách thông báo",
-        icon: BellIcon,
-        path: "/notifications",
-      },
+      // {
+      //   label: "Danh sách thông báo",
+      //   icon: BellIcon,
+      //   path: "/notifications",
+      // },
       {
         label: "Sự kiện sắp tới",
         icon: ClipboardIcon,
-        path: "/events",
+        path: "/event",
+      },
+    ],
+  },
+  {
+    label: "Sinh viên",
+    icon: UserIcon,
+    path: "/student-internship",
+    children: [
+      {
+        label: "Quản lý sinh viên",
+        icon: UserIcon,
+        path: "/student-internship",
+      },
+      {
+        label: "Đồ án thực tập",
+        icon: BookIcon,
+        path: "/student-practice-project",
+      },
+      {
+        label: "Nghiên cứu sinh",
+        icon: BookIcon,
+        path: "/student-research",
+      },
+      {
+        label: "Quy định sinh viên",
+        icon: BookIcon,
+        path: "/student-rules",
       },
     ],
   },
@@ -100,6 +126,6 @@ export const NavbarItems: NavbarItem[] = [
   {
     label: "Cài đặt hệ thống",
     icon: CogIcon,
-    path: "/settings",
+    path: "/setting",
   },
 ];

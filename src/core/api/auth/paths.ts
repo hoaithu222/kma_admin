@@ -5,4 +5,5 @@ export const AUTH_PATH = {
   delete: `${BASE_PATH}/delete/:username`,
   getUser: `${BASE_PATH}/filter`,
   updateUser: `${BASE_PATH}/update/:username`,
+  logout: `${BASE_PATH}/logout`,
 };

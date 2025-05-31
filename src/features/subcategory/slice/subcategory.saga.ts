@@ -46,11 +46,8 @@ function* fetchCategories(): Generator<any, void, any> {
       sort: "",
       order: "",
     });
-    if (response.ok) {
-      yield put(getSubcategoriesSuccess(response.data.data));
-    } else {
-      yield put(getSubcategoriesError(response.error));
-    }
+
+    yield put(getSubcategoriesSuccess(response.data.data));
   } catch (error) {
     yield put(getSubcategoriesError(error));
   }
@@ -60,12 +57,7 @@ function* addSubcategorySaga(
 ): Generator<any, void, any> {
   try {
     const response = yield call(addSubcategoryApi, action.payload);
-
-    if (response.ok) {
-      yield put(addSubcategorySuccess(response.data.data));
-    } else {
-      yield put(addSubcategoryError(response.error));
-    }
+    yield put(addSubcategorySuccess(response.data.data));
   } catch (error) {
     yield put(addSubcategoryError(error));
   }
@@ -83,11 +75,7 @@ function* editSubcategorySaga(
     const response = yield call(() =>
       editSubcategoryApi(action.payload.id as string, data)
     );
-    if (response.ok) {
-      yield put(editSubcategorySuccess(response.data.data));
-    } else {
-      yield put(editSubcategoryError(response.error));
-    }
+    yield put(editSubcategorySuccess(response.data.data));
   } catch (error) {
     yield put(editSubcategoryError(error));
   }
@@ -97,11 +85,7 @@ function* deleteSubcategorySaga(
 ): Generator<any, void, any> {
   try {
     const response = yield call(deleteSubcategoryApi, action.payload);
-    if (response.ok) {
-      yield put(deleteSubcategorySuccess(response.data));
-    } else {
-      yield put(deleteSubcategoryError(response.error));
-    }
+    yield put(deleteSubcategorySuccess(response.data));
   } catch (error) {
     yield put(deleteSubcategoryError(error));
   }

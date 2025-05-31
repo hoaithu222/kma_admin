@@ -27,3 +27,8 @@ export const selectIsAuthenticated = createSelector(
   (state) => state.isAuthenticated
 );
 export const selectUser = createSelector([authSelector], (state) => state.user);
+
+export const selectLogoutStatus = createSelector(
+  [authSelector],
+  (state) => state.logout.logoutStatus
+);

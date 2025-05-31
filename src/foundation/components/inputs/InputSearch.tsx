@@ -26,14 +26,14 @@ const InputSearch = ({
       pl: icon ? "pl-6" : "",
     },
     md: {
-      input: "py-2 px-4 text-base",
+      input: "py-1 px-3 text-sm md:py-2 md:px-4 text-base",
       iconContainer: "text-base",
-      pl: icon ? "pl-8" : "",
+      pl: icon ? "pl-4 sm:pl-6 md:pl-8" : "",
     },
     lg: {
-      input: "py-3 px-6 text-lg",
+      input: "py-2 px-4 text-base md:py-3 md:px-6 text-lg",
       iconContainer: "text-lg",
-      pl: icon ? "pl-10" : "",
+      pl: icon ? "pl-6 sm:pl-8 md:pl-10" : "",
     },
   };
 

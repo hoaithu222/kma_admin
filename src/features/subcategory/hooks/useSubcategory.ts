@@ -23,14 +23,14 @@ import {
 export const useSubcategory = () => {
   const dispatch = useDispatch();
 
-  const getSubcategoriesAction = () => {
-    dispatch(getSubcategories());
-  };
   const isAddSubcategory = useSelector(isAddSubcategorySelector);
   const isEditSubcategory = useSelector(isEditSubcategorySelector);
   const isDeleteSubcategory = useSelector(isDeleteSubcategorySelector);
   const isConfirmDeleteSubcategory = useSelector(isDeleteSubcategorySelector);
   const subcategories = useSelector(selectSubcategories);
+  const getSubcategoriesAction = () => {
+    dispatch(getSubcategories());
+  };
   const handleAddSubcategory = (action: boolean) => {
     dispatch(setIsAddSubcategory(action));
   };

@@ -8,6 +8,7 @@ export interface initialStateType {
   isFilterCategory: boolean;
   isSortCategory: boolean;
   confirmDeleteCategory: boolean;
+  idDelete: string | null;
   isLoading: boolean;
   error: string | null;
 }

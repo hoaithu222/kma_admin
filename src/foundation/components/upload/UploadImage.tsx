@@ -302,11 +302,11 @@ const UploadImage = ({
   const getPreviewSizeClasses = () => {
     switch (previewSize) {
       case "small":
-        return "w-16 h-16";
+        return "w-12 h-12 sm:w-16 sm:h-16";
       case "large":
-        return "w-32 h-32";
+        return "w-24 h-24 sm:w-32 sm:h-32";
       default:
-        return "w-24 h-24";
+        return "w-16 h-16 sm:w-24 sm:h-24";
     }
   };
 
@@ -314,11 +314,11 @@ const UploadImage = ({
   const getVariantClasses = () => {
     switch (variant) {
       case "compact":
-        return "border border-dashed border-gray-300 rounded-lg p-4";
+        return "border border-dashed border-gray-300 rounded-lg p-2 sm:p-4";
       case "grid":
-        return "grid gap-4";
+        return "grid gap-2 sm:gap-4";
       default:
-        return "border-2 border-dashed border-gray-300 rounded-lg p-8";
+        return "border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-6 md:p-8";
     }
   };
 
@@ -366,7 +366,7 @@ const UploadImage = ({
 
           <div className="text-center">
             <svg
-              className="w-12 h-12 mx-auto text-muted"
+              className="w-8 h-8 mx-auto sm:w-12 sm:h-12 text-muted"
               stroke="currentColor"
               fill="none"
               viewBox="0 0 48 48"
@@ -379,20 +379,22 @@ const UploadImage = ({
               />
             </svg>
 
-            <div className="mt-4">
-              <p className="text-sm text-secondary">{placeholder}</p>
-              <p className="mt-1 text-xs text-muted">{dragText}</p>
+            <div className="mt-2 sm:mt-4">
+              <p className="text-xs sm:text-sm text-secondary">{placeholder}</p>
+              <p className="mt-1 text-[10px] sm:text-xs text-muted">
+                {dragText}
+              </p>
             </div>
 
             <button
               type="button"
-              className="inline-flex items-center px-4 py-2 mt-4 text-sm font-medium border border-transparent rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 mt-2 sm:mt-4 text-xs sm:text-sm font-medium border border-transparent rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               disabled={disabled}
             >
               {uploadText}
             </button>
 
-            <p className="mt-2 text-xs text-muted">
+            <p className="mt-2 text-[10px] sm:text-xs text-muted">
               Tối đa {maxFiles} file, mỗi file ≤{" "}
               {(maxSize / 1024 / 1024).toFixed(1)}MB
             </p>
@@ -404,11 +406,11 @@ const UploadImage = ({
       {showPreview && value.length > 0 && (
         <div
           className={`
-          mt-4 grid gap-4
+          mt-4 grid gap-2 sm:gap-4
           ${
             variant === "grid"
               ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
-              : "grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8"
+              : "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
           }
           ${previewClassName}
         `}
@@ -434,7 +436,7 @@ const UploadImage = ({
                 image.progress < 100 && (
                   <div className="absolute bottom-0 left-0 right-0 bg-background-muted">
                     <div
-                      className="h-1 transition-all bg-button-primary-bg"
+                      className="h-0.5 sm:h-1 transition-all bg-button-primary-bg"
                       style={{ width: `${image.progress}%` }}
                     />
                   </div>
@@ -446,11 +448,11 @@ const UploadImage = ({
                   e.stopPropagation();
                   handleRemove(image);
                 }}
-                className="absolute flex items-center justify-center w-6 h-6 text-white transition-opacity rounded-full opacity-0 bg-error top-1 right-1 group-hover:opacity-100 hover:bg-button-danger-hover"
+                className="absolute flex items-center justify-center w-4 h-4 text-white transition-opacity rounded-full opacity-0 sm:w-6 sm:h-6 bg-error top-1 right-1 group-hover:opacity-100 hover:bg-button-danger-hover"
                 disabled={disabled}
               >
                 <svg
-                  className="w-3 h-3"
+                  className="w-2 h-2 sm:w-3 sm:h-3"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -463,9 +465,11 @@ const UploadImage = ({
               </button>
 
               {/* File info overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-1 text-white transition-opacity bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
-                <p className="text-xs truncate">{image.name}</p>
-                <p className="text-xs">{(image.size / 1024).toFixed(1)}KB</p>
+              <div className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 text-white transition-opacity bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
+                <p className="text-[10px] sm:text-xs truncate">{image.name}</p>
+                <p className="text-[8px] sm:text-xs">
+                  {(image.size / 1024).toFixed(1)}KB
+                </p>
               </div>
             </div>
           ))}

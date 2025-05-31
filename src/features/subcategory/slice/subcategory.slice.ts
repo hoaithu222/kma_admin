@@ -15,6 +15,7 @@ const initialState: initialStateType = {
   isSearchSubcategory: false,
   isFilterSubcategory: false,
   isSortSubcategory: false,
+  idDelete: null,
   isLoading: false,
   error: null,
 };
@@ -23,6 +24,9 @@ const { slice, reducer } = createResettableSlice({
   name: "category",
   initialState,
   reducers: {
+    setIdDelete: (state, action) => {
+      state.idDelete = action.payload;
+    },
     getAllSubcategories: (state) => {
       state.isLoading = true;
     },
@@ -73,6 +77,7 @@ const { slice, reducer } = createResettableSlice({
       state.isAddSubcategory = true;
     },
     addSubcategorySuccess: (state, action) => {
+      console.log("action.payload:", action.payload);
       state.subcategories.push(action.payload);
       state.isAddSubcategory = false;
     },
@@ -99,9 +104,9 @@ const { slice, reducer } = createResettableSlice({
     deleteSubcategory: (state, _action: PayloadAction<string>) => {
       state.isDeleteSubcategory = true;
     },
-    deleteSubcategorySuccess: (state, action) => {
+    deleteSubcategorySuccess: (state, _action) => {
       state.subcategories = state.subcategories.filter(
-        (subcategory) => subcategory.id !== action.payload
+        (subcategory) => subcategory.id !== state.idDelete
       );
       state.isDeleteSubcategory = false;
     },
@@ -110,9 +115,13 @@ const { slice, reducer } = createResettableSlice({
       state.error = action.payload;
     },
   },
+  persist: {
+    whitelist: ["subcategories"],
+  },
 });
 
 export const {
+  setIdDelete,
   getSubcategories,
   getSubcategoriesSuccess,
   getSubcategoriesError,

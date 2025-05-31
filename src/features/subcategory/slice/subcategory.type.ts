@@ -7,6 +7,7 @@ export interface initialStateType {
   isSearchSubcategory: boolean;
   isFilterSubcategory: boolean;
   isSortSubcategory: boolean;
+  idDelete: string | null;
   isLoading: boolean;
   error: string | null;
 }

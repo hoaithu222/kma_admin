@@ -23,3 +23,8 @@ export const isConfirmDeleteCategorySelector = createSelector(
   [selectCategory],
   (state) => state.confirmDeleteCategory
 );
+
+export const idDeleteSelector = createSelector(
+  [selectCategory],
+  (state) => state.idDelete
+);

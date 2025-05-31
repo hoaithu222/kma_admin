@@ -16,6 +16,7 @@ const initialState: initialStateType = {
   isFilterCategory: false,
   isSortCategory: false,
   confirmDeleteCategory: false,
+  idDelete: null,
   isLoading: false,
   error: null,
 };
@@ -90,12 +91,15 @@ const { slice, reducer } = createResettableSlice({
       state.isEditCategory = false;
       state.error = action.payload;
     },
+    setIdDelete: (state, action) => {
+      state.idDelete = action.payload;
+    },
     deleteCategoryRequest: (state, _action: PayloadAction<string>) => {
       state.isDeleteCategory = true;
     },
-    deleteCategorySuccess: (state, action) => {
+    deleteCategorySuccess: (state, _action) => {
       state.categories = state.categories.filter(
-        (category) => category.id !== action.payload.id
+        (category) => category.id !== state.idDelete
       );
       state.isDeleteCategory = false;
     },
@@ -106,6 +110,9 @@ const { slice, reducer } = createResettableSlice({
     setConfirmDeleteCategory: (state, action) => {
       state.confirmDeleteCategory = action.payload;
     },
+  },
+  persist: {
+    whitelist: ["categories"],
   },
 });
 
@@ -127,6 +134,7 @@ export const {
   editCategoryRequest,
   editCategorySuccess,
   editCategoryError,
+  setIdDelete,
   deleteCategoryRequest,
   deleteCategorySuccess,
   deleteCategoryError,

@@ -1,8 +1,15 @@
+import { IResponse } from "@/core/base/Response";
+
 export interface IRequestLogin {
   username: string;
   password: string;
   active: boolean;
   role: string;
+}
+export interface ISession {
+  sessionId: string;
+  userId: string;
+  isActive: boolean;
 }
 export interface IResponseDataLogin {
   id: string;
@@ -11,30 +18,35 @@ export interface IResponseDataLogin {
   role: string;
   token: string;
   createdAt: string;
+  session: ISession;
 }
 
-export interface IResponseLogin {
-  status: number;
-  message: string;
-  data: IResponseDataLogin;
-}
 export interface IRequestUpdateUser {
   username: string;
+}
+export interface IRequestLogout {
+  sessionId: string;
+}
+export interface IRegister {
+  username: string;
+  password: string;
+}
+export interface IRequestGetList {
   active: boolean;
-  role: string;
+  page: number;
+  size: number;
 }
-export interface IResponseUpdateUser {
-  status: number;
-  message: string;
+export interface IResponseLogout {
+  date: string;
 }
+export interface IResponseLogin extends IResponse<IResponseDataLogin> {}
 
-export interface IResponseDeleteUser {
-  status: number;
-  message: string;
-}
+export interface IResponseUpdateUser extends IResponse<IResponseDataLogin> {}
 
-export interface IResponseGetUser {
-  status: number;
-  message: string;
-  data: IResponseDataLogin[];
-}
+export interface IResponseDeleteUser extends IResponse<IResponseDataLogin> {}
+
+export interface IResponseGetUser extends IResponse<IResponseDataLogin[]> {}
+
+export interface IResponseRegister extends IResponse<IResponseDataLogin> {}
+
+export interface IResponseLogout extends IResponse<IResponseLogout> {}

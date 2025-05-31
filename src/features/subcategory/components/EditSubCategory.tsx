@@ -1,7 +1,7 @@
 import Modal from "@/foundation/components/modal/Modal";
 import { useSubcategory } from "../hooks/useSubcategory";
 import Input from "@/foundation/components/inputs/Input";
-import { FolderPen, Link, PlusIcon } from "lucide-react";
+import { FolderPen, PlusIcon } from "lucide-react";
 import Textarea from "@/foundation/components/inputs/TextArea";
 import Button from "@/foundation/components/buttons/Button";
 import Select from "@/foundation/components/inputs/SelectOption";
@@ -45,16 +45,6 @@ const EditSubCategory = ({ subcategory }: { subcategory: Subcategory }) => {
           iconLeft={<FolderPen className="w-4 h-4" />}
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-        />
-        <Input
-          placeholder="Slug danh mục con"
-          fullWidth
-          label="Slug danh mục con"
-          className="w-full"
-          iconLeft={<Link className="w-4 h-4" />}
-          name="slug"
-          value={form.slug}
-          onChange={(e) => setForm({ ...form, slug: e.target.value })}
         />
         <Select
           placeholder="Chọn danh mục cha"

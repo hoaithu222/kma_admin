@@ -1,7 +1,7 @@
 import { IAuthState } from "./auth.types";
 import { createResettableSlice } from "@/app/store/create-resettabable-slice";
-import { AppReducerType } from "@/app/store/types";
-import { IRequestLogin } from "@/core/api/auth/types";
+import { AppReducerType, ReduxStateType } from "@/app/store/types";
+import { IRequestLogin, IRequestLogout } from "@/core/api/auth/types";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: IAuthState = {
@@ -13,11 +13,19 @@ const initialState: IAuthState = {
     role: "",
     token: "",
     createdAt: "",
+    session: {
+      sessionId: "",
+      userId: "",
+      isActive: false,
+    },
   },
   isLogin: true,
   isRegister: false,
   isLoadingLogin: false,
   isLoadingRegister: false,
+  logout: {
+    logoutStatus: ReduxStateType.INIT,
+  },
 };
 
 export const { slice, reducer } = createResettableSlice({
@@ -61,17 +69,20 @@ export const { slice, reducer } = createResettableSlice({
       state.isLoadingRegister = false;
       state.isAuthenticated = false;
     },
-    logoutUser: (state) => {
+    logoutUser: (state, _action: PayloadAction<IRequestLogout>) => {
       state.isAuthenticated = false;
       state.user = null;
+      state.logout.logoutStatus = ReduxStateType.LOADING;
     },
     logoutSuccess: (state) => {
       state.isAuthenticated = false;
       state.user = null;
+      state.logout.logoutStatus = ReduxStateType.SUCCESS;
     },
     logoutFailed: (state) => {
       state.isAuthenticated = false;
       state.user = null;
+      state.logout.logoutStatus = ReduxStateType.ERROR;
     },
   },
   persist: {

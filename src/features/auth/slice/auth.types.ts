@@ -1,3 +1,6 @@
+import { ReduxStateType } from "@/app/store/types";
+import { ISession } from "@/core/api/auth/types";
+
 export interface IAuthState {
   isAuthenticated: boolean;
   user: IUser | null;
@@ -5,6 +8,9 @@ export interface IAuthState {
   isRegister: boolean;
   isLoadingLogin: boolean;
   isLoadingRegister: boolean;
+  logout: {
+    logoutStatus: ReduxStateType;
+  };
 }
 
 export interface IUser {
@@ -14,6 +20,7 @@ export interface IUser {
   role: string;
   token: string;
   createdAt: string;
+  session: ISession;
 }
 
 export interface ILogin {
