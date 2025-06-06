@@ -188,8 +188,8 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
   const renderCard = (item: any, index: number) => {
     if (customCardRender) return customCardRender(item, index);
 
-    const imageUrl = item[cardConfig.imageKey || "thumbnailUrl"]
-      ? `${import.meta.env.VITE_API_URL_FILE || ""}${item[cardConfig.imageKey || "thumbnailUrl"]}`
+    const imageUrl = item[cardConfig?.imageKey || "thumbnailUrl"]
+      ? `${import.meta.env.VITE_API_URL_FILE || ""}${item[cardConfig?.imageKey || "thumbnailUrl"]}`
       : `https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop&auto=format`;
 
     return (

@@ -62,7 +62,7 @@ export default function EditPosts({ post }: EditPostsProps) {
     title: post.title,
     content: post.content,
     categoryId: post.categoryId,
-    subCategoryId: post.subCategoryId,
+    subCategoryId: post.subCategoryId || null,
     tagIds: post.tag.map((tag: any) => tag.id.toString()),
     isPrivate: post.isPrivate,
     status: post.status as "draft" | "published",
@@ -78,6 +78,7 @@ export default function EditPosts({ post }: EditPostsProps) {
       tagIds: formData.tagIds.map((id) => parseInt(id)),
       thumbnail: formData.thumbnailId.toString(),
       files: formData.fileIds.map((id) => id.toString()),
+      subCategoryId: formData.subCategoryId || null,
     };
     handleEditPost(submitData);
   };
@@ -175,7 +176,7 @@ export default function EditPosts({ post }: EditPostsProps) {
                     value: subCategory.id,
                     label: subCategory.name,
                   }))}
-                  value={formData.subCategoryId}
+                  value={formData.subCategoryId || ""}
                   onChange={(value: any) =>
                     setFormData({
                       ...formData,

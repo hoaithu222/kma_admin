@@ -2,7 +2,7 @@ import { IResponse } from "@/core/base/Response";
 
 export interface IRequestAddArticle {
   categoryId: number;
-  subCategoryId: number;
+  subCategoryId: number | null;
   title: string;
   description: string;
   summary: string;
@@ -64,7 +64,7 @@ export interface IResponseGetArticle extends IResponse<ResponseGetArticle> {}
 
 export interface IRequestUpdateArticle {
   categoryId: number;
-  subCategoryId: number;
+  subCategoryId: number | null;
   title: string;
   description: string;
   summary: string;

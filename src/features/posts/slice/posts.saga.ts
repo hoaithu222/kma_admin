@@ -31,13 +31,16 @@ import {
 } from "@/core/api/posts/types";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { selectDeletePost, selectEditPost } from "./posts.selector";
+import { toast } from "react-toastify";
 // thêm bài viết
 function* addPostSaga(action: any): Generator<any, any, any> {
   try {
     const response = yield call(addArticle, action.payload);
     yield put(addPostSuccess(response.data));
+    toast.success("Thêm bài viết thành công");
   } catch (error: any) {
     yield put(addPostError(error.response?.data || error.message));
+    toast.error("Thêm bài viết thất bại");
   }
 }
 // lấy danh sách bài viết
@@ -92,8 +95,10 @@ function* updatePostSaga(
       action.payload
     );
     yield put(updatePostSuccess(response.data.data));
+    toast.success("Sửa bài viết thành công");
   } catch (error: any) {
     yield put(updatePostError(error.response?.data || error.message));
+    toast.error("Sửa bài viết thất bại");
   }
 }
 // lấy danh sách bài viết
@@ -106,8 +111,10 @@ function* deletePostSaga(): Generator<any, any, any> {
     const getDeletePost = yield select(selectDeletePost);
     const response = yield call(deleteArticle, getDeletePost.id.toString());
     yield put(deletePostSuccess(response.data.data));
+    toast.success("Xóa bài viết thành công");
   } catch (error: any) {
     yield put(deletePostError(error.response?.data || error.message));
+    toast.error("Xóa bài viết thất bại");
   }
 }
 function* watchDeletePost() {

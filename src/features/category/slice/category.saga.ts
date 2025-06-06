@@ -25,6 +25,7 @@ import {
   IRequestCreateCategory,
   IRequestUpdateCategory,
 } from "@/core/api/category/types";
+import { toast } from "react-toastify";
 
 function* fetchCategories(): Generator<any, void, any> {
   try {
@@ -48,8 +49,10 @@ function* addCategorySaga(action: {
   try {
     const response = yield call(addCategoryApi, action.payload);
     yield put(addCategorySuccess(response.data.data));
+    toast.success("Thêm danh mục thành công");
   } catch (error) {
     yield put(addCategoryError(error));
+    toast.error("Thêm danh mục thất bại");
   }
 }
 
@@ -65,8 +68,10 @@ function* editCategorySaga(
       editCategoryApi(action.payload.id as string, data)
     );
     yield put(editCategorySuccess(response.data.data));
+    toast.success("Sửa danh mục thành công");
   } catch (error) {
     yield put(editCategoryError(error));
+    toast.error("Sửa danh mục thất bại");
   }
 }
 function* deleteCategorySaga(
@@ -75,8 +80,10 @@ function* deleteCategorySaga(
   try {
     yield call(deleteCategoryApi, action.payload);
     yield put(deleteCategorySuccess(action.payload));
+    toast.success("Xóa danh mục thành công");
   } catch (error) {
     yield put(deleteCategoryError(error));
+    toast.error("Xóa danh mục thất bại");
   }
 }
 function* watchDeleteCategory() {

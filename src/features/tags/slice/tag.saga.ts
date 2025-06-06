@@ -30,6 +30,7 @@ import {
   editTagSuccess,
   editTagSlice,
 } from "./tag.slice";
+import { toast } from "react-toastify";
 
 function* fetchAllTags(): Generator<any, void, any> {
   try {
@@ -57,8 +58,10 @@ function* fetchAddTag(
   try {
     const response = yield call(addTag, action.payload);
     yield put(addTagSuccess(response.data));
+    toast.success("Thêm tag thành công");
   } catch (error) {
     yield put(addTagError(error));
+    toast.error("Thêm tag thất bại");
   }
 }
 function* fetchEditTag(
@@ -68,8 +71,10 @@ function* fetchEditTag(
     const { id, name } = action.payload;
     const response = yield call(updateTag, { id, name });
     yield put(editTagSuccess(response.data));
+    toast.success("Sửa tag thành công");
   } catch (error) {
     yield put(editTagError(error));
+    toast.error("Sửa tag thất bại");
   }
 }
 function* fetchDeleteTag(
@@ -78,8 +83,10 @@ function* fetchDeleteTag(
   try {
     const response = yield call(deleteTagApi, action.payload.id);
     yield put(deleteTagSuccess(response.data.data));
+    toast.success("Xóa tag thành công");
   } catch (error) {
     yield put(deleteTagError(error));
+    toast.error("Xóa tag thất bại");
   }
 }
 function* watchAddTag(): Generator<any, void, any> {

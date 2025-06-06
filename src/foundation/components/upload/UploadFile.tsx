@@ -1,6 +1,7 @@
 import { UPLOAD_PATH } from "@/core/api/upload/path";
 import Axios from "@/core/base/Axios";
 import React, { useState, useRef } from "react";
+import { toast } from "react-toastify";
 
 // Interfaces for upload
 export interface IRequestUpload {
@@ -155,7 +156,9 @@ const UploadFile = ({
 
         onChange?.(uploadResult[0].id);
         onUploadComplete?.(uploadResult[0]);
+        toast.success("Upload file thành công");
       } else {
+        toast.error("Upload file thất bại. Vui lòng thử lại.");
         throw new Error("Upload failed");
       }
     } catch (err) {

@@ -1,6 +1,7 @@
 import { UPLOAD_PATH } from "@/core/api/upload/path";
 import Axios from "@/core/base/Axios";
 import React, { useState, useRef, useCallback } from "react";
+import { toast } from "react-toastify";
 
 // Interfaces for upload
 export interface IRequestUpload {
@@ -215,8 +216,9 @@ const UploadImage = ({
         onChange?.(uploadResult[0].id);
         onUploadComplete?.(uploadResult[0]);
 
-        console.log("Upload thành công:", uploadResult);
+        toast.success("Upload ảnh thành công");
       } else {
+        toast.error("Upload ảnh thất bại. Vui lòng thử lại.");
         throw new Error("Upload failed");
       }
     } catch (err) {

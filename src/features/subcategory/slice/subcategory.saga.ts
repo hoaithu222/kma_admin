@@ -29,6 +29,8 @@ import {
   IRequestAddSubcategory,
   IRequestEditSubcategory,
 } from "@/core/api/subcategory/types";
+import { toast } from "react-toastify";
+
 function* fetchAllSubcategories(): Generator<any, void, any> {
   try {
     const response = yield call(getAllSubcategoriesApi);
@@ -44,8 +46,10 @@ function* addSubcategorySaga(
   try {
     const response = yield call(addSubcategoryApi, action.payload);
     yield put(addSubcategorySuccess(response.data.data));
+    toast.success("Thêm danh mục con thành công");
   } catch (error) {
     yield put(addSubcategoryError(error));
+    toast.error("Thêm danh mục con thất bại");
   }
 }
 function* editSubcategorySaga(
@@ -62,8 +66,10 @@ function* editSubcategorySaga(
       editSubcategoryApi(action.payload.id as string, data)
     );
     yield put(editSubcategorySuccess(response.data.data));
+    toast.success("Sửa danh mục con thành công");
   } catch (error) {
     yield put(editSubcategoryError(error));
+    toast.error("Sửa danh mục con thất bại");
   }
 }
 function* deleteSubcategorySaga(
@@ -72,8 +78,10 @@ function* deleteSubcategorySaga(
   try {
     const response = yield call(deleteSubcategoryApi, action.payload);
     yield put(deleteSubcategorySuccess(response.data));
+    toast.success("Xóa danh mục con thành công");
   } catch (error) {
     yield put(deleteSubcategoryError(error));
+    toast.error("Xóa danh mục con thất bại");
   }
 }
 function* getSubCategoriesSaga(

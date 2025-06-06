@@ -56,7 +56,7 @@ export default function AddPost() {
     title: "",
     content: "",
     categoryId: 0,
-    subCategoryId: 0,
+    subCategoryId: null,
     tagIds: [],
     isPrivate: false,
     status: "draft",
@@ -155,7 +155,7 @@ export default function AddPost() {
                     setFormData({
                       ...formData,
                       categoryId: selectedCategoryId,
-                      subCategoryId: 0,
+                      subCategoryId: null,
                     });
                     handleGetSubCategories(selectedCategoryId);
 
@@ -182,7 +182,7 @@ export default function AddPost() {
                     value: subCategory.id,
                     label: subCategory.name,
                   }))}
-                  value={formData.subCategoryId}
+                  value={formData.subCategoryId || ""}
                   onChange={(value: any) =>
                     setFormData({ ...formData, subCategoryId: +value })
                   }
