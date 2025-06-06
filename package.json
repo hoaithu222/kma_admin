@@ -55,6 +55,7 @@
     "react-day-picker": "^9.7.0",
     "react-dialog": "^0.1.0",
     "react-dom": "^18.3.1",
+    "react-dropzone": "^14.3.8",
     "react-grid-layout": "^1.5.1",
     "react-hook-form": "^7.56.4",
     "react-hotkeys-hook": "^5.1.0",

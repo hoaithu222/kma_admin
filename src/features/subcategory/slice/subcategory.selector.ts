@@ -43,3 +43,16 @@ export const idDeleteSelector = createSelector(
   [selectSubcategory],
   (state) => state.idDelete
 );
+
+export const subCategoriesWithCategoryIdSelector = createSelector(
+  [selectSubcategory],
+  (state) => state.subCategoriesWithCategoryId
+);
+export const isLoadingSubcategoriesWithCategoryId = createSelector(
+  [selectSubcategory],
+  (state) => state.isLoading
+);
+export const errorSubcategoriesWithCategoryId = createSelector(
+  [selectSubcategory],
+  (state) => state.error
+);

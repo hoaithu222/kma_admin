@@ -8,7 +8,7 @@ const NotPermisstion = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-50 to-blue-100">
+    <div className="flex items-center justify-center h-screen ">
       <div className="max-w-md p-10 text-center bg-white shadow-2xl rounded-2xl">
         <div className="flex justify-center mb-6">
           <svg

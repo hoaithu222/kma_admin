@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-// import * as Select from "@radix-ui/react-select";
-import * as Checkbox from "@radix-ui/react-checkbox";
-import * as Popover from "@radix-ui/react-popover";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 
 interface Option {
   value: string;
@@ -26,18 +23,11 @@ interface SelectManyProps {
   clearable?: boolean;
   size?: "small" | "medium" | "large";
   variant?: "default" | "outlined" | "filled";
-  position?: "bottom" | "top" | "auto";
   className?: string;
-  triggerClassName?: string;
-  contentClassName?: string;
-  optionClassName?: string;
   emptyText?: string;
   showSelectAll?: boolean;
-  groupBy?: (option: Option) => string;
   renderOption?: (option: Option, selected: boolean) => React.ReactNode;
   renderSelected?: (options: Option[]) => React.ReactNode;
-  onSearch?: (query: string) => void;
-  loading?: boolean;
 }
 
 const SelectMany = ({
@@ -55,203 +45,242 @@ const SelectMany = ({
   clearable = true,
   size = "medium",
   variant = "default",
-  position = "bottom",
   className = "",
-  triggerClassName = "",
-  contentClassName = "",
-  optionClassName = "",
   emptyText = "Không có tùy chọn nào",
   showSelectAll = false,
-  groupBy,
   renderOption,
   renderSelected,
-  onSearch,
-  loading = false,
 }: SelectManyProps) => {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [internalValue, setInternalValue] = useState<string[]>(value);
 
-  // Filter options based on search
-  const filteredOptions =
-    searchable && searchQuery
-      ? options.filter(
-          (option) =>
-            option.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            option.value.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      : options;
+  useEffect(() => {
+    setInternalValue(value);
+  }, [value]);
 
-  // Group options if groupBy is provided
-  const groupedOptions = groupBy
-    ? filteredOptions.reduce(
-        (groups, option) => {
-          const group = groupBy(option);
-          if (!groups[group]) groups[group] = [];
-          groups[group].push(option);
-          return groups;
-        },
-        {} as Record<string, Option[]>
-      )
-    : null;
+  const filteredOptions = useMemo(() => {
+    if (!searchable || !searchQuery.trim()) {
+      return options;
+    }
+    const query = searchQuery.toLowerCase().trim();
+    return options.filter(
+      (option) =>
+        option.label.toLowerCase().includes(query) ||
+        option.value.toLowerCase().includes(query) ||
+        (option.description && option.description.toLowerCase().includes(query))
+    );
+  }, [options, searchable, searchQuery]);
 
-  const selectedOptions = options.filter((option) =>
-    value.includes(option.value)
+  const selectedOptions = useMemo(() => {
+    return options.filter((option) => internalValue.includes(option.value));
+  }, [options, internalValue]);
+
+  const handleToggle = useCallback(
+    (optionValue: string) => {
+      if (disabled || !onChange) return;
+
+      const newValue = internalValue.includes(optionValue)
+        ? internalValue.filter((v) => v !== optionValue)
+        : maxSelections && internalValue.length >= maxSelections
+          ? internalValue
+          : [...internalValue, optionValue];
+
+      setInternalValue(newValue);
+      onChange(newValue);
+    },
+    [disabled, onChange, maxSelections, internalValue]
   );
 
-  const handleToggle = (optionValue: string) => {
-    if (disabled) return;
+  const handleSelectAll = useCallback(() => {
+    if (!onChange) return;
+    const allValues = filteredOptions
+      .filter((opt) => !opt.disabled)
+      .map((opt) => opt.value);
+    const newValue = internalValue.length === allValues.length ? [] : allValues;
+    setInternalValue(newValue);
+    onChange(newValue);
+  }, [onChange, filteredOptions, internalValue]);
 
-    let newValue: string[];
+  const handleClear = useCallback(() => {
+    if (!onChange) return;
+    const newValue: string[] = [];
+    setInternalValue(newValue);
+    onChange(newValue);
+  }, [onChange]);
 
-    if (value.includes(optionValue)) {
-      newValue = value.filter((v) => v !== optionValue);
-    } else {
-      if (maxSelections && value.length >= maxSelections) {
-        return; // Don't add if max selections reached
-      }
-      newValue = [...value, optionValue];
-    }
-
-    onChange?.(newValue);
-  };
-
-  const handleSelectAll = () => {
-    if (value.length === filteredOptions.length) {
-      onChange?.([]);
-    } else {
-      const allValues = filteredOptions
-        .filter((opt) => !opt.disabled)
-        .map((opt) => opt.value);
-      onChange?.(maxSelections ? allValues.slice(0, maxSelections) : allValues);
-    }
-  };
-
-  const handleClear = () => {
-    onChange?.([]);
-  };
-
-  const handleSearch = (query: string) => {
+  const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
-    onSearch?.(query);
-  };
+  }, []);
 
-  // Size classes
-  const getSizeClasses = () => {
+  const sizeClasses = useMemo(() => {
     switch (size) {
       case "small":
         return {
-          trigger: "h-8 px-3 text-sm",
+          trigger: "h-9 px-3 text-sm",
           content: "text-sm",
-          option: "px-3 py-1.5 text-sm",
+          option: "px-3 py-2.5 text-sm",
+          checkbox: "w-4 h-4",
         };
       case "large":
         return {
           trigger: "h-12 px-4 text-base",
           content: "text-base",
-          option: "px-4 py-3 text-base",
+          option: "px-4 py-3.5 text-base",
+          checkbox: "w-5 h-5",
         };
       default:
         return {
           trigger: "h-10 px-3 text-sm",
           content: "text-sm",
-          option: "px-3 py-2 text-sm",
+          option: "px-3 py-3 text-sm",
+          checkbox: "w-4 h-4",
         };
     }
-  };
+  }, [size]);
 
-  // Variant classes
-  const getVariantClasses = () => {
+  const variantClasses = useMemo(() => {
+    const baseClasses =
+      "border transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1";
     switch (variant) {
       case "outlined":
-        return "border-2 border-gray-300 bg-background-elevated focus:border-blue-500";
+        return `${baseClasses} border-2 border-gray-300 bg-white hover:border-gray-400 focus:border-blue-500 focus:ring-blue-500/20`;
       case "filled":
-        return "border border-gray-300 bg-background-muted focus:bg-background-elevated focus:border-blue-500";
+        return `${baseClasses} border-gray-200 bg-gray-50 hover:bg-gray-100 focus:bg-white focus:border-blue-500 focus:ring-blue-500/20`;
       default:
-        return "border border-gray-300 bg-background-elevated focus:border-blue-500";
+        return `${baseClasses} border-gray-300 bg-white hover:border-gray-400 focus:border-blue-500 focus:ring-blue-500/20`;
     }
-  };
+  }, [variant]);
 
-  const sizeClasses = getSizeClasses();
-
-  const renderOptionContent = (option: Option, isSelected: boolean) => {
-    if (renderOption) {
-      return renderOption(option, isSelected);
-    }
-
-    return (
-      <div className="flex items-center flex-1 space-x-2">
-        {option.icon && <span className="flex-shrink-0">{option.icon}</span>}
-        <div className="flex-1 min-w-0">
-          <div className="font-medium truncate">{option.label}</div>
-          {option.description && (
-            <div className="text-xs text-gray-500 truncate">
-              {option.description}
+  const renderOptionContent = useCallback(
+    (option: Option, isSelected: boolean) => {
+      if (renderOption) {
+        return renderOption(option, isSelected);
+      }
+      return (
+        <div className="flex items-center flex-1 space-x-3">
+          <div className="flex-1 min-w-0">
+            <div
+              className={`font-medium truncate ${isSelected ? "text-blue-700" : "text-gray-900"}`}
+            >
+              {option.label}
             </div>
+            {option.description && (
+              <div className="text-xs text-gray-500 truncate mt-0.5">
+                {option.description}
+              </div>
+            )}
+          </div>
+          {option.icon && (
+            <span className="flex-shrink-0 text-gray-500">{option.icon}</span>
           )}
         </div>
-      </div>
-    );
-  };
+      );
+    },
+    [renderOption]
+  );
 
-  const renderSelectedDisplay = () => {
+  const renderSelectedDisplay = useCallback(() => {
     if (renderSelected) {
       return renderSelected(selectedOptions);
     }
-
     if (selectedOptions.length === 0) {
       return <span className="text-gray-500">{placeholder}</span>;
     }
-
     if (selectedOptions.length === 1) {
-      return <span>{selectedOptions[0].label}</span>;
+      return <span className="text-gray-900">{selectedOptions[0].label}</span>;
     }
-
-    return <span>{selectedOptions.length} mục đã chọn</span>;
-  };
+    return (
+      <div className="flex items-center space-x-2">
+        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+          {selectedOptions.length}
+        </span>
+        <span className="text-gray-900">mục đã chọn</span>
+      </div>
+    );
+  }, [renderSelected, selectedOptions, placeholder]);
 
   return (
     <div className={`w-full ${className}`}>
       {label && (
-        <label className="block mb-1 text-sm font-medium text-primary">
+        <label className="block mb-2 text-sm font-semibold text-gray-700">
           {label}
           {required && <span className="ml-1 text-red-500">*</span>}
         </label>
       )}
 
       {description && (
-        <p className="mb-2 text-sm text-secondary">{description}</p>
+        <p className="mb-3 text-sm text-gray-600">{description}</p>
       )}
 
-      <Popover.Root open={open} onOpenChange={setOpen}>
-        <Popover.Trigger asChild>
-          <button
-            className={`
-              w-full flex items-center justify-between rounded-md transition-colors
-              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-              disabled:opacity-50 disabled:cursor-not-allowed
-              ${sizeClasses.trigger}
-              ${getVariantClasses()}
-              ${error ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""}
-              ${triggerClassName}
-            `}
-            disabled={disabled}
-          >
-            <div className="flex-1 text-left truncate">
-              {renderSelectedDisplay()}
-            </div>
+      <div className="relative">
+        <button
+          type="button"
+          className={`
+            w-full flex items-center justify-between rounded-lg shadow-sm
+            disabled:opacity-50 disabled:cursor-not-allowed
+            ${sizeClasses.trigger}
+            ${variantClasses}
+            ${error ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}
+          `}
+          disabled={disabled}
+          onClick={() => setOpen(!open)}
+        >
+          <div className="flex-1 text-left truncate">
+            {renderSelectedDisplay()}
+          </div>
 
-            <div className="flex items-center ml-2 space-x-1">
-              {clearable && selectedOptions.length > 0 && (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleClear();
-                  }}
-                  className="p-0.5 hover:bg-background-muted rounded text-muted hover:text-secondary"
+          <div className="flex items-center ml-2 space-x-1">
+            {clearable && selectedOptions.length > 0 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClear();
+                }}
+                className="p-1 hover:bg-gray-100 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            )}
+
+            <svg
+              className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+                open ? "rotate-180" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        </button>
+
+        {open && (
+          <div className="absolute z-50 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-64 overflow-hidden">
+            {searchable && (
+              <div className="p-3 border-b border-gray-100 bg-gray-50">
+                <div className="relative">
                   <svg
-                    className="w-4 h-4"
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -260,185 +289,138 @@ const SelectMany = ({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     />
                   </svg>
-                </button>
-              )}
-
-              <svg
-                className={`w-4 h-4 text-muted transition-transform ${open ? "rotate-180" : ""}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-          </button>
-        </Popover.Trigger>
-
-        <Popover.Content
-          className={`
-            z-50 w-[var(--radix-popover-trigger-width)] max-h-60 overflow-hidden rounded-md border border-gray-200 bg-background-elevated shadow-lg
-            data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95
-            ${sizeClasses.content}
-            ${contentClassName}
-          `}
-          side={position === "auto" ? undefined : position}
-          sideOffset={4}
-        >
-          {/* Search */}
-          {searchable && (
-            <div className="p-2 border-b border-gray-200 bg-background-muted">
-              <input
-                type="text"
-                placeholder="Tìm kiếm..."
-                value={searchQuery}
-                onChange={(e) => handleSearch(e.target.value)}
-                className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 bg-background-elevated"
-              />
-            </div>
-          )}
-
-          {/* Select All */}
-          {showSelectAll && filteredOptions.length > 0 && (
-            <div className="p-2 border-b border-gray-200 bg-background-muted">
-              <button
-                onClick={handleSelectAll}
-                className="w-full px-2 py-1 text-sm text-left rounded text-link hover:bg-background-subtle"
-              >
-                {value.length === filteredOptions.length
-                  ? "Bỏ chọn tất cả"
-                  : "Chọn tất cả"}
-              </button>
-            </div>
-          )}
-
-          {/* Options */}
-          <div className="overflow-y-auto max-h-48">
-            {loading ? (
-              <div className="flex items-center justify-center py-4">
-                <div className="w-4 h-4 border-b-2 border-blue-600 rounded-full animate-spin"></div>
-                <span className="ml-2 text-sm text-muted">Đang tải...</span>
-              </div>
-            ) : filteredOptions.length === 0 ? (
-              <div className="py-4 text-sm text-center text-muted">
-                {emptyText}
-              </div>
-            ) : groupedOptions ? (
-              Object.entries(groupedOptions).map(([group, groupOptions]) => (
-                <div key={group}>
-                  <div className="sticky top-0 px-3 py-2 text-xs font-semibold text-muted bg-background-muted">
-                    {group}
-                  </div>
-                  {groupOptions.map((option) => {
-                    const isSelected = value.includes(option.value);
-                    const isDisabled =
-                      option.disabled ||
-                      (maxSelections &&
-                        !isSelected &&
-                        value.length >= maxSelections);
-
-                    return (
-                      <button
-                        key={option.value}
-                        onClick={() => handleToggle(option.value)}
-                        disabled={isDisabled as boolean}
-                        className={`
-                          w-full flex items-center space-x-2 transition-colors text-left
-                          hover:bg-background-muted focus:bg-background-muted focus:outline-none
-                          disabled:opacity-50 disabled:cursor-not-allowed
-                          ${sizeClasses.option}
-                          ${isSelected ? "bg-background-subtle text-link" : ""}
-                          ${optionClassName}
-                        `}
-                      >
-                        <Checkbox.Root
-                          checked={isSelected}
-                          className="w-4 h-4 border border-gray-300 rounded data-[state=checked]:bg-button-primary-bg data-[state=checked]:border-button-primary-bg"
-                        >
-                          <Checkbox.Indicator>
-                            <svg
-                              className="w-3 h-3 text-white"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </Checkbox.Indicator>
-                        </Checkbox.Root>
-                        {renderOptionContent(option, isSelected)}
-                      </button>
-                    );
-                  })}
+                  <input
+                    type="text"
+                    placeholder="Tìm kiếm..."
+                    value={searchQuery}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    className="w-full pl-10 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-white"
+                  />
                 </div>
-              ))
-            ) : (
-              filteredOptions.map((option) => {
-                const isSelected = value.includes(option.value);
-                const isDisabled =
-                  option.disabled ||
-                  (maxSelections &&
-                    !isSelected &&
-                    value.length >= maxSelections);
-
-                return (
-                  <button
-                    key={option.value}
-                    onClick={() => handleToggle(option.value)}
-                    disabled={isDisabled as boolean}
-                    className={`
-                      w-full flex items-center space-x-2 transition-colors text-left
-                      hover:bg-background-muted focus:bg-background-muted focus:outline-none
-                      disabled:opacity-50 disabled:cursor-not-allowed
-                      ${sizeClasses.option}
-                      ${isSelected ? "bg-background-subtle text-link" : ""}
-                      ${optionClassName}
-                    `}
-                  >
-                    <Checkbox.Root
-                      checked={isSelected}
-                      className="w-4 h-4 border border-gray-300 rounded data-[state=checked]:bg-button-primary-bg data-[state=checked]:border-button-primary-bg"
-                    >
-                      <Checkbox.Indicator>
-                        <svg
-                          className="w-3 h-3 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </Checkbox.Indicator>
-                    </Checkbox.Root>
-                    {renderOptionContent(option, isSelected)}
-                  </button>
-                );
-              })
+              </div>
             )}
-          </div>
-        </Popover.Content>
-      </Popover.Root>
 
-      {error && <p className="mt-1 text-sm text-error">{error}</p>}
+            {showSelectAll && filteredOptions.length > 0 && (
+              <div className="p-2 border-b border-gray-100 bg-gray-50">
+                <button
+                  type="button"
+                  onClick={handleSelectAll}
+                  className="w-full px-3 py-2 text-sm text-left rounded-lg text-blue-600 hover:bg-blue-50 font-medium transition-colors"
+                >
+                  {internalValue.length ===
+                  filteredOptions.filter((opt) => !opt.disabled).length
+                    ? "Bỏ chọn tất cả"
+                    : "Chọn tất cả"}
+                </button>
+              </div>
+            )}
+
+            <div className="overflow-y-auto max-h-48">
+              {filteredOptions.length === 0 ? (
+                <div className="py-6 text-sm text-center text-gray-500">
+                  <svg
+                    className="w-8 h-8 mx-auto mb-2 text-gray-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.266-5.366-3.146m0 .362A3.992 3.992 0 018 14m8-2a3.992 3.992 0 01-2.366 3.146"
+                    />
+                  </svg>
+                  {emptyText}
+                </div>
+              ) : (
+                filteredOptions.map((option) => {
+                  const isSelected = internalValue.includes(option.value);
+                  const isDisabled =
+                    option.disabled ||
+                    (maxSelections &&
+                      !isSelected &&
+                      internalValue.length >= maxSelections);
+
+                  return (
+                    <button
+                      type="button"
+                      key={option.value}
+                      onClick={() => handleToggle(option.value)}
+                      disabled={isDisabled || false}
+                      className={`
+                        w-full flex items-center space-x-3 transition-all duration-150 text-left
+                        hover:bg-blue-50 focus:bg-blue-50 focus:outline-none
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                        ${sizeClasses.option}
+                        ${isSelected ? "bg-blue-50 border-r-2 border-blue-500" : "hover:bg-gray-50"}
+                      `}
+                    >
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => {}}
+                          className={`
+                            ${sizeClasses.checkbox} rounded border-2 border-gray-300 text-blue-600
+                            focus:ring-blue-500 focus:ring-offset-0 transition-colors
+                            ${isSelected ? "bg-blue-600 border-blue-600" : "bg-white"}
+                          `}
+                        />
+                        {isSelected && (
+                          <svg
+                            className="absolute top-0.5 left-0.5 w-3 h-3 text-white pointer-events-none"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        )}
+                      </div>
+                      {renderOptionContent(option, isSelected)}
+                    </button>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {error && (
+        <p className="mt-2 text-sm text-red-600 flex items-center">
+          <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+              clipRule="evenodd"
+            />
+          </svg>
+          {error}
+        </p>
+      )}
 
       {maxSelections && (
-        <p className="mt-1 text-xs text-muted">
-          {value.length}/{maxSelections} mục đã chọn
-        </p>
+        <div className="mt-2 flex items-center justify-between">
+          <p className="text-xs text-gray-500">
+            {internalValue.length}/{maxSelections} mục đã chọn
+          </p>
+          <div className="w-full max-w-32 bg-gray-200 rounded-full h-1.5 ml-3">
+            <div
+              className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
+              style={{
+                width: `${Math.min((internalValue.length / maxSelections) * 100, 100)}%`,
+              }}
+            ></div>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -13,3 +13,39 @@ export const isAddPostSelector = createSelector(
   [selectPosts],
   (state) => state.isAddPost
 );
+export const isLoadingSelector = createSelector(
+  [selectPosts],
+  (state) => state.isLoading
+);
+export const errorSelector = createSelector(
+  [selectPosts],
+  (state) => state.error
+);
+export const isEditPostSelector = createSelector(
+  [selectPosts],
+  (state) => state.isEditPost
+);
+
+export const selectEditPost = createSelector(
+  [selectPosts],
+  (state) => state.editPost
+);
+
+// lấy thông tin chi tiết bài viết
+export const selectDetailPost = createSelector(
+  [selectPosts],
+  (state) => state.detailPost
+);
+export const statusGetDetailPost = createSelector(
+  [selectPosts],
+  (state) => state.detailPost.statusGetDetailPost
+);
+// lấy thông tin bài viết để xóa
+export const selectDeletePost = createSelector(
+  [selectPosts],
+  (state) => state.deletePost
+);
+export const isDeletePostSelector = createSelector(
+  [selectPosts],
+  (state) => state.isDeletePost
+);

@@ -4,9 +4,13 @@ import { PlusIcon } from "lucide-react";
 import ListPost from "./components/list-post/ListPost";
 import { usePost } from "./hooks/usePost";
 import AddPost from "./components/add-post/AddPost";
+import EditPosts from "./components/edit/EditPosts";
+
+import { Post } from "./slice/posts.type";
 
 const PostPage = () => {
-  const { isAddPost, handleAddPost } = usePost();
+  const { isAddPost, handleAddPost, isEditPost, editPost } = usePost();
+
   return (
     <div
       className={clsx(
@@ -26,9 +30,10 @@ const PostPage = () => {
           Thêm bài viết
         </Button>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 h-[calc(100vh-120px)] overflow-y-auto hidden-scrollbar">
         <ListPost />
       </div>
+      {isEditPost && <EditPosts post={editPost.editPost as Post} />}
       {isAddPost && <AddPost />}
     </div>
   );

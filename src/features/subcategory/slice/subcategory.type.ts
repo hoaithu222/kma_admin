@@ -10,6 +10,7 @@ export interface initialStateType {
   idDelete: string | null;
   isLoading: boolean;
   error: string | null;
+  subCategoriesWithCategoryId: Subcategory[];
 }
 
 export interface Subcategory {

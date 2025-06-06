@@ -4,14 +4,14 @@ import { ROUTE } from "./routers.config";
 import React from "react";
 import { authMiddleware } from "./auth.middleware";
 import AppShell from "@/AppShell";
-import NotPermisstion from "@/layout/NotPermisstion";
 import AuthLayout from "@/layout/AuthLayout";
+import LayoutOut from "@/layout/LayoutOut";
 
 // map layout name thành component layout tương ứng
 const layoutMap = {
   main: MainLayout,
   auth: AuthLayout,
-  notPermisstion: NotPermisstion,
+  blank: LayoutOut,
 };
 
 // gom các router theo layout trở thành nhánh trong router tree
@@ -45,7 +45,7 @@ Object.values(ROUTE).forEach((router) => {
 Object.keys(layoutRoutes).forEach((layout) => {
   layoutRoutes[layout].children?.push({
     path: "*",
-    element: <Navigate to="/not-permisstion" replace />,
+    element: <Navigate to="/not-found" replace />,
   });
 });
 

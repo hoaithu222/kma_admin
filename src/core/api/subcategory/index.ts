@@ -1,13 +1,11 @@
 import Axios from "@/core/base/Axios";
 import { SUBCATEGORY_PATH } from "./paths";
-import {
-  IRequestAddSubcategory,
-  IRequestEditSubcategory,
-  IRequestSubcategory,
-} from "./types";
+import { IRequestAddSubcategory, IRequestEditSubcategory } from "./types";
 
-export const getSubcategoriesApi = (params: IRequestSubcategory) => {
-  return Axios.get(SUBCATEGORY_PATH.GET_SUBCATEGORIES, { params });
+export const getSubcategoriesApi = (categoryId: number) => {
+  return Axios.get(
+    SUBCATEGORY_PATH.GET_SUBCATEGORIES.replace(":id", categoryId.toString())
+  );
 };
 
 export const addSubcategoryApi = (data: IRequestAddSubcategory) => {
@@ -22,9 +20,7 @@ export const editSubcategoryApi = (
 };
 
 export const deleteSubcategoryApi = (id: string) => {
-  return Axios.delete(SUBCATEGORY_PATH.DELETE_SUBCATEGORY, {
-    data: [id],
-  });
+  return Axios.delete(SUBCATEGORY_PATH.DELETE_SUBCATEGORY.replace(":id", id));
 };
 
 export const getAllSubcategoriesApi = () => {

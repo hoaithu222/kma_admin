@@ -9,13 +9,13 @@ import {
   getAllSubcategories,
   getAllSubcategoriesError,
   getAllSubcategoriesSuccess,
-  getSubcategories,
-  getSubcategoriesError,
-  getSubcategoriesSuccess,
-  editSubcategory,
-  editSubcategorySuccess,
-  editSubcategoryError,
   addSubcategory,
+  editSubcategory,
+  editSubcategoryError,
+  editSubcategorySuccess,
+  getSubCategories,
+  getSubCategoriesSuccess,
+  getSubCategoriesError,
 } from "./subcategory.slice";
 import {
   addSubcategoryApi,
@@ -37,21 +37,7 @@ function* fetchAllSubcategories(): Generator<any, void, any> {
     yield put(getAllSubcategoriesError(error));
   }
 }
-function* fetchCategories(): Generator<any, void, any> {
-  try {
-    const response = yield call(getSubcategoriesApi, {
-      page: 1,
-      limit: 10,
-      search: "",
-      sort: "",
-      order: "",
-    });
 
-    yield put(getSubcategoriesSuccess(response.data.data));
-  } catch (error) {
-    yield put(getSubcategoriesError(error));
-  }
-}
 function* addSubcategorySaga(
   action: PayloadAction<IRequestAddSubcategory>
 ): Generator<any, void, any> {
@@ -90,6 +76,17 @@ function* deleteSubcategorySaga(
     yield put(deleteSubcategoryError(error));
   }
 }
+function* getSubCategoriesSaga(
+  action: PayloadAction<number>
+): Generator<any, void, any> {
+  try {
+    const response = yield call(getSubcategoriesApi, action.payload);
+    yield put(getSubCategoriesSuccess(response.data.data));
+  } catch (error) {
+    yield put(getSubCategoriesError(error));
+  }
+}
+
 function* watchAddSubcategory() {
   yield takeLatest(addSubcategory.type, addSubcategorySaga);
 }
@@ -99,19 +96,19 @@ function* watchEditSubcategory() {
 function* watchDeleteSubcategory() {
   yield takeLatest(deleteSubcategory.type, deleteSubcategorySaga);
 }
-function* watchGetCategories() {
-  yield takeLatest(getSubcategories, fetchCategories);
-}
+
 function* watchGetAllSubcategories() {
   yield takeLatest(getAllSubcategories, fetchAllSubcategories);
 }
-
+function* watchGetSubCategories() {
+  yield takeLatest(getSubCategories, getSubCategoriesSaga);
+}
 export default function* categorySaga() {
   yield all([
-    watchGetCategories(),
     watchGetAllSubcategories(),
     watchAddSubcategory(),
     watchEditSubcategory(),
     watchDeleteSubcategory(),
+    watchGetSubCategories(),
   ]);
 }

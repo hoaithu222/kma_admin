@@ -53,18 +53,3 @@ export const formats = [
   "image",
   "video",
 ];
-
-export const categoryOptions = [
-  { value: "technology", label: "Công nghệ" },
-  { value: "business", label: "Kinh doanh" },
-  { value: "lifestyle", label: "Phong cách sống" },
-  { value: "health", label: "Sức khỏe" },
-  { value: "education", label: "Giáo dục" },
-  { value: "entertainment", label: "Giải trí" },
-];
-
-export const statusOptions = [
-  { value: "draft", label: "Bản nháp" },
-  { value: "published", label: "Xuất bản" },
-  { value: "scheduled", label: "Lên lịch" },
-];

@@ -25,7 +25,12 @@ export const upload = async (data: IRequestUpload) => {
   try {
     const response = await Axios.post<IResponseUpload>(
       UPLOAD_PATH.upload,
-      data
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
     return { ok: true, data: response.data };
   } catch (error) {

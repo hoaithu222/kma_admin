@@ -165,7 +165,7 @@ const Table = ({
   }
 
   // Hiển thị empty state bên ngoài table
-  if (data.length === 0) {
+  if (data?.length === 0) {
     return (
       <div className={`w-full ${className}`}>
         <div
@@ -218,7 +218,7 @@ const Table = ({
             </tr>
           </thead>
           <tbody>
-            {paginatedData.map((record, index) => (
+            {paginatedData?.map((record, index) => (
               <tr
                 key={index}
                 className={`

@@ -27,6 +27,11 @@ const NotPermisstion = lazy(() => import("@/layout/NotPermisstion"));
 const Decentralization = lazy(
   () => import("@/features/user-management/decentralization/Decentralization")
 );
+const DetailPost = lazy(
+  () => import("@/features/posts/components/detail-posts/DetailPost")
+);
+const NotFound = lazy(() => import("@/layout/NotFound"));
+const TagPage = lazy(() => import("@/features/tags/TagPage"));
 const defaultOptions = {
   requireAuth: true,
   hideInMenu: false,
@@ -100,6 +105,12 @@ export const ROUTE = {
     layout: "main",
     options: defaultAuthOptions,
   },
+  tags: {
+    path: "/tags",
+    element: <TagPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
 
   studentInternship: {
     path: "/student-internship",
@@ -132,11 +143,29 @@ export const ROUTE = {
     layout: "main",
     options: defaultAuthOptions,
   },
+  detailPost: {
+    path: "/posts/:id",
+    element: <DetailPost />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
   notPermisstion: {
     path: "/not-permisstion",
     element: <NotPermisstion />,
-    layout: "main",
-    options: defaultAuthOptions,
+    layout: "blank",
+    options: {
+      requireAuth: false,
+      hideInMenu: false,
+    },
+  },
+  notFound: {
+    path: "/not-found",
+    element: <NotFound />,
+    layout: "blank",
+    options: {
+      requireAuth: false,
+      hideInMenu: false,
+    },
   },
 } satisfies Record<
   string,

@@ -1,6 +1,6 @@
 import Modal from "@/foundation/components/modal/Modal";
 import { usePost } from "../../hooks/usePost";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -9,82 +9,90 @@ import Button from "@/foundation/components/buttons/Button";
 import Input from "@/foundation/components/inputs/Input";
 import SelectMany from "@/foundation/components/inputs/SelectMany";
 import UploadImage from "@/foundation/components/upload/UploadImage";
-import { categoryOptions, formats, modules, statusOptions } from "./utils";
+import { formats, modules } from "./utils";
 import Textarea from "@/foundation/components/inputs/TextArea";
 
-export default function AddPost() {
-  const { isAddPost, handleAddPost } = usePost();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [category, setCategory] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [excerpt, setExcerpt] = useState("");
-  const [publishDate, setPublishDate] = useState("");
-  const [status, setStatus] = useState("draft");
-  const [thumbnail, setThumbnail] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [seoTitle, setSeoTitle] = useState("");
-  const [seoDescription, setSeoDescription] = useState("");
+import { useSelector } from "react-redux";
+import { selectCategories } from "@/features/category/slice/category.selector";
+import { subCategoriesWithCategoryIdSelector } from "@/features/subcategory/slice/subcategory.selector";
+import { IRequestAddArticle } from "@/core/api/posts/types";
+import UploadFile from "@/foundation/components/upload/UploadFile";
+import { selectTags } from "@/features/tags/slice/tag.selector";
+import {
+  FaSun,
+  FaMoon,
+  FaStar,
+  FaHeart,
+  FaTag,
+  FaBookmark,
+  FaFlag,
+  FaFire,
+  FaLeaf,
+  FaRocket,
+  FaEye,
+} from "react-icons/fa";
+import CustomSwitch from "@/foundation/components/inputs/CustomSwitch";
 
-  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (file) {
-  //     setThumbnail(file);
-  //     setPreviewUrl(URL.createObjectURL(file));
-  //   }
-  // };
+interface FormData extends Omit<IRequestAddArticle, "tagIds"> {
+  tagIds: string[];
+}
+
+export default function AddPost() {
+  const {
+    isAddPost,
+    handleAddPost,
+    handleGetCategoryAndSubCategory,
+    handleAddArticle,
+  } = usePost();
+
+  const categories = useSelector(selectCategories);
+
+  const subCategoriesWithCategoryId = useSelector(
+    subCategoriesWithCategoryIdSelector
+  );
+  const { handleGetSubCategories } = usePost();
+  const tags = useSelector(selectTags);
+  const [formData, setFormData] = useState<FormData>({
+    title: "",
+    content: "",
+    categoryId: 0,
+    subCategoryId: 0,
+    tagIds: [],
+    isPrivate: false,
+    status: "draft",
+    description: "",
+    summary: "",
+    thumbnailId: 0,
+    fileIds: [],
+  });
 
   const handleSubmit = () => {
-    if (!title || !content || !category) {
-      alert("Vui lòng điền đầy đủ thông tin bắt buộc");
-      return;
-    }
-
-    const slug = title
-      .toLowerCase()
-      .replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, "a")
-      .replace(/[èéẹẻẽêềếệểễ]/g, "e")
-      .replace(/[ìíịỉĩ]/g, "i")
-      .replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, "o")
-      .replace(/[ùúụủũưừứựửữ]/g, "u")
-      .replace(/[ỳýỵỷỹ]/g, "y")
-      .replace(/đ/g, "d")
-      .replace(/[^\w\s]/gi, "")
-      .replace(/\s+/g, "-");
-
-    const article = {
-      title,
-      slug,
-      content,
-      category,
-      tags,
-      excerpt,
-      thumbnail,
-      status,
-      publishDate: publishDate || new Date().toISOString(),
-      seo: {
-        title: seoTitle || title,
-        description: seoDescription || excerpt,
-      },
-      createdAt: new Date().toISOString(),
+    const submitData: IRequestAddArticle = {
+      ...formData,
+      tagIds: formData.tagIds.map((id) => parseInt(id)),
     };
+    handleAddArticle(submitData);
+  };
 
-    console.log("Article data:", article);
+  useEffect(() => {
+    handleGetCategoryAndSubCategory();
+  }, []);
 
-    // Reset form
-    setTitle("");
-    setContent("");
-    setCategory("");
-    setTags([]);
-    setExcerpt("");
-    setPublishDate("");
-    setStatus("draft");
-    setThumbnail(null);
-    setPreviewUrl(null);
-    setSeoTitle("");
-    setSeoDescription("");
-
-    handleAddPost(false);
+  // Add this function to get random icon
+  const getRandomIcon = (id: number) => {
+    const icons = [
+      <FaSun key="sun" className="text-yellow-500" />,
+      <FaMoon key="moon" className="text-blue-500" />,
+      <FaStar key="star" className="text-yellow-400" />,
+      <FaHeart key="heart" className="text-red-500" />,
+      <FaTag key="tag" className="text-green-500" />,
+      <FaBookmark key="bookmark" className="text-purple-500" />,
+      <FaFlag key="flag" className="text-red-600" />,
+      <FaFire key="fire" className="text-orange-500" />,
+      <FaLeaf key="leaf" className="text-emerald-500" />,
+      <FaRocket key="rocket" className="text-indigo-500" />,
+    ];
+    return icons[id % icons.length];
   };
 
   return (
@@ -99,11 +107,11 @@ export default function AddPost() {
       animation="fade"
       className="z-50"
       overlayClassName="z-50"
-      contentClassName="z-50 max-h-[90vh]"
-      scrollable={true}
+      contentClassName="z-50 max-h-[90vh] hidden-scrollbar"
+      scrollable={false}
     >
-      <div className="max-h-[calc(90vh-120px)] overflow-y-auto pr-2">
-        <form className="space-y-6">
+      <div className="max-h-[calc(90vh-120px)] overflow-y-auto p-2 hidden-scrollbar">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Thông tin cơ bản */}
           <div className="space-y-4">
             <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
@@ -112,69 +120,114 @@ export default function AddPost() {
 
             {/* Tiêu đề */}
             <Input
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={formData.title}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
               placeholder="Nhập tiêu đề bài viết..."
               label="Tiêu đề bài viết *"
               fullWidth={true}
               className="text-lg"
             />
 
-            {/* Tóm tắt */}
-            <div>
-              <label className="block mb-2 text-sm font-medium text-text-secondary">
-                Tóm tắt bài viết
-              </label>
-              <Textarea
-                value={excerpt}
-                onChange={(e) => setExcerpt(e.target.value)}
-                placeholder="Viết tóm tắt ngắn gọn về bài viết..."
-                className="w-full p-3 border rounded-lg resize-none border-border-primary focus:ring-2 focus:ring-primary focus:border-primary bg-input-bg text-input-text"
-                rows={3}
-              />
-            </div>
+            {/* Mô tả  */}
+            <Textarea
+              value={formData.description}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
+              placeholder="Viết mô tả ngắn gọn về bài viết..."
+              label="Mô tả"
+              fullWidth={true}
+            />
 
             {/* Chuyên mục và Tags */}
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 ">
               <Select
-                options={categoryOptions}
-                value={category}
-                onChange={setCategory}
+                options={categories.map((category) => ({
+                  value: category.id,
+                  label: category.name,
+                }))}
+                value={formData.categoryId}
+                onChange={(value: any) => {
+                  {
+                    const selectedCategoryId = +value;
+                    setFormData({
+                      ...formData,
+                      categoryId: selectedCategoryId,
+                      subCategoryId: 0,
+                    });
+                    handleGetSubCategories(selectedCategoryId);
+
+                    // Auto-select first subcategory if available
+                    const subCategories = subCategoriesWithCategoryId.filter(
+                      (sub) => +sub.categoryId === selectedCategoryId
+                    );
+                    if (subCategories.length > 0) {
+                      setFormData((prev: any) => ({
+                        ...prev,
+                        subCategoryId: subCategories[0].id,
+                      }));
+                    }
+                  }
+                }}
                 placeholder="Chọn chuyên mục *"
                 label="Chuyên mục"
+                fullWidth={true}
               />
 
-              <SelectMany
-                options={[]}
-                placeholder="Chọn tags"
-                label="Tags"
-                value={tags}
-                onChange={setTags}
-              />
-            </div>
-
-            {/* Trạng thái và Ngày xuất bản */}
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <Select
-                options={statusOptions}
-                value={status}
-                onChange={setStatus}
-                placeholder="Chọn trạng thái"
-                label="Trạng thái"
-              />
-
-              {status === "scheduled" && (
-                <Input
-                  type="datetime-local"
-                  value={publishDate}
-                  onChange={(e) => setPublishDate(e.target.value)}
-                  label="Ngày xuất bản"
+              {formData.categoryId > 0 && (
+                <Select
+                  options={subCategoriesWithCategoryId.map((subCategory) => ({
+                    value: subCategory.id,
+                    label: subCategory.name,
+                  }))}
+                  value={formData.subCategoryId}
+                  onChange={(value: any) =>
+                    setFormData({ ...formData, subCategoryId: +value })
+                  }
+                  placeholder="Chọn chuyên mục con"
+                  label="Chuyên mục con"
                   fullWidth={true}
                 />
               )}
+
+              <SelectMany
+                options={tags.map((tag) => ({
+                  value: tag.id.toString(),
+                  label: tag.name,
+                  icon: getRandomIcon(tag.id),
+                }))}
+                placeholder="Chọn tags"
+                label="Tags"
+                value={formData.tagIds}
+                onChange={(value) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    tagIds: value,
+                  }));
+                }}
+                searchable
+                showSelectAll
+                clearable
+                maxSelections={4}
+              />
             </div>
           </div>
-
+          {/* Kết luận */}
+          <div>
+            <label className="block mb-2 text-sm font-medium text-text-secondary">
+              Kết luận
+            </label>
+            <Textarea
+              value={formData.summary}
+              onChange={(e) =>
+                setFormData({ ...formData, summary: e.target.value })
+              }
+              placeholder="Viết tóm tắt ngắn gọn về bài viết..."
+              fullWidth={true}
+            />
+          </div>
           {/* Ảnh thumbnail */}
           <div className="space-y-4">
             <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
@@ -182,60 +235,61 @@ export default function AddPost() {
             </h3>
             <UploadImage
               onChange={(file: any) => {
-                setThumbnail(file);
-                setPreviewUrl(URL.createObjectURL(file));
+                setFormData({ ...formData, thumbnailId: file.id });
+              }}
+              onUploadComplete={(response: any) => {
+                setFormData({ ...formData, thumbnailId: response.id });
               }}
             />
-            {previewUrl && (
-              <div className="relative">
-                <img
-                  src={previewUrl}
-                  alt="Preview"
-                  className="object-cover w-full rounded-lg max-h-64"
-                />
-                <button
-                  type="button"
-                  onClick={() => {
-                    setThumbnail(null);
-                    setPreviewUrl(null);
-                  }}
-                  className="absolute p-1 rounded-full text-text-on-primary bg-error top-2 right-2 hover:bg-error-dark"
-                >
-                  ×
-                </button>
-              </div>
-            )}
           </div>
-
-          {/* SEO Settings */}
+          {/* upload file */}
           <div className="space-y-4">
-            <Input
-              value={seoTitle}
-              onChange={(e) => setSeoTitle(e.target.value)}
-              placeholder={title || "Tiêu đề SEO..."}
-              label="Tiêu đề SEO"
-              fullWidth={true}
-              helperText={`${seoTitle.length}/60 ký tự`}
+            <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
+              Tải lên file
+            </h3>
+            <UploadFile
+              onChange={(fileId: number) => {
+                setFormData((prev) => ({
+                  ...prev,
+                  fileIds: [...prev.fileIds, fileId],
+                }));
+              }}
+              onUploadComplete={(response) => {
+                console.log("File uploaded successfully:", response);
+              }}
+              onError={(error) => {
+                console.error("File upload error:", error);
+              }}
+              multiple={true}
+              maxFiles={5}
+              maxSize={50 * 1024 * 1024} // 50MB
+              accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar"
+              label="Tài liệu đính kèm"
+              description="Tải lên các file tài liệu liên quan đến bài viết"
             />
-
-            <div>
-              <label className="block mb-2 text-sm font-medium text-text-secondary">
-                Mô tả SEO
-              </label>
-              <Textarea
-                value={seoDescription}
-                onChange={(e) => setSeoDescription(e.target.value)}
-                placeholder={excerpt || "Mô tả ngắn gọn cho SEO..."}
-                className="w-full p-3 border rounded-lg resize-none border-border-primary focus:ring-2 focus:ring-primary focus:border-primary bg-input-bg text-input-text"
-                rows={3}
-                maxLength={160}
-              />
-              <p className="mt-1 text-sm text-text-muted">
-                {seoDescription.length}/160 ký tự
-              </p>
-            </div>
           </div>
-
+          {/* Ẩn hiện bài viết */}
+          <div className="space-y-4">
+            <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
+              Ẩn danh
+            </h3>
+            <CustomSwitch
+              checked={formData.isPrivate}
+              onChange={(checked) => {
+                setFormData({
+                  ...formData,
+                  isPrivate: checked,
+                });
+              }}
+              label="Ẩn danh"
+              description="Đăng với chế độ ẩn danh"
+              size="md"
+              variant="default"
+              disabled={false}
+              icon={<FaEye />}
+              className="w-full"
+            />
+          </div>
           {/* Nội dung bài viết */}
           <div className="space-y-4">
             <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
@@ -243,17 +297,18 @@ export default function AddPost() {
             </h3>
             <div className="border rounded-lg border-border-primary bg-background-elevated text-text-primary">
               <ReactQuill
-                value={content}
-                onChange={setContent}
+                value={formData.content}
+                onChange={(value: any) =>
+                  setFormData({ ...formData, content: value })
+                }
                 modules={modules}
                 formats={formats}
                 placeholder="Bắt đầu viết nội dung bài viết của bạn..."
-                className="min-h-[300px]"
-                style={{ height: "300px" }}
+                className="min-h-[600px]"
+                style={{ height: "600px" }}
               />
             </div>
           </div>
-
           {/* Action Buttons */}
           <div className="sticky bottom-0 flex justify-end p-4 space-x-3 border-t rounded-b-lg border-border-primary bg-background-elevated text-text-primary">
             <Button variant="outlined" onClick={() => handleAddPost(false)}>
@@ -262,7 +317,7 @@ export default function AddPost() {
             <Button
               variant="secondary"
               onClick={() => {
-                setStatus("draft");
+                setFormData({ ...formData, status: "draft" });
                 handleSubmit();
               }}
             >
@@ -271,7 +326,7 @@ export default function AddPost() {
             <Button
               variant="primary"
               onClick={() => {
-                setStatus("published");
+                setFormData({ ...formData, status: "published" });
                 handleSubmit();
               }}
             >

@@ -1,4 +1,26 @@
+import { UPLOAD_PATH } from "@/core/api/upload/path";
+import Axios from "@/core/base/Axios";
 import React, { useState, useRef, useCallback } from "react";
+
+// Interfaces for upload
+export interface IRequestUpload {
+  file: File | FormData;
+}
+
+export interface ResponseUpload {
+  id: number;
+  fileName: string;
+  originalName: string;
+  filePath: string;
+  fileType: string;
+  fileSize: number;
+  mimeType: string;
+  dimensions: string;
+  createdAt: string;
+}
+export interface ResponseUploads {
+  data: ResponseUpload[];
+}
 
 interface UploadedImage {
   id: string;
@@ -9,14 +31,13 @@ interface UploadedImage {
   type: string;
   progress?: number;
   error?: string;
+  uploadResponse?: ResponseUpload; // Thêm response từ server
 }
 
 interface UploadImageProps {
   value?: UploadedImage[];
-  onChange?: (
-    images: UploadedImage[] | ((prev: UploadedImage[]) => UploadedImage[])
-  ) => void;
-  onUpload?: (files: File[]) => Promise<string[]>;
+  onChange?: (uploadedImageId: number) => void; // Chỉ trả về ID của ảnh đã upload
+  onUploadComplete?: (response: ResponseUpload) => void; // Callback khi upload thành công
   maxFiles?: number;
   maxSize?: number;
   accept?: string;
@@ -33,8 +54,6 @@ interface UploadImageProps {
   dropzoneClassName?: string;
   previewClassName?: string;
   showProgress?: boolean;
-  cropEnabled?: boolean;
-  cropAspectRatio?: number;
   resizeEnabled?: boolean;
   maxWidth?: number;
   maxHeight?: number;
@@ -43,7 +62,6 @@ interface UploadImageProps {
   emptyText?: string;
   uploadText?: string;
   dragText?: string;
-  removeText?: string;
   onError?: (error: string) => void;
   onRemove?: (image: UploadedImage) => void;
 }
@@ -52,8 +70,8 @@ interface UploadImageProps {
 const UploadImage = ({
   value = [],
   onChange,
-  onUpload,
-  maxFiles = 10,
+  onUploadComplete,
+  maxFiles = 1, // Mặc định chỉ cho phép 1 file
   maxSize = 10 * 1024 * 1024, // 10MB
   accept = "image/*",
   disabled = false,
@@ -61,15 +79,14 @@ const UploadImage = ({
   label,
   description,
   required = false,
-  multiple = true,
+  multiple = false, // Mặc định không cho phép multiple
   showPreview = true,
   previewSize = "medium",
   variant = "default",
   className = "",
   dropzoneClassName = "",
   previewClassName = "",
-  showProgress = false,
-
+  showProgress = true,
   resizeEnabled = false,
   maxWidth = 1920,
   maxHeight = 1080,
@@ -78,12 +95,13 @@ const UploadImage = ({
   emptyText = "Chưa có hình ảnh nào",
   uploadText = "Chọn hình ảnh",
   dragText = "Kéo thả hình ảnh vào đây",
-
   onError,
   onRemove,
 }: UploadImageProps) => {
   const [isDragging, setIsDragging] = useState(false);
-  // const [cropImage, setCropImage] = useState<UploadedImage | null>(null);
+  const [images, setImages] = useState<UploadedImage[]>(value);
+  const [isUploading, setIsUploading] = useState(false);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dragCounter = useRef(0);
 
@@ -152,98 +170,121 @@ const UploadImage = ({
     return null;
   };
 
+  // Upload file to server
+  const uploadFileToServer = async (
+    files: File,
+    tempId: string
+  ): Promise<void> => {
+    try {
+      setIsUploading(true);
+
+      // Create FormData and append file
+      const formData = new FormData();
+      formData.append("files", files);
+
+      // Send FormData directly to the server
+      const response = await Axios.post<ResponseUploads>(
+        UPLOAD_PATH.upload,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data?.data) {
+        const uploadResult: ResponseUpload[] = response.data.data;
+        console.log(uploadResult);
+        // Cập nhật image với response từ server
+        setImages((prev) =>
+          prev.map((img) =>
+            img.id === tempId
+              ? {
+                  ...img,
+                  progress: 100,
+                  uploadResponse: uploadResult[0],
+                  url:
+                    `${import.meta.env.VITE_API_URL_FILE}${uploadResult[0].filePath}` ||
+                    img.url,
+                }
+              : img
+          )
+        );
+
+        onChange?.(uploadResult[0].id);
+        onUploadComplete?.(uploadResult[0]);
+
+        console.log("Upload thành công:", uploadResult);
+      } else {
+        throw new Error("Upload failed");
+      }
+    } catch (err) {
+      console.error("Upload thất bại:", err);
+
+      // Cập nhật error cho image
+      setImages((prev) =>
+        prev.map((img) =>
+          img.id === tempId
+            ? { ...img, error: "Upload thất bại", progress: undefined }
+            : img
+        )
+      );
+
+      onError?.("Upload ảnh thất bại. Vui lòng thử lại.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   // Process files
   const processFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
 
     const fileArray = Array.from(files);
-    const remainingSlots = maxFiles - value.length;
+    const remainingSlots = maxFiles - images.length;
     const filesToProcess = multiple
       ? fileArray.slice(0, remainingSlots)
       : [fileArray[0]];
 
-    const newImages: UploadedImage[] = [];
-    const errors: string[] = [];
+    // Nếu không cho phép multiple, clear existing images
+    if (!multiple) {
+      setImages([]);
+    }
 
     for (const file of filesToProcess) {
       const validationError = validateFile(file);
       if (validationError) {
-        errors.push(`${file.name}: ${validationError}`);
+        onError?.(validationError);
         continue;
       }
 
       try {
         const processedFile = await resizeImage(file);
         const url = URL.createObjectURL(processedFile);
+        const tempId = generateId();
 
         const uploadedImage: UploadedImage = {
-          id: generateId(),
+          id: tempId,
           file: processedFile,
           url,
           name: file.name,
           size: processedFile.size,
           type: processedFile.type,
-          progress: showProgress ? 0 : undefined,
+          progress: 0,
         };
 
-        newImages.push(uploadedImage);
+        // Thêm image vào state
+        setImages((prev) =>
+          multiple ? [...prev, uploadedImage] : [uploadedImage]
+        );
+
+        // Bắt đầu upload
+        await uploadFileToServer(processedFile, tempId);
       } catch (err) {
-        errors.push(`${file.name}: Lỗi xử lý file`);
+        onError?.(`${file.name}: Lỗi xử lý file`);
       }
     }
-
-    if (errors.length > 0) {
-      onError?.(errors.join("\n"));
-    }
-
-    if (newImages.length > 0) {
-      const updatedImages = multiple ? [...value, ...newImages] : newImages;
-      onChange?.(updatedImages);
-
-      // Simulate upload progress
-      if (showProgress && onUpload) {
-        for (const image of newImages) {
-          simulateProgress(image.id);
-        }
-
-        try {
-          const uploadedUrls = await onUpload(newImages.map((img) => img.file));
-          // Update images with uploaded URLs
-          const finalImages = updatedImages.map((img) => {
-            const uploadedIndex = newImages.findIndex(
-              (newImg) => newImg.id === img.id
-            );
-            if (uploadedIndex !== -1 && uploadedUrls[uploadedIndex]) {
-              return {
-                ...img,
-                url: uploadedUrls[uploadedIndex],
-                progress: 100,
-              };
-            }
-            return img;
-          });
-          onChange?.(finalImages);
-        } catch (err) {
-          onError?.("Lỗi upload file");
-        }
-      }
-    }
-  };
-
-  // Simulate upload progress
-  const simulateProgress = (imageId: string) => {
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += Math.random() * 30;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(interval);
-      }
-
-      onChange?.((prev: UploadedImage[]) =>
-        prev.map((img) => (img.id === imageId ? { ...img, progress } : img))
-      );
-    }, 200);
   };
 
   // Handle drag events
@@ -276,7 +317,7 @@ const UploadImage = ({
     setIsDragging(false);
     dragCounter.current = 0;
 
-    if (disabled) return;
+    if (disabled || isUploading) return;
 
     const files = e.dataTransfer.files;
     processFiles(files);
@@ -284,17 +325,16 @@ const UploadImage = ({
 
   // Handle file input change
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (disabled || isUploading) return;
     processFiles(e.target.files);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    e.target.value = ""; // Reset input
   };
 
   // Remove image
   const handleRemove = (imageToRemove: UploadedImage) => {
     URL.revokeObjectURL(imageToRemove.url);
-    const updatedImages = value.filter((img) => img.id !== imageToRemove.id);
-    onChange?.(updatedImages);
+    const updatedImages = images.filter((img) => img.id !== imageToRemove.id);
+    setImages(updatedImages);
     onRemove?.(imageToRemove);
   };
 
@@ -322,7 +362,8 @@ const UploadImage = ({
     }
   };
 
-  const canAddMore = value.length < maxFiles;
+  const canAddMore = images.length < maxFiles;
+  const isDisabled = disabled || isUploading;
 
   return (
     <div className={`w-full ${className}`}>
@@ -338,13 +379,13 @@ const UploadImage = ({
       )}
 
       {/* Upload Zone */}
-      {(canAddMore || value.length === 0) && (
+      {(canAddMore || images.length === 0) && (
         <div
           className={`
             relative transition-colors cursor-pointer
             ${getVariantClasses()}
             ${isDragging ? "border-primary bg-background-subtle" : "hover:border-gray-400"}
-            ${disabled ? "opacity-50 cursor-not-allowed" : ""}
+            ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
             ${error ? "border-error" : ""}
             ${dropzoneClassName}
           `}
@@ -352,7 +393,7 @@ const UploadImage = ({
           onDragLeave={handleDragLeave}
           onDragOver={handleDragOver}
           onDrop={handleDrop}
-          onClick={() => !disabled && fileInputRef.current?.click()}
+          onClick={() => !isDisabled && fileInputRef.current?.click()}
         >
           <input
             ref={fileInputRef}
@@ -360,50 +401,61 @@ const UploadImage = ({
             accept={accept}
             multiple={multiple}
             onChange={handleFileChange}
-            disabled={disabled}
+            disabled={isDisabled}
             className="hidden"
           />
 
           <div className="text-center">
-            <svg
-              className="w-8 h-8 mx-auto sm:w-12 sm:h-12 text-muted"
-              stroke="currentColor"
-              fill="none"
-              viewBox="0 0 48 48"
-            >
-              <path
-                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            {isUploading ? (
+              <div className="flex flex-col items-center">
+                <div className="w-8 h-8 mx-auto border-4 rounded-full border-primary border-t-transparent animate-spin"></div>
+                <p className="mt-2 text-sm text-secondary">Đang tải lên...</p>
+              </div>
+            ) : (
+              <>
+                <svg
+                  className="w-8 h-8 mx-auto sm:w-12 sm:h-12 text-muted"
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 48 48"
+                >
+                  <path
+                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
 
-            <div className="mt-2 sm:mt-4">
-              <p className="text-xs sm:text-sm text-secondary">{placeholder}</p>
-              <p className="mt-1 text-[10px] sm:text-xs text-muted">
-                {dragText}
-              </p>
-            </div>
+                <div className="mt-2 sm:mt-4">
+                  <p className="text-xs sm:text-sm text-secondary">
+                    {placeholder}
+                  </p>
+                  <p className="mt-1 text-[10px] sm:text-xs text-muted">
+                    {dragText}
+                  </p>
+                </div>
 
-            <button
-              type="button"
-              className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 mt-2 sm:mt-4 text-xs sm:text-sm font-medium border border-transparent rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-              disabled={disabled}
-            >
-              {uploadText}
-            </button>
+                <button
+                  type="button"
+                  className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 mt-2 sm:mt-4 text-xs sm:text-sm font-medium border border-transparent rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
+                  disabled={isDisabled}
+                >
+                  {uploadText}
+                </button>
 
-            <p className="mt-2 text-[10px] sm:text-xs text-muted">
-              Tối đa {maxFiles} file, mỗi file ≤{" "}
-              {(maxSize / 1024 / 1024).toFixed(1)}MB
-            </p>
+                <p className="mt-2 text-[10px] sm:text-xs text-muted">
+                  Tối đa {maxFiles} file, mỗi file ≤{" "}
+                  {(maxSize / 1024 / 1024).toFixed(1)}MB
+                </p>
+              </>
+            )}
           </div>
         </div>
       )}
 
       {/* Preview Grid */}
-      {showPreview && value.length > 0 && (
+      {showPreview && images.length > 0 && (
         <div
           className={`
           mt-4 grid gap-2 sm:gap-4
@@ -415,13 +467,14 @@ const UploadImage = ({
           ${previewClassName}
         `}
         >
-          {value.map((image) => (
+          {images.map((image) => (
             <div
               key={image.id}
               className={`
                 relative group border border-gray-200 rounded-lg overflow-hidden
                 ${getPreviewSizeClasses()}
                 hover:shadow-md transition-shadow
+                ${image.error ? "border-error" : ""}
               `}
             >
               <img
@@ -442,6 +495,40 @@ const UploadImage = ({
                   </div>
                 )}
 
+              {/* Success indicator */}
+              {image.uploadResponse && (
+                <div className="absolute flex items-center justify-center w-4 h-4 text-white bg-green-500 rounded-full top-1 left-1">
+                  <svg
+                    className="w-2 h-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              )}
+
+              {/* Error indicator */}
+              {image.error && (
+                <div className="absolute flex items-center justify-center w-4 h-4 text-white bg-red-500 rounded-full top-1 left-1">
+                  <svg
+                    className="w-2 h-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              )}
+
               {/* Remove button */}
               <button
                 onClick={(e) => {
@@ -449,7 +536,7 @@ const UploadImage = ({
                   handleRemove(image);
                 }}
                 className="absolute flex items-center justify-center w-4 h-4 text-white transition-opacity rounded-full opacity-0 sm:w-6 sm:h-6 bg-error top-1 right-1 group-hover:opacity-100 hover:bg-button-danger-hover"
-                disabled={disabled}
+                disabled={isDisabled}
               >
                 <svg
                   className="w-2 h-2 sm:w-3 sm:h-3"
@@ -469,7 +556,13 @@ const UploadImage = ({
                 <p className="text-[10px] sm:text-xs truncate">{image.name}</p>
                 <p className="text-[8px] sm:text-xs">
                   {(image.size / 1024).toFixed(1)}KB
+                  {image.uploadResponse && ` • ID: ${image.uploadResponse.id}`}
                 </p>
+                {image.error && (
+                  <p className="text-[8px] sm:text-xs text-red-300">
+                    {image.error}
+                  </p>
+                )}
               </div>
             </div>
           ))}
@@ -480,10 +573,11 @@ const UploadImage = ({
       {error && <p className="mt-2 text-sm text-error">{error}</p>}
 
       {/* Empty state */}
-      {!showPreview && value.length === 0 && (
+      {!showPreview && images.length === 0 && (
         <p className="mt-2 text-sm text-muted">{emptyText}</p>
       )}
     </div>
   );
 };
+
 export default UploadImage;

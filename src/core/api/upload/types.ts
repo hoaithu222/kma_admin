@@ -1,7 +1,7 @@
 import { IResponse } from "@/core/base/Response";
 
 export interface IRequestUpload {
-  file: File;
+  files: FormData;
 }
 export interface ResponseUpload {
   id: number;

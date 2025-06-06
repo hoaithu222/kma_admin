@@ -17,25 +17,30 @@ const Navbar = () => {
   };
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
-    `flex items-center gap-3 p-2 rounded-lg transition-all duration-200 ${
+    clsx(
+      "flex items-center gap-3 p-3 rounded-lg transition-all duration-300",
+      "hover:shadow-md hover:scale-[1.02]",
       isActive
-        ? "bg-primary text-primary font-semibold border-l-4 border-primary shadow-sm"
-        : "text-text-navbar font-medium hover:bg-background-subtle hover:text-primary-4 hover:translate-x-1"
-    }`;
+        ? "bg-primary text-white font-semibold border-l-4 border-primary shadow-md"
+        : "text-text-navbar font-medium hover:bg-background-subtle hover:text-primary"
+    );
 
   const childNavClass = ({ isActive }: { isActive: boolean }) =>
-    `flex items-center gap-2 p-2 ml-6 rounded-md transition-all duration-200 ${
+    clsx(
+      "flex items-center gap-2 p-2.5 ml-6 rounded-md transition-all duration-300",
+      "hover:shadow-sm hover:scale-[1.01]",
       isActive
         ? "bg-primary/10 text-primary font-semibold border-l-4 border-primary shadow-sm"
-        : "text-text-navbar/80 font-normal hover:bg-background-subtle hover:text-primary-4 hover:translate-x-1"
-    }`;
+        : "text-text-navbar/80 font-normal hover:bg-background-subtle hover:text-primary"
+    );
 
   return (
     <nav
       className={clsx(
-        "flex flex-col h-full col-span-2 gap-2 pt-4 p-2 overflow-y-auto ",
+        "flex flex-col h-full col-span-2 gap-2 pt-4 p-2 overflow-y-auto rounded-lg",
         "text-text-primary bg-header-bg",
-        "shadow-lg shadow-header-border border-r border-border-strong"
+        "shadow-lg shadow-header-border border-r border-border-strong",
+        "scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent"
       )}
     >
       {NavbarItems.map((item) => (
@@ -43,16 +48,21 @@ const Navbar = () => {
           {item.children ? (
             <button
               onClick={() => toggleExpanded(item.label)}
-              className={`w-full ${navClass({ isActive: false })}`}
+              className={clsx(
+                "w-full",
+                navClass({ isActive: false }),
+                "hover:bg-background-subtle/50"
+              )}
             >
-              <item.icon className="flex-shrink-0 w-5 h-5" />
+              <item.icon className="flex-shrink-0 w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
               <span className="flex-1 text-left text-text-primary">
                 {t(item.label)}
               </span>
               <svg
-                className={`w-4 h-4 transition-transform duration-200 ${
+                className={clsx(
+                  "w-4 h-4 transition-transform duration-300",
                   expandedItems.includes(item.label) ? "rotate-90" : ""
-                }`}
+                )}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -67,7 +77,7 @@ const Navbar = () => {
             </button>
           ) : (
             <NavLink to={item.path} className={navClass}>
-              <item.icon className="flex-shrink-0 w-5 h-5" />
+              <item.icon className="flex-shrink-0 w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
               <span className="flex-1 text-text-primary">{t(item.label)}</span>
             </NavLink>
           )}
@@ -80,7 +90,7 @@ const Navbar = () => {
                   key={child.label}
                   className={childNavClass}
                 >
-                  <child.icon className="flex-shrink-0 w-4 h-4 opacity-70" />
+                  <child.icon className="flex-shrink-0 w-4 h-4 transition-transform duration-300 opacity-70 group-hover:scale-110" />
                   <span className="text-text-primary">{t(child.label)}</span>
                 </NavLink>
               ))}

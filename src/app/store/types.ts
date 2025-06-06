@@ -23,6 +23,7 @@ export enum AppReducerType {
   CATEGORY = "category",
   SUBCATEGORY = "subcategory",
   POST = "post",
+  TAG = "tag",
 }
 export enum ReduxStateType {
   INIT = "init",

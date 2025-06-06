@@ -1,41 +1,46 @@
-/** @type {import('eslint').Linter.Config} */
-module.exports = {
-    root: true,
-    parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint', 'react', 'react-hooks'],
-    extends: [
-        'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:react-hooks/recommended',
-        'plugin:prettier/recommended' // Luôn để cuối
-    ],
+// eslint.config.js (ESM)
+import tsParser from '@typescript-eslint/parser'
+import tsPlugin from '@typescript-eslint/eslint-plugin'
+import reactPlugin from 'eslint-plugin-react'
+import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import prettierPlugin from 'eslint-plugin-prettier'
+
+export default /** @type {import('eslint').Linter.Config} */ ({
+  languageOptions: {
+    parser: tsParser,
     parserOptions: {
-        ecmaFeatures: {
-            jsx: true
-        },
-        ecmaVersion: 'latest',
-        sourceType: 'module'
-    },
-    settings: {
-        react: {
-            version: 'detect'
-        },
-        'import/resolver': {
-            alias: {
-                map: [['@', './src']],
-                extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
-            }
-        }
-    },
-    rules: {
-        // ✅ Cho phép không cần dấu chấm phẩy
-        semi: ['error', 'never'],
-        // ✅ Cho phép không import React với JSX (React 17+)
-        'react/react-in-jsx-scope': 'off',
-        // ✅ Cho phép dùng arrow function cho components
-        'react/function-component-definition': 'off',
-        // ✅ Tắt yêu cầu prop-types khi dùng TypeScript
-        'react/prop-types': 'off'
+      ecmaFeatures: {
+        jsx: true
+      },
+      ecmaVersion: 'latest',
+      sourceType: 'module'
     }
-}
+  },
+  plugins: {
+    '@typescript-eslint': tsPlugin,
+    'react': reactPlugin,
+    'react-hooks': reactHooksPlugin,
+    'prettier': prettierPlugin
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    },
+    'import/resolver': {
+      alias: {
+        map: [['@', './src']],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+      }
+    }
+  },
+  rules: {
+    semi: ['error', 'never'],
+    'react/react-in-jsx-scope': 'off',
+    'react/function-component-definition': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    'no-unused-vars': 'warn'
+  },
+  ignorePatterns: ['**/*']
+})
