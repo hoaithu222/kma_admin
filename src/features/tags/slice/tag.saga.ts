@@ -35,7 +35,7 @@ import { toast } from "react-toastify";
 function* fetchAllTags(): Generator<any, void, any> {
   try {
     const response = yield call(getAllTag);
-    console.log(response.data.data);
+
     yield put(getAllTagsSuccess(response.data));
   } catch (error) {
     yield put(getAllTagsError(error));

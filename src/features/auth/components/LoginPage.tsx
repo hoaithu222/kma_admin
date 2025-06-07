@@ -49,7 +49,7 @@ const LoginPage = () => {
         <FloatingInput
           label="Tên đăng nhập"
           fullWidth
-          iconLeft={<User />}
+          iconRight={<User />}
           className="bg-transparent"
           name="username"
           value={data.username}

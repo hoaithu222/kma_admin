@@ -33,7 +33,7 @@ import { IRequestUpdateTag } from "@/core/api/tags/types";
 const useTag = () => {
   const dispatch = useDispatch();
   const tags = useSelector(selectTags);
-  console.log("tags", tags);
+
   const isAddTag = useSelector(selectIsAddTag);
   const isEditTag = useSelector(selectIsEditTag);
   const isDeleteTag = useSelector(selectIsDeleteTag);

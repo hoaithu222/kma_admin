@@ -16,6 +16,7 @@ import {
   idDeleteSelector,
   selectSubcategories,
 } from "../slice/subcategory.selector";
+import Button from "@/foundation/components/buttons/Button";
 
 const LitsSubCategory = () => {
   const {
@@ -78,15 +79,23 @@ const LitsSubCategory = () => {
       render: (_value: any, record: any, _index: number) => {
         return (
           <div className="flex gap-2">
-            <MdModeEdit
-              className="text-xl cursor-pointer text-secondary"
+            <Button
+              variant="success"
+              size="small"
+              iconLeft={<MdModeEdit className="text-xl text-white" />}
+              shape="round"
               onClick={() => {
                 setEditSubcategory(record);
                 handleEditSubcategory(true);
               }}
-            />
-            <MdOutlineDeleteForever
-              className="text-xl cursor-pointer text-error"
+            ></Button>
+            <Button
+              variant="danger"
+              size="small"
+              iconLeft={
+                <MdOutlineDeleteForever className="text-xl text-white" />
+              }
+              shape="round"
               onClick={() => {
                 dispatch(setIdDelete(record.id));
                 handleDeleteSubcategory(true);
@@ -107,11 +116,8 @@ const LitsSubCategory = () => {
         data={subcategories}
         emptyText={<Empty variant="data" />}
         pagination={true}
-        pageSize={20}
-        hoverColor="accent"
+        pageSize={10}
         hover={true}
-        hoverEffect="border"
-        hoverIntensity="strong"
         size="small"
         striped={true}
       />

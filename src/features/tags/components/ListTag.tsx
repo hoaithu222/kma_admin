@@ -12,6 +12,7 @@ import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
 import EditTag from "./EditTag";
 import { selectTags } from "../slice/tag.selector";
 import { IRequestUpdateTag } from "@/core/api/tags/types";
+import Button from "@/foundation/components/buttons/Button";
 
 const ListTag = () => {
   const {
@@ -60,15 +61,23 @@ const ListTag = () => {
       render: (_value: any, record: any, _index: number) => {
         return (
           <div className="flex gap-2">
-            <MdModeEdit
-              className="text-xl cursor-pointer text-secondary"
+            <Button
+              variant="success"
+              size="small"
+              iconLeft={<MdModeEdit className="text-xl text-white" />}
+              shape="round"
               onClick={() => {
                 setTag(record);
                 handleEditTag(true);
               }}
-            />
-            <MdOutlineDeleteForever
-              className="text-xl cursor-pointer text-error"
+            ></Button>
+            <Button
+              variant="danger"
+              size="small"
+              iconLeft={
+                <MdOutlineDeleteForever className="text-xl text-white" />
+              }
+              shape="round"
               onClick={() => {
                 dispatch(setIdDelete(record.id));
                 handleDeleteTag();
@@ -90,10 +99,12 @@ const ListTag = () => {
         data={tags}
         emptyText={<Empty variant="data" />}
         hoverColor="accent"
+        pageSize={10}
+        pagination={true}
         hover={true}
         hoverEffect="border"
-        hoverIntensity="strong"
-        size="small"
+        hoverIntensity="medium"
+        size="medium"
         striped={true}
       />
 

@@ -21,6 +21,9 @@ const initialState: initialStateType = {
   isDeletePost: false,
   isLoading: false,
   error: null,
+  addPost: {
+    statusAddPost: ReduxStateType.INIT,
+  },
   detailPost: {
     detailPost: null,
     statusGetDetailPost: ReduxStateType.INIT,
@@ -45,18 +48,18 @@ const { slice, reducer } = createResettableSlice({
   initialState,
   reducers: {
     addPost: (state, _action: PayloadAction<IRequestAddArticle>) => {
-      state.isLoading = true;
+      state.addPost.statusAddPost = ReduxStateType.LOADING;
       state.error = null;
     },
     addPostSuccess: (state, action) => {
       state.posts.content.push(action.payload);
       state.posts.totalItems++;
-      state.isLoading = false;
+      state.addPost.statusAddPost = ReduxStateType.SUCCESS;
       state.isAddPost = false;
     },
     addPostError: (state, action) => {
       state.error = action.payload;
-      state.isLoading = false;
+      state.addPost.statusAddPost = ReduxStateType.ERROR;
     },
     setIsAddPost: (state, action) => {
       state.isAddPost = action.payload;

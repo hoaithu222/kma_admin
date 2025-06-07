@@ -17,6 +17,7 @@ export const modules = {
       [{ direction: "rtl" }],
       [{ align: [] }],
       ["blockquote", "code-block"],
+
       ["link", "image", "video"],
       ["clean"],
     ],

@@ -5,8 +5,8 @@ import {
   FolderKanbanIcon,
   FolderTreeIcon,
   TagsIcon,
-  CalendarClockIcon,
   SettingsIcon,
+  ImageIcon,
 } from "lucide-react";
 
 interface NavbarItem {
@@ -20,12 +20,29 @@ export const NavbarItems: NavbarItem[] = [
   {
     label: "Thống kê tổng quan",
     icon: LayoutDashboardIcon, // Đổi từ ChartBarIcon
-    path: "/dashboard",
+    path: "/",
   },
   {
-    label: "Người dùng",
+    label: "Giảng viên",
     icon: UsersIcon, // Đổi từ UserIcon
-    path: "/user-management",
+    path: "/teachers",
+    children: [
+      {
+        label: "Giảng viên",
+        icon: UsersIcon, // Đổi từ UserIcon
+        path: "/teachers",
+      },
+      {
+        label: "Chuyên ngành",
+        icon: FolderTreeIcon, // Đổi từ UserIcon
+        path: "/majors",
+      },
+      {
+        label: "Chuyên ngành con",
+        icon: FolderTreeIcon, // Đổi từ UserIcon
+        path: "/sub-majors",
+      },
+    ],
   },
   {
     label: "Danh sách bài viết",
@@ -48,10 +65,15 @@ export const NavbarItems: NavbarItem[] = [
     path: "/tags",
   },
   {
-    label: "Sự kiện sắp tới",
-    icon: CalendarClockIcon, // Đổi từ ClipboardIcon
-    path: "/event",
+    label: "Danh sách media",
+    icon: ImageIcon, // Đổi từ TagIcon
+    path: "/media",
   },
+  // {
+  //   label: "Sự kiện sắp tới",
+  //   icon: CalendarClockIcon, // Đổi từ ClipboardIcon
+  //   path: "/event",
+  // },
   {
     label: "Cài đặt hệ thống",
     icon: SettingsIcon, // Đổi từ CogIcon

@@ -17,11 +17,11 @@ const StudentResearch = lazy(
 );
 const StudentRules = lazy(() => import("@/features/student/student-rules"));
 // const Thesis = lazy(() => import("@/features/student/thesis"));
-const DashBoard = lazy(() => import("@/features/dashboard/DashBoard"));
 const UserManagement = lazy(
   () => import("@/features/user-management/UserManagement")
 );
-const Media = lazy(() => import("@/features/media/Media"));
+const MajorPage = lazy(() => import("@/features/major/MajorPage"));
+
 const Event = lazy(() => import("@/features/event/index"));
 const NotPermisstion = lazy(() => import("@/layout/NotPermisstion"));
 const Decentralization = lazy(
@@ -30,8 +30,11 @@ const Decentralization = lazy(
 const DetailPost = lazy(
   () => import("@/features/posts/components/detail-posts/DetailPost")
 );
+const LecturerPage = lazy(() => import("@/features/teachers/LecturerPage"));
+const SubMajorPage = lazy(() => import("@/features/submajor/SubMajorPage"));
 const NotFound = lazy(() => import("@/layout/NotFound"));
 const TagPage = lazy(() => import("@/features/tags/TagPage"));
+const MediaPage = lazy(() => import("@/features/media/Media"));
 const defaultOptions = {
   requireAuth: true,
   hideInMenu: false,
@@ -76,8 +79,8 @@ export const ROUTE = {
     },
   },
   dashboard: {
-    path: "/dashboard",
-    element: <DashBoard />,
+    path: "/",
+    element: <HomePage />,
     layout: "main",
     options: defaultAuthOptions,
   },
@@ -95,7 +98,19 @@ export const ROUTE = {
   },
   media: {
     path: "/media",
-    element: <Media />,
+    element: <MediaPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  majors: {
+    path: "/majors",
+    element: <MajorPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  subMajors: {
+    path: "/sub-majors",
+    element: <SubMajorPage />,
     layout: "main",
     options: defaultAuthOptions,
   },
@@ -136,7 +151,12 @@ export const ROUTE = {
     layout: "main",
     options: defaultAuthOptions,
   },
-
+  teachers: {
+    path: "/teachers",
+    element: <LecturerPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
   setting: {
     path: "/setting",
     element: <Setting />,

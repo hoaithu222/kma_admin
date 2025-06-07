@@ -29,6 +29,11 @@ import {
   IRequestUpdateArticle,
 } from "@/core/api/posts/types";
 import { getAllTags } from "@/features/tags/slice/tag.slice";
+import {
+  selectStatusAddPostSelector,
+  selectStatusEditPostSelector,
+} from "../slice/posts.selector";
+import { useState } from "react";
 
 export const usePost = () => {
   const dispatch = useDispatch();
@@ -38,6 +43,20 @@ export const usePost = () => {
   const editPost = useSelector(selectEditPost);
   const isDeletePost = useSelector(isDeletePostSelector);
   const deletePostData = useSelector(selectDeletePost);
+  const statusAddPost = useSelector(selectStatusAddPostSelector);
+  const statusEditPost = useSelector(selectStatusEditPostSelector);
+  const [filter, setFilter] = useState<IRequestSearchArticle>({
+    page: 0,
+    size: 9,
+    categoryId: null,
+    subCategoryId: null,
+    status: null,
+    isPrivate: null,
+    tag: null,
+    sort: null,
+    order: null,
+    keyword: null,
+  });
 
   const handleAddPost = (action: boolean) => {
     dispatch(setIsAddPost(action));
@@ -78,6 +97,10 @@ export const usePost = () => {
     editPost,
     isDeletePost,
     deletePostData,
+    statusAddPost,
+    statusEditPost,
+    filter,
+    setFilter,
     handleDeletePost,
     handleAddPost,
     handleGetCategoryAndSubCategory,

@@ -34,8 +34,9 @@ import {
   FaLeaf,
   FaRocket,
 } from "react-icons/fa";
-import { formats } from "../add-post/utils";
-import { modules } from "../add-post/utils";
+import { formats, modules } from "../../../../shared/utils/utilsReactQuill";
+import { ReduxStateType } from "@/app/store/types";
+import { toast } from "react-toastify";
 
 interface FormData extends Omit<IRequestAddArticle, "tagIds"> {
   tagIds: string[];
@@ -51,6 +52,9 @@ export default function EditPosts({ post }: EditPostsProps) {
     handleGetCategoryAndSubCategory,
     handleEditPost,
     handleSetIsEditPost,
+    handleGetArticle,
+    statusEditPost,
+    filter,
   } = usePost();
 
   const categories = useSelector(selectCategories);
@@ -72,15 +76,25 @@ export default function EditPosts({ post }: EditPostsProps) {
     fileIds: post.files.map((file: any) => file.id),
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (status: "draft" | "published") => {
+    if (!formData.title || !formData.categoryId || !formData.subCategoryId) {
+      toast.error("Vui lòng nhập đầy đủ thông tin");
+      return;
+    }
+
     const submitData: IRequestUpdateArticle = {
       ...formData,
       tagIds: formData.tagIds.map((id) => parseInt(id)),
       thumbnail: formData.thumbnailId.toString(),
       files: formData.fileIds.map((id) => id.toString()),
       subCategoryId: formData.subCategoryId || null,
+      status: status,
     };
     handleEditPost(submitData);
+    if (statusEditPost === ReduxStateType.SUCCESS) {
+      handleSetIsEditPost(false);
+      handleGetArticle(filter);
+    }
   };
 
   useEffect(() => {
@@ -162,7 +176,7 @@ export default function EditPosts({ post }: EditPostsProps) {
                   setFormData({
                     ...formData,
                     categoryId: +value,
-                    subCategoryId: 0,
+                    subCategoryId: null,
                   })
                 }
                 placeholder="Chọn chuyên mục *"
@@ -253,7 +267,10 @@ export default function EditPosts({ post }: EditPostsProps) {
                 }));
               }}
               onUploadComplete={(response) => {
-                console.log("File uploaded successfully:", response);
+                setFormData((prev) => ({
+                  ...prev,
+                  fileIds: [...prev.fileIds, response.id],
+                }));
               }}
               onError={(error) => {
                 console.error("File upload error:", error);
@@ -295,8 +312,7 @@ export default function EditPosts({ post }: EditPostsProps) {
             <Button
               variant="secondary"
               onClick={() => {
-                setFormData({ ...formData, status: "draft" });
-                handleSubmit();
+                handleSubmit("draft");
               }}
             >
               Lưu nháp
@@ -304,8 +320,7 @@ export default function EditPosts({ post }: EditPostsProps) {
             <Button
               variant="primary"
               onClick={() => {
-                setFormData({ ...formData, status: "published" });
-                handleSubmit();
+                handleSubmit("published");
               }}
             >
               Xuất bản ngay

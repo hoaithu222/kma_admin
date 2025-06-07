@@ -10,7 +10,7 @@ const CategoryPage = () => {
     <div
       className={clsx(
         "h-full p-3 border rounded-lg shadow-sm shadow-text-primary",
-        "border-border-primary bg-background-base text-text-primary"
+        "border-border-primary bg-background-base text-text-primary relative"
       )}
     >
       <div className="flex items-center justify-between border-b-2 border-border-primary">

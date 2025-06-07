@@ -24,6 +24,10 @@ export enum AppReducerType {
   SUBCATEGORY = "subcategory",
   POST = "post",
   TAG = "tag",
+  MEDIA = "media",
+  SETTINGS = "settings",
+  MAJOR = "major",
+  SUBMAJOR = "submajor",
 }
 export enum ReduxStateType {
   INIT = "init",

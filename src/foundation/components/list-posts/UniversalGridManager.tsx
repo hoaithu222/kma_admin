@@ -195,7 +195,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
     return (
       <div
         key={item.id || index}
-        className="relative overflow-hidden transition-all duration-500 bg-white border border-gray-100 shadow-sm group rounded-2xl hover:shadow-xl hover:border-blue-200 hover:-translate-y-2"
+        className="relative overflow-hidden transition-all duration-500 border border-gray-100 shadow-sm bg-background-surface group rounded-2xl hover:shadow-xl hover:border-blue-200 hover:-translate-y-2"
       >
         {/* Image */}
         {cardConfig.showImage && (
@@ -226,20 +226,20 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
               {enableView && (
                 <button
                   onClick={() => onView?.(item)}
-                  className="p-2.5 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:bg-white hover:scale-110 transition-all duration-200"
+                  className="p-2.5 rounded-full bg-background-surface/90 backdrop-blur-sm shadow-lg hover:bg-background-surface hover:scale-110 transition-all duration-200"
                   title="Xem chi tiết"
                 >
                   <Eye size={16} className="text-blue-600" />
                 </button>
               )}
               <button
-                className="p-2.5 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:bg-white hover:scale-110 transition-all duration-200"
+                className="p-2.5 rounded-full bg-background-surface/90 backdrop-blur-sm shadow-lg hover:bg-background-surface hover:scale-110 transition-all duration-200"
                 title="Yêu thích"
               >
                 <Heart size={16} className="text-red-500" />
               </button>
               <button
-                className="p-2.5 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:bg-white hover:scale-110 transition-all duration-200"
+                className="p-2.5 rounded-full bg-background-surface/90 backdrop-blur-sm shadow-lg hover:bg-background-surface hover:scale-110 transition-all duration-200"
                 title="Chia sẻ"
               >
                 <Share2 size={16} className="text-green-600" />

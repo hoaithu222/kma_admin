@@ -3,13 +3,13 @@ import { usePost } from "../../hooks/usePost";
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
 import Select from "@/foundation/components/inputs/SelectOption";
 import Button from "@/foundation/components/buttons/Button";
 import Input from "@/foundation/components/inputs/Input";
 import SelectMany from "@/foundation/components/inputs/SelectMany";
 import UploadImage from "@/foundation/components/upload/UploadImage";
-import { formats, modules } from "./utils";
+import { formats, modules } from "../../../../shared/utils/utilsReactQuill";
+
 import Textarea from "@/foundation/components/inputs/TextArea";
 
 import { useSelector } from "react-redux";
@@ -32,6 +32,8 @@ import {
   FaEye,
 } from "react-icons/fa";
 import CustomSwitch from "@/foundation/components/inputs/CustomSwitch";
+import { ReduxStateType } from "@/app/store/types";
+import { toast } from "react-toastify";
 
 interface FormData extends Omit<IRequestAddArticle, "tagIds"> {
   tagIds: string[];
@@ -43,6 +45,9 @@ export default function AddPost() {
     handleAddPost,
     handleGetCategoryAndSubCategory,
     handleAddArticle,
+    statusAddPost,
+    filter,
+    handleGetArticle,
   } = usePost();
 
   const categories = useSelector(selectCategories);
@@ -66,12 +71,30 @@ export default function AddPost() {
     fileIds: [],
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (status: "draft" | "published") => {
+    if (!formData.title || !formData.categoryId || !formData.subCategoryId) {
+      toast.error("Vui lòng nhập đầy đủ thông tin");
+      return;
+    }
+    if (!formData.thumbnailId) {
+      toast.error("Vui lòng tải lên hình ảnh");
+      return;
+    }
+    if (!formData.fileIds.length) {
+      toast.error("Vui lòng tải lên file");
+      return;
+    }
     const submitData: IRequestAddArticle = {
       ...formData,
       tagIds: formData.tagIds.map((id) => parseInt(id)),
+      status: status,
     };
+
     handleAddArticle(submitData);
+    if (statusAddPost === ReduxStateType.SUCCESS) {
+      handleAddPost(false);
+      handleGetArticle(filter);
+    }
   };
 
   useEffect(() => {
@@ -108,10 +131,10 @@ export default function AddPost() {
       className="z-50"
       overlayClassName="z-50"
       contentClassName="z-50 max-h-[90vh] hidden-scrollbar"
-      scrollable={false}
+      scrollable={true}
     >
       <div className="max-h-[calc(90vh-120px)] overflow-y-auto p-2 hidden-scrollbar">
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-4">
           {/* Thông tin cơ bản */}
           <div className="space-y-4">
             <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
@@ -151,17 +174,16 @@ export default function AddPost() {
                 value={formData.categoryId}
                 onChange={(value: any) => {
                   {
-                    const selectedCategoryId = +value;
                     setFormData({
                       ...formData,
-                      categoryId: selectedCategoryId,
+                      categoryId: value,
                       subCategoryId: null,
                     });
-                    handleGetSubCategories(selectedCategoryId);
+                    handleGetSubCategories(value);
 
                     // Auto-select first subcategory if available
                     const subCategories = subCategoriesWithCategoryId.filter(
-                      (sub) => +sub.categoryId === selectedCategoryId
+                      (sub) => sub.categoryId === value
                     );
                     if (subCategories.length > 0) {
                       setFormData((prev: any) => ({
@@ -182,7 +204,7 @@ export default function AddPost() {
                     value: subCategory.id,
                     label: subCategory.name,
                   }))}
-                  value={formData.subCategoryId || ""}
+                  value={formData.subCategoryId || undefined}
                   onChange={(value: any) =>
                     setFormData({ ...formData, subCategoryId: +value })
                   }
@@ -255,7 +277,10 @@ export default function AddPost() {
                 }));
               }}
               onUploadComplete={(response) => {
-                console.log("File uploaded successfully:", response);
+                setFormData((prev) => ({
+                  ...prev,
+                  fileIds: [...prev.fileIds, response.id],
+                }));
               }}
               onError={(error) => {
                 console.error("File upload error:", error);
@@ -304,13 +329,13 @@ export default function AddPost() {
                 modules={modules}
                 formats={formats}
                 placeholder="Bắt đầu viết nội dung bài viết của bạn..."
-                className="min-h-[600px]"
+                className="min-h-[600px] hidden-scrollbar mb-10"
                 style={{ height: "600px" }}
               />
             </div>
           </div>
           {/* Action Buttons */}
-          <div className="sticky bottom-0 flex justify-end p-4 space-x-3 border-t rounded-b-lg border-border-primary bg-background-elevated text-text-primary">
+          <div className="sticky bottom-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
             <Button variant="outlined" onClick={() => handleAddPost(false)}>
               Hủy
             </Button>
@@ -318,7 +343,7 @@ export default function AddPost() {
               variant="secondary"
               onClick={() => {
                 setFormData({ ...formData, status: "draft" });
-                handleSubmit();
+                handleSubmit("draft");
               }}
             >
               Lưu nháp
@@ -327,7 +352,7 @@ export default function AddPost() {
               variant="primary"
               onClick={() => {
                 setFormData({ ...formData, status: "published" });
-                handleSubmit();
+                handleSubmit("published");
               }}
             >
               Xuất bản ngay

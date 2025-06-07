@@ -196,7 +196,7 @@ const UploadImage = ({
 
       if (response.data?.data) {
         const uploadResult: ResponseUpload[] = response.data.data;
-        console.log(uploadResult);
+
         // Cập nhật image với response từ server
         setImages((prev) =>
           prev.map((img) =>

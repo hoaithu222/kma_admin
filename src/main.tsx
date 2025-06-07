@@ -3,10 +3,11 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./i18n";
 import AppRoot from "./AppRoot.tsx";
+import LoadingPage from "./foundation/components/loading/LoadingPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingPage />}>
       <AppRoot />
     </Suspense>
   </StrictMode>

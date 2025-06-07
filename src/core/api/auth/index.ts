@@ -14,10 +14,9 @@ import Axios from "@/core/base/Axios";
 export const login = async (data: IRequestLogin) => {
   try {
     const response = await Axios.post<IResponseLogin>(AUTH_PATH.login, data);
-    console.log(response);
+
     return { ok: true, data: response.data };
   } catch (error) {
-    console.log(error);
     return { ok: false, error: error };
   }
 };

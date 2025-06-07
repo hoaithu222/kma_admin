@@ -167,7 +167,7 @@ const Table = ({
   // Hiển thị empty state bên ngoài table
   if (data?.length === 0) {
     return (
-      <div className={`w-full ${className}`}>
+      <div className={` w-full ${className}`}>
         <div
           className={clsx(
             "flex items-center justify-center p-8 text-center",
@@ -181,10 +181,10 @@ const Table = ({
   }
 
   return (
-    <div className={`w-full ${className}`}>
-      <div className="overflow-x-auto">
+    <div className={`w-full ${className} `}>
+      <div className="overflow-auto min-h-[calc(100vh - 240px)] hidden-scrollbar">
         <table
-          className={`w-full ${getSizeClasses()} ${bordered ? "border border-border-primary" : ""}`}
+          className={`w-full min-h-[calc(100vh - 240px)] hidden-scrollbar ${getSizeClasses()} ${bordered ? "border border-border-primary rounded-lg shadow-sm shadow-text-primary" : ""}`}
         >
           <thead className="bg-background-muted">
             <tr>
@@ -254,7 +254,7 @@ const Table = ({
 
       {/* Pagination */}
       {pagination && totalPages > 1 && (
-        <div className="flex items-center justify-between mt-4">
+        <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between p-3 mt-4 rounded-lg bg-background-elevated">
           <div className="text-sm text-text-secondary">
             Hiển thị {(currentPage - 1) * pageSize + 1} đến{" "}
             {Math.min(currentPage * pageSize, data.length)} của {data.length}{" "}

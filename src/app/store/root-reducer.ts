@@ -8,6 +8,10 @@ import subcategoryReducer from "@/features/subcategory/slice/subcategory.slice.t
 import postReducer from "@/features/posts/slice/posts.slice.ts";
 import authReducer from "@/features/auth/slice/auth.slice.ts";
 import tagReducer from "@/features/tags/slice/tag.slice.ts";
+import mediaReducer from "@/features/media/slice/media.slice.ts";
+import settingsReducer from "./slices/settings";
+import majorReducer from "@/features/major/slice/major.slice.ts";
+import submajorReducer from "@/features/submajor/slice/submajor.slice.ts";
 
 export const rootReducer = combineReducers({
   [AppReducerType.LANGUAGE]: languageReducer,
@@ -18,4 +22,8 @@ export const rootReducer = combineReducers({
   [AppReducerType.POST]: postReducer,
   [AppReducerType.AUTH]: authReducer,
   [AppReducerType.TAG]: tagReducer,
+  [AppReducerType.MEDIA]: mediaReducer,
+  [AppReducerType.SETTINGS]: settingsReducer,
+  [AppReducerType.MAJOR]: majorReducer,
+  [AppReducerType.SUBMAJOR]: submajorReducer,
 });

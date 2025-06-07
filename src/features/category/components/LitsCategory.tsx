@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { idDeleteSelector } from "../slice/category.selector";
 import { setIdDelete } from "../slice/category.slice";
+import Button from "@/foundation/components/buttons/Button";
 
 const LitsCategory = () => {
   const {
@@ -58,20 +59,28 @@ const LitsCategory = () => {
       render: (_value: any, record: any, _index: number) => {
         return (
           <div className="flex gap-2">
-            <MdModeEdit
-              className="text-xl text-secondary"
+            <Button
+              variant="success"
+              size="small"
+              iconLeft={<MdModeEdit className="text-xl text-white" />}
+              shape="round"
               onClick={() => {
                 setEditCategory(record);
                 handleEditCategory(true);
               }}
-            />
-            <MdOutlineDeleteForever
-              className="text-xl text-error"
+            ></Button>
+            <Button
+              variant="danger"
+              size="small"
+              iconLeft={
+                <MdOutlineDeleteForever className="text-xl text-white" />
+              }
+              shape="round"
               onClick={() => {
                 dispatch(setIdDelete(record.id));
                 handleConfirmDeleteCategory(true);
               }}
-            />
+            ></Button>
           </div>
         );
       },
@@ -88,7 +97,7 @@ const LitsCategory = () => {
         data={categories}
         emptyText={<Empty variant="data" />}
         pagination={true}
-        pageSize={10}
+        pageSize={15}
         striped={true}
         bordered={true}
         hover={true}

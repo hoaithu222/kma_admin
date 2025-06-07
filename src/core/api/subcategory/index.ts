@@ -20,7 +20,10 @@ export const editSubcategoryApi = (
 };
 
 export const deleteSubcategoryApi = (id: string) => {
-  return Axios.delete(SUBCATEGORY_PATH.DELETE_SUBCATEGORY.replace(":id", id));
+  // truyền lên lè mảng id
+  return Axios.delete(SUBCATEGORY_PATH.DELETE_SUBCATEGORY, {
+    data: [id],
+  });
 };
 
 export const getAllSubcategoriesApi = () => {

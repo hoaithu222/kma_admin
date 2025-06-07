@@ -4,7 +4,7 @@ import { usePost } from "../../hooks/usePost";
 import { useEffect, useState } from "react";
 import UniversalGridManager from "@/foundation/components/list-posts/UniversalGridManager";
 import { useNavigate } from "react-router-dom";
-import { IRequestSearchArticle } from "@/core/api/posts/types";
+
 import FilterPanel from "./FilterPanel";
 import Pagination from "./Pagination";
 import {
@@ -23,22 +23,11 @@ const ListPost = () => {
     isDeletePost,
     handleDeletePost,
     deletePostData,
+    filter,
+    setFilter,
   } = usePost();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [filter, setFilter] = useState<IRequestSearchArticle>({
-    page: 1,
-    size: 9,
-    categoryId: null,
-    subCategoryId: null,
-    status: null,
-    isPrivate: null,
-    tag: null,
-    sort: null,
-    order: null,
-    keyword: null,
-  });
 
   const [showFilter, setShowFilter] = useState(false);
 
@@ -61,7 +50,6 @@ const ListPost = () => {
   const postsData = posts.content;
   const totalPages = posts.totalPages;
   const totalItems = posts.totalItems;
-  console.log(postsData, totalPages, totalItems);
 
   return (
     <div className="space-y-4">

@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { Calendar, Eye, FileText, Tag, Clock, Download } from "lucide-react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { usePost } from "../../hooks/usePost";
 import { selectDetailPost } from "../../slice/posts.selector";
 import { useSelector } from "react-redux";
 import { Post } from "../../slice/posts.type";
 import { IFile, ITag } from "@/core/api/posts/types";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import LoadingSpinner from "@/foundation/components/loading/LoadingSpinner";
 
 const DetailPost = () => {
   const { id } = useParams();
   const { handleGetPostById } = usePost();
   const detailPostById = useSelector(selectDetailPost);
   const post = detailPostById.detailPost;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -55,38 +58,40 @@ const DetailPost = () => {
   };
 
   if (!post) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   const handleDown = (file: IFile) => {
     const url = `${import.meta.env.VITE_API_URL_FILE}/${file.filePath}`;
     window.open(url, "_blank");
   };
+  const thumbnail = `${import.meta.env.VITE_API_URL_FILE}/${post.thumbnailUrl}`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen overflow-hidden rounded-lg bg-gradient-to-br from-background-muted to-background-muted">
       {/* Header với background gradient */}
-      <div className="text-white bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+      <div className="text-white bg-gradient-to-r from-primary to-secondary">
         <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => navigate("/posts")}
+            >
+              <FaArrowAltCircleLeft className="w-4 h-4" />
+              <span>Quay lại</span>
+            </div>
             {/* Breadcrumb */}
-            <nav className="flex items-center space-x-2 text-sm text-blue-100">
+            <nav className="flex items-center space-x-2 text-sm text-text-on-primary">
               <span>Trang chủ</span>
               <span>/</span>
               <span>{post.categoryName}</span>
               <span>/</span>
               <span>{post.subCategoryName}</span>
             </nav>
-
-            {/* Status và Privacy */}
-            <div className="flex items-center gap-3">
-              {getStatusBadge(post.status)}
-              {post.isPrivate && (
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                  Riêng tư
-                </span>
-              )}
-            </div>
           </div>
         </div>
       </div>
@@ -96,22 +101,27 @@ const DetailPost = () => {
           {/* Main Content */}
           <div className="lg:col-span-2">
             {/* Article Header */}
-            <div className="mb-8 overflow-hidden bg-white shadow-lg rounded-2xl">
+            <div className="mb-8 overflow-hidden shadow-lg bg-background-surface rounded-2xl">
               {/* Thumbnail */}
-              <div className="relative flex items-center justify-center h-64 bg-gradient-to-r from-blue-400 to-purple-500">
-                <div className="text-6xl text-white">📚</div>
-                <div className="absolute px-3 py-1 text-sm font-medium text-white rounded-full top-4 right-4 bg-white/20 backdrop-blur-sm">
+              <div className="relative flex items-center justify-center h-64 bg-gradient-to-r from-primary to-accent">
+                <div className="text-6xl text-text-on-primary">📚</div>
+                <div className="absolute px-3 py-1 text-sm font-medium rounded-full text-text-on-primary top-4 right-4 bg-background-surface/20 backdrop-blur-sm">
                   {post.categoryName}
                 </div>
+                <img
+                  src={thumbnail}
+                  alt="thumbnail"
+                  className="object-cover w-full h-full"
+                />
               </div>
 
               {/* Title & Meta */}
               <div className="p-8">
-                <h1 className="mb-4 text-3xl font-bold leading-tight text-gray-900">
+                <h2 className="mb-4 text-3xl font-bold leading-tight text-text-primary">
                   {post.title}
-                </h1>
+                </h2>
 
-                <div className="flex flex-wrap items-center gap-6 mb-6 text-sm text-gray-600">
+                <div className="flex flex-wrap items-center gap-6 mb-6 text-sm text-text-secondary">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     <span>{formatDate(post.publishedAt)}</span>
@@ -127,8 +137,8 @@ const DetailPost = () => {
                 </div>
 
                 {/* Summary */}
-                <div className="p-4 mb-6 border-l-4 border-blue-400 rounded-r-lg bg-blue-50">
-                  <p className="leading-relaxed text-gray-700">
+                <div className="p-4 mb-6 border-l-4 rounded-r-lg border-primary bg-primary-light">
+                  <p className="leading-relaxed text-text-primary">
                     {post.summary}
                   </p>
                 </div>
@@ -136,12 +146,12 @@ const DetailPost = () => {
                 {/* Tags */}
                 {post.tag && post.tag.length > 0 && (
                   <div className="flex items-center gap-2 mb-6">
-                    <Tag className="w-4 h-4 text-gray-500" />
+                    <Tag className="w-4 h-4 text-text-secondary" />
                     <div className="flex flex-wrap gap-2">
                       {post.tag.map((tag: ITag, index: number) => (
                         <span
                           key={index}
-                          className="inline-flex items-center px-3 py-1 text-sm font-medium text-gray-700 transition-colors bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200"
+                          className="inline-flex items-center px-3 py-1 text-sm font-medium transition-colors rounded-full cursor-pointer text-text-primary bg-background-muted hover:bg-background-surface"
                         >
                           #{tag.name}
                         </span>
@@ -153,9 +163,9 @@ const DetailPost = () => {
             </div>
 
             {/* Content */}
-            <div className="p-8 mb-8 bg-white shadow-lg rounded-2xl">
+            <div className="p-8 mb-8 shadow-lg bg-background-surface rounded-2xl">
               <div
-                className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700"
+                className="prose prose-lg max-w-none prose-headings:text-text-primary prose-p:text-text-secondary prose-a:text-primary prose-strong:text-text-primary prose-ul:text-text-secondary prose-ol:text-text-secondary"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </div>
@@ -164,35 +174,35 @@ const DetailPost = () => {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Quick Info */}
-            <div className="sticky p-6 mb-6 bg-white shadow-lg rounded-2xl top-8">
-              <h3 className="flex items-center gap-2 mb-4 text-lg font-semibold text-gray-900">
-                <FileText className="w-5 h-5 text-blue-600" />
+            <div className="sticky p-4 mb-6 shadow-lg bg-background-surface rounded-2xl top-8">
+              <h3 className="flex items-center gap-2 mb-4 text-lg font-semibold text-text-primary">
+                <FileText className="w-5 h-5 text-primary" />
                 Thông tin bài viết
               </h3>
 
               <div className="space-y-4">
-                <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Danh mục:</span>
-                  <span className="font-medium text-gray-900">
+                <div className="flex items-center justify-between py-2 border-b border-border-primary">
+                  <span className="text-text-secondary">Danh mục:</span>
+                  <span className="font-medium text-text-primary">
                     {post.categoryName}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Danh mục con:</span>
-                  <span className="font-medium text-gray-900">
+                <div className="flex items-center justify-between py-2 border-b border-border-primary">
+                  <span className="text-text-secondary">Danh mục con:</span>
+                  <span className="font-medium text-text-primary">
                     {post.subCategoryName}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-600">Trạng thái:</span>
+                <div className="flex items-center justify-between py-2 border-b border-border-primary">
+                  <span className="text-text-secondary">Trạng thái:</span>
                   {getStatusBadge(post.status)}
                 </div>
 
                 <div className="flex items-center justify-between py-2">
-                  <span className="text-gray-600">Lượt xem:</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-text-secondary">Lượt xem:</span>
+                  <span className="font-medium text-text-primary">
                     {post.viewCount.toLocaleString()}
                   </span>
                 </div>
@@ -201,9 +211,9 @@ const DetailPost = () => {
 
             {/* Files Section */}
             {post.files && post.files.length > 0 && (
-              <div className="p-6 bg-white shadow-lg rounded-2xl">
-                <h3 className="flex items-center gap-2 mb-4 text-lg font-semibold text-gray-900">
-                  <Download className="w-5 h-5 text-green-600" />
+              <div className="p-4 shadow-lg bg-background-surface rounded-2xl">
+                <h3 className="flex items-center gap-2 mb-4 text-lg font-semibold text-text-primary">
+                  <Download className="w-5 h-5 text-success" />
                   Tài liệu đính kèm
                 </h3>
 
@@ -211,27 +221,29 @@ const DetailPost = () => {
                   {post.files.map((file: IFile) => (
                     <div
                       key={file.id}
-                      className="flex items-center justify-between p-4 transition-colors bg-gray-50 rounded-xl hover:bg-gray-100"
+                      className="flex items-center justify-between p-2 transition-colors bg-background-muted rounded-xl hover:bg-background-surface"
                     >
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">
+                      <div className="flex items-center">
+                        <span className="text-xl">
                           {getFileIcon(file.fileType)}
                         </span>
                         <div>
-                          <p className="text-sm font-medium text-gray-900">
+                          <p
+                            className="text-sm font-medium text-text-primary max-w-[160px] truncate"
+                            title={file.originalName}
+                          >
                             {file.originalName}
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-text-secondary">
                             {file.fileSize}
                           </p>
                         </div>
                       </div>
                       <button
-                        className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
+                        className="flex items-center gap-1 px-3 py-1.5 bg-primary text-text-on-primary text-sm rounded-lg hover:bg-primary-dark transition-colors"
                         onClick={() => handleDown(file)}
                       >
                         <Download className="w-4 h-4" />
-                        Tải về
                       </button>
                     </div>
                   ))}

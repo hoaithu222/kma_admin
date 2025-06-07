@@ -63,8 +63,7 @@ export const getById = async (data: IRequestGetId) => {
 export const deleteMediaFile = async (data: IRequestDelete) => {
   try {
     const response = await Axios.delete<IResponseDelete>(
-      UPLOAD_PATH.deleteMediaFile,
-      { params: data }
+      UPLOAD_PATH.deleteMediaFile.replace(":id", data.id.toString())
     );
     return { ok: true, data: response.data };
   } catch (error) {

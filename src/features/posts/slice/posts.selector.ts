@@ -49,3 +49,15 @@ export const isDeletePostSelector = createSelector(
   [selectPosts],
   (state) => state.isDeletePost
 );
+
+// lấy trạng thái thêm bài viết
+export const selectStatusAddPostSelector = createSelector(
+  [selectPosts],
+  (state) => state.addPost.statusAddPost
+);
+
+// lấy trạng thái sửa bài viết
+export const selectStatusEditPostSelector = createSelector(
+  [selectPosts],
+  (state) => state.editPost.statusEditPost
+);

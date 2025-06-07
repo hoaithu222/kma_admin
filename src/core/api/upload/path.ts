@@ -1,7 +1,7 @@
 export const BASE_PATH = "/api/v1/media_file";
 export const UPLOAD_PATH = {
   upload: `${BASE_PATH}/upload`,
-  getAll: `${BASE_PATH}/upload/all`,
+  getAll: `${BASE_PATH}/all`,
   uploadsFiled: `${BASE_PATH}/uploads/:year/:month/:day/:filename`,
   getMediaFile: `${BASE_PATH}/:id`,
   deleteMediaFile: `${BASE_PATH}/:id`,

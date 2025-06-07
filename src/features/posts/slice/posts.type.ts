@@ -9,6 +9,9 @@ export interface initialStateType {
     totalPages: number;
     totalItems: number;
   };
+  addPost: {
+    statusAddPost: ReduxStateType;
+  };
   isAddPost: boolean;
   isEditPost: boolean;
   isDeletePost: boolean;

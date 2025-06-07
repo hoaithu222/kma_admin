@@ -144,11 +144,11 @@ const SelectMany = ({
       "border transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1";
     switch (variant) {
       case "outlined":
-        return `${baseClasses} border-2 border-gray-300 bg-white hover:border-gray-400 focus:border-blue-500 focus:ring-blue-500/20`;
+        return `${baseClasses} border-2 border-border-primary bg-background-surface hover:border-border-secondary focus:border-secondary focus:ring-secondary/20`;
       case "filled":
-        return `${baseClasses} border-gray-200 bg-gray-50 hover:bg-gray-100 focus:bg-white focus:border-blue-500 focus:ring-blue-500/20`;
+        return `${baseClasses} border-border-primary bg-background-muted hover:bg-background-subtle focus:bg-background-surface focus:border-secondary focus:ring-secondary/20`;
       default:
-        return `${baseClasses} border-gray-300 bg-white hover:border-gray-400 focus:border-blue-500 focus:ring-blue-500/20`;
+        return `${baseClasses} border-border-primary bg-background-surface hover:border-border-secondary focus:border-secondary focus:ring-secondary/20`;
     }
   }, [variant]);
 
@@ -192,7 +192,7 @@ const SelectMany = ({
     }
     return (
       <div className="flex items-center space-x-2">
-        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+        <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-blue-800 bg-blue-100 rounded-full">
           {selectedOptions.length}
         </span>
         <span className="text-gray-900">mục đã chọn</span>
@@ -203,14 +203,14 @@ const SelectMany = ({
   return (
     <div className={`w-full ${className}`}>
       {label && (
-        <label className="block mb-2 text-sm font-semibold text-gray-700">
+        <label className="block mb-2 text-sm font-semibold text-text-primary">
           {label}
-          {required && <span className="ml-1 text-red-500">*</span>}
+          {required && <span className="ml-1 text-error">*</span>}
         </label>
       )}
 
       {description && (
-        <p className="mb-3 text-sm text-gray-600">{description}</p>
+        <p className="mb-3 text-sm text-text-secondary">{description}</p>
       )}
 
       <div className="relative">
@@ -221,7 +221,7 @@ const SelectMany = ({
             disabled:opacity-50 disabled:cursor-not-allowed
             ${sizeClasses.trigger}
             ${variantClasses}
-            ${error ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}
+            ${error ? "border-error focus:border-error focus:ring-error/20" : ""}
           `}
           disabled={disabled}
           onClick={() => setOpen(!open)}
@@ -238,7 +238,7 @@ const SelectMany = ({
                   e.stopPropagation();
                   handleClear();
                 }}
-                className="p-1 hover:bg-gray-100 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
+                className="p-1 transition-colors rounded-md text-text-muted hover:bg-background-muted hover:text-text-primary"
               >
                 <svg
                   className="w-4 h-4"
@@ -257,7 +257,7 @@ const SelectMany = ({
             )}
 
             <svg
-              className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
+              className={`w-5 h-5 text-text-muted transition-transform duration-200 ${
                 open ? "rotate-180" : ""
               }`}
               fill="none"
@@ -275,12 +275,12 @@ const SelectMany = ({
         </button>
 
         {open && (
-          <div className="absolute z-50 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-64 overflow-hidden">
+          <div className="absolute z-50 w-full mt-2 overflow-hidden border shadow-lg bg-background-surface border-border-primary rounded-xl max-h-64">
             {searchable && (
-              <div className="p-3 border-b border-gray-100 bg-gray-50">
+              <div className="p-3 border-b border-border-primary bg-background-muted">
                 <div className="relative">
                   <svg
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
+                    className="absolute w-4 h-4 transform -translate-y-1/2 text-text-muted left-3 top-1/2"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -297,18 +297,18 @@ const SelectMany = ({
                     placeholder="Tìm kiếm..."
                     value={searchQuery}
                     onChange={(e) => handleSearch(e.target.value)}
-                    className="w-full pl-10 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-white"
+                    className="w-full py-2 pl-10 pr-3 text-sm border rounded-lg bg-background-surface border-border-primary focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
                   />
                 </div>
               </div>
             )}
 
             {showSelectAll && filteredOptions.length > 0 && (
-              <div className="p-2 border-b border-gray-100 bg-gray-50">
+              <div className="p-2 border-b border-border-primary bg-background-muted">
                 <button
                   type="button"
                   onClick={handleSelectAll}
-                  className="w-full px-3 py-2 text-sm text-left rounded-lg text-blue-600 hover:bg-blue-50 font-medium transition-colors"
+                  className="w-full px-3 py-2 text-sm font-medium text-left transition-colors rounded-lg text-secondary hover:bg-secondary-light"
                 >
                   {internalValue.length ===
                   filteredOptions.filter((opt) => !opt.disabled).length
@@ -320,9 +320,9 @@ const SelectMany = ({
 
             <div className="overflow-y-auto max-h-48">
               {filteredOptions.length === 0 ? (
-                <div className="py-6 text-sm text-center text-gray-500">
+                <div className="py-6 text-sm text-center text-text-muted">
                   <svg
-                    className="w-8 h-8 mx-auto mb-2 text-gray-300"
+                    className="w-8 h-8 mx-auto mb-2 text-text-muted"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -353,10 +353,10 @@ const SelectMany = ({
                       disabled={isDisabled || false}
                       className={`
                         w-full flex items-center space-x-3 transition-all duration-150 text-left
-                        hover:bg-blue-50 focus:bg-blue-50 focus:outline-none
+                        hover:bg-secondary-light focus:bg-secondary-light focus:outline-none
                         disabled:opacity-50 disabled:cursor-not-allowed
                         ${sizeClasses.option}
-                        ${isSelected ? "bg-blue-50 border-r-2 border-blue-500" : "hover:bg-gray-50"}
+                        ${isSelected ? "bg-secondary-light border-r-2 border-secondary" : "hover:bg-background-muted"}
                       `}
                     >
                       <div className="relative">
@@ -365,14 +365,14 @@ const SelectMany = ({
                           checked={isSelected}
                           onChange={() => {}}
                           className={`
-                            ${sizeClasses.checkbox} rounded border-2 border-gray-300 text-blue-600
-                            focus:ring-blue-500 focus:ring-offset-0 transition-colors
-                            ${isSelected ? "bg-blue-600 border-blue-600" : "bg-white"}
+                            ${sizeClasses.checkbox} rounded border-2 border-border-primary text-secondary
+                            focus:ring-secondary focus:ring-offset-0 transition-colors
+                            ${isSelected ? "bg-secondary border-secondary" : "bg-background-surface"}
                           `}
                         />
                         {isSelected && (
                           <svg
-                            className="absolute top-0.5 left-0.5 w-3 h-3 text-white pointer-events-none"
+                            className="absolute top-0.5 left-0.5 w-3 h-3 text-text-on-primary pointer-events-none"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >
@@ -395,7 +395,7 @@ const SelectMany = ({
       </div>
 
       {error && (
-        <p className="mt-2 text-sm text-red-600 flex items-center">
+        <p className="flex items-center mt-2 text-sm text-error">
           <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"
@@ -408,13 +408,13 @@ const SelectMany = ({
       )}
 
       {maxSelections && (
-        <div className="mt-2 flex items-center justify-between">
-          <p className="text-xs text-gray-500">
+        <div className="flex items-center justify-between mt-2">
+          <p className="text-xs text-text-secondary">
             {internalValue.length}/{maxSelections} mục đã chọn
           </p>
-          <div className="w-full max-w-32 bg-gray-200 rounded-full h-1.5 ml-3">
+          <div className="w-full max-w-32 bg-background-muted rounded-full h-1.5 ml-3">
             <div
-              className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
+              className="bg-secondary h-1.5 rounded-full transition-all duration-300"
               style={{
                 width: `${Math.min((internalValue.length / maxSelections) * 100, 100)}%`,
               }}
