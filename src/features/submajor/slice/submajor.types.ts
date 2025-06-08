@@ -6,6 +6,11 @@ export interface initialStateType {
     name: string;
     majorId: number;
   }[];
+  subMajorWithMajor: {
+    id: number;
+    name: string;
+    majorId: number;
+  }[];
   isAddSubmajor: boolean;
   isEditSubmajor: boolean;
   isDeleteSubmajor: boolean;
@@ -14,4 +19,5 @@ export interface initialStateType {
   statusEditSubmajor: ReduxStateType;
   statusDeleteSubmajor: ReduxStateType;
   statusGetSubmajor: ReduxStateType;
+  statusGetSubMajorWithMajor: ReduxStateType;
 }

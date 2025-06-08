@@ -12,6 +12,7 @@ import mediaReducer from "@/features/media/slice/media.slice.ts";
 import settingsReducer from "./slices/settings";
 import majorReducer from "@/features/major/slice/major.slice.ts";
 import submajorReducer from "@/features/submajor/slice/submajor.slice.ts";
+import lecturerReducer from "@/features/lecturer/slice/lecturer.slice.ts";
 
 export const rootReducer = combineReducers({
   [AppReducerType.LANGUAGE]: languageReducer,
@@ -26,4 +27,5 @@ export const rootReducer = combineReducers({
   [AppReducerType.SETTINGS]: settingsReducer,
   [AppReducerType.MAJOR]: majorReducer,
   [AppReducerType.SUBMAJOR]: submajorReducer,
+  [AppReducerType.LECTURER]: lecturerReducer,
 });

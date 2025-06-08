@@ -10,6 +10,11 @@ export const selectSubmajors = createSelector(
   (state) => state.submajorData
 );
 
+export const selectSubMajorWithMajor = createSelector(
+  [submajorSelector],
+  (state) => state.subMajorWithMajor
+);
+
 export const selectIsAddSubmajor = createSelector(
   [submajorSelector],
   (state) => state.isAddSubmajor

@@ -28,6 +28,7 @@ export enum AppReducerType {
   SETTINGS = "settings",
   MAJOR = "major",
   SUBMAJOR = "submajor",
+  LECTURER = "lecturer",
 }
 export enum ReduxStateType {
   INIT = "init",

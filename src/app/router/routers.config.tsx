@@ -1,6 +1,10 @@
 import { lazy } from "react";
 
 const AuthPage = lazy(() => import("@/features/auth/AuthPage"));
+const RegisterPage = lazy(
+  () => import("@/features/auth/components/RegisterPage")
+);
+
 const SubcategoryPage = lazy(
   () => import("@/features/subcategory/SubcategoryPage")
 );
@@ -30,7 +34,7 @@ const Decentralization = lazy(
 const DetailPost = lazy(
   () => import("@/features/posts/components/detail-posts/DetailPost")
 );
-const LecturerPage = lazy(() => import("@/features/teachers/LecturerPage"));
+const LecturerPage = lazy(() => import("@/features/lecturer/LecturerPage"));
 const SubMajorPage = lazy(() => import("@/features/submajor/SubMajorPage"));
 const NotFound = lazy(() => import("@/layout/NotFound"));
 const TagPage = lazy(() => import("@/features/tags/TagPage"));
@@ -78,6 +82,16 @@ export const ROUTE = {
       hideInMenu: false,
     },
   },
+  register: {
+    path: "/register",
+    element: <RegisterPage />,
+    layout: "auth",
+    options: {
+      requireAuth: false,
+      hideInMenu: false,
+    },
+  },
+
   dashboard: {
     path: "/",
     element: <HomePage />,

@@ -1,7 +1,11 @@
 import { IAuthState } from "./auth.types";
 import { createResettableSlice } from "@/app/store/create-resettabable-slice";
 import { AppReducerType, ReduxStateType } from "@/app/store/types";
-import { IRequestLogin, IRequestLogout } from "@/core/api/auth/types";
+import {
+  IRegister,
+  IRequestLogin,
+  IRequestLogout,
+} from "@/core/api/auth/types";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: IAuthState = {
@@ -56,18 +60,15 @@ export const { slice, reducer } = createResettableSlice({
       state.isAuthenticated = false;
       state.user = null;
     },
-    register: (state) => {
+    register: (state, _action: PayloadAction<IRegister>) => {
       state.isLoadingRegister = true;
-      state.isAuthenticated = false;
       state.user = null;
     },
     registerSuccess: (state) => {
       state.isLoadingRegister = false;
-      state.isAuthenticated = true;
     },
     registerFailed: (state) => {
       state.isLoadingRegister = false;
-      state.isAuthenticated = false;
     },
     logoutUser: (state, _action: PayloadAction<IRequestLogout>) => {
       state.isAuthenticated = false;

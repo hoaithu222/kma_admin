@@ -23,6 +23,7 @@ export interface SelectProps
   options: SelectOption[];
   placeholder?: string;
   fullWidth?: boolean;
+  defaultValue?: string;
   iconLeft?: React.ReactNode;
   className?: string;
   onChange?: (value: string) => void;
@@ -39,6 +40,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       options,
       placeholder,
       fullWidth = false,
+      defaultValue,
       iconLeft,
       className = "",
       disabled = false,
@@ -123,6 +125,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChange={(e) => onChange?.(e.target.value)}
+            defaultValue={defaultValue}
             {...props}
           >
             {placeholder && (

@@ -8,7 +8,7 @@ import Button from "@/foundation/components/buttons/Button";
 import Input from "@/foundation/components/inputs/Input";
 import SelectMany from "@/foundation/components/inputs/SelectMany";
 import UploadImage from "@/foundation/components/upload/UploadImage";
-import { formats, modules } from "../../../../shared/utils/utilsReactQuill";
+import { formats, modules } from "@/shared/utils/utilsReactQuill";
 
 import Textarea from "@/foundation/components/inputs/TextArea";
 

@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { login, logout } from "@/core/api/auth";
+import { login, logout, registerRequest } from "@/core/api/auth";
 import {
   loginFailed,
   loginSuccess,
@@ -8,9 +8,17 @@ import {
   logoutFailed,
   logoutSuccess,
   logoutUser,
+  register,
+  registerFailed,
+  registerSuccess,
 } from "./auth.slice";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { IRequestLogin, IRequestLogout } from "@/core/api/auth/types";
+import {
+  IRegister,
+  IRequestLogin,
+  IRequestLogout,
+} from "@/core/api/auth/types";
+import { toast } from "react-toastify";
 
 function* loginSaga(
   action: PayloadAction<IRequestLogin>
@@ -20,11 +28,14 @@ function* loginSaga(
 
     if (response.ok) {
       yield put(loginSuccess(response.data.data));
+      toast.success("Đăng nhập thành công");
     } else {
       yield put(loginFailed());
+      toast.error("Đăng nhập thất bại");
     }
   } catch (error) {
     yield put(loginFailed());
+    toast.error("Đăng nhập thất bại");
   }
 }
 
@@ -38,7 +49,30 @@ function* logoutSaga(
     yield put(logoutFailed());
   }
 }
+// dang ky
+function* registerSaga(
+  action: PayloadAction<IRegister>
+): Generator<any, void, any> {
+  try {
+    yield call(registerRequest, action.payload);
 
+    const response = yield call(registerRequest, action.payload);
+    if (response.ok) {
+      yield put(registerSuccess());
+      toast.success("Đăng ký thành công");
+    } else {
+      yield put(registerFailed());
+      toast.error("Đăng ký thất bại");
+    }
+  } catch (error) {
+    yield put(registerFailed());
+    toast.error("Đăng ký thất bại");
+  }
+}
+
+function* watchRegisterSaga() {
+  yield takeLatest(register.type, registerSaga);
+}
 function* watchLogoutSaga() {
   yield takeLatest(logoutUser.type, logoutSaga);
 }
@@ -47,5 +81,5 @@ function* watchLoginSaga() {
 }
 
 export function* authSaga() {
-  yield all([watchLoginSaga(), watchLogoutSaga()]);
+  yield all([watchLoginSaga(), watchLogoutSaga(), watchRegisterSaga()]);
 }

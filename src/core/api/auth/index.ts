@@ -7,6 +7,8 @@ import {
   IResponseGetUser,
   IRequestLogout,
   IResponseLogout,
+  IResponseRegister,
+  IRegister,
 } from "./types";
 import { AUTH_PATH } from "./paths";
 import Axios from "@/core/base/Axios";
@@ -57,6 +59,18 @@ export const getUser = async (username: string) => {
 export const logout = async (data: IRequestLogout) => {
   try {
     const response = await Axios.post<IResponseLogout>(AUTH_PATH.logout, data);
+    return { ok: true, data: response.data };
+  } catch (error) {
+    return { ok: false, error: error };
+  }
+};
+
+export const registerRequest = async (data: IRegister) => {
+  try {
+    const response = await Axios.post<IResponseRegister>(
+      AUTH_PATH.register,
+      data
+    );
     return { ok: true, data: response.data };
   } catch (error) {
     return { ok: false, error: error };

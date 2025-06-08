@@ -12,6 +12,9 @@ import {
   getSubmajorFailed,
   getSubmajorRequest,
   getSubmajorSuccess,
+  getSubMajorWithMajorFailed,
+  getSubMajorWithMajorRequest,
+  getSubMajorWithMajorSuccess,
 } from "./submajor.slice";
 
 import { toast } from "react-toastify";
@@ -19,6 +22,7 @@ import {
   createSubMajorApi,
   deleteSubMajorApi,
   getSubMajorsApi,
+  getSubMajorWithMajorApi,
   updateSubMajorApi,
 } from "@/core/api/sub-major";
 
@@ -28,6 +32,19 @@ function* getSubmajorSaga(): Generator<any, void, any> {
     yield put(getSubmajorSuccess(response.data.data));
   } catch (error) {
     yield put(getSubmajorFailed(error));
+  }
+}
+
+function* getSubMajorWithMajorSaga(
+  action: ReturnType<typeof getSubMajorWithMajorRequest>
+): Generator<any, void, any> {
+  try {
+    const response = yield call(getSubMajorWithMajorApi, {
+      majorId: action.payload,
+    });
+    yield put(getSubMajorWithMajorSuccess(response.data.data));
+  } catch (error) {
+    yield put(getSubMajorWithMajorFailed(error));
   }
 }
 
@@ -78,4 +95,5 @@ export function* submajorSaga() {
   yield takeLatest(addSubmajorRequest, addSubmajorSaga);
   yield takeLatest(editSubmajorRequest, editSubmajorSaga);
   yield takeLatest(deleteSubmajorRequest, deleteSubmajorSaga);
+  yield takeLatest(getSubMajorWithMajorRequest, getSubMajorWithMajorSaga);
 }

@@ -14,7 +14,12 @@ export const getSubMajorsApi = (params: IRequestGetSubMajor) => {
 export const getSubMajorWithMajorApi = (
   params: IRequestGetSubMajorWithMajor
 ) => {
-  return Axios.get(SUB_MAJOR_PATH.GET_SUB_MAJOR_WITH_MAJOR, { params });
+  return Axios.get(
+    SUB_MAJOR_PATH.GET_SUB_MAJOR_WITH_MAJOR.replace(
+      ":majorId",
+      params.majorId.toString()
+    )
+  );
 };
 
 export const getSubMajorByIdApi = (id: number) => {

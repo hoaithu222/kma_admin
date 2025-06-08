@@ -4,6 +4,7 @@ import { ReduxStateType } from "@/app/store/types";
 
 const initialState: initialStateType = {
   submajorData: [],
+  subMajorWithMajor: [],
   isAddSubmajor: false,
   isEditSubmajor: false,
   isDeleteSubmajor: false,
@@ -12,6 +13,7 @@ const initialState: initialStateType = {
   statusEditSubmajor: ReduxStateType.INIT,
   statusDeleteSubmajor: ReduxStateType.INIT,
   statusGetSubmajor: ReduxStateType.INIT,
+  statusGetSubMajorWithMajor: ReduxStateType.INIT,
 };
 
 const { slice, reducer } = createResettableSlice({
@@ -92,6 +94,19 @@ const { slice, reducer } = createResettableSlice({
       state.statusDeleteSubmajor = ReduxStateType.ERROR;
       state.isDeleteSubmajor = false;
     },
+    // lấy chuyên ngành con với chuyên ngành
+    getSubMajorWithMajorRequest: (state, _action) => {
+      state.statusGetSubMajorWithMajor = ReduxStateType.LOADING;
+    },
+    getSubMajorWithMajorSuccess: (state, action) => {
+      state.subMajorWithMajor = action.payload;
+      state.statusGetSubMajorWithMajor = ReduxStateType.SUCCESS;
+    },
+    getSubMajorWithMajorFailed: (state, action) => {
+      state.statusGetSubMajorWithMajor = action.payload;
+      state.subMajorWithMajor = [];
+      state.statusGetSubMajorWithMajor = ReduxStateType.ERROR;
+    },
   },
 });
 
@@ -112,5 +127,8 @@ export const {
   deleteSubmajorRequest,
   deleteSubmajorSuccess,
   deleteSubmajorFailed,
+  getSubMajorWithMajorRequest,
+  getSubMajorWithMajorSuccess,
+  getSubMajorWithMajorFailed,
 } = slice.actions;
 export default reducer;

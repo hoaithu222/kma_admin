@@ -15,19 +15,19 @@ export interface IRequestGetLecturerById {
 }
 
 export interface IRequestCreateLecturer {
-  name: string;
-  photoId: number;
-  title: string;
-  email: string;
-  bio: string;
-  position: string;
-  awards: string;
-  education: string;
-  teachingAreas: string;
-  scientificWorks: string;
-  researchInterests: string;
-  majorId: number;
-  subMajorId: number;
+  name: string; // Tên
+  photoId: number; // ID của ảnh
+  title: string; // Chức vụ
+  email: string; // Email
+  bio: string; // Giới thiệu
+  position: string; // Vị trí
+  awards: string; // Giải thưởng
+  education: string; // Học vấn
+  teachingAreas: string; // Lĩnh vực giảng dạy
+  scientificWorks: string; // Công trình khoa học
+  researchInterests: string; // Lĩnh vực nghiên cứu
+  majorId: number; // ID chuyên ngành
+  subMajorId: number | null; // ID chuyên ngành con
 }
 export interface IRequestUpdateLecturer {
   id: number;
@@ -50,24 +50,25 @@ export interface IRequestDeleteLecturer {
 }
 
 export interface dataLecturer {
-  id: number;
-  name: string;
-  photoId: number;
-  title: string;
-  email: string;
-  bio: string;
-  position: string;
-  awards: string;
-  education: string;
-  teachingAreas: string;
-  scientificWorks: string;
-  researchInterests: string;
+  id: number; // ID
+  name: string; // Tên
+  photoId: number; // ID của ảnh
+  title: string; // Chức vụ
+  email: string; // Email
+  bio: string; // Giới thiệu
+  position: string; // Vị trí
+  awards: string; // Giải thưởng
+  education: string; // Học vấn
+  teachingAreas: string; // Lĩnh vực giảng dạy
+  filePath: string; // URL của ảnh
+  scientificWorks: string; // Công trình khoa học
+  researchInterests: string; // Lĩnh vực nghiên cứu
   createdAt: string;
   updatedAt: string;
-  majorId: number;
-  majorName: string;
-  subMajorId: number;
-  subMajorName: string;
+  majorId: number; // ID chuyên ngành
+  majorName: string; // Tên chuyên ngành
+  subMajorId: number; // ID chuyên ngành con
+  subMajorName: string; // Tên chuyên ngành con
 }
 export interface dataDeleteLecturer {
   data: string;

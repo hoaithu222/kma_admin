@@ -8,6 +8,7 @@ import { all } from "redux-saga/effects";
 import mediaSaga from "@/features/media/slice/media.saga";
 import { majorSaga } from "@/features/major/slice/major.saga";
 import { submajorSaga } from "@/features/submajor/slice/submajor.saga";
+import { lecturerSaga } from "@/features/lecturer/slice/lecturer.saga";
 
 export const rootSage = function* () {
   try {
@@ -21,6 +22,7 @@ export const rootSage = function* () {
       mediaSaga(),
       majorSaga(),
       submajorSaga(),
+      lecturerSaga(),
     ]);
   } catch (error) {
     console.error(error);

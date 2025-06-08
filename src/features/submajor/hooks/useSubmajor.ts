@@ -9,6 +9,7 @@ import {
   selectStatusGetSubmajor,
   selectIdDeleteSubmajor,
   selectSubmajors,
+  selectSubMajorWithMajor,
 } from "../slice/submajor.selector";
 import {
   setIsAddSubmajor,
@@ -18,6 +19,7 @@ import {
   addSubmajorRequest,
   editSubmajorRequest,
   deleteSubmajorRequest,
+  getSubMajorWithMajorRequest,
 } from "../slice/submajor.slice";
 import {
   IRequestCreateSubMajor,
@@ -35,6 +37,7 @@ export const useSubmajor = () => {
   const isDeleteSubmajor = useSelector(selectIsDeleteSubmajor);
   const idDelete = useSelector(selectIdDeleteSubmajor);
   const submajorData = useSelector(selectSubmajors);
+  const subMajorWithMajor = useSelector(selectSubMajorWithMajor);
 
   const handleChangeAddSubmajor = (value: boolean) => {
     dispatch(setIsAddSubmajor(value));
@@ -57,6 +60,10 @@ export const useSubmajor = () => {
   const deleteSubmajor = (id: number) => {
     dispatch(deleteSubmajorRequest(id));
   };
+  // lấy chuyên ngành con với chuyên ngành
+  const getSubMajorWithMajor = (majorId: number) => {
+    dispatch(getSubMajorWithMajorRequest(majorId));
+  };
 
   return {
     statusAddSubmajor,
@@ -68,6 +75,7 @@ export const useSubmajor = () => {
     isDeleteSubmajor,
     idDelete,
     submajorData,
+    subMajorWithMajor,
     handleChangeAddSubmajor,
     handleChangeEditSubmajor,
     handleChangeDeleteSubmajor,
@@ -75,6 +83,7 @@ export const useSubmajor = () => {
     addSubmajor,
     editSubmajor,
     deleteSubmajor,
+    getSubMajorWithMajor,
   };
 };
 
