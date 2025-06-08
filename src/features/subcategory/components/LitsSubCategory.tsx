@@ -37,6 +37,14 @@ const LitsSubCategory = () => {
 
   const columns = [
     {
+      key: "id",
+      title: "ID",
+      width: "100px",
+      render: (value: any, _record: any, _index: number) => {
+        return <div>{value}</div>;
+      },
+    },
+    {
       key: "name",
       title: "Name",
       width: "100px",
@@ -54,14 +62,6 @@ const LitsSubCategory = () => {
             {categories.find((category) => category.id === value)?.name}
           </div>
         );
-      },
-    },
-    {
-      key: "description",
-      title: "Description",
-      width: "100px",
-      render: (value: any, _record: any, _index: number) => {
-        return <div>{value}</div>;
       },
     },
     {

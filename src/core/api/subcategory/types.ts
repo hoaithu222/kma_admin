@@ -9,14 +9,14 @@ export interface IRequestAddSubcategory {
   name: string;
   categoryId: string;
   slug: string;
-  description: string;
+  description?: string;
 }
 export interface IRequestEditSubcategory {
   id?: string;
   name: string;
   categoryId: string;
   slug: string;
-  description: string;
+  description?: string;
 }
 export interface IResponseSubcategory {
   id: string;

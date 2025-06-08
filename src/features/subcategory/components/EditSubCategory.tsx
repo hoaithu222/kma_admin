@@ -2,7 +2,6 @@ import Modal from "@/foundation/components/modal/Modal";
 import { useSubcategory } from "../hooks/useSubcategory";
 import Input from "@/foundation/components/inputs/Input";
 import { FolderPen, PlusIcon } from "lucide-react";
-import Textarea from "@/foundation/components/inputs/TextArea";
 import Button from "@/foundation/components/buttons/Button";
 import Select from "@/foundation/components/inputs/SelectOption";
 import { useCategory } from "@/features/category/hooks/useCategory";
@@ -17,7 +16,6 @@ const EditSubCategory = ({ subcategory }: { subcategory: Subcategory }) => {
   const [form, setForm] = useState<IRequestEditSubcategory>({
     id: subcategory.id,
     name: subcategory.name,
-    description: subcategory.description,
     categoryId: subcategory.categoryId as string,
     slug: subcategory.slug,
   });
@@ -58,15 +56,6 @@ const EditSubCategory = ({ subcategory }: { subcategory: Subcategory }) => {
           }))}
           value={form.categoryId}
           onChange={(value) => setForm({ ...form, categoryId: value })}
-        />
-        <Textarea
-          placeholder="Mô tả danh mục"
-          fullWidth
-          label="Mô tả danh mục"
-          className="w-full"
-          value={form.description}
-          onChange={(e) => setForm({ ...form, description: e.target.value })}
-          name="description"
         />
         <div className="flex justify-end">
           <Button
