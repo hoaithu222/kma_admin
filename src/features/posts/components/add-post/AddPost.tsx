@@ -80,10 +80,7 @@ export default function AddPost() {
       toast.error("Vui lòng tải lên hình ảnh");
       return;
     }
-    if (!formData.fileIds.length) {
-      toast.error("Vui lòng tải lên file");
-      return;
-    }
+
     const submitData: IRequestAddArticle = {
       ...formData,
       tagIds: formData.tagIds.map((id) => parseInt(id)),
@@ -99,6 +96,11 @@ export default function AddPost() {
 
   useEffect(() => {
     handleGetCategoryAndSubCategory();
+    setFormData((prev: any) => ({
+      ...prev,
+      categoryId: categories[0]?.id,
+      subCategoryId: subCategoriesWithCategoryId[0]?.id,
+    }));
   }, []);
 
   // Add this function to get random icon
