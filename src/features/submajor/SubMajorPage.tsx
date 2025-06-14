@@ -22,7 +22,7 @@ const SubMajorPage = () => {
           </h2>
         </div>
         <Button
-          variant="gradientSubtle"
+          variant="outlinedSecondary"
           iconLeft={<PlusIcon className="w-4 h-4 hover:animate-spin" />}
           onClick={() => handleChangeAddSubmajor(true)}
         >

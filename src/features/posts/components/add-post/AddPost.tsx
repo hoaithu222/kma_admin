@@ -60,8 +60,8 @@ export default function AddPost() {
   const [formData, setFormData] = useState<FormData>({
     title: "",
     content: "",
-    categoryId: 0,
-    subCategoryId: null,
+    categoryId: categories[0]?.id || 0,
+    subCategoryId: subCategoriesWithCategoryId[0]?.id || 0,
     tagIds: [],
     isPrivate: false,
     status: "draft",
@@ -72,10 +72,19 @@ export default function AddPost() {
   });
 
   const handleSubmit = (status: "draft" | "published") => {
-    if (!formData.title || !formData.categoryId || !formData.subCategoryId) {
-      toast.error("Vui lòng nhập đầy đủ thông tin");
+    if (!formData.title) {
+      toast.error("Vui lòng nhập tiêu đề bài viết");
       return;
     }
+    if (!formData.categoryId) {
+      toast.error("Vui lòng chọn chuyên mục");
+      return;
+    }
+    if (!formData.subCategoryId) {
+      toast.error("Vui lòng chọn chuyên mục con");
+      return;
+    }
+
     if (!formData.thumbnailId) {
       toast.error("Vui lòng tải lên hình ảnh");
       return;
@@ -173,26 +182,15 @@ export default function AddPost() {
                   value: category.id,
                   label: category.name,
                 }))}
-                value={formData.categoryId}
+                value={formData.categoryId?.toString()}
                 onChange={(value: any) => {
                   {
                     setFormData({
                       ...formData,
                       categoryId: value,
-                      subCategoryId: null,
+                      subCategoryId: subCategoriesWithCategoryId[0]?.id,
                     });
                     handleGetSubCategories(value);
-
-                    // Auto-select first subcategory if available
-                    const subCategories = subCategoriesWithCategoryId.filter(
-                      (sub) => sub.categoryId === value
-                    );
-                    if (subCategories.length > 0) {
-                      setFormData((prev: any) => ({
-                        ...prev,
-                        subCategoryId: subCategories[0].id,
-                      }));
-                    }
                   }
                 }}
                 placeholder="Chọn chuyên mục *"
@@ -200,13 +198,13 @@ export default function AddPost() {
                 fullWidth={true}
               />
 
-              {formData.categoryId > 0 && (
+              {formData.categoryId && formData?.categoryId !== "0" && (
                 <Select
                   options={subCategoriesWithCategoryId.map((subCategory) => ({
                     value: subCategory.id,
                     label: subCategory.name,
                   }))}
-                  value={formData.subCategoryId || undefined}
+                  value={formData.subCategoryId?.toString() || undefined}
                   onChange={(value: any) =>
                     setFormData({ ...formData, subCategoryId: +value })
                   }

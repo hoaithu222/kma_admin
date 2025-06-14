@@ -41,7 +41,7 @@ const AddTag = () => {
 
         <div className="flex justify-end">
           <Button
-            variant="gradientDark"
+            variant="gradientPrimary"
             type="submit"
             loading={false}
             iconLeft={<PlusIcon className="w-4 h-4" />}

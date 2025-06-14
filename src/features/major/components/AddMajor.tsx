@@ -55,7 +55,7 @@ const AddMajor = () => {
 
         <div className="flex justify-end">
           <Button
-            variant="gradientDark"
+            variant="gradientSubtle"
             type="submit"
             loading={statusAddMajor === ReduxStateType.LOADING}
             iconLeft={<PlusIcon className="w-4 h-4" />}

@@ -59,7 +59,7 @@ const EditMajor = ({ major }: IEditMajorProps) => {
 
         <div className="flex justify-end">
           <Button
-            variant="gradientDark"
+            variant="gradientSubtle"
             type="submit"
             loading={statusEditMajor === ReduxStateType.LOADING}
             iconLeft={<PencilIcon className="w-4 h-4" />}

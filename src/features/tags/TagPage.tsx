@@ -21,7 +21,7 @@ const TagPage = () => {
           <h2 className="text-2xl font-bold text-secondary">Danh mục tag</h2>
         </div>
         <Button
-          variant="gradientSubtle"
+          variant="outlinedSecondary"
           iconLeft={<PlusIcon className="w-4 h-4 hover:animate-spin" />}
           onClick={() => handleAddTag(true)}
         >

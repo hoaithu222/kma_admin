@@ -13,8 +13,13 @@ import {
   setIsEditPost,
   setIsEditPostId,
 } from "../../slice/posts.slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
+import {
+  selectStatusAddPostSelector,
+  selectStatusEditPostSelector,
+} from "../../slice/posts.selector";
+import { ReduxStateType } from "@/app/store/types";
 
 const ListPost = () => {
   const {
@@ -50,6 +55,17 @@ const ListPost = () => {
   const postsData = posts.content;
   const totalPages = posts.totalPages;
   const totalItems = posts.totalItems;
+  const getStatusAddPost = useSelector(selectStatusAddPostSelector);
+  const getStatusEditPost = useSelector(selectStatusEditPostSelector);
+  // call api add post
+  useEffect(() => {
+    if (getStatusAddPost === ReduxStateType.SUCCESS) {
+      handleGetArticle(filter);
+    }
+    if (getStatusEditPost === ReduxStateType.SUCCESS) {
+      handleGetArticle(filter);
+    }
+  }, [getStatusAddPost, getStatusEditPost]);
 
   return (
     <div className="space-y-4">

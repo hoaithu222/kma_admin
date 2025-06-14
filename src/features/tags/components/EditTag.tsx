@@ -41,7 +41,7 @@ const EditTag = ({ tag }: { tag: IRequestUpdateTag }) => {
 
         <div className="flex justify-end">
           <Button
-            variant="gradientDark"
+            variant="gradientSubtle"
             type="submit"
             loading={false}
             iconLeft={<PlusIcon className="w-4 h-4" />}

@@ -77,13 +77,22 @@ export default function EditPosts({ post }: EditPostsProps) {
   });
 
   const handleSubmit = (status: "draft" | "published") => {
-    if (!formData.title || !formData.categoryId || !formData.subCategoryId) {
-      toast.error("Vui lòng nhập đầy đủ thông tin");
+    if (!formData.title) {
+      toast.error("Vui lòng nhập tiêu đề bài viết");
+      return;
+    }
+    if (!formData.categoryId || formData?.categoryId === "0") {
+      toast.error("Vui lòng chọn chuyên mục");
+      return;
+    }
+    if (!formData.subCategoryId || formData?.subCategoryId === "0") {
+      toast.error("Vui lòng chọn chuyên mục con");
       return;
     }
 
     const submitData: IRequestUpdateArticle = {
       ...formData,
+      categoryId: formData.categoryId,
       tagIds: formData.tagIds.map((id) => parseInt(id)),
       thumbnail: formData.thumbnailId.toString(),
       files: formData.fileIds.map((id) => id.toString()),
@@ -171,12 +180,12 @@ export default function EditPosts({ post }: EditPostsProps) {
                   value: category.id,
                   label: category.name,
                 }))}
-                value={formData.categoryId}
+                value={formData.categoryId?.toString()}
                 onChange={(value: any) =>
                   setFormData({
                     ...formData,
                     categoryId: +value,
-                    subCategoryId: null,
+                    subCategoryId: subCategoriesWithCategoryId[0]?.id,
                   })
                 }
                 placeholder="Chọn chuyên mục *"
@@ -184,7 +193,7 @@ export default function EditPosts({ post }: EditPostsProps) {
                 fullWidth={true}
               />
 
-              {formData.categoryId > 0 && (
+              {formData.categoryId && formData?.categoryId !== "0" && (
                 <Select
                   options={subCategoriesWithCategoryId.map((subCategory) => ({
                     value: subCategory.id,

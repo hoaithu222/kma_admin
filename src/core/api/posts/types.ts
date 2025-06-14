@@ -1,8 +1,8 @@
 import { IResponse } from "@/core/base/Response";
 
 export interface IRequestAddArticle {
-  categoryId: number;
-  subCategoryId: number | null;
+  categoryId: number | null | string;
+  subCategoryId: number | null | string;
   title: string;
   description: string;
   summary: string;
@@ -63,8 +63,8 @@ export interface ResponseGetArticle {}
 export interface IResponseGetArticle extends IResponse<ResponseGetArticle> {}
 
 export interface IRequestUpdateArticle {
-  categoryId: number;
-  subCategoryId: number | null;
+  categoryId: number | string;
+  subCategoryId: number | string | null;
   title: string;
   description: string;
   summary: string;

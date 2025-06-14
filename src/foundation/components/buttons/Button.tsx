@@ -16,7 +16,9 @@ export type ButtonVariant =
   | "gradientCool"
   | "gradientDark"
   | "gradientInverse"
-  | "gradientFire";
+  | "gradientFire"
+  | "gradientSuccess"
+  | "gradientWarning";
 
 export type ButtonSize = "small" | "medium" | "large" | "xl";
 
@@ -76,23 +78,27 @@ const Button = ({
     outlinedSecondary:
       "bg-transparent border border-secondary text-secondary hover:border-info focus:border-info hover:opacity-90",
     success:
-      "bg-success text-on-success border-transparent hover:bg-success-dark disabled:bg-success-light disabled:text-disabled",
+      "bg-[#10B981] text-white border-transparent hover:bg-[#059669] disabled:bg-[#D1FAE5] disabled:text-disabled",
     danger:
       "bg-error text-on-error border-transparent hover:bg-error-dark disabled:bg-error-light disabled:text-disabled",
     warning:
       "bg-warning text-on-warning border-transparent hover:bg-warning-dark disabled:bg-warning-light disabled:text-disabled",
     gradientPrimary:
-      "bg-gradient-to-r from-primary via-primary-dark to-primary-darker text-white border-transparent hover:from-primary-dark hover:to-primary disabled:bg-primary-light disabled:text-disabled",
+      "bg-gradient-to-r from-[#EF4444] via-[#F87171] to-[#DC2626] text-white border-transparent hover:from-[#DC2626] hover:to-[#B91C1C] disabled:bg-[#FCA5A5] disabled:text-disabled",
     gradientSubtle:
-      "bg-gradient-to-r from-secondary via-secondary-light to-secondary-dark text-on-secondary border-transparent hover:from-secondary-dark hover:to-secondary-light disabled:bg-secondary-light disabled:text-disabled",
+      "bg-gradient-to-r from-[#3B82F6] via-[#427fc9] to-[#2563EB] text-white border-transparent hover:from-[#2563EB] hover:to-[#1D4ED8] disabled:bg-[#BFDBFE] disabled:text-disabled",
     gradientCool:
-      "bg-gradient-to-r from-secondary via-primary to-primary-dark text-white border-transparent hover:from-primary-dark hover:to-primary disabled:bg-primary-light disabled:text-disabled",
+      "bg-gradient-to-r from-[#3B82F6] via-[#EF4444] to-[#F87171] text-white border-transparent hover:from-[#2563EB] hover:to-[#DC2626] disabled:bg-[#BFDBFE] disabled:text-disabled",
     gradientDark:
-      "bg-gradient-to-r from-primary-dark to-primary-darker text-white border-transparent hover:from-primary-darker hover:to-primary disabled:bg-primary-light disabled:text-disabled",
+      "bg-gradient-to-r from-[#DC2626] to-[#F87171] text-white border-transparent hover:from-[#B91C1C] hover:to-[#EF4444] disabled:bg-[#FCA5A5] disabled:text-disabled",
     gradientInverse:
-      "bg-gradient-to-r from-gray-700 to-gray-900 text-white border-transparent hover:from-gray-900 hover:to-gray-700 disabled:bg-gray-300 disabled:text-disabled",
+      "bg-gradient-to-r from-[#111827] to-[#1F2937] text-white border-transparent hover:from-[#1F2937] hover:to-[#111827] disabled:bg-[#D1D5DB] disabled:text-disabled",
     gradientFire:
-      "bg-gradient-to-r from-red-500 to-orange-500 text-white border-transparent hover:from-orange-600 hover:to-red-600 disabled:bg-red-200 disabled:text-disabled",
+      "bg-gradient-to-r from-[#EF4444] to-[#F59E0B] text-white border-transparent hover:from-[#DC2626] hover:to-[#D97706] disabled:bg-[#FCA5A5] disabled:text-disabled",
+    gradientSuccess:
+      "bg-gradient-to-r from-[#10B981] via-[#1e8961] to-[#05714e] text-white border-transparent hover:from-[#059669] hover:to-[#047857] disabled:bg-[#D1FAE5] disabled:text-disabled",
+    gradientWarning:
+      "bg-gradient-to-r from-[#F59E0B] via-[#FBBF24] to-[#D97706] text-white border-transparent hover:from-[#D97706] hover:to-[#B45309] disabled:bg-[#FDE68A] disabled:text-disabled",
   };
 
   // Size-specific styling
