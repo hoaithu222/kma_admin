@@ -48,7 +48,7 @@ export interface EditPostsProps {
 export default function EditPosts({ post }: EditPostsProps) {
   const {
     isEditPost,
-    handleAddPost,
+
     handleGetCategoryAndSubCategory,
     handleEditPost,
     handleSetIsEditPost,
@@ -315,7 +315,10 @@ export default function EditPosts({ post }: EditPostsProps) {
 
           {/* Action Buttons */}
           <div className="sticky bottom-0 flex justify-end p-4 space-x-3 border-t rounded-b-lg border-border-primary bg-background-elevated text-text-primary">
-            <Button variant="outlined" onClick={() => handleAddPost(false)}>
+            <Button
+              variant="outlined"
+              onClick={() => handleSetIsEditPost(false)}
+            >
               Hủy
             </Button>
             <Button

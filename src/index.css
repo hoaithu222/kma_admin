@@ -1,11 +1,8 @@
-
-
-@import './foundation/styles/color/generated-colors.css';
-@import './foundation/styles/font/generated-font.css';
+@import "./foundation/styles/color/generated-colors.css";
+@import "./foundation/styles/font/generated-font.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 .hidden-scrollbar::-webkit-scrollbar {
   display: none;
@@ -21,17 +18,18 @@
   border-radius: 10px;
 }
 
-
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #f8a2a2, #598bf7);
+  background: linear-gradient(45deg, #c43434, #e41336);
   border-radius: 10px; /* Bo góc */
   transition: background 0.3s ease-in-out;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #ecacb1, #91cbf8);
+  background: linear-gradient(45deg, #ca330a, #1189e5);
 }
-
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -58,7 +56,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -84,29 +82,70 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
+  }
+}
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
   }
 }
 
-input:-webkit-autofill,
-          input:-webkit-autofill:hover,
-          input:-webkit-autofill:focus,
-          input:-webkit-autofill:active {
-            -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-            -webkit-text-fill-color: inherit !important;
-            transition: background-color 5000s ease-in-out 0s;
-          }
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
 
-          @keyframes onAutoFillStart {
-            from {
-              background: transparent;
-            }
-            to {
-              background: transparent;
-            }
-          }
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
 
-          input:-webkit-autofill {
-            animation-name: onAutoFillStart;
-            animation-fill-mode: both;
-          }
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(calc(100% + 16px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100% + 16px));
+  }
+}
+
+@keyframes swipeOut {
+  from {
+    transform: translateX(var(--radix-toast-swipe-end-x));
+  }
+  to {
+    transform: translateX(calc(100% + 16px));
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-slideOut {
+  animation: slideOut 100ms ease-in;
+}
+
+.animate-swipeOut {
+  animation: swipeOut 100ms ease-out;
+}
