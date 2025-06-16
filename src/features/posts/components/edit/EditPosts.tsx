@@ -51,6 +51,7 @@ export default function EditPosts({ post }: EditPostsProps) {
 
     handleGetCategoryAndSubCategory,
     handleEditPost,
+    handleGetSubCategories,
     handleSetIsEditPost,
     handleGetArticle,
     statusEditPost,
@@ -61,6 +62,9 @@ export default function EditPosts({ post }: EditPostsProps) {
   const subCategoriesWithCategoryId = useSelector(
     subCategoriesWithCategoryIdSelector
   );
+  console.log(subCategoriesWithCategoryId);
+  console.log(post);
+
   const tags = useSelector(selectTags);
   const [formData, setFormData] = useState<FormData>({
     title: post.title,
@@ -75,6 +79,12 @@ export default function EditPosts({ post }: EditPostsProps) {
     thumbnailId: +post.thumbnail,
     fileIds: post.files.map((file: any) => file.id),
   });
+
+  useEffect(() => {
+    if (formData.categoryId) {
+      handleGetSubCategories(formData.categoryId as number);
+    }
+  }, [formData.categoryId]);
 
   const handleSubmit = (status: "draft" | "published") => {
     if (!formData.title) {
@@ -181,6 +191,7 @@ export default function EditPosts({ post }: EditPostsProps) {
                   label: category.name,
                 }))}
                 value={formData.categoryId?.toString()}
+                defaultValue={formData.categoryId?.toString()}
                 onChange={(value: any) =>
                   setFormData({
                     ...formData,
@@ -193,13 +204,14 @@ export default function EditPosts({ post }: EditPostsProps) {
                 fullWidth={true}
               />
 
-              {formData.categoryId && formData?.categoryId !== "0" && (
+              {formData.categoryId && (
                 <Select
                   options={subCategoriesWithCategoryId.map((subCategory) => ({
                     value: subCategory.id,
                     label: subCategory.name,
                   }))}
-                  value={formData.subCategoryId || ""}
+                  value={formData.subCategoryId?.toString() || ""}
+                  defaultValue={formData.subCategoryId?.toString()}
                   onChange={(value: any) =>
                     setFormData({
                       ...formData,
@@ -255,6 +267,15 @@ export default function EditPosts({ post }: EditPostsProps) {
               Hình ảnh
             </h3>
             <UploadImage
+              isEdit={true}
+              value={[
+                {
+                  id: post.thumbnailUrl,
+                  url: post.thumbnailUrl,
+                  name: post.thumbnailUrl,
+                  filePath: post.thumbnailUrl,
+                },
+              ]}
               onChange={(file: any) => {
                 setFormData({ ...formData, thumbnailId: file.id });
               }}
@@ -269,6 +290,15 @@ export default function EditPosts({ post }: EditPostsProps) {
               Tải lên file
             </h3>
             <UploadFile
+              isEdit={true}
+              value={
+                post?.files?.map((file: any) => ({
+                  id: file.id,
+                  url: file.filePath,
+                  name: file.fileName,
+                  filePath: file.filePath,
+                })) || []
+              }
               onChange={(fileId: number) => {
                 setFormData((prev) => ({
                   ...prev,
@@ -314,29 +344,31 @@ export default function EditPosts({ post }: EditPostsProps) {
           </div>
 
           {/* Action Buttons */}
-          <div className="sticky bottom-0 flex justify-end p-4 space-x-3 border-t rounded-b-lg border-border-primary bg-background-elevated text-text-primary">
-            <Button
-              variant="outlined"
-              onClick={() => handleSetIsEditPost(false)}
-            >
-              Hủy
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                handleSubmit("draft");
-              }}
-            >
-              Lưu nháp
-            </Button>
-            <Button
-              variant="primary"
-              onClick={() => {
-                handleSubmit("published");
-              }}
-            >
-              Xuất bản ngay
-            </Button>
+          <div className="relative h-6">
+            <div className="fixed bottom-0 left-0 right-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
+              <Button
+                variant="outlined"
+                onClick={() => handleSetIsEditPost(false)}
+              >
+                Hủy
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  handleSubmit("draft");
+                }}
+              >
+                Lưu nháp
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  handleSubmit("published");
+                }}
+              >
+                Xuất bản ngay
+              </Button>
+            </div>
           </div>
         </form>
       </div>

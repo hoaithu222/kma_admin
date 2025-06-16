@@ -2,6 +2,7 @@ import { UPLOAD_PATH } from "@/core/api/upload/path";
 import Axios from "@/core/base/Axios";
 import React, { useState, useRef, useCallback } from "react";
 import { toast } from "react-toastify";
+import { deleteMediaFile } from "@/core/api/upload";
 
 // Interfaces for upload
 export interface IRequestUpload {
@@ -25,20 +26,21 @@ export interface ResponseUploads {
 
 interface UploadedImage {
   id: string;
-  file: File;
+  file?: File;
   url: string;
   name: string;
-  size: number;
-  type: string;
+  size?: number;
+  type?: string;
   progress?: number;
   error?: string;
-  uploadResponse?: ResponseUpload; // Thêm response từ server
+  uploadResponse?: ResponseUpload;
+  filePath?: string;
 }
 
 interface UploadImageProps {
   value?: UploadedImage[];
-  onChange?: (uploadedImageId: number) => void; // Chỉ trả về ID của ảnh đã upload
-  onUploadComplete?: (response: ResponseUpload) => void; // Callback khi upload thành công
+  onChange?: (uploadedImageId: number) => void;
+  onUploadComplete?: (response: ResponseUpload) => void;
   maxFiles?: number;
   maxSize?: number;
   accept?: string;
@@ -65,6 +67,7 @@ interface UploadImageProps {
   dragText?: string;
   onError?: (error: string) => void;
   onRemove?: (image: UploadedImage) => void;
+  isEdit?: boolean;
 }
 
 // Upload Image Component
@@ -72,15 +75,15 @@ const UploadImage = ({
   value = [],
   onChange,
   onUploadComplete,
-  maxFiles = 1, // Mặc định chỉ cho phép 1 file
-  maxSize = 10 * 1024 * 1024, // 10MB
+  maxFiles = 1,
+  maxSize = 10 * 1024 * 1024,
   accept = "image/*",
   disabled = false,
   error,
   label,
   description,
   required = false,
-  multiple = false, // Mặc định không cho phép multiple
+  multiple = false,
   showPreview = true,
   previewSize = "medium",
   variant = "default",
@@ -98,9 +101,20 @@ const UploadImage = ({
   dragText = "Kéo thả hình ảnh vào đây",
   onError,
   onRemove,
+  isEdit = false,
 }: UploadImageProps) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [images, setImages] = useState<UploadedImage[]>(value);
+  const [images, setImages] = useState<UploadedImage[]>(() => {
+    if (isEdit && value.length > 0) {
+      return value.map((img) => ({
+        ...img,
+        url: img.filePath
+          ? `${import.meta.env.VITE_API_URL_FILE}${img.filePath}`
+          : img.url,
+      }));
+    }
+    return value;
+  });
   const [isUploading, setIsUploading] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -333,11 +347,33 @@ const UploadImage = ({
   };
 
   // Remove image
-  const handleRemove = (imageToRemove: UploadedImage) => {
-    URL.revokeObjectURL(imageToRemove.url);
-    const updatedImages = images.filter((img) => img.id !== imageToRemove.id);
-    setImages(updatedImages);
-    onRemove?.(imageToRemove);
+  const handleRemove = async (
+    imageToRemove: UploadedImage,
+    e?: React.MouseEvent
+  ) => {
+    try {
+      e?.preventDefault();
+      e?.stopPropagation();
+
+      if (imageToRemove.uploadResponse?.id) {
+        const response = await deleteMediaFile({
+          id: imageToRemove.uploadResponse.id,
+        });
+        if (!response.ok) {
+          toast.error("Xóa ảnh thất bại");
+          return;
+        }
+      }
+
+      URL.revokeObjectURL(imageToRemove.url);
+      const updatedImages = images.filter((img) => img.id !== imageToRemove.id);
+      setImages(updatedImages);
+      onRemove?.(imageToRemove);
+      toast.success("Xóa ảnh thành công");
+    } catch (error) {
+      console.error("Lỗi khi xóa ảnh:", error);
+      toast.error("Xóa ảnh thất bại");
+    }
   };
 
   // Preview size classes
@@ -380,10 +416,11 @@ const UploadImage = ({
         <p className="mb-4 text-sm text-secondary">{description}</p>
       )}
 
-      {/* Upload Zone */}
-      {(canAddMore || images.length === 0) && (
-        <div
-          className={`
+      {/* Only show upload zone if not in edit mode or if no images exist */}
+      {(!isEdit || images.length === 0) &&
+        (canAddMore || images.length === 0) && (
+          <div
+            className={`
             relative transition-colors cursor-pointer
             ${getVariantClasses()}
             ${isDragging ? "border-primary bg-background-subtle" : "hover:border-gray-400"}
@@ -391,70 +428,70 @@ const UploadImage = ({
             ${error ? "border-error" : ""}
             ${dropzoneClassName}
           `}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-          onClick={() => !isDisabled && fileInputRef.current?.click()}
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept={accept}
-            multiple={multiple}
-            onChange={handleFileChange}
-            disabled={isDisabled}
-            className="hidden"
-          />
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            onClick={() => !isDisabled && fileInputRef.current?.click()}
+          >
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={handleFileChange}
+              disabled={isDisabled}
+              className="hidden"
+            />
 
-          <div className="text-center">
-            {isUploading ? (
-              <div className="flex flex-col items-center">
-                <div className="w-8 h-8 mx-auto border-4 rounded-full border-primary border-t-transparent animate-spin"></div>
-                <p className="mt-2 text-sm text-secondary">Đang tải lên...</p>
-              </div>
-            ) : (
-              <>
-                <svg
-                  className="w-8 h-8 mx-auto sm:w-12 sm:h-12 text-muted"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 48 48"
-                >
-                  <path
-                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-
-                <div className="mt-2 sm:mt-4">
-                  <p className="text-xs sm:text-sm text-secondary">
-                    {placeholder}
-                  </p>
-                  <p className="mt-1 text-[10px] sm:text-xs text-muted">
-                    {dragText}
-                  </p>
+            <div className="text-center">
+              {isUploading ? (
+                <div className="flex flex-col items-center">
+                  <div className="w-8 h-8 mx-auto border-4 rounded-full border-primary border-t-transparent animate-spin"></div>
+                  <p className="mt-2 text-sm text-secondary">Đang tải lên...</p>
                 </div>
+              ) : (
+                <>
+                  <svg
+                    className="w-8 h-8 mx-auto sm:w-12 sm:h-12 text-muted"
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 48 48"
+                  >
+                    <path
+                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
 
-                <button
-                  type="button"
-                  className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 mt-2 sm:mt-4 text-xs sm:text-sm font-medium border border-transparent rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
-                  disabled={isDisabled}
-                >
-                  {uploadText}
-                </button>
+                  <div className="mt-2 sm:mt-4">
+                    <p className="text-xs sm:text-sm text-secondary">
+                      {placeholder}
+                    </p>
+                    <p className="mt-1 text-[10px] sm:text-xs text-muted">
+                      {dragText}
+                    </p>
+                  </div>
 
-                <p className="mt-2 text-[10px] sm:text-xs text-muted">
-                  Tối đa {maxFiles} file, mỗi file ≤{" "}
-                  {(maxSize / 1024 / 1024).toFixed(1)}MB
-                </p>
-              </>
-            )}
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 mt-2 sm:mt-4 text-xs sm:text-sm font-medium border border-transparent rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
+                    disabled={isDisabled}
+                  >
+                    {uploadText}
+                  </button>
+
+                  <p className="mt-2 text-[10px] sm:text-xs text-muted">
+                    Tối đa {maxFiles} file, mỗi file ≤{" "}
+                    {(maxSize / 1024 / 1024).toFixed(1)}MB
+                  </p>
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* Preview Grid */}
       {showPreview && images.length > 0 && (
@@ -534,8 +571,9 @@ const UploadImage = ({
               {/* Remove button */}
               <button
                 onClick={(e) => {
+                  e.preventDefault();
                   e.stopPropagation();
-                  handleRemove(image);
+                  handleRemove(image, e);
                 }}
                 className="absolute flex items-center justify-center w-4 h-4 text-white transition-opacity rounded-full opacity-0 sm:w-6 sm:h-6 bg-error top-1 right-1 group-hover:opacity-100 hover:bg-button-danger-hover"
                 disabled={isDisabled}
@@ -557,7 +595,7 @@ const UploadImage = ({
               <div className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 text-white transition-opacity bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
                 <p className="text-[10px] sm:text-xs truncate">{image.name}</p>
                 <p className="text-[8px] sm:text-xs">
-                  {(image.size / 1024).toFixed(1)}KB
+                  {(image.size ?? 0 / 1024).toFixed(1)}KB
                   {image.uploadResponse && ` • ID: ${image.uploadResponse.id}`}
                 </p>
                 {image.error && (

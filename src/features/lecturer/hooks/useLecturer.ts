@@ -9,11 +9,14 @@ import {
   selectStatusEditLecturer,
   selectStatusAddLecturer,
   selectLecturers,
+  selectStatusGetDetailLecturer,
+  selectDetailLecturer,
 } from "../slice/lecturer.slector";
 import {
   addLecturerRequest,
   deleteLecturerRequest,
   editLecturerRequest,
+  getDetailLecturerRequest,
   getLecturerRequest,
   setIdDeleteLecturer,
   setIsAddLecturer,
@@ -35,6 +38,8 @@ export const useLecturer = () => {
   const isDeleteLecturer = useSelector(selectIsDeleteLecturer);
   const idDelete = useSelector(selectIdDeleteLecturer);
   const lecturer = useSelector(selectLecturers);
+  const statusGetDetailLecturer = useSelector(selectStatusGetDetailLecturer);
+  const detailLecturer = useSelector(selectDetailLecturer);
   const handleChangeAddLecturer = (value: boolean) => {
     dispatch(setIsAddLecturer(value));
   };
@@ -60,7 +65,9 @@ export const useLecturer = () => {
   const handleChangeIdDeleteLecturer = (id: number) => {
     dispatch(setIdDeleteLecturer(id));
   };
-
+  const getDetailLecturer = (id: number) => {
+    dispatch(getDetailLecturerRequest(id));
+  };
   return {
     statusAddLecturer,
     statusEditLecturer,
@@ -71,6 +78,8 @@ export const useLecturer = () => {
     isDeleteLecturer,
     idDelete,
     lecturer,
+    statusGetDetailLecturer,
+    detailLecturer,
     handleChangeAddLecturer,
     handleChangeEditLecturer,
     handleChangeDeleteLecturer,
@@ -79,5 +88,6 @@ export const useLecturer = () => {
     addLecturer,
     editLecturer,
     deleteLecturer,
+    getDetailLecturer,
   };
 };

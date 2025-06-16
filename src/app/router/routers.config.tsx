@@ -35,6 +35,9 @@ const DetailPost = lazy(
   () => import("@/features/posts/components/detail-posts/DetailPost")
 );
 const LecturerPage = lazy(() => import("@/features/lecturer/LecturerPage"));
+const DetailLecturer = lazy(
+  () => import("@/features/lecturer/components/detail/DetailLecturer")
+);
 const SubMajorPage = lazy(() => import("@/features/submajor/SubMajorPage"));
 const NotFound = lazy(() => import("@/layout/NotFound"));
 const TagPage = lazy(() => import("@/features/tags/TagPage"));
@@ -180,6 +183,12 @@ export const ROUTE = {
   detailPost: {
     path: "/posts/:id",
     element: <DetailPost />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  detailLecturer: {
+    path: "/lecturers/:id",
+    element: <DetailLecturer />,
     layout: "main",
     options: defaultAuthOptions,
   },

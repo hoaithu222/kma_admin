@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
-import { Edit, Trash2, Mail, Award, BookOpen } from "lucide-react";
+import { Edit, Trash2, Mail, Award, BookOpen, Eye } from "lucide-react";
 import { useLecturer } from "../../hooks/useLecturer";
 import Button from "@/foundation/components/buttons/Button";
 import Empty from "@/foundation/components/empty/Empty";
 import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
 import EditLecturer from "../edit/EditLecturer";
 import { dataLecturer } from "@/core/api/lecturer/types";
+import LecturerSkeleton from "@/foundation/components/loading/LecturerSkeleton";
+import { ReduxStateType } from "@/app/store/types";
+import Pagination from "@/features/posts/components/list-post/Pagination";
+import { useNavigate } from "react-router-dom";
 export default function ListLecturer() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize, _setPageSize] = useState(4);
   const {
     lecturer,
     getLecturers,
@@ -15,6 +21,7 @@ export default function ListLecturer() {
     isDeleteLecturer,
     isEditLecturer,
     handleChangeDeleteLecturer,
+    statusGetLecturer,
     handleChangeIdDeleteLecturer,
     handleChangeEditLecturer,
   } = useLecturer();
@@ -24,6 +31,7 @@ export default function ListLecturer() {
     handleChangeEditLecturer(true);
     setLecturerEdit(lecturer);
   };
+  const navigate = useNavigate();
 
   const handleDeleteClick = (lecturer: any) => {
     handleChangeIdDeleteLecturer(lecturer.id);
@@ -37,13 +45,22 @@ export default function ListLecturer() {
   useEffect(() => {
     getLecturers();
   }, []);
+  if (statusGetLecturer === ReduxStateType.LOADING) {
+    return <LecturerSkeleton />;
+  }
+
+  // Calculate pagination
+  const totalPages = Math.ceil(lecturer.length / pageSize);
+  const startIndex = currentPage * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentLecturers = lecturer.slice(startIndex, endIndex);
 
   return (
     <div className="min-h-screen p-6 bg-background-base">
       <div className="mx-auto max-w-7xl">
         {/* Lecturer Cards */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {lecturer.map((lecturer) => (
+          {currentLecturers.map((lecturer) => (
             <div
               key={lecturer.id}
               className="overflow-hidden transition-all duration-300 transform shadow-lg bg-background-elevated rounded-2xl hover:shadow-2xl hover:-translate-y-2"
@@ -129,6 +146,12 @@ export default function ListLecturer() {
                   size="small"
                   iconLeft={<Trash2 size={18} className="text-white" />}
                 />
+                <Button
+                  onClick={() => navigate(`/lecturers/${lecturer.id}`)}
+                  variant="gradientCool"
+                  size="small"
+                  iconLeft={<Eye size={18} className="text-white" />}
+                />
               </div>
             </div>
           ))}
@@ -155,6 +178,15 @@ export default function ListLecturer() {
       {isEditLecturer && (
         <EditLecturer lecturer={lecturerEdit as dataLecturer} />
       )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalItems={lecturer.length}
+        pageSize={pageSize}
+        onPageChange={(page: number) => {
+          setCurrentPage(page);
+        }}
+      />
     </div>
   );
 }

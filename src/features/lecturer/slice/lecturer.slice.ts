@@ -11,6 +11,7 @@ import {
 
 const initialState: initialStateLecturer = {
   lecturer: [],
+  detailLecturer: null,
   isEditLecturer: false,
   isAddLecturer: false,
   isDeleteLecturer: false,
@@ -19,6 +20,7 @@ const initialState: initialStateLecturer = {
   statusAddLecturer: ReduxStateType.INIT,
   statusEditLecturer: ReduxStateType.INIT,
   statusGetLecturer: ReduxStateType.INIT,
+  statusGetDetailLecturer: ReduxStateType.INIT,
 };
 
 const { slice, reducer } = createResettableSlice({
@@ -103,6 +105,17 @@ const { slice, reducer } = createResettableSlice({
       state.statusDeleteLecturer = ReduxStateType.ERROR;
       state.isDeleteLecturer = false;
     },
+    // lấy chi tiết giảng viên
+    getDetailLecturerRequest: (state, _action: PayloadAction<number>) => {
+      state.statusGetDetailLecturer = ReduxStateType.LOADING;
+    },
+    getDetailLecturerSuccess: (state, action: PayloadAction<dataLecturer>) => {
+      state.detailLecturer = action.payload;
+      state.statusGetDetailLecturer = ReduxStateType.SUCCESS;
+    },
+    getDetailLecturerFailure: (state, _action: PayloadAction<string>) => {
+      state.statusGetDetailLecturer = ReduxStateType.ERROR;
+    },
   },
 });
 export const {
@@ -123,5 +136,8 @@ export const {
   deleteLecturerRequest,
   deleteLecturerSuccess,
   deleteLecturerFailure,
+  getDetailLecturerRequest,
+  getDetailLecturerSuccess,
+  getDetailLecturerFailure,
 } = slice.actions;
 export default reducer;

@@ -335,28 +335,30 @@ export default function AddPost() {
             </div>
           </div>
           {/* Action Buttons */}
-          <div className="sticky bottom-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
-            <Button variant="outlined" onClick={() => handleAddPost(false)}>
-              Hủy
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                setFormData({ ...formData, status: "draft" });
-                handleSubmit("draft");
-              }}
-            >
-              Lưu nháp
-            </Button>
-            <Button
-              variant="primary"
-              onClick={() => {
-                setFormData({ ...formData, status: "published" });
-                handleSubmit("published");
-              }}
-            >
-              Xuất bản ngay
-            </Button>
+          <div className="relative h-6">
+            <div className="fixed bottom-0 left-0 right-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
+              <Button variant="outlined" onClick={() => handleAddPost(false)}>
+                Hủy
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setFormData({ ...formData, status: "draft" });
+                  handleSubmit("draft");
+                }}
+              >
+                Lưu nháp
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  setFormData({ ...formData, status: "published" });
+                  handleSubmit("published");
+                }}
+              >
+                Xuất bản ngay
+              </Button>
+            </div>
           </div>
         </form>
       </div>

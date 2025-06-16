@@ -2,6 +2,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import {
   createLecturerApi,
   deleteLecturerApi,
+  getLecturerByIdApi,
   getLecturersAllApi,
   updateLecturerApi,
 } from "@/core/api/lecturer";
@@ -18,6 +19,9 @@ import {
   deleteLecturerFailure,
   deleteLecturerSuccess,
   deleteLecturerRequest,
+  getDetailLecturerSuccess,
+  getDetailLecturerFailure,
+  getDetailLecturerRequest,
 } from "./lecturer.slice";
 import { toast } from "react-toastify";
 import { PayloadAction } from "@reduxjs/toolkit";
@@ -78,9 +82,21 @@ function* deleteLecturerSaga(
     toast.error("Xóa giảng viên thất bại");
   }
 }
+// lấy chi tiết giảng viên
+function* getDetailLecturerSaga(
+  action: PayloadAction<number>
+): Generator<any, void, any> {
+  try {
+    const response = yield call(getLecturerByIdApi, +action.payload);
+    yield put(getDetailLecturerSuccess(response.data.data));
+  } catch (error) {
+    yield put(getDetailLecturerFailure(error as string));
+  }
+}
 export function* lecturerSaga() {
   yield takeLatest(getLecturerRequest, getLecturerSaga);
   yield takeLatest(addLecturerRequest, addLecturerSaga);
   yield takeLatest(editLecturerRequest, editLecturerSaga);
   yield takeLatest(deleteLecturerRequest, deleteLecturerSaga);
+  yield takeLatest(getDetailLecturerRequest.type, getDetailLecturerSaga);
 }

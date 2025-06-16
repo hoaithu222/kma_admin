@@ -17,8 +17,38 @@ export type ButtonVariant =
   | "gradientDark"
   | "gradientInverse"
   | "gradientFire"
-  | "gradientSuccess"
-  | "gradientWarning";
+  | "glassmorphism"
+  | "modernBlue"
+  | "modernPurple"
+  | "modernGreen"
+  | "modernOrange"
+  | "modernCyan"
+  | "neonBlue"
+  | "neonPink"
+  | "neonGreen"
+  | "elegantBlack"
+  | "elegantWhite"
+  | "rainbow"
+  | "ocean"
+  | "sunset"
+  | "forest"
+  | "midnight"
+  | "aurora"
+  | "cosmic"
+  | "cyber"
+  | "borderGlow"
+  | "borderGradient"
+  | "borderAnimated"
+  | "borderRainbow"
+  | "borderPulse"
+  | "borderNeon"
+  | "borderElectric"
+  | "borderGlowing"
+  | "borderShimmer"
+  | "borderMoving"
+  | "borderFire"
+  | "borderIce"
+  | "borderGold";
 
 export type ButtonSize = "small" | "medium" | "large" | "xl";
 
@@ -78,27 +108,91 @@ const Button = ({
     outlinedSecondary:
       "bg-transparent border border-secondary text-secondary hover:border-info focus:border-info hover:opacity-90",
     success:
-      "bg-[#10B981] text-white border-transparent hover:bg-[#059669] disabled:bg-[#D1FAE5] disabled:text-disabled",
+      "bg-success text-on-success border-transparent hover:bg-success-dark disabled:bg-success-light disabled:text-disabled",
     danger:
       "bg-error text-on-error border-transparent hover:bg-error-dark disabled:bg-error-light disabled:text-disabled",
     warning:
       "bg-warning text-on-warning border-transparent hover:bg-warning-dark disabled:bg-warning-light disabled:text-disabled",
     gradientPrimary:
-      "bg-gradient-to-r from-[#EF4444] via-[#F87171] to-[#DC2626] text-white border-transparent hover:from-[#DC2626] hover:to-[#B91C1C] disabled:bg-[#FCA5A5] disabled:text-disabled",
+      "bg-gradient-to-r from-primary via-primary-dark to-primary-light text-white border-transparent hover:from-primary-dark hover:to-primary disabled:bg-primary-light disabled:text-disabled",
     gradientSubtle:
-      "bg-gradient-to-r from-[#3B82F6] via-[#427fc9] to-[#2563EB] text-white border-transparent hover:from-[#2563EB] hover:to-[#1D4ED8] disabled:bg-[#BFDBFE] disabled:text-disabled",
+      "bg-gradient-to-r from-secondary via-secondary-light to-secondary-dark text-on-secondary border-transparent hover:from-secondary-dark hover:to-secondary-light disabled:bg-secondary-light disabled:text-disabled",
     gradientCool:
-      "bg-gradient-to-r from-[#3B82F6] via-[#EF4444] to-[#F87171] text-white border-transparent hover:from-[#2563EB] hover:to-[#DC2626] disabled:bg-[#BFDBFE] disabled:text-disabled",
+      "bg-gradient-to-r from-secondary via-primary to-primary-dark text-white border-transparent hover:from-primary-dark hover:to-primary disabled:bg-primary-light disabled:text-disabled",
     gradientDark:
-      "bg-gradient-to-r from-[#DC2626] to-[#F87171] text-white border-transparent hover:from-[#B91C1C] hover:to-[#EF4444] disabled:bg-[#FCA5A5] disabled:text-disabled",
+      "bg-gradient-to-r from-primary-dark to-primary-darker text-white border-transparent hover:from-primary-darker hover:to-primary disabled:bg-primary-light disabled:text-disabled",
     gradientInverse:
-      "bg-gradient-to-r from-[#111827] to-[#1F2937] text-white border-transparent hover:from-[#1F2937] hover:to-[#111827] disabled:bg-[#D1D5DB] disabled:text-disabled",
+      "bg-gradient-to-r from-gray-700 to-gray-900 text-white border-transparent hover:from-gray-900 hover:to-gray-700 disabled:bg-gray-300 disabled:text-disabled",
     gradientFire:
-      "bg-gradient-to-r from-[#EF4444] to-[#F59E0B] text-white border-transparent hover:from-[#DC2626] hover:to-[#D97706] disabled:bg-[#FCA5A5] disabled:text-disabled",
-    gradientSuccess:
-      "bg-gradient-to-r from-[#10B981] via-[#1e8961] to-[#05714e] text-white border-transparent hover:from-[#059669] hover:to-[#047857] disabled:bg-[#D1FAE5] disabled:text-disabled",
-    gradientWarning:
-      "bg-gradient-to-r from-[#F59E0B] via-[#FBBF24] to-[#D97706] text-white border-transparent hover:from-[#D97706] hover:to-[#B45309] disabled:bg-[#FDE68A] disabled:text-disabled",
+      "bg-gradient-to-r from-red-500 to-orange-500 text-white border-transparent hover:from-orange-600 hover:to-red-600 disabled:bg-red-200 disabled:text-disabled",
+    glassmorphism:
+      "bg-background-overlay backdrop-blur-lg border border-white/30 text-gray-800 hover:bg-background-overlay hover:shadow-lg transition-all duration-300",
+    modernBlue:
+      "bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-transparent hover:from-blue-600 hover:to-indigo-700 hover:shadow-lg hover:scale-105 transition-all duration-300",
+    modernPurple:
+      "bg-gradient-to-r from-purple-500 to-pink-600 text-white border-transparent hover:from-purple-600 hover:to-pink-700 hover:shadow-lg hover:scale-105 transition-all duration-300",
+    modernGreen:
+      "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-transparent hover:from-green-600 hover:to-emerald-700 hover:shadow-lg hover:scale-105 transition-all duration-300",
+    modernOrange:
+      "bg-gradient-to-r from-orange-500 to-red-600 text-white border-transparent hover:from-orange-600 hover:to-red-700 hover:shadow-lg hover:scale-105 transition-all duration-300",
+    modernCyan:
+      "bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-transparent hover:from-cyan-600 hover:to-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-300",
+    neonBlue:
+      "bg-blue-600 text-white border-2 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] hover:scale-105 transition-all duration-300",
+    neonPink:
+      "bg-pink-600 text-white border-2 border-pink-400 shadow-[0_0_20px_rgba(236,72,153,0.5)] hover:shadow-[0_0_30px_rgba(236,72,153,0.8)] hover:scale-105 transition-all duration-300",
+    neonGreen:
+      "bg-green-600 text-white border-2 border-green-400 shadow-[0_0_20px_rgba(34,197,94,0.5)] hover:shadow-[0_0_30px_rgba(34,197,94,0.8)] hover:scale-105 transition-all duration-300",
+    elegantBlack:
+      "bg-gradient-to-r from-gray-800 to-black text-white border-transparent hover:from-black hover:to-gray-900 hover:shadow-xl hover:scale-105 transition-all duration-300",
+    elegantWhite:
+      "bg-gradient-to-r from-white to-gray-100 text-gray-800 border border-gray-200 hover:from-gray-50 hover:to-white hover:shadow-xl hover:scale-105 transition-all duration-300",
+    rainbow:
+      "bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 text-white border-transparent hover:shadow-xl hover:scale-105 transition-all duration-300 animate-pulse",
+    ocean:
+      "bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white border-transparent hover:from-blue-500 hover:to-blue-700 hover:shadow-[0_8px_32px_rgba(59,130,246,0.4)] hover:scale-105 transition-all duration-300",
+    sunset:
+      "bg-gradient-to-r from-orange-400 via-pink-500 to-red-500 text-white border-transparent hover:from-orange-500 hover:to-red-600 hover:shadow-[0_8px_32px_rgba(251,146,60,0.4)] hover:scale-105 transition-all duration-300",
+    forest:
+      "bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white border-transparent hover:from-green-500 hover:to-green-700 hover:shadow-[0_8px_32px_rgba(34,197,94,0.4)] hover:scale-105 transition-all duration-300",
+    midnight:
+      "bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 text-white border-transparent hover:from-indigo-800 hover:to-pink-800 hover:shadow-[0_8px_32px_rgba(99,102,241,0.4)] hover:scale-105 transition-all duration-300",
+    aurora:
+      "bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 text-white border-transparent hover:from-purple-500 hover:to-red-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.4)] hover:scale-105 transition-all duration-300",
+    cosmic:
+      "bg-gradient-to-r from-violet-600 via-purple-600 to-blue-600 text-white border-transparent hover:from-violet-700 hover:to-blue-700 hover:shadow-[0_8px_32px_rgba(124,58,237,0.4)] hover:scale-105 transition-all duration-300",
+    cyber:
+      "bg-gradient-to-r from-cyan-400 via-cyan-500 to-blue-500 text-white border-transparent hover:from-cyan-500 hover:to-blue-600 hover:shadow-[0_8px_32px_rgba(6,182,212,0.4)] hover:scale-105 transition-all duration-300",
+    borderGlow:
+      "bg-transparent border-2 border-blue-500 text-blue-500 hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:text-blue-400 transition-all duration-300",
+    borderGradient:
+      "bg-transparent border-2 border-transparent bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-border text-transparent bg-clip-text hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all duration-300",
+    borderAnimated:
+      "relative bg-transparent border-2 border-gray-300 text-gray-700 hover:border-transparent hover:text-white overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-500 before:via-purple-500 before:to-pink-500 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 before:-z-10",
+    borderRainbow:
+      "relative bg-transparent border-2 text-gray-800 hover:text-white overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-red-500 before:via-yellow-500 before:via-green-500 before:via-blue-500 before:to-purple-500 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 before:-z-10 after:absolute after:inset-0.5 after:bg-white after:rounded-md after:-z-10",
+    borderPulse:
+      "bg-transparent border-2 border-blue-500 text-blue-500 hover:border-blue-400 hover:text-blue-400 animate-pulse hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] transition-all duration-300",
+    borderNeon:
+      "bg-black border-2 border-cyan-400 text-cyan-400 hover:border-cyan-300 hover:text-cyan-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.6),inset_0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300",
+    borderElectric:
+      "bg-transparent border-2 border-purple-500 text-purple-500 hover:border-pink-500 hover:text-pink-500 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] transition-all duration-300 animate-pulse",
+    borderGlowing:
+      "relative bg-transparent border-2 border-blue-500 text-blue-500 hover:text-white overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-500 before:to-purple-600 before:opacity-0 hover:before:opacity-100 before:transition-all before:duration-500 before:-z-10 hover:border-transparent hover:shadow-[0_0_30px_rgba(59,130,246,0.8)]",
+    borderShimmer:
+      "relative bg-transparent border-2 border-gray-300 text-gray-700 overflow-hidden before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white before:to-transparent before:opacity-20 hover:before:left-[100%] before:transition-all before:duration-700",
+    borderMoving:
+      "relative bg-transparent border-2 text-gray-800 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-500 before:via-purple-500 before:to-pink-500 before:bg-[length:400%_400%] before:animate-gradient-x before:opacity-100 after:absolute after:inset-0.5 after:bg-white after:rounded-md after:-z-10",
+    borderFire:
+      "bg-transparent border-2 border-orange-500 text-orange-500 hover:border-red-500 hover:text-red-500 hover:shadow-[0_0_25px_rgba(251,146,60,0.6)] transition-all duration-300 animate-pulse",
+    borderIce:
+      "bg-transparent border-2 border-cyan-300 text-cyan-600 hover:border-blue-400 hover:text-blue-600 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all duration-300",
+    borderGold:
+      "bg-transparent border-2 border-yellow-400 text-yellow-600 hover:border-yellow-300 hover:text-yellow-500 hover:shadow-[0_0_20px_rgba(250,204,21,0.6)] transition-all duration-300",
+    borderSilver:
+      "bg-transparent border-2 border-gray-400 text-gray-600 hover:border-gray-300 hover:text-gray-500 hover:shadow-[0_0_20px_rgba(156,163,175,0.6)] transition-all duration-300",
+    borderHolographic:
+      "relative bg-transparent border-2 text-gray-800 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-pink-500 before:via-purple-500 before:via-blue-500 before:via-green-500 before:to-yellow-500 before:bg-[length:400%_100%] before:animate-gradient-x before:opacity-100 after:absolute after:inset-0.5 after:bg-white after:rounded-md after:-z-10 hover:after:bg-gray-50",
   };
 
   // Size-specific styling

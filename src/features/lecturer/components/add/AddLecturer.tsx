@@ -141,8 +141,6 @@ export default function AddLecturer() {
     addLecturer(formData);
   };
 
-  console.log("Current formData:", formData);
-
   return (
     <Modal
       size="xlarge"
@@ -337,17 +335,19 @@ export default function AddLecturer() {
           </div>
 
           {/* Action Buttons */}
-          <div className="sticky bottom-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
-            <Button
-              variant="outlined"
-              onClick={() => handleChangeAddLecturer(false)}
-            >
-              Hủy
-            </Button>
+          <div className="relative h-6">
+            <div className="fixed bottom-0 left-0 right-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
+              <Button
+                variant="outlined"
+                onClick={() => handleChangeAddLecturer(false)}
+              >
+                Hủy
+              </Button>
 
-            <Button variant="primary" onClick={handleSubmit}>
-              Thêm
-            </Button>
+              <Button variant="primary" onClick={handleSubmit}>
+                Thêm
+              </Button>
+            </div>
           </div>
         </form>
       </div>

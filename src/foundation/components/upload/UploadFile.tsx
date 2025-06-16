@@ -2,6 +2,7 @@ import { UPLOAD_PATH } from "@/core/api/upload/path";
 import Axios from "@/core/base/Axios";
 import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
+import { deleteMediaFile } from "@/core/api/upload";
 
 // Interfaces for upload
 export interface IRequestUpload {
@@ -25,14 +26,15 @@ export interface ResponseUploads {
 
 interface UploadedDocument {
   id: string;
-  file: File;
+  file?: File;
   url: string;
   name: string;
-  size: number;
-  type: string;
+  size?: number;
+  type?: string;
   progress?: number;
   error?: string;
   uploadResponse?: ResponseUpload;
+  filePath?: string;
 }
 
 interface UploadDocumentProps {
@@ -59,6 +61,7 @@ interface UploadDocumentProps {
   dragText?: string;
   onError?: (error: string) => void;
   onRemove?: (document: UploadedDocument) => void;
+  isEdit?: boolean;
 }
 
 const UploadFile = ({
@@ -85,9 +88,20 @@ const UploadFile = ({
   dragText = "Kéo thả tài liệu vào đây",
   onError,
   onRemove,
+  isEdit = false,
 }: UploadDocumentProps) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [documents, setDocuments] = useState<UploadedDocument[]>(value);
+  const [documents, setDocuments] = useState<UploadedDocument[]>(() => {
+    if (isEdit && value.length > 0) {
+      return value.map((doc) => ({
+        ...doc,
+        url: doc.filePath
+          ? `${import.meta.env.VITE_API_URL_FILE}${doc.filePath}`
+          : doc.url,
+      }));
+    }
+    return value;
+  });
   const [isUploading, setIsUploading] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -264,13 +278,35 @@ const UploadFile = ({
     e.target.value = "";
   };
 
-  const handleRemove = (documentToRemove: UploadedDocument) => {
-    URL.revokeObjectURL(documentToRemove.url);
-    const updatedDocuments = documents.filter(
-      (doc) => doc.id !== documentToRemove.id
-    );
-    setDocuments(updatedDocuments);
-    onRemove?.(documentToRemove);
+  const handleRemove = async (
+    documentToRemove: UploadedDocument,
+    e?: React.MouseEvent
+  ) => {
+    try {
+      e?.preventDefault();
+      e?.stopPropagation();
+
+      if (documentToRemove.uploadResponse?.id) {
+        const response = await deleteMediaFile({
+          id: documentToRemove.uploadResponse.id,
+        });
+        if (!response.ok) {
+          toast.error("Xóa file thất bại");
+          return;
+        }
+      }
+
+      URL.revokeObjectURL(documentToRemove.url);
+      const updatedDocuments = documents.filter(
+        (doc) => doc.id !== documentToRemove.id
+      );
+      setDocuments(updatedDocuments);
+      onRemove?.(documentToRemove);
+      toast.success("Xóa file thành công");
+    } catch (error) {
+      console.error("Lỗi khi xóa file:", error);
+      toast.error("Xóa file thất bại");
+    }
   };
 
   const formatFileSize = (bytes: number) => {
@@ -297,79 +333,80 @@ const UploadFile = ({
         <p className="mb-4 text-sm text-secondary">{description}</p>
       )}
 
-      {(canAddMore || documents.length === 0) && (
-        <div
-          className={`
+      {(!isEdit || documents.length === 0) &&
+        (canAddMore || documents.length === 0) && (
+          <div
+            className={`
             relative border-2 border-dashed rounded-lg p-4 sm:p-6 md:p-8 cursor-pointer transition-colors
             ${isDragging ? "border-primary bg-background-subtle" : "hover:border-gray-400"}
             ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
             ${error ? "border-error" : ""}
             ${dropzoneClassName}
           `}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-          onClick={() => !isDisabled && fileInputRef.current?.click()}
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept={accept}
-            multiple={multiple}
-            onChange={handleFileChange}
-            disabled={isDisabled}
-            className="hidden"
-          />
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            onClick={() => !isDisabled && fileInputRef.current?.click()}
+          >
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={handleFileChange}
+              disabled={isDisabled}
+              className="hidden"
+            />
 
-          <div className="text-center">
-            {isUploading ? (
-              <div className="flex flex-col items-center">
-                <div className="w-8 h-8 mx-auto border-4 rounded-full border-primary border-t-transparent animate-spin"></div>
-                <p className="mt-2 text-sm text-secondary">Đang tải lên...</p>
-              </div>
-            ) : (
-              <>
-                <svg
-                  className="w-8 h-8 mx-auto sm:w-12 sm:h-12 text-muted"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 48 48"
-                >
-                  <path
-                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-
-                <div className="mt-2 sm:mt-4">
-                  <p className="text-xs sm:text-sm text-secondary">
-                    {placeholder}
-                  </p>
-                  <p className="mt-1 text-[10px] sm:text-xs text-muted">
-                    {dragText}
-                  </p>
+            <div className="text-center">
+              {isUploading ? (
+                <div className="flex flex-col items-center">
+                  <div className="w-8 h-8 mx-auto border-4 rounded-full border-primary border-t-transparent animate-spin"></div>
+                  <p className="mt-2 text-sm text-secondary">Đang tải lên...</p>
                 </div>
+              ) : (
+                <>
+                  <svg
+                    className="w-8 h-8 mx-auto sm:w-12 sm:h-12 text-muted"
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 48 48"
+                  >
+                    <path
+                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
 
-                <button
-                  type="button"
-                  className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 mt-2 sm:mt-4 text-xs sm:text-sm font-medium border border-transparent rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
-                  disabled={isDisabled}
-                >
-                  {uploadText}
-                </button>
+                  <div className="mt-2 sm:mt-4">
+                    <p className="text-xs sm:text-sm text-secondary">
+                      {placeholder}
+                    </p>
+                    <p className="mt-1 text-[10px] sm:text-xs text-muted">
+                      {dragText}
+                    </p>
+                  </div>
 
-                <p className="mt-2 text-[10px] sm:text-xs text-muted">
-                  Tối đa {maxFiles} file, mỗi file ≤{" "}
-                  {(maxSize / 1024 / 1024).toFixed(1)}MB
-                </p>
-              </>
-            )}
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 mt-2 sm:mt-4 text-xs sm:text-sm font-medium border border-transparent rounded-md text-button-primary-text bg-button-primary-bg hover:bg-button-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
+                    disabled={isDisabled}
+                  >
+                    {uploadText}
+                  </button>
+
+                  <p className="mt-2 text-[10px] sm:text-xs text-muted">
+                    Tối đa {maxFiles} file, mỗi file ≤{" "}
+                    {(maxSize / 1024 / 1024).toFixed(1)}MB
+                  </p>
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {showPreview && documents.length > 0 && (
         <div
@@ -381,14 +418,14 @@ const UploadFile = ({
               className="flex items-center p-2 border rounded-lg sm:p-3 bg-background-muted hover:bg-background-subtle"
             >
               <div className="mr-2 text-xl sm:mr-3 sm:text-2xl">
-                {getFileIcon(doc.type, doc.name)}
+                {getFileIcon(doc.type || "", doc.name)}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-medium truncate sm:text-sm text-primary">
                   {doc.name}
                 </p>
                 <p className="text-xs text-secondary">
-                  {formatFileSize(doc.size)}
+                  {formatFileSize(doc.size || 0)}
                 </p>
                 {showProgress && typeof doc.progress === "number" && (
                   <div className="w-full h-1.5 sm:h-2 mt-1 rounded bg-background-muted">
@@ -401,7 +438,11 @@ const UploadFile = ({
               </div>
               <button
                 type="button"
-                onClick={() => handleRemove(doc)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleRemove(doc, e);
+                }}
                 className="ml-2 text-xs sm:ml-4 sm:text-sm text-error hover:underline"
                 disabled={isDisabled}
               >

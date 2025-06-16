@@ -271,6 +271,15 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
               Ảnh đại diện
             </h3>
             <UploadImage
+              isEdit={true}
+              value={[
+                {
+                  id: lecturer.filePath,
+                  url: lecturer.filePath,
+                  name: lecturer.filePath,
+                  filePath: lecturer.filePath,
+                },
+              ]}
               onChange={(file: any) => {
                 setFormData((prevFormData) => ({
                   ...prevFormData,
@@ -319,8 +328,8 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
                 modules={modules}
                 formats={formats}
                 placeholder={`Nhập ${tabs.find((tab) => tab.id === activeTab)?.name.toLowerCase()}...`}
-                className="min-h-[400px] hidden-scrollbar mb-10"
-                style={{ height: "400px" }}
+                className="min-h-[300px] hidden-scrollbar mb-10"
+                style={{ height: "300px" }}
               />
             </div>
 
@@ -355,17 +364,19 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
           </div>
 
           {/* Action Buttons */}
-          <div className="sticky bottom-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
-            <Button
-              variant="outlined"
-              onClick={() => handleChangeEditLecturer(false)}
-            >
-              Hủy
-            </Button>
+          <div className="relative h-6">
+            <div className="fixed bottom-0 left-0 right-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
+              <Button
+                variant="outlined"
+                onClick={() => handleChangeEditLecturer(false)}
+              >
+                Hủy
+              </Button>
 
-            <Button variant="primary" onClick={handleSubmit}>
-              Cập nhật
-            </Button>
+              <Button variant="primary" onClick={handleSubmit}>
+                Cập nhật
+              </Button>
+            </div>
           </div>
         </form>
       </div>

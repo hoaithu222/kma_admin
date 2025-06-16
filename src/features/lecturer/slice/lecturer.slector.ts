@@ -41,3 +41,11 @@ export const selectStatusDeleteLecturer = createSelector(
   [lecturerSelector],
   (state) => state.statusDeleteLecturer
 );
+export const selectStatusGetDetailLecturer = createSelector(
+  [lecturerSelector],
+  (state) => state.statusGetDetailLecturer
+);
+export const selectDetailLecturer = createSelector(
+  [lecturerSelector],
+  (state) => state.detailLecturer
+);

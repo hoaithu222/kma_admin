@@ -3,6 +3,7 @@ import { dataLecturer } from "@/core/api/lecturer/types";
 
 export interface initialStateLecturer {
   lecturer: dataLecturer[];
+  detailLecturer: dataLecturer | null;
   isEditLecturer: boolean;
   isAddLecturer: boolean;
   isDeleteLecturer: boolean;
@@ -11,4 +12,5 @@ export interface initialStateLecturer {
   statusAddLecturer: ReduxStateType;
   statusEditLecturer: ReduxStateType;
   statusGetLecturer: ReduxStateType;
+  statusGetDetailLecturer: ReduxStateType;
 }
