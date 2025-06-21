@@ -2,7 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import languageReducer from "./slices/language";
 import themeReducer from "./slices/theme";
 import { AppReducerType } from "./types";
-import homeReducer from "@/features/home/slice/home.slice.ts";
+
 import categoryReducer from "@/features/category/slice/category.slice.ts";
 import subcategoryReducer from "@/features/subcategory/slice/subcategory.slice.ts";
 import postReducer from "@/features/posts/slice/posts.slice.ts";
@@ -13,11 +13,13 @@ import settingsReducer from "./slices/settings";
 import majorReducer from "@/features/major/slice/major.slice.ts";
 import submajorReducer from "@/features/submajor/slice/submajor.slice.ts";
 import lecturerReducer from "@/features/lecturer/slice/lecturer.slice.ts";
+import basePostReducer from "@/foundation/components/base/slice/base-post.slice";
+import userReducer from "@/features/user-management/slice/user.slice";
 
 export const rootReducer = combineReducers({
   [AppReducerType.LANGUAGE]: languageReducer,
   [AppReducerType.THEME]: themeReducer,
-  [AppReducerType.HOME]: homeReducer,
+
   [AppReducerType.CATEGORY]: categoryReducer,
   [AppReducerType.SUBCATEGORY]: subcategoryReducer,
   [AppReducerType.POST]: postReducer,
@@ -28,4 +30,6 @@ export const rootReducer = combineReducers({
   [AppReducerType.MAJOR]: majorReducer,
   [AppReducerType.SUBMAJOR]: submajorReducer,
   [AppReducerType.LECTURER]: lecturerReducer,
+  [AppReducerType.BASE_POST]: basePostReducer,
+  [AppReducerType.USER]: userReducer,
 });

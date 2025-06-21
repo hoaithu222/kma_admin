@@ -1,0 +1,405 @@
+/* Custom styles for ReactQuill file upload */
+.ql-toolbar .ql-file {
+  position: relative;
+  border: none !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+  cursor: pointer;
+  padding: 6px 10px !important;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 6px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #cbd5e1 !important;
+}
+
+.ql-toolbar .ql-file:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  color: white !important;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+  border-color: #3b82f6 !important;
+}
+
+.ql-toolbar .ql-file:active {
+  transform: translateY(0px) scale(1.01);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Loading state for upload button */
+.ql-toolbar .ql-file.uploading {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: white !important;
+  pointer-events: none;
+  animation: uploadPulse 1.5s infinite;
+}
+
+@keyframes uploadPulse {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* Compact editor styles */
+.compact-editor .ql-toolbar {
+  padding: 8px 12px !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  background: #f8fafc !important;
+}
+
+.compact-editor .ql-container {
+  border: 1px solid #e2e8f0 !important;
+  border-top: none !important;
+  min-height: 250px !important;
+  max-height: 400px !important;
+}
+
+.compact-editor .ql-editor {
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  min-height: 200px !important;
+}
+
+.compact-editor .ql-editor p {
+  margin-bottom: 8px !important;
+}
+
+.compact-editor .ql-editor h1,
+.compact-editor .ql-editor h2,
+.compact-editor .ql-editor h3 {
+  margin-top: 12px !important;
+  margin-bottom: 8px !important;
+}
+
+/* Enhanced file attachment styles in editor */
+.ql-editor .file-attachment {
+  display: flex !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 20px !important;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8fafc 50%,
+    #f1f5f9 100%
+  ) !important;
+  margin: 20px 0 !important;
+  max-width: 100% !important;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.08),
+    0 3px 10px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  user-select: none;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.ql-editor .file-attachment:hover {
+  border-color: #3b82f6 !important;
+  box-shadow:
+    0 20px 40px rgba(59, 130, 246, 0.15),
+    0 8px 20px rgba(59, 130, 246, 0.1) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+}
+
+.ql-editor .file-attachment:active {
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* File attachment sections */
+.file-attachment .file-icon-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.file-attachment .file-content-section {
+  flex: 1;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  position: relative;
+}
+
+.file-attachment .file-actions-section {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 8px;
+  border-left: 1px solid rgba(226, 232, 240, 0.8);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.02) 0%,
+    rgba(147, 197, 253, 0.05) 100%
+  );
+}
+
+/* File info styles */
+.file-attachment .file-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1e293b;
+  margin-bottom: 8px;
+  word-break: break-word;
+  line-height: 1.3;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.file-attachment .file-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.file-attachment .file-size {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+  background: rgba(100, 116, 139, 0.1);
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.file-attachment .file-status {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+/* Button styles */
+.file-attachment .download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  min-width: 100px;
+}
+
+.file-attachment .download-btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+}
+
+.file-attachment .copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-attachment .copy-btn:hover {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  border-color: #94a3b8;
+}
+
+/* Shine effect */
+.file-attachment .file-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.file-attachment:hover .file-shine {
+  transform: translateX(100%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ql-editor .file-attachment {
+    flex-direction: column;
+    border-radius: 16px;
+  }
+
+  .file-attachment .file-icon-section {
+    width: 100%;
+    height: 60px;
+  }
+
+  .file-attachment .file-actions-section {
+    border-left: none;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px 16px;
+  }
+
+  .file-attachment .download-btn,
+  .file-attachment .copy-btn {
+    flex: 1;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-attachment .file-content-section {
+    padding: 16px 20px;
+  }
+
+  .file-attachment .file-name {
+    font-size: 14px;
+  }
+
+  .file-attachment .file-meta {
+    gap: 8px;
+  }
+
+  .file-attachment .file-size {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+
+  .file-attachment .file-status {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+}
+
+@media print {
+  .file-attachment .file-actions-section {
+    display: none !important;
+  }
+
+  .ql-editor .file-attachment {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+
+  .file-attachment .file-shine {
+    display: none !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .ql-editor .file-attachment {
+    background: linear-gradient(
+      135deg,
+      #1e293b 0%,
+      #334155 50%,
+      #475569 100%
+    ) !important;
+    border-color: #475569 !important;
+  }
+
+  .file-attachment .file-name {
+    color: #f1f5f9 !important;
+  }
+
+  .file-attachment .file-size {
+    background: rgba(148, 163, 184, 0.2);
+    color: #cbd5e1 !important;
+  }
+}
+
+.file-attachment-container * {
+  box-sizing: border-box;
+}
+
+.file-attachment-card:hover .file-icon {
+  transform: scale(1.1);
+}
+
+.ql-file.uploading {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.files-table-container table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.compact-editor .ql-editor {
+  min-height: 250px;
+}
+.file-attachment-simple * {
+  box-sizing: border-box;
+}
+
+@keyframes uploadProgress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.compact-editor .ql-editor {
+  min-height: 250px;
+}
+
+.file-card-simple:hover {
+  transform: translateY(-1px);
+}

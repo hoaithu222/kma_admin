@@ -23,6 +23,7 @@ export interface IResponseDataLogin {
 
 export interface IRequestUpdateUser {
   username: string;
+  password?: string;
 }
 export interface IRequestLogout {
   sessionId: string;
@@ -33,9 +34,10 @@ export interface IRegister {
 }
 export interface IRequestGetList {
   active: boolean;
-  page: number;
-  size: number;
+  page?: number;
+  size?: number;
 }
+
 export interface IResponseLogout {
   date: string;
 }
@@ -43,7 +45,7 @@ export interface IResponseLogin extends IResponse<IResponseDataLogin> {}
 
 export interface IResponseUpdateUser extends IResponse<IResponseDataLogin> {}
 
-export interface IResponseDeleteUser extends IResponse<IResponseDataLogin> {}
+export interface IResponseDeleteUser extends IResponse<{ message: string }> {}
 
 export interface IResponseGetUser extends IResponse<IResponseDataLogin[]> {}
 

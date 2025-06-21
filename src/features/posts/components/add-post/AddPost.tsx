@@ -1,14 +1,13 @@
 import Modal from "@/foundation/components/modal/Modal";
 import { usePost } from "../../hooks/usePost";
 import { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+
 import Select from "@/foundation/components/inputs/SelectOption";
 import Button from "@/foundation/components/buttons/Button";
 import Input from "@/foundation/components/inputs/Input";
 import SelectMany from "@/foundation/components/inputs/SelectMany";
 import UploadImage from "@/foundation/components/upload/UploadImage";
-import { formats, modules } from "@/shared/utils/utilsReactQuill";
+import { uploadFileFromQuill } from "@/shared/utils/fileUploadHelper";
 
 import Textarea from "@/foundation/components/inputs/TextArea";
 
@@ -34,6 +33,7 @@ import {
 import CustomSwitch from "@/foundation/components/inputs/CustomSwitch";
 import { ReduxStateType } from "@/app/store/types";
 import { toast } from "react-toastify";
+import CustomReactQuill from "@/foundation/components/inputs/CustomReactQuill";
 
 interface FormData extends Omit<IRequestAddArticle, "tagIds"> {
   tagIds: string[];
@@ -57,6 +57,7 @@ export default function AddPost() {
   );
   const { handleGetSubCategories } = usePost();
   const tags = useSelector(selectTags);
+
   const [formData, setFormData] = useState<FormData>({
     title: "",
     content: "",
@@ -145,10 +146,10 @@ export default function AddPost() {
       scrollable={true}
     >
       <div className="max-h-[calc(90vh-120px)] overflow-y-auto p-2 hidden-scrollbar">
-        <form className="space-y-4">
+        <form className="space-y-3">
           {/* Thông tin cơ bản */}
-          <div className="space-y-4">
-            <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
+          <div className="space-y-3">
+            <h3 className="pb-1 text-base font-semibold border-b text-text-primary border-border-primary">
               Thông tin cơ bản
             </h3>
 
@@ -161,7 +162,7 @@ export default function AddPost() {
               placeholder="Nhập tiêu đề bài viết..."
               label="Tiêu đề bài viết *"
               fullWidth={true}
-              className="text-lg"
+              className="text-base"
             />
 
             {/* Mô tả  */}
@@ -176,7 +177,7 @@ export default function AddPost() {
             />
 
             {/* Chuyên mục và Tags */}
-            <div className="grid grid-cols-1 gap-4 ">
+            <div className="grid grid-cols-1 gap-3">
               <Select
                 options={categories.map((category) => ({
                   value: category.id,
@@ -238,7 +239,7 @@ export default function AddPost() {
           </div>
           {/* Kết luận */}
           <div>
-            <label className="block mb-2 text-sm font-medium text-text-secondary">
+            <label className="block mb-1 text-sm font-medium text-text-secondary">
               Kết luận
             </label>
             <Textarea
@@ -251,8 +252,8 @@ export default function AddPost() {
             />
           </div>
           {/* Ảnh thumbnail */}
-          <div className="space-y-4">
-            <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
+          <div className="space-y-3">
+            <h3 className="pb-1 text-base font-semibold border-b text-text-primary border-border-primary">
               Hình ảnh
             </h3>
             <UploadImage
@@ -262,11 +263,18 @@ export default function AddPost() {
               onUploadComplete={(response: any) => {
                 setFormData({ ...formData, thumbnailId: response.id });
               }}
+              enableEditor={true}
+              editorOptions={{
+                allowCrop: true,
+                allowRotate: true,
+                allowFlip: true,
+                allowZoom: true,
+              }}
             />
           </div>
           {/* upload file */}
-          <div className="space-y-4">
-            <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
+          <div className="space-y-3">
+            <h3 className="pb-1 text-base font-semibold border-b text-text-primary border-border-primary">
               Tải lên file
             </h3>
             <UploadFile
@@ -294,8 +302,8 @@ export default function AddPost() {
             />
           </div>
           {/* Ẩn hiện bài viết */}
-          <div className="space-y-4">
-            <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
+          <div className="space-y-3">
+            <h3 className="pb-1 text-base font-semibold border-b text-text-primary border-border-primary">
               Ẩn danh
             </h3>
             <CustomSwitch
@@ -316,27 +324,25 @@ export default function AddPost() {
             />
           </div>
           {/* Nội dung bài viết */}
-          <div className="space-y-4">
-            <h3 className="pb-2 text-lg font-semibold border-b text-text-primary border-border-primary">
+          <div className="space-y-3">
+            <h3 className="pb-1 text-base font-semibold border-b text-text-primary border-border-primary">
               Nội dung bài viết
             </h3>
-            <div className="border rounded-lg border-border-primary bg-background-elevated text-text-primary">
-              <ReactQuill
+            <div className="rounded-lg border border-border-primary bg-background-elevated text-text-primary">
+              <CustomReactQuill
                 value={formData.content}
-                onChange={(value: any) =>
-                  setFormData({ ...formData, content: value })
-                }
-                modules={modules}
-                formats={formats}
-                placeholder="Bắt đầu viết nội dung bài viết của bạn..."
-                className="min-h-[600px] hidden-scrollbar mb-10"
-                style={{ height: "600px" }}
+                onChange={(value) => {
+                  setFormData({ ...formData, content: value });
+                }}
+                placeholder="Viết nội dung bài viết..."
+                uploadFunction={uploadFileFromQuill}
               />
             </div>
           </div>
+
           {/* Action Buttons */}
           <div className="relative h-6">
-            <div className="fixed bottom-0 left-0 right-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
+            <div className="flex fixed right-0 bottom-0 left-0 justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
               <Button variant="outlined" onClick={() => handleAddPost(false)}>
                 Hủy
               </Button>

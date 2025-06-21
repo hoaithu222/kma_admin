@@ -3,17 +3,16 @@ import { useLecturer } from "../../hooks/useLecturer";
 import Input from "@/foundation/components/inputs/Input";
 
 import Button from "@/foundation/components/buttons/Button";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+
 import Select from "@/foundation/components/inputs/SelectOption";
 import { useEffect, useState } from "react";
 import { IRequestCreateLecturer } from "@/core/api/lecturer/types";
 import { useMajor } from "@/features/major/hooks/useMajor";
 import useSubmajor from "@/features/submajor/hooks/useSubmajor";
 import UploadImage from "@/foundation/components/upload/UploadImage";
-import { formats, modules } from "@/shared/utils/utilsReactQuill";
 import { toast } from "react-toastify";
 import { dataLecturer } from "@/core/api/lecturer/types";
+import CustomReactQuill from "@/foundation/components/inputs/CustomReactQuill";
 
 interface EditLecturerProps {
   lecturer: dataLecturer;
@@ -292,6 +291,13 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
                   photoId: response.id,
                 }));
               }}
+              enableEditor={true}
+              editorOptions={{
+                allowCrop: true,
+                allowRotate: true,
+                allowFlip: true,
+                allowZoom: true,
+              }}
             />
           </div>
 
@@ -302,7 +308,7 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
             </h3>
 
             {/* Tab Navigation */}
-            <div className="flex flex-wrap gap-2 p-1 border rounded-lg bg-background-elevated border-border-primary">
+            <div className="flex flex-wrap gap-2 p-1 rounded-lg border bg-background-elevated border-border-primary">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -320,13 +326,12 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
             </div>
 
             {/* Tab Content */}
-            <div className="border rounded-lg border-border-primary bg-background-elevated text-text-primary">
-              <ReactQuill
-                key={activeTab} // Thêm key để force re-render khi đổi tab
+            <div className="rounded-lg border border-border-primary bg-background-elevated text-text-primary">
+              <CustomReactQuill
                 value={getCurrentContent()}
                 onChange={handleContentChange}
-                modules={modules}
-                formats={formats}
+                // modules={modules}
+                // formats={formats}
                 placeholder={`Nhập ${tabs.find((tab) => tab.id === activeTab)?.name.toLowerCase()}...`}
                 className="min-h-[300px] hidden-scrollbar mb-10"
                 style={{ height: "300px" }}
@@ -334,7 +339,7 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
             </div>
 
             {/* Tab indicator - hiển thị tab nào đã có nội dung */}
-            <div className="flex flex-wrap items-center gap-2 py-4 mt-5 text-sm">
+            <div className="flex flex-wrap gap-2 items-center py-4 mt-5 text-sm">
               <span className="mr-2 text-text-secondary">
                 Trạng thái hoàn thành:
               </span>
@@ -351,8 +356,8 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
                     key={tab.id}
                     className={`px-2 py-1 rounded ${
                       isCompleted
-                        ? "bg-green-100 text-green-800 border border-green-200"
-                        : "bg-gray-100 text-gray-500 border border-gray-200"
+                        ? "text-green-800 bg-green-100 border border-green-200"
+                        : "text-gray-500 bg-gray-100 border border-gray-200"
                     }`}
                   >
                     {tab.name}
@@ -365,7 +370,7 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
 
           {/* Action Buttons */}
           <div className="relative h-6">
-            <div className="fixed bottom-0 left-0 right-0 flex justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
+            <div className="flex fixed right-0 bottom-0 left-0 justify-end p-2 space-x-3 rounded-b-lg text-text-primary bg-background-elevated">
               <Button
                 variant="outlined"
                 onClick={() => handleChangeEditLecturer(false)}

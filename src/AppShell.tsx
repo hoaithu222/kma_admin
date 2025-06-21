@@ -21,11 +21,11 @@ const AppShell = () => {
     <ToastProvider position="top-right" maxToasts={5}>
       <div
         className={clsx(
-          "box-border flex min-h-screen flex-col rounded-lg bg-background-overlay text-center overflow-hidden overflow-x-hidden hidden-scrollbar"
+          "box-border flex overflow-hidden overflow-x-hidden flex-col min-h-screen text-center rounded-lg bg-background-overlay hidden-scrollbar"
         )}
       >
         {/* Outlet se được render layout tương ứng với router hiện tại (main,login,extension) */}
-        <div className="flex flex-col flex-1 overflow-hidden">
+        <div>
           <Outlet />
         </div>
         {/* Các Modal,Toast,Dialog,Tooltip,Popover, sẽ được render ở đây */}

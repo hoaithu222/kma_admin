@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import useTag from "../hooks/useTag";
-import moment from "moment";
 import { MdModeEdit, MdOutlineDeleteForever } from "react-icons/md";
 import { setIdDelete } from "../slice/tag.slice";
 import { useEffect } from "react";
@@ -46,14 +45,7 @@ const ListTag = () => {
         return <div>{value}</div>;
       },
     },
-    {
-      key: "createdAt",
-      title: "Created At",
-      width: "100px",
-      render: (value: any, _record: any, _index: number) => {
-        return <div>{moment(value).format("DD/MM/YYYY")}</div>;
-      },
-    },
+
     {
       key: "action",
       title: "Action",
@@ -99,7 +91,7 @@ const ListTag = () => {
         data={tags}
         emptyText={<Empty variant="data" />}
         hoverColor="accent"
-        pageSize={10}
+        pageSize={15}
         pagination={true}
         hover={true}
         hoverEffect="border"

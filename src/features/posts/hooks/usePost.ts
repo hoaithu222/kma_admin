@@ -7,6 +7,7 @@ import {
   isEditPostSelector,
   selectDeletePost,
   selectEditPost,
+  selectStatusGetListPostSelector,
 } from "../slice/posts.selector";
 
 import {
@@ -90,6 +91,8 @@ export const usePost = () => {
   const handleDeletePost = (id: number) => {
     dispatch(deletePost({ id }));
   };
+  // lấy trạng thái lấy danh sách bài viết
+  const statusGetListPost = useSelector(selectStatusGetListPostSelector);
   return {
     posts,
     isAddPost,
@@ -100,6 +103,7 @@ export const usePost = () => {
     statusAddPost,
     statusEditPost,
     filter,
+    statusGetListPost,
     setFilter,
     handleDeletePost,
     handleAddPost,

@@ -23,10 +23,13 @@ export const login = async (data: IRequestLogin) => {
   }
 };
 
-export const updateUser = async (data: IRequestUpdateUser) => {
+export const updateUser = async (
+  username: string,
+  data: IRequestUpdateUser
+) => {
   try {
     const response = await Axios.put<IResponseUpdateUser>(
-      AUTH_PATH.updateUser,
+      AUTH_PATH.updateUser.replace(":username", username),
       data
     );
     return { ok: true, data: response.data };
@@ -46,11 +49,11 @@ export const deleteUser = async (username: string) => {
   }
 };
 
-export const getUser = async (username: string) => {
+export const getUser = async (active: boolean) => {
   try {
-    const response = await Axios.get<IResponseGetUser>(
-      AUTH_PATH.getUser.replace(":username", username)
-    );
+    const response = await Axios.post<IResponseGetUser>(AUTH_PATH.getUser, {
+      active,
+    });
     return { ok: true, data: response.data };
   } catch (error) {
     return { ok: false, error: error };

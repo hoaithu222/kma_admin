@@ -1,3 +1,5 @@
+// Handle CJS/ESM module interop issue with quill-better-table
+
 // Cấu hình nâng cao cho ReactQuill
 export const modules = {
   toolbar: {
@@ -17,13 +19,14 @@ export const modules = {
       [{ direction: "rtl" }],
       [{ align: [] }],
       ["blockquote", "code-block"],
-
       ["link", "image", "video"],
       ["clean"],
     ],
   },
+
   clipboard: {
     matchVisual: false,
+    matchers: [],
   },
   history: {
     delay: 2000,
@@ -53,4 +56,10 @@ export const formats = [
   "link",
   "image",
   "video",
+  "table",
+  "thead",
+  "tbody",
+  "tr",
+  "th",
+  "td",
 ];

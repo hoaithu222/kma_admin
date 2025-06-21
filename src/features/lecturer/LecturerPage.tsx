@@ -10,12 +10,12 @@ const LecturerPage = () => {
   return (
     <div
       className={clsx(
-        "h-full p-3 border rounded-lg shadow-sm shadow-text-primary",
-        "border-border-primary bg-background-base text-text-primary"
+        "p-3 h-full rounded-lg border shadow-sm shadow-text-primary",
+        "overflow-auto hidden-scrollbar border-border-primary bg-background-base text-text-primary"
       )}
     >
-      <div className="flex items-center justify-between border-b-2 border-border-primary">
-        <div className="flex items-center gap-2 p-2 ">
+      <div className="flex justify-between items-center border-b-2 border-border-primary">
+        <div className="flex gap-2 items-center p-2">
           <h2 className="text-2xl font-bold text-secondary">Giảng viên</h2>
         </div>
         <Button
@@ -26,7 +26,7 @@ const LecturerPage = () => {
           Thêm giảng viên
         </Button>
       </div>
-      <div className="mt-4 h-[calc(100vh-120px)] overflow-y-auto hidden-scrollbar">
+      <div className="mt-4">
         <ListLecturer />
       </div>
       {isAddLecturer && <AddLecturer />}

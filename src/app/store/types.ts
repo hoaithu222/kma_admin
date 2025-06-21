@@ -29,6 +29,8 @@ export enum AppReducerType {
   MAJOR = "major",
   SUBMAJOR = "submajor",
   LECTURER = "lecturer",
+  BASE_POST = "basePost",
+  USER = "user",
 }
 export enum ReduxStateType {
   INIT = "init",

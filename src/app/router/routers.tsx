@@ -6,12 +6,14 @@ import { authMiddleware } from "./auth.middleware";
 import AppShell from "@/AppShell";
 import AuthLayout from "@/layout/AuthLayout";
 import LayoutOut from "@/layout/LayoutOut";
+import UserManagement from "@/features/user-management/UserManagement";
 
 // map layout name thành component layout tương ứng
 const layoutMap = {
   main: MainLayout,
   auth: AuthLayout,
   blank: LayoutOut,
+  userManagement: UserManagement,
 };
 
 // gom các router theo layout trở thành nhánh trong router tree

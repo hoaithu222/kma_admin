@@ -1,6 +1,6 @@
 import { authSaga } from "@/features/auth/slice/auth.saga";
 import categorySaga from "@/features/category/slice/category.saga";
-import { homeSaga } from "@/features/home/slice/home.saga.ts";
+
 import postSaga from "@/features/posts/slice/posts.saga";
 import subcategorySaga from "@/features/subcategory/slice/subcategory.saga";
 import tagSaga from "@/features/tags/slice/tag.saga";
@@ -9,11 +9,11 @@ import mediaSaga from "@/features/media/slice/media.saga";
 import { majorSaga } from "@/features/major/slice/major.saga";
 import { submajorSaga } from "@/features/submajor/slice/submajor.saga";
 import { lecturerSaga } from "@/features/lecturer/slice/lecturer.saga";
-
+import basePostSaga from "@/foundation/components/base/slice/base-post.saga";
+import { userSaga } from "@/features/user-management/slice/user.saga";
 export const rootSage = function* () {
   try {
     yield all([
-      homeSaga(),
       categorySaga(),
       subcategorySaga(),
       postSaga(),
@@ -23,6 +23,8 @@ export const rootSage = function* () {
       majorSaga(),
       submajorSaga(),
       lecturerSaga(),
+      basePostSaga(),
+      userSaga(),
     ]);
   } catch (error) {
     console.error(error);

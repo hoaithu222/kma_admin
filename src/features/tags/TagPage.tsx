@@ -12,12 +12,13 @@ const TagPage = () => {
   return (
     <div
       className={clsx(
-        "h-full p-3 border rounded-lg shadow-sm shadow-text-primary",
-        "border-border-primary bg-background-base text-text-primary"
+        "p-3 h-full rounded-lg border shadow-sm shadow-text-primary",
+        "border-border-primary bg-background-base text-text-primary",
+        "overflow-auto hidden-scrollbar"
       )}
     >
-      <div className="flex items-center justify-between border-b-2 border-border-primary">
-        <div className="flex items-center gap-2 p-2 ">
+      <div className="flex justify-between items-center border-b-2 border-border-primary">
+        <div className="flex gap-2 items-center p-2">
           <h2 className="text-2xl font-bold text-secondary">Danh mục tag</h2>
         </div>
         <Button

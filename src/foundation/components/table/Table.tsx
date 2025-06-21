@@ -157,8 +157,8 @@ const Table = ({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center p-8">
-        <div className="w-8 h-8 border-b-2 border-blue-600 rounded-full animate-spin"></div>
+      <div className="flex justify-center items-center p-8">
+        <div className="w-8 h-8 rounded-full border-b-2 border-blue-600 animate-spin"></div>
         <span className="ml-2">Đang tải...</span>
       </div>
     );
@@ -167,11 +167,11 @@ const Table = ({
   // Hiển thị empty state bên ngoài table
   if (data?.length === 0) {
     return (
-      <div className={` w-full ${className}`}>
+      <div className={`w-full ${className}`}>
         <div
           className={clsx(
-            "flex items-center justify-center p-8 text-center",
-            "border rounded-lg shadow-lg shadow-navbar-active-bg text-text-muted bg-background-elevated border-border-primary"
+            "flex justify-center items-center p-8 text-center",
+            "rounded-lg border shadow-lg shadow-navbar-active-bg text-text-muted bg-background-elevated border-border-primary"
           )}
         >
           {emptyText}
@@ -181,10 +181,10 @@ const Table = ({
   }
 
   return (
-    <div className={`w-full ${className} `}>
-      <div className="overflow-auto min-h-[calc(100vh - 240px)] hidden-scrollbar">
+    <div className={`overflow-hidden w-full rounded-lg ${className}`}>
+      <div className="overflow-auto min-h-[calc(100vh - 240px)] hidden-scrollbar rounded-lg">
         <table
-          className={`w-full min-h-[calc(100vh - 240px)] hidden-scrollbar ${getSizeClasses()} ${bordered ? "border border-border-primary rounded-lg shadow-sm shadow-text-primary" : ""}`}
+          className={`w-full min-h-[calc(100vh - 240px)] hidden-scrollbar ${getSizeClasses()} ${bordered ? "rounded-lg border shadow-sm border-border-primary shadow-text-primary" : ""}`}
         >
           <thead className="bg-background-muted">
             <tr>
@@ -254,7 +254,7 @@ const Table = ({
 
       {/* Pagination */}
       {pagination && totalPages > 1 && (
-        <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between p-3 mt-4 rounded-lg bg-background-elevated">
+        <div className="flex absolute right-0 bottom-0 left-0 z-50 justify-between items-center p-3 mt-4 rounded-lg bg-background-elevated">
           <div className="text-sm text-text-secondary">
             Hiển thị {(currentPage - 1) * pageSize + 1} đến{" "}
             {Math.min(currentPage * pageSize, data.length)} của {data.length}{" "}
@@ -264,7 +264,7 @@ const Table = ({
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className="px-3 py-1 text-sm border rounded border-border-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background-subtle"
+              className="px-3 py-1 text-sm rounded border border-border-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background-subtle"
             >
               Trước
             </button>
@@ -303,7 +303,7 @@ const Table = ({
                 setCurrentPage(Math.min(totalPages, currentPage + 1))
               }
               disabled={currentPage === totalPages}
-              className="px-3 py-1 text-sm border rounded border-border-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background-subtle"
+              className="px-3 py-1 text-sm rounded border border-border-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background-subtle"
             >
               Sau
             </button>

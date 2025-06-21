@@ -55,7 +55,7 @@ const Setting = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-background-base">
+    <div className="overflow-auto p-6 min-h-screen bg-background-base hidden-scrollbar">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8">
           <h2 className="mb-2 text-3xl font-bold text-text-primary">
@@ -97,11 +97,11 @@ const Setting = () => {
             <div className="flex justify-end mt-6 space-x-4">
               <button
                 onClick={() => dispatch(resetSettings())}
-                className="px-6 py-2 transition-colors border rounded-lg text-text-secondary border-border-primary hover:bg-background-muted"
+                className="px-6 py-2 rounded-lg border transition-colors text-text-secondary border-border-primary hover:bg-background-muted"
               >
                 Hủy bỏ
               </button>
-              <button className="flex items-center px-6 py-2 space-x-2 transition-colors rounded-lg text-text-on-primary bg-secondary hover:bg-secondary-dark">
+              <button className="flex items-center px-6 py-2 space-x-2 rounded-lg transition-colors text-text-on-primary bg-secondary hover:bg-secondary-dark">
                 <Save className="w-4 h-4" />
                 <span>Lưu cài đặt</span>
               </button>

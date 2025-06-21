@@ -3,6 +3,7 @@ import Axios from "@/core/base/Axios";
 import React, { useState, useRef, useCallback } from "react";
 import { toast } from "react-toastify";
 import { deleteMediaFile } from "@/core/api/upload";
+import ImageEditor from "./ImageEditor"; // Import the ImageEditor component
 
 // Interfaces for upload
 export interface IRequestUpload {
@@ -68,6 +69,13 @@ interface UploadImageProps {
   onError?: (error: string) => void;
   onRemove?: (image: UploadedImage) => void;
   isEdit?: boolean;
+  enableEditor?: boolean; // New prop to enable/disable image editor
+  editorOptions?: {
+    allowCrop?: boolean;
+    allowRotate?: boolean;
+    allowFlip?: boolean;
+    allowZoom?: boolean;
+  };
 }
 
 // Upload Image Component
@@ -102,6 +110,13 @@ const UploadImage = ({
   onError,
   onRemove,
   isEdit = false,
+  enableEditor = false, // Default is false to maintain backward compatibility
+  editorOptions = {
+    allowCrop: true,
+    allowRotate: true,
+    allowFlip: true,
+    allowZoom: true,
+  },
 }: UploadImageProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [images, setImages] = useState<UploadedImage[]>(() => {
@@ -116,6 +131,13 @@ const UploadImage = ({
     return value;
   });
   const [isUploading, setIsUploading] = useState(false);
+
+  // Image Editor states
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [currentEditingFile, setCurrentEditingFile] = useState<File | null>(
+    null
+  );
+  const [pendingFiles, setPendingFiles] = useState<File[]>([]);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dragCounter = useRef(0);
@@ -253,6 +275,66 @@ const UploadImage = ({
     }
   };
 
+  // Handle image editor
+  const handleEditImage = (file: File) => {
+    setCurrentEditingFile(file);
+    setIsEditorOpen(true);
+  };
+
+  const handleEditorSave = (editedFile: File) => {
+    setIsEditorOpen(false);
+    setCurrentEditingFile(null);
+
+    // Process the edited file
+    processEditedFile(editedFile);
+  };
+
+  const handleEditorCancel = () => {
+    setIsEditorOpen(false);
+    setCurrentEditingFile(null);
+
+    // Process remaining pending files
+    if (pendingFiles.length > 0) {
+      const nextFile = pendingFiles[0];
+      setPendingFiles((prev) => prev.slice(1));
+
+      if (enableEditor) {
+        handleEditImage(nextFile);
+      } else {
+        processEditedFile(nextFile);
+      }
+    }
+  };
+
+  // Process edited file (after editor or directly if editor disabled)
+  const processEditedFile = async (file: File) => {
+    try {
+      const processedFile = await resizeImage(file);
+      const url = URL.createObjectURL(processedFile);
+      const tempId = generateId();
+
+      const uploadedImage: UploadedImage = {
+        id: tempId,
+        file: processedFile,
+        url,
+        name: file.name,
+        size: processedFile.size,
+        type: processedFile.type,
+        progress: 0,
+      };
+
+      // Thêm image vào state
+      setImages((prev) =>
+        multiple ? [...prev, uploadedImage] : [uploadedImage]
+      );
+
+      // Bắt đầu upload
+      await uploadFileToServer(processedFile, tempId);
+    } catch (err) {
+      onError?.(`${file.name}: Lỗi xử lý file`);
+    }
+  };
+
   // Process files
   const processFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
@@ -268,37 +350,28 @@ const UploadImage = ({
       setImages([]);
     }
 
+    // Validate all files first
+    const validFiles: File[] = [];
     for (const file of filesToProcess) {
       const validationError = validateFile(file);
       if (validationError) {
         onError?.(validationError);
         continue;
       }
+      validFiles.push(file);
+    }
 
-      try {
-        const processedFile = await resizeImage(file);
-        const url = URL.createObjectURL(processedFile);
-        const tempId = generateId();
+    if (validFiles.length === 0) return;
 
-        const uploadedImage: UploadedImage = {
-          id: tempId,
-          file: processedFile,
-          url,
-          name: file.name,
-          size: processedFile.size,
-          type: processedFile.type,
-          progress: 0,
-        };
-
-        // Thêm image vào state
-        setImages((prev) =>
-          multiple ? [...prev, uploadedImage] : [uploadedImage]
-        );
-
-        // Bắt đầu upload
-        await uploadFileToServer(processedFile, tempId);
-      } catch (err) {
-        onError?.(`${file.name}: Lỗi xử lý file`);
+    // If editor is enabled, start editing process
+    if (enableEditor && validFiles.length > 0) {
+      const [firstFile, ...remainingFiles] = validFiles;
+      setPendingFiles(remainingFiles);
+      handleEditImage(firstFile);
+    } else {
+      // Process all files directly without editor
+      for (const file of validFiles) {
+        await processEditedFile(file);
       }
     }
   };
@@ -376,6 +449,27 @@ const UploadImage = ({
     }
   };
 
+  // Edit existing image
+  const handleEditExistingImage = (image: UploadedImage) => {
+    if (image.file) {
+      handleEditImage(image.file);
+    } else if (image.url) {
+      // Convert URL to File if needed
+      fetch(image.url)
+        .then((res) => res.blob())
+        .then((blob) => {
+          const file = new File([blob], image.name, {
+            type: image.type || "image/jpeg",
+          });
+          handleEditImage(file);
+        })
+        .catch((err) => {
+          console.error("Error converting image to file:", err);
+          onError?.("Không thể chỉnh sửa ảnh này");
+        });
+    }
+  };
+
   // Preview size classes
   const getPreviewSizeClasses = () => {
     switch (previewSize) {
@@ -425,9 +519,7 @@ const UploadImage = ({
             ${getVariantClasses()}
             ${isDragging ? "border-primary bg-background-subtle" : "hover:border-gray-400"}
             ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
-            ${error ? "border-error" : ""}
-            ${dropzoneClassName}
-          `}
+            ${error ? "border-error" : ""} ${dropzoneClassName}`}
             onDragEnter={handleDragEnter}
             onDragLeave={handleDragLeave}
             onDragOver={handleDragOver}
@@ -447,13 +539,13 @@ const UploadImage = ({
             <div className="text-center">
               {isUploading ? (
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 mx-auto border-4 rounded-full border-primary border-t-transparent animate-spin"></div>
+                  <div className="mx-auto w-8 h-8 rounded-full border-4 animate-spin border-primary border-t-transparent"></div>
                   <p className="mt-2 text-sm text-secondary">Đang tải lên...</p>
                 </div>
               ) : (
                 <>
                   <svg
-                    className="w-8 h-8 mx-auto sm:w-12 sm:h-12 text-muted"
+                    className="mx-auto w-8 h-8 sm:w-12 sm:h-12 text-muted"
                     stroke="currentColor"
                     fill="none"
                     viewBox="0 0 48 48"
@@ -473,6 +565,11 @@ const UploadImage = ({
                     <p className="mt-1 text-[10px] sm:text-xs text-muted">
                       {dragText}
                     </p>
+                    {enableEditor && (
+                      <p className="mt-1 text-[10px] sm:text-xs text-blue-600">
+                        📝 Sẽ mở trình chỉnh sửa sau khi chọn ảnh
+                      </p>
+                    )}
                   </div>
 
                   <button
@@ -526,7 +623,7 @@ const UploadImage = ({
               {showProgress &&
                 typeof image.progress === "number" &&
                 image.progress < 100 && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-background-muted">
+                  <div className="absolute right-0 bottom-0 left-0 bg-background-muted">
                     <div
                       className="h-0.5 sm:h-1 transition-all bg-button-primary-bg"
                       style={{ width: `${image.progress}%` }}
@@ -536,7 +633,7 @@ const UploadImage = ({
 
               {/* Success indicator */}
               {image.uploadResponse && (
-                <div className="absolute flex items-center justify-center w-4 h-4 text-white bg-green-500 rounded-full top-1 left-1">
+                <div className="flex absolute top-1 left-1 justify-center items-center w-4 h-4 text-white bg-green-500 rounded-full">
                   <svg
                     className="w-2 h-2"
                     fill="currentColor"
@@ -553,7 +650,7 @@ const UploadImage = ({
 
               {/* Error indicator */}
               {image.error && (
-                <div className="absolute flex items-center justify-center w-4 h-4 text-white bg-red-500 rounded-full top-1 left-1">
+                <div className="flex absolute top-1 left-1 justify-center items-center w-4 h-4 text-white bg-red-500 rounded-full">
                   <svg
                     className="w-2 h-2"
                     fill="currentColor"
@@ -568,6 +665,28 @@ const UploadImage = ({
                 </div>
               )}
 
+              {/* Edit button (if editor is enabled) */}
+              {enableEditor && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleEditExistingImage(image);
+                  }}
+                  className="flex absolute bottom-1 left-1 justify-center items-center w-4 h-4 text-white bg-blue-600 rounded-full opacity-0 transition-opacity sm:w-6 sm:h-6 group-hover:opacity-100 hover:bg-blue-700"
+                  disabled={isDisabled}
+                  title="Chỉnh sửa ảnh"
+                >
+                  <svg
+                    className="w-2 h-2 sm:w-3 sm:h-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                  </svg>
+                </button>
+              )}
+
               {/* Remove button */}
               <button
                 onClick={(e) => {
@@ -575,7 +694,7 @@ const UploadImage = ({
                   e.stopPropagation();
                   handleRemove(image, e);
                 }}
-                className="absolute flex items-center justify-center w-4 h-4 text-white transition-opacity rounded-full opacity-0 sm:w-6 sm:h-6 bg-error top-1 right-1 group-hover:opacity-100 hover:bg-button-danger-hover"
+                className="flex absolute top-1 right-1 justify-center items-center w-4 h-4 text-white rounded-full opacity-0 transition-opacity sm:w-6 sm:h-6 bg-error group-hover:opacity-100 hover:bg-button-danger-hover"
                 disabled={isDisabled}
               >
                 <svg
@@ -595,7 +714,7 @@ const UploadImage = ({
               <div className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 text-white transition-opacity bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">
                 <p className="text-[10px] sm:text-xs truncate">{image.name}</p>
                 <p className="text-[8px] sm:text-xs">
-                  {(image.size ?? 0 / 1024).toFixed(1)}KB
+                  {((image.size ?? 0) / 1024).toFixed(1)}KB
                   {image.uploadResponse && ` • ID: ${image.uploadResponse.id}`}
                 </p>
                 {image.error && (
@@ -615,6 +734,17 @@ const UploadImage = ({
       {/* Empty state */}
       {!showPreview && images.length === 0 && (
         <p className="mt-2 text-sm text-muted">{emptyText}</p>
+      )}
+
+      {/* Image Editor Modal */}
+      {enableEditor && currentEditingFile && editorOptions && (
+        <ImageEditor
+          imageFile={currentEditingFile}
+          isOpen={isEditorOpen}
+          onClose={() => setIsEditorOpen(false)}
+          onSave={handleEditorSave}
+          onCancel={handleEditorCancel}
+        />
       )}
     </div>
   );

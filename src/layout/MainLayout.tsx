@@ -9,12 +9,13 @@ const MainLayout = () => {
     <div className="">
       <Header />
       <div className="grid grid-cols-12 pt-24">
-        <div className="min-h-[calc(100vh-120px)]  col-span-2 border-r rounded-md bg-header-bg border-border-strong">
+        <div className="min-h-[calc(100vh-120px)] max-h-[calc(100vh-120px)] overflow-auto hidden-scrollbar col-span-2 border-r rounded-md bg-header-bg border-border-strong">
           <Navbar />
         </div>
         <div
           className={clsx(
-            "col-span-10 px-4 min-h-[calc(100vh-120px)] overflow-y-auto hidden-scrollbar"
+            "overflow-auto col-span-10 px-4 max-h-[calc(100vh-120px)] hidden-scrollbar",
+            "relative"
           )}
         >
           <Outlet />

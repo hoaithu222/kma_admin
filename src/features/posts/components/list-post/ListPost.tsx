@@ -20,6 +20,9 @@ import {
   selectStatusEditPostSelector,
 } from "../../slice/posts.selector";
 import { ReduxStateType } from "@/app/store/types";
+import FacultyCardSkeleton from "@/foundation/components/loading/FacultyCardSkeleton";
+import Button from "@/foundation/components/buttons/Button";
+import { Filter } from "lucide-react";
 
 const ListPost = () => {
   const {
@@ -29,6 +32,7 @@ const ListPost = () => {
     handleDeletePost,
     deletePostData,
     filter,
+    statusGetListPost,
     setFilter,
   } = usePost();
   const navigate = useNavigate();
@@ -67,32 +71,39 @@ const ListPost = () => {
     }
   }, [getStatusAddPost, getStatusEditPost]);
 
+  if (statusGetListPost === ReduxStateType.LOADING) {
+    return <FacultyCardSkeleton count={6} />;
+  }
+
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex gap-3">
-          <button
+      <div className="flex justify-between items-center">
+        <div className="flex gap-3 p-2">
+          <Button
             onClick={() => setShowFilter(!showFilter)}
-            className="px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            variant="modernCyan"
+            iconLeft={<Filter className="w-4 h-4" />}
           >
             {showFilter ? "Ẩn bộ lọc" : "Hiện bộ lọc"}
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Filter Panel */}
       {showFilter && (
-        <FilterPanel
-          filter={filter}
-          setFilter={setFilter}
-          onSearch={handleSearch}
-          onReset={handleReset}
-        />
+        <div className="p-2">
+          <FilterPanel
+            filter={filter}
+            setFilter={setFilter}
+            onSearch={handleSearch}
+            onReset={handleReset}
+          />
+        </div>
       )}
 
       {/* Posts Grid */}
-      <div className="">
+      <div className="overflow-auto hidden-scrollbar">
         <UniversalGridManager
           data={postsData}
           emptyMessage={<Empty />}

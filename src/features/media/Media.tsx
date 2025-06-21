@@ -2,7 +2,7 @@ import ListMedia from "./components/ListMedia";
 
 const Media = () => {
   return (
-    <div className="relative flex flex-col h-full gap-4 p-4 rounded-lg bg-background-subtle">
+    <div className="flex overflow-auto relative flex-col gap-4 p-4 h-full rounded-lg bg-background-subtle hidden-scrollbar">
       <ListMedia />
     </div>
   );

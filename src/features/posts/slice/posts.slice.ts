@@ -15,6 +15,7 @@ const initialState: initialStateType = {
     content: [],
     totalPages: 0,
     totalItems: 0,
+    statusGetListPost: ReduxStateType.INIT,
   },
   isAddPost: false,
   isEditPost: false,
@@ -66,15 +67,17 @@ const { slice, reducer } = createResettableSlice({
     },
     getPosts: (state, _action: PayloadAction<IRequestSearchArticle>) => {
       state.isLoading = true;
-      state.error = null;
+      state.posts.statusGetListPost = ReduxStateType.LOADING;
     },
     getPostsSuccess: (state, action) => {
       state.posts = action.payload;
       state.isLoading = false;
+      state.posts.statusGetListPost = ReduxStateType.SUCCESS;
     },
     getPostsError: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
+      state.posts.statusGetListPost = ReduxStateType.ERROR;
     },
     // lấy thông tin chi tiết bài viết
     getDetailPost: (state, _action: PayloadAction<IRequestGetArticleById>) => {

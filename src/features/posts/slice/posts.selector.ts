@@ -61,3 +61,9 @@ export const selectStatusEditPostSelector = createSelector(
   [selectPosts],
   (state) => state.editPost.statusEditPost
 );
+
+// lấy trạng thái lấy danh sách bài viết
+export const selectStatusGetListPostSelector = createSelector(
+  [selectPosts],
+  (state) => state.posts.statusGetListPost
+);

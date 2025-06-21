@@ -12,25 +12,14 @@ const HomePage = lazy(() => import("@/features/home/HomePage"));
 const PostPage = lazy(() => import("@/features/posts/PostPage"));
 const CategoryPage = lazy(() => import("@/features/category/CategoryPage"));
 const Setting = lazy(() => import("@/features/setting/Setting"));
-const StudentInternship = lazy(() => import("@/features/student/internship"));
-const StudentPracticeProject = lazy(
-  () => import("@/features/student/practice-project")
-);
-const StudentResearch = lazy(
-  () => import("@/features/student/student-research")
-);
-const StudentRules = lazy(() => import("@/features/student/student-rules"));
-// const Thesis = lazy(() => import("@/features/student/thesis"));
+
 const UserManagement = lazy(
   () => import("@/features/user-management/UserManagement")
 );
 const MajorPage = lazy(() => import("@/features/major/MajorPage"));
 
-const Event = lazy(() => import("@/features/event/index"));
 const NotPermisstion = lazy(() => import("@/layout/NotPermisstion"));
-const Decentralization = lazy(
-  () => import("@/features/user-management/decentralization/Decentralization")
-);
+
 const DetailPost = lazy(
   () => import("@/features/posts/components/detail-posts/DetailPost")
 );
@@ -42,6 +31,59 @@ const SubMajorPage = lazy(() => import("@/features/submajor/SubMajorPage"));
 const NotFound = lazy(() => import("@/layout/NotFound"));
 const TagPage = lazy(() => import("@/features/tags/TagPage"));
 const MediaPage = lazy(() => import("@/features/media/Media"));
+const UserManagementPage = lazy(
+  () => import("@/features/user-management/UserManagement")
+);
+const NewEventPage = lazy(
+  () => import("@/features/home/components/new-event/NewEventPage")
+);
+const CooperationPage = lazy(
+  () => import("@/features/home/components/cooperation/CooperationPage")
+);
+const NewStudentPost = lazy(
+  () => import("@/features/home/components/students/NewStudentPost")
+);
+const NewPostPage = lazy(
+  () => import("@/features/home/components/new-post/NewPostPage")
+);
+// tuyển sinh
+const AdminssionInfoPage = lazy(
+  () => import("@/features/admission/AdminssionInfoPage")
+);
+const AdminssionSecurityPage = lazy(
+  () => import("@/features/admission/AdminssionSecurityPage")
+);
+const AdminssionTelePage = lazy(
+  () => import("@/features/admission/AdminssionTelePage")
+);
+// nghiên cứu
+const ResearchPage = lazy(() => import("@/features/research/ResearchPage"));
+const ResearchTopicPage = lazy(
+  () => import("@/features/research/ResearchTopicPage")
+);
+// sinh viên
+const StudentActivity = lazy(
+  () => import("@/features/students/StudentActivity")
+);
+const StudentJob = lazy(() => import("@/features/students/StudentJob"));
+const StudentSupport = lazy(() => import("@/features/students/StudentSupport"));
+const StudentGuide = lazy(() => import("@/features/students/StudentGuide"));
+const StudentPracitie = lazy(
+  () => import("@/features/students/StudentPracitie")
+);
+const StudentEducation = lazy(
+  () => import("@/features/students/StudentEducation")
+);
+const StudentAlumni = lazy(() => import("@/features/students/StudentAlumni"));
+// sự kiện
+const EventNew = lazy(() => import("@/features/event/EventNew"));
+const EventFall = lazy(() => import("@/features/event/EventFall"));
+const EventSpring = lazy(() => import("@/features/event/EventSpring"));
+// tin tức
+const NewNotiPage = lazy(() => import("@/features/new/NewNotiPage"));
+const NewCooperation = lazy(() => import("@/features/new/NewCooperation"));
+const NewResearch = lazy(() => import("@/features/new/NewResearch"));
+
 const defaultOptions = {
   requireAuth: true,
   hideInMenu: false,
@@ -95,21 +137,9 @@ export const ROUTE = {
     },
   },
 
-  dashboard: {
-    path: "/",
-    element: <HomePage />,
-    layout: "main",
-    options: defaultAuthOptions,
-  },
   userManagement: {
     path: "/user-management",
     element: <UserManagement />,
-    layout: "main",
-    options: defaultAuthOptions,
-  },
-  decentralization: {
-    path: "/decentralization",
-    element: <Decentralization />,
     layout: "main",
     options: defaultAuthOptions,
   },
@@ -131,12 +161,7 @@ export const ROUTE = {
     layout: "main",
     options: defaultAuthOptions,
   },
-  event: {
-    path: "/event",
-    element: <Event />,
-    layout: "main",
-    options: defaultAuthOptions,
-  },
+
   tags: {
     path: "/tags",
     element: <TagPage />,
@@ -144,30 +169,6 @@ export const ROUTE = {
     options: defaultAuthOptions,
   },
 
-  studentInternship: {
-    path: "/student-internship",
-    element: <StudentInternship />,
-    layout: "main",
-    options: defaultAuthOptions,
-  },
-  studentPracticeProject: {
-    path: "/student-practice-project",
-    element: <StudentPracticeProject />,
-    layout: "main",
-    options: defaultAuthOptions,
-  },
-  studentResearch: {
-    path: "/student-research",
-    element: <StudentResearch />,
-    layout: "main",
-    options: defaultAuthOptions,
-  },
-  studentRules: {
-    path: "/student-rules",
-    element: <StudentRules />,
-    layout: "main",
-    options: defaultAuthOptions,
-  },
   teachers: {
     path: "/teachers",
     element: <LecturerPage />,
@@ -192,6 +193,12 @@ export const ROUTE = {
     layout: "main",
     options: defaultAuthOptions,
   },
+  userManagementPage: {
+    path: "/user-management",
+    element: <UserManagementPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
   notPermisstion: {
     path: "/not-permisstion",
     element: <NotPermisstion />,
@@ -209,6 +216,144 @@ export const ROUTE = {
       requireAuth: false,
       hideInMenu: false,
     },
+  },
+  // trang chủ
+  newPostPage: {
+    path: "/new-post",
+    element: <NewPostPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  newEvent: {
+    path: "/new-event",
+    element: <NewEventPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  cooperation: {
+    path: "/international-cooperation",
+    element: <CooperationPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  students: {
+    path: "/students",
+    element: <NewStudentPost />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // tuyển sinh
+  admission: {
+    path: "/admission",
+    element: <AdminssionInfoPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  admissionSecurity: {
+    path: "/admission-security",
+    element: <AdminssionSecurityPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  admissionTelecommunication: {
+    path: "/admission-telecommunication",
+    element: <AdminssionTelePage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // nghiên cứu
+  research: {
+    path: "/research",
+    element: <ResearchPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  researchTopic: {
+    path: "/research-topic",
+    element: <ResearchTopicPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // sinh viên
+  studentActivity: {
+    path: "/student-activity",
+    element: <StudentActivity />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  studentJob: {
+    path: "/student-job",
+    element: <StudentJob />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  studentSupport: {
+    path: "/student-support",
+    element: <StudentSupport />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  studentGuide: {
+    path: "/student-guide",
+    element: <StudentGuide />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  studentPracitie: {
+    path: "/student-practice",
+    element: <StudentPracitie />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  studentEducation: {
+    path: "/student-education",
+    element: <StudentEducation />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  studentAlumni: {
+    path: "/student-alumni",
+    element: <StudentAlumni />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // sự kiện
+  eventNew: {
+    path: "/event-new",
+    element: <EventNew />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  eventFall: {
+    path: "/event-fall",
+    element: <EventFall />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  eventSpring: {
+    path: "/event-spring",
+    element: <EventSpring />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // tin tức
+  newsNotice: {
+    path: "/news-notice",
+    element: <NewNotiPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  newsCooperation: {
+    path: "/news-cooperation",
+    element: <NewCooperation />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  newsResearch: {
+    path: "/news-research",
+    element: <NewResearch />,
+    layout: "main",
+    options: defaultAuthOptions,
   },
 } satisfies Record<
   string,
