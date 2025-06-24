@@ -23,13 +23,10 @@ export const login = async (data: IRequestLogin) => {
   }
 };
 
-export const updateUser = async (
-  username: string,
-  data: IRequestUpdateUser
-) => {
+export const updateUser = async (id: string, data: IRequestUpdateUser) => {
   try {
     const response = await Axios.put<IResponseUpdateUser>(
-      AUTH_PATH.updateUser.replace(":username", username),
+      AUTH_PATH.updateUser.replace(":id", id),
       data
     );
     return { ok: true, data: response.data };
@@ -38,10 +35,10 @@ export const updateUser = async (
   }
 };
 
-export const deleteUser = async (username: string) => {
+export const deleteUser = async (id: string) => {
   try {
     const response = await Axios.delete<IResponseDeleteUser>(
-      AUTH_PATH.delete.replace(":username", username)
+      AUTH_PATH.delete.replace(":id", id)
     );
     return { ok: true, data: response.data };
   } catch (error) {

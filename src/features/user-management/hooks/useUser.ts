@@ -1,32 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   addUserRequest,
-  deleteUserRequest,
   updateUserRequest,
   getUserRequest,
-  updateNameDelete,
-  openModalAddUser,
-  closeModalAddUser,
-  closeModalUpdateUser,
-  openModalUpdateUser,
-  openModalDeleteUser,
-  closeModalDeleteUser,
-  updateEditUser,
-  updateDelete,
-  updateDeleteUser,
+  setIsAddUser,
+  setIsDeleteUser,
+  setIsUpdateUser,
+  setEditUser,
 } from "../slice/user.slice";
 import {
   selectIsAddUser,
-  selectIdDeleteUser,
-  selectIdGetUser,
   selectIsUpdateUser,
   selectIdUpdate,
   selectUsers,
   selectIdDelete,
-  selectIsModalAddUser,
   selectEditUser,
-  selectIsModalDeleteUser,
-  selectIsModalUpdateUser,
+  selectIsDeleteUser,
+  selectIsGetUser,
 } from "../slice/user.selector";
 import { IUser } from "@/features/auth/slice/auth.types";
 
@@ -35,93 +25,61 @@ export const useUser = () => {
   const users = useSelector(selectUsers);
   const isAddUser = useSelector(selectIsAddUser);
   const isUpdateUser = useSelector(selectIsUpdateUser);
-  const isDeleteUser = useSelector(selectIdDeleteUser);
-  const isGetUser = useSelector(selectIdGetUser);
+  const isDeleteUser = useSelector(selectIsDeleteUser);
+  const isGetUser = useSelector(selectIsGetUser);
   const idUpdate = useSelector(selectIdUpdate);
   const idDelete = useSelector(selectIdDelete);
-  const isModalAddUser = useSelector(selectIsModalAddUser);
-  const isModalUpdateUser = useSelector(selectIsModalUpdateUser);
-  const isModalDeleteUser = useSelector(selectIsModalDeleteUser);
+
   const editUser = useSelector(selectEditUser);
 
   const addUser = (username: string, password: string) => {
     dispatch(addUserRequest({ username, password }));
   };
-  const updateNameDeleteDispatch = (name: string) => {
-    dispatch(updateNameDelete(name));
-  };
 
-  const updateUser = (username: string) => {
-    dispatch(updateUserRequest({ username }));
-  };
-
-  const deleteUser = () => {
-    dispatch(deleteUserRequest());
+  const updateUser = (id: string, username: string) => {
+    dispatch(updateUserRequest({ id, username }));
   };
 
   const getUser = (active: boolean, page: number, size: number) => {
     dispatch(getUserRequest({ active, page, size }));
   };
-
-  const updateDeleteDispatch = (id: number) => {
-    dispatch(updateDelete(id));
+  // modal
+  const handleAddUser = (isOpen: boolean) => {
+    dispatch(setIsAddUser(isOpen));
   };
 
-  const openModalAddUserDispatch = () => {
-    dispatch(openModalAddUser());
+  const handleUpdateUser = (isOpen: boolean) => {
+    dispatch(setIsUpdateUser(isOpen));
   };
+
+  const handleDeleteUser = (isOpen: boolean) => {
+    dispatch(setIsDeleteUser(isOpen));
+  };
+
+  // Alias for backward compatibility
   const closeModalAddUserDispatch = () => {
-    dispatch(closeModalAddUser());
+    dispatch(setIsAddUser(false));
   };
-  const openModalUpdateUserDispatch = () => {
-    dispatch(openModalUpdateUser());
-  };
-  const closeModalUpdateUserDispatch = () => {
-    dispatch(closeModalUpdateUser());
-  };
-  const openModalDeleteUserDispatch = () => {
-    dispatch(openModalDeleteUser());
-  };
-  const closeModalDeleteUserDispatch = () => {
-    dispatch(closeModalDeleteUser());
-  };
-  const updateEditUserDispatch = (user: IUser) => {
-    dispatch(updateEditUser(user));
-  };
-  const handleIdDelete = (id: number) => {
-    dispatch(updateDelete(id));
-  };
-  const updateDeleteUserDispatch = (username: string) => {
-    dispatch(updateDeleteUser(username));
+  const setEditUserDispatch = (user: IUser) => {
+    dispatch(setEditUser(user));
   };
 
   return {
     addUser,
     updateUser,
-    deleteUser,
     getUser,
-
-    updateNameDeleteDispatch,
-    updateDeleteDispatch,
+    handleAddUser,
+    handleUpdateUser,
+    handleDeleteUser,
+    closeModalAddUserDispatch, // For backward compatibility
     users,
     isAddUser,
     isUpdateUser,
-    isDeleteUser,
     isGetUser,
     idUpdate,
     idDelete,
-    openModalAddUserDispatch,
-    closeModalAddUserDispatch,
-    openModalUpdateUserDispatch,
-    closeModalUpdateUserDispatch,
-    openModalDeleteUserDispatch,
-    closeModalDeleteUserDispatch,
-    updateEditUserDispatch,
-    isModalAddUser,
-    isModalUpdateUser,
-    isModalDeleteUser,
+    isDeleteUser,
     editUser,
-    handleIdDelete,
-    updateDeleteUserDispatch,
+    setEditUserDispatch,
   };
 };

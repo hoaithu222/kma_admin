@@ -2,12 +2,11 @@ import Axios from "@/core/base/Axios";
 import { LECTURER_PATH } from "./paths";
 import {
   IRequestCreateLecturer,
-  IRequestGetLecturer,
   IRequestSearchLecturer,
   IRequestUpdateLecturer,
 } from "./types";
 
-export const getLecturersAllApi = (params: IRequestGetLecturer) => {
+export const getLecturersAllApi = (params: IRequestSearchLecturer) => {
   return Axios.get(LECTURER_PATH.GET_LECTURERS_ALL, { params });
 };
 

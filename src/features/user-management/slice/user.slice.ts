@@ -1,122 +1,108 @@
-import { ReduxStateType } from "@/app/store/types";
 import { IUserState } from "./user.types";
 import { createResettableSlice } from "@/app/store/create-resettabable-slice";
 import { IUser } from "@/features/auth/slice/auth.types";
 import { PayloadAction } from "@reduxjs/toolkit";
-import {
-  IRegister,
-  IRequestGetList,
-  IRequestUpdateUser,
-} from "@/core/api/auth/types";
+import { IRegister, IRequestGetList } from "@/core/api/auth/types";
 
 const initialState: IUserState = {
   users: [],
-  isModalAddUser: false,
-  isModalUpdateUser: false,
-  isModalDeleteUser: false,
-  editUser: null,
-  isAddUser: ReduxStateType.INIT,
-  isUpdateUser: ReduxStateType.INIT,
-  isDeleteUser: ReduxStateType.INIT,
-  isGetUser: ReduxStateType.INIT,
+  isAddUser: false,
+  isUpdateUser: false,
+  isDeleteUser: false,
+  isGetUser: false,
   idUpdate: 0,
   idDelete: 0,
-  nameDelete: "",
-  deleteUser: "",
+  editUser: null,
 };
 
 const { slice, reducer } = createResettableSlice({
   name: "user",
   initialState,
   reducers: {
+    setIsAddUser: (state, action: PayloadAction<boolean>) => {
+      state.isAddUser = action.payload;
+    },
+    setIsUpdateUser: (state, action: PayloadAction<boolean>) => {
+      state.isUpdateUser = action.payload;
+    },
+    setIsDeleteUser: (state, action: PayloadAction<boolean>) => {
+      state.isDeleteUser = action.payload;
+    },
+    setIsGetUser: (state, action: PayloadAction<boolean>) => {
+      state.isGetUser = action.payload;
+    },
+    // thêm user
     addUserRequest: (state, _action: PayloadAction<IRegister>) => {
-      state.isAddUser = ReduxStateType.LOADING;
+      state.isAddUser = true;
     },
     addUserSuccess: (state, action: PayloadAction<IUser>) => {
-      state.isAddUser = ReduxStateType.SUCCESS;
       state.users.push(action.payload);
+      state.isAddUser = false;
     },
     addUserFailed: (state, _action: PayloadAction<IUser>) => {
-      state.isAddUser = ReduxStateType.ERROR;
+      state.isAddUser = false;
     },
+    // sửa user
 
-    updateUserRequest: (state, _action: PayloadAction<IRequestUpdateUser>) => {
-      state.isUpdateUser = ReduxStateType.LOADING;
+    updateUserRequest: (
+      state,
+      action: PayloadAction<{ id: string; username: string }>
+    ) => {
+      state.idUpdate = Number(action.payload.id);
     },
     updateUserSuccess: (state, action: PayloadAction<IUser>) => {
-      state.isUpdateUser = ReduxStateType.SUCCESS;
       state.users = state.users.map((user) => {
-        if (user.id === action.payload.id) {
+        if (user.id === state.idUpdate.toString()) {
           return action.payload;
         }
         return user;
       });
     },
     updateUserFailed: (state, _action: PayloadAction<any>) => {
-      state.isUpdateUser = ReduxStateType.ERROR;
+      state.isUpdateUser = false;
     },
-
-    deleteUserRequest: (state) => {
-      state.isDeleteUser = ReduxStateType.LOADING;
+    // xóa user
+    deleteUserRequest: (state, action: PayloadAction<number>) => {
+      state.idDelete = action.payload;
     },
-    deleteUserSuccess: (state, action: PayloadAction<string>) => {
-      state.isDeleteUser = ReduxStateType.SUCCESS;
+    deleteUserSuccess: (state, _action: PayloadAction<IUser>) => {
       state.users = state.users.filter(
-        (user) => user.username !== action.payload
+        (user) => user.id !== state.idDelete.toString()
       );
+      state.idDelete = 0; // Reset idDelete after successful deletion
     },
     deleteUserFailed: (state, _action: PayloadAction<any>) => {
-      state.isDeleteUser = ReduxStateType.ERROR;
+      state.idDelete = 0; // Reset idDelete on failure
     },
+    // lấy user
     getUserRequest: (state, _action: PayloadAction<IRequestGetList>) => {
-      state.isGetUser = ReduxStateType.LOADING;
+      state.isGetUser = true;
     },
     getUserSuccess: (state, action: PayloadAction<IUser[]>) => {
-      state.isGetUser = ReduxStateType.SUCCESS;
+      state.isGetUser = false;
       state.users = action.payload;
     },
     getUserFailed: (state, _action: PayloadAction<IUser>) => {
-      state.isGetUser = ReduxStateType.ERROR;
+      state.isGetUser = false;
     },
     // update id
     updateIdUpdate: (state, action: PayloadAction<number>) => {
       state.idUpdate = action.payload;
     },
-    updateDelete: (state, action: PayloadAction<number>) => {
+    updateDeleteId: (state, action: PayloadAction<number>) => {
       state.idDelete = action.payload;
     },
-    updateNameDelete: (state, action: PayloadAction<string>) => {
-      state.nameDelete = action.payload;
-    },
-
-    openModalAddUser: (state) => {
-      state.isModalAddUser = true;
-    },
-    closeModalAddUser: (state) => {
-      state.isModalAddUser = false;
-    },
-    openModalUpdateUser: (state) => {
-      state.isModalUpdateUser = true;
-    },
-    closeModalUpdateUser: (state) => {
-      state.isModalUpdateUser = false;
-    },
-    openModalDeleteUser: (state) => {
-      state.isModalDeleteUser = true;
-    },
-    closeModalDeleteUser: (state) => {
-      state.isModalDeleteUser = false;
-    },
-    updateEditUser: (state, action: PayloadAction<IUser>) => {
+    setEditUser: (state, action: PayloadAction<IUser>) => {
       state.editUser = action.payload;
-    },
-    updateDeleteUser: (state, action: PayloadAction<string>) => {
-      state.deleteUser = action.payload;
     },
   },
 });
 
 export const {
+  setIsAddUser,
+  setIsUpdateUser,
+  setIsDeleteUser,
+  setIsGetUser,
   addUserRequest,
   addUserSuccess,
   addUserFailed,
@@ -127,17 +113,9 @@ export const {
   deleteUserSuccess,
   deleteUserFailed,
   getUserRequest,
-  openModalAddUser,
-  closeModalAddUser,
-  openModalUpdateUser,
-  closeModalUpdateUser,
-  openModalDeleteUser,
-  closeModalDeleteUser,
   getUserSuccess,
   getUserFailed,
-  updateDelete,
-  updateNameDelete,
-  updateEditUser,
-  updateDeleteUser,
+  updateDeleteId,
+  setEditUser,
 } = slice.actions;
 export default reducer;

@@ -11,8 +11,6 @@ import { ReduxStateType } from "@/app/store/types";
 import Pagination from "@/features/posts/components/list-post/Pagination";
 import { useNavigate } from "react-router-dom";
 export default function ListLecturer() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize, _setPageSize] = useState(4);
   const {
     lecturer,
     getLecturers,
@@ -24,6 +22,12 @@ export default function ListLecturer() {
     statusGetLecturer,
     handleChangeIdDeleteLecturer,
     handleChangeEditLecturer,
+    currentLecturers,
+    totalElements,
+    totalPages,
+
+    filter,
+    setFilter,
   } = useLecturer();
   const [lecturerEdit, setLecturerEdit] = useState<dataLecturer>();
 
@@ -44,31 +48,32 @@ export default function ListLecturer() {
 
   useEffect(() => {
     getLecturers();
-  }, []);
+  }, [filter]);
   if (statusGetLecturer === ReduxStateType.LOADING) {
     return <LecturerSkeleton />;
   }
-
-  // Calculate pagination
-  const totalPages = Math.ceil(lecturer.length / pageSize);
-  const startIndex = currentPage * pageSize;
-  const endIndex = startIndex + pageSize;
-  const currentLecturers = lecturer.slice(startIndex, endIndex);
+  const handlePageChange = (page: number) => {
+    setFilter((prev) => ({ ...prev, page }));
+  };
+  // lọc danh sách theo displayOrder
+  const sortedLecturers = [...currentLecturers].sort(
+    (a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0)
+  );
 
   return (
-    <div className="min-h-screen p-6 bg-background-base">
+    <div className="p-6 min-h-screen bg-background-base">
       <div className="mx-auto max-w-7xl">
         {/* Lecturer Cards */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {currentLecturers.map((lecturer) => (
+          {sortedLecturers.map((lecturer) => (
             <div
               key={lecturer.id}
-              className="overflow-hidden transition-all duration-300 transform shadow-lg bg-background-elevated rounded-2xl hover:shadow-2xl hover:-translate-y-2"
+              className="overflow-hidden rounded-2xl shadow-lg transition-all duration-300 transform bg-background-elevated hover:shadow-2xl hover:-translate-y-2"
             >
               {/* Card Header */}
               <div className="p-6 text-white bg-gradient-to-r from-primary to-secondary">
                 <div className="flex items-center space-x-4">
-                  <div className="flex items-center justify-center w-32 h-32 rounded-full bg-primary-foreground">
+                  <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary-foreground">
                     {lecturer.filePath && (
                       <img
                         src={`${import.meta.env.VITE_API_URL_FILE}/${lecturer.filePath}`}
@@ -109,7 +114,7 @@ export default function ListLecturer() {
                 </div>
 
                 {stripHtml(lecturer.position) && (
-                  <div className="p-3 rounded-lg bg-gray-50">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <p className="text-sm text-gray-700">
                       <span className="font-semibold">Vị trí: </span>
                       {stripHtml(lecturer.position)}
@@ -123,7 +128,7 @@ export default function ListLecturer() {
                       <Award size={16} className="mr-2 text-yellow-500" />
                       Lĩnh vực nghiên cứu
                     </p>
-                    <div className="p-3 text-sm text-gray-600 rounded-lg bg-yellow-50">
+                    <div className="p-3 text-sm text-gray-600 bg-yellow-50 rounded-lg">
                       {stripHtml(lecturer.researchInterests).substring(0, 100)}
                       {stripHtml(lecturer.researchInterests).length > 100 &&
                         "..."}
@@ -179,13 +184,11 @@ export default function ListLecturer() {
         <EditLecturer lecturer={lecturerEdit as dataLecturer} />
       )}
       <Pagination
-        currentPage={currentPage}
+        currentPage={filter.page}
         totalPages={totalPages}
-        totalItems={lecturer.length}
-        pageSize={pageSize}
-        onPageChange={(page: number) => {
-          setCurrentPage(page);
-        }}
+        totalItems={totalElements}
+        pageSize={filter.size}
+        onPageChange={handlePageChange}
       />
     </div>
   );

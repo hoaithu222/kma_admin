@@ -13,13 +13,20 @@ import UploadImage from "@/foundation/components/upload/UploadImage";
 import { toast } from "react-toastify";
 import { dataLecturer } from "@/core/api/lecturer/types";
 import CustomReactQuill from "@/foundation/components/inputs/CustomReactQuill";
+import OrderInput, {
+  OrderItem,
+} from "@/foundation/components/inputs/OrderInput";
 
 interface EditLecturerProps {
   lecturer: dataLecturer;
 }
 export default function EditLecturer({ lecturer }: EditLecturerProps) {
-  const { isEditLecturer, handleChangeEditLecturer, editLecturer } =
-    useLecturer();
+  const {
+    isEditLecturer,
+    handleChangeEditLecturer,
+    editLecturer,
+    currentLecturers,
+  } = useLecturer();
   const { majorData, getMajors } = useMajor();
   const { subMajorWithMajor, getSubMajorWithMajor } = useSubmajor();
 
@@ -39,6 +46,7 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
     researchInterests: lecturer.researchInterests, // lĩnh vực nghiên cứu
     majorId: lecturer.majorId,
     subMajorId: lecturer.subMajorId,
+    displayOrder: lecturer.displayOrder,
   });
 
   const tabs = [
@@ -160,6 +168,29 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
     });
   };
 
+  const order = currentLecturers.map((lecturer) => {
+    return {
+      id: lecturer.id,
+      order: lecturer.displayOrder,
+      label: lecturer.name,
+    };
+  });
+  const [orders, setOrders] = useState<OrderItem[]>(order as OrderItem[]);
+  const [newItemOrder, setNewItemOrder] = useState<number | undefined>();
+  // const [editingItemId, setEditingItemId] = useState<number | null>(null);
+  // const [editingOrder, setEditingOrder] = useState<number | undefined>();
+  const handleAddItem = () => {
+    if (newItemOrder !== undefined) {
+      const newItem: OrderItem = {
+        id: Date.now(),
+        order: newItemOrder,
+        label: `New Item ${newItemOrder}`,
+      };
+      setOrders([...orders, newItem]);
+      setNewItemOrder(undefined);
+    }
+  };
+
   return (
     <Modal
       size="xlarge"
@@ -259,6 +290,15 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
                     placeholder="Chọn chuyên ngành con"
                     label="Chuyên ngành con"
                     fullWidth={true}
+                    allowAddNew={true}
+                    addNewText="Thêm chuyên ngành con"
+                    addNewPlaceholder="Nhập tên chuyên ngành con"
+                    onAddNew={(newValue: string) => {
+                      setFormData((prevFormData) => ({
+                        ...prevFormData,
+                        subMajorId: +newValue,
+                      }));
+                    }}
                   />
                 )}
             </div>
@@ -299,6 +339,29 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
                 allowZoom: true,
               }}
             />
+          </div>
+          <div className="p-4 bg-white rounded-lg border">
+            <h3 className="mb-4 text-lg font-semibold">Thêm item mới</h3>
+            <div className="flex gap-4 items-end">
+              <div className="flex-1">
+                <OrderInput
+                  label="Thứ tự sắp xếp"
+                  value={newItemOrder}
+                  existingOrders={orders}
+                  onChange={(value, _isValid) => setNewItemOrder(value)}
+                  showOrderList={true}
+                  autoSuggest={true}
+                  fullWidth
+                />
+              </div>
+              <button
+                onClick={handleAddItem}
+                disabled={newItemOrder === undefined}
+                className="px-4 py-2 h-10 text-white bg-blue-500 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Thêm
+              </button>
+            </div>
           </div>
 
           {/* Tab navigation và nội dung */}

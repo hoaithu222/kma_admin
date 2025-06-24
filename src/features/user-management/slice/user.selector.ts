@@ -6,30 +6,6 @@ export const selectUser = (state: RootState) => state.user as IUserState;
 
 export const selectUsers = createSelector([selectUser], (state) => state.users);
 
-export const selectIsAddUser = createSelector(
-  [selectUser],
-  (state) => state.isAddUser
-);
-
-export const selectIsUpdateUser = createSelector(
-  [selectUser],
-  (state) => state.isUpdateUser
-);
-
-export const selectIdDeleteUser = createSelector(
-  [selectUser],
-  (state) => state.isDeleteUser
-);
-export const selectUserEdit = createSelector(
-  [selectUser],
-  (state) => state.editUser
-);
-
-export const selectIdGetUser = createSelector(
-  [selectUser],
-  (state) => state.isGetUser
-);
-
 export const selectIdUpdate = createSelector(
   [selectUser],
   (state) => state.idUpdate
@@ -40,28 +16,14 @@ export const selectIdDelete = createSelector(
   (state) => state.idDelete
 );
 
-export const selectIsModalAddUser = createSelector(
+export const selectIsAddUser = createSelector(
   [selectUser],
-  (state) => state.isModalAddUser
+  (state) => state.isAddUser
 );
 
-export const selectIsModalUpdateUser = createSelector(
+export const selectIsUpdateUser = createSelector(
   [selectUser],
-  (state) => state.isModalUpdateUser
-);
-
-export const selectIsModalDeleteUser = createSelector(
-  [selectUser],
-  (state) => state.isModalDeleteUser
-);
-
-export const selectEditUser = createSelector(
-  [selectUser],
-  (state) => state.editUser
-);
-export const selectIsGetUser = createSelector(
-  [selectUser],
-  (state) => state.isGetUser
+  (state) => state.isUpdateUser
 );
 
 export const selectIsDeleteUser = createSelector(
@@ -69,7 +31,12 @@ export const selectIsDeleteUser = createSelector(
   (state) => state.isDeleteUser
 );
 
-export const selectDeleteUser = createSelector(
+export const selectIsGetUser = createSelector(
   [selectUser],
-  (state) => state.deleteUser
+  (state) => state.isGetUser
+);
+
+export const selectEditUser = createSelector(
+  [selectUser],
+  (state) => state.editUser
 );

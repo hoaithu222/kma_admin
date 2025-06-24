@@ -11,8 +11,10 @@ import {
   updateUserFailed,
   updateUserRequest,
   updateUserSuccess,
+  setIsAddUser,
+  setIsUpdateUser,
 } from "./user.slice";
-import { all, call, put, select, takeLatest } from "redux-saga/effects";
+import { all, call, put, takeLatest } from "redux-saga/effects";
 import { PayloadAction } from "@reduxjs/toolkit";
 import {
   deleteUser,
@@ -20,13 +22,7 @@ import {
   registerRequest,
   updateUser,
 } from "@/core/api/auth";
-import {
-  IRegister,
-  IRequestGetList,
-  IRequestUpdateUser,
-} from "@/core/api/auth/types";
-import { selectDeleteUser, selectUserEdit } from "./user.selector";
-import { IUser } from "@/features/auth/slice/auth.types";
+import { IRegister, IRequestGetList } from "@/core/api/auth/types";
 
 function* addUserSaga(
   action: PayloadAction<IRegister>
@@ -36,35 +32,53 @@ function* addUserSaga(
       username: action.payload.username,
       password: action.payload.password,
     });
-    yield put(addUserSuccess(response.data.data));
+    if (response.ok) {
+      yield put(addUserSuccess(response.data.data));
+      // Refresh user list after adding
+      yield put(getUserRequest({ active: true, page: 0, size: 10 }));
+      // Đóng modal sau khi thành công
+      yield put(setIsAddUser(false));
+    } else {
+      yield put(addUserFailed(response.error));
+    }
   } catch (error: any) {
     yield put(addUserFailed(error));
   }
 }
 
 function* updateUserSaga(
-  action: PayloadAction<IRequestUpdateUser>
+  action: PayloadAction<{ id: string; username: string }>
 ): Generator<any, void, any> {
   try {
-    const userEdit: IUser = yield select(selectUserEdit);
-    if (userEdit) {
-      const response = yield call(
-        updateUser,
-        userEdit.username,
-        action.payload
-      );
+    const response = yield call(updateUser, action.payload.id, {
+      username: action.payload.username,
+    });
+    if (response.ok) {
       yield put(updateUserSuccess(response.data.data));
+      // Refresh user list after updating
+      yield put(getUserRequest({ active: true, page: 0, size: 10 }));
+      // Đóng modal sau khi thành công
+      yield put(setIsUpdateUser(false));
+    } else {
+      yield put(updateUserFailed(response.error));
     }
   } catch (error: any) {
     yield put(updateUserFailed(error));
   }
 }
-function* deleteUserSaga(): Generator<any, void, any> {
+
+function* deleteUserSaga(
+  action: PayloadAction<number>
+): Generator<any, void, any> {
   try {
-    const userToDelete = yield select(selectDeleteUser);
-    const response = yield call(deleteUser, userToDelete);
+    const response = yield call(deleteUser, action.payload.toString());
     if (response.ok) {
-      yield put(deleteUserSuccess(userToDelete));
+      // API delete trả về { message: string }, không có data.data
+      // Tạo một object giả để match với IUser interface
+      const deletedUser = { id: action.payload.toString() } as any;
+      yield put(deleteUserSuccess(deletedUser));
+      // Refresh user list after deleting
+      yield put(getUserRequest({ active: true, page: 0, size: 10 }));
     } else {
       yield put(deleteUserFailed(response.error));
     }
@@ -78,11 +92,16 @@ function* getUserSaga(
 ): Generator<any, void, any> {
   try {
     const response = yield call(getUser, action.payload.active);
-    yield put(getUserSuccess(response.data.data.content));
+    if (response.ok) {
+      yield put(getUserSuccess(response.data.data.content));
+    } else {
+      yield put(getUserFailed(response.error));
+    }
   } catch (error: any) {
     yield put(getUserFailed(error));
   }
 }
+
 export function* userSaga() {
   yield all([
     takeLatest(addUserRequest.type, addUserSaga),

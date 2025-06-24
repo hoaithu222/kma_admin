@@ -10,7 +10,7 @@ import { Navigate } from "react-router-dom";
 import { selectUser } from "../auth/slice/auth.selector";
 
 const UserManagement = () => {
-  const { isModalAddUser, openModalAddUserDispatch } = useUser();
+  const { handleAddUser, isAddUser } = useUser();
   const user = useSelector(selectUser);
   const role = user?.role;
   if (role !== "ADMIN") {
@@ -33,7 +33,7 @@ const UserManagement = () => {
         <Button
           variant="secondary"
           iconLeft={<PlusIcon className="w-4 h-4 hover:animate-spin" />}
-          onClick={() => openModalAddUserDispatch()}
+          onClick={() => handleAddUser(true)}
         >
           Thêm người dùng
         </Button>
@@ -41,7 +41,7 @@ const UserManagement = () => {
       <div className="mt-4">
         <ListUser />
       </div>
-      {isModalAddUser && <AddUser />}
+      {isAddUser && <AddUser />}
     </div>
   );
 };

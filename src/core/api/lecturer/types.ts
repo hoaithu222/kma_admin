@@ -8,6 +8,8 @@ export interface IRequestSearchLecturer {
   title: string;
   email: string;
   position: string;
+  page: number;
+  size: number;
 }
 
 export interface IRequestGetLecturerById {
@@ -27,7 +29,8 @@ export interface IRequestCreateLecturer {
   scientificWorks: string; // Công trình khoa học
   researchInterests: string; // Lĩnh vực nghiên cứu
   majorId: number; // ID chuyên ngành
-  subMajorId: number | null; // ID chuyên ngành con
+  subMajorId: number | null | string; // ID chuyên ngành con
+  displayOrder?: number;
 }
 export interface IRequestUpdateLecturer {
   id: number;
@@ -44,6 +47,7 @@ export interface IRequestUpdateLecturer {
   researchInterests: string;
   majorId: number;
   subMajorId: number;
+  displayOrder?: number;
 }
 export interface IRequestDeleteLecturer {
   id: number;
@@ -69,9 +73,17 @@ export interface dataLecturer {
   majorName: string; // Tên chuyên ngành
   subMajorId: number; // ID chuyên ngành con
   subMajorName: string; // Tên chuyên ngành con
+  displayOrder?: number;
 }
 export interface dataDeleteLecturer {
   data: string;
+}
+export interface responseLecturer {
+  content: dataLecturer[];
+  totalElements: number;
+  totalPages: number;
+  pageNumber: number;
+  pageSize: number;
 }
 export interface IResponseSearchLecturer extends IResponse<dataLecturer[]> {}
 export interface IResponseGetLecturer extends IResponse<dataLecturer[]> {}

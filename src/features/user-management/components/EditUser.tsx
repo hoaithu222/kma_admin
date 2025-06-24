@@ -3,29 +3,44 @@ import Modal from "@/foundation/components/modal/Modal";
 import Input from "@/foundation/components/inputs/Input";
 import { LockIcon, PlusIcon, User } from "lucide-react";
 import Button from "@/foundation/components/buttons/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useUser } from "../hooks/useUser";
 
 import { IRequestUpdateUser } from "@/core/api/auth/types";
-import { updateUser } from "@/core/api/auth";
+import { useSelector } from "react-redux";
+import { selectEditUser } from "../slice/user.selector";
 
 const EditUser = () => {
-  const { editUser, closeModalUpdateUserDispatch } = useUser();
+  const editUser = useSelector(selectEditUser);
+  const { handleUpdateUser, updateUser } = useUser();
   const [form, setForm] = useState<IRequestUpdateUser>({
     username: editUser?.username || "",
+    password: "",
   });
-  const handleSubmit = () => {
-    updateUser(editUser?.username || "", {
-      username: form.username,
-      password: form.password,
-    });
-    closeModalUpdateUserDispatch();
+
+  // Cập nhật form khi editUser thay đổi
+  useEffect(() => {
+    if (editUser) {
+      setForm({
+        username: editUser.username || "",
+        password: "",
+      });
+    }
+  }, [editUser]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (editUser?.id && form.username.trim()) {
+      updateUser(editUser.id, form.username);
+      handleUpdateUser(false);
+    }
   };
+
   return (
     <Modal
       isOpen={true}
-      onOpenChange={() => closeModalUpdateUserDispatch()}
+      onOpenChange={() => handleUpdateUser(false)}
       title="Sửa người dùng"
       size="large"
       animation="slide"
@@ -40,9 +55,10 @@ const EditUser = () => {
           iconLeft={<User className="w-4 h-4" />}
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
+          required
         />
         <Input
-          placeholder="Mật khẩu"
+          placeholder="Mật khẩu (để trống nếu không thay đổi)"
           fullWidth
           label="Mật khẩu"
           className="w-full"
@@ -58,7 +74,6 @@ const EditUser = () => {
           <Button
             variant="gradientPrimary"
             type="submit"
-            loading={false}
             iconLeft={<PlusIcon className="w-4 h-4" />}
           >
             Sửa người dùng

@@ -1,5 +1,3 @@
-import { ReduxStateType } from "@/app/store/types";
-
 interface IUser {
   id: string;
   username: string;
@@ -9,16 +7,11 @@ interface IUser {
 
 export interface IUserState {
   users: IUser[];
-  isModalAddUser: boolean;
-  isModalUpdateUser: boolean;
-  isModalDeleteUser: boolean;
+  isAddUser: boolean;
+  isUpdateUser: boolean;
+  isDeleteUser: boolean;
+  isGetUser: boolean;
   editUser: IUser | null;
-  isAddUser: ReduxStateType;
-  isUpdateUser: ReduxStateType;
-  isDeleteUser: ReduxStateType;
-  isGetUser: ReduxStateType;
   idUpdate: number;
   idDelete: number;
-  nameDelete: string;
-  deleteUser: string;
 }

@@ -10,19 +10,27 @@ import { useUser } from "../hooks/useUser";
 import { IRegister } from "@/core/api/auth/types";
 
 const AddUser = () => {
-  const { addUser, closeModalAddUserDispatch } = useUser();
+  const { addUser, handleAddUser } = useUser();
   const [form, setForm] = useState<IRegister>({
     username: "",
     password: "",
   });
-  const handleSubmit = () => {
-    addUser(form.username, form.password);
-    closeModalAddUserDispatch();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Ngăn reload trang
+    if (form.username.trim() && form.password.trim()) {
+      addUser(form.username, form.password);
+      // Không đóng modal ngay, để saga xử lý
+      // handleAddUser(false);
+      // Reset form
+      setForm({ username: "", password: "" });
+    }
   };
+
   return (
     <Modal
       isOpen={true}
-      onOpenChange={() => closeModalAddUserDispatch()}
+      onOpenChange={() => handleAddUser(false)}
       title="Thêm người dùng"
       size="large"
       animation="slide"
@@ -37,6 +45,7 @@ const AddUser = () => {
           iconLeft={<User className="w-4 h-4" />}
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
+          required
         />
         <Input
           placeholder="Mật khẩu"
@@ -49,13 +58,13 @@ const AddUser = () => {
           iconLeft={<Lock className="w-4 h-4" />}
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
+          required
         />
 
         <div className="flex justify-end">
           <Button
             variant="gradientPrimary"
             type="submit"
-            loading={false}
             iconLeft={<PlusIcon className="w-4 h-4" />}
           >
             Thêm người dùng

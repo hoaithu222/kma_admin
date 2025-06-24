@@ -6,11 +6,19 @@ import {
   dataLecturer,
   IRequestCreateLecturer,
   IRequestDeleteLecturer,
+  IRequestSearchLecturer,
   IRequestUpdateLecturer,
+  responseLecturer,
 } from "@/core/api/lecturer/types";
 
 const initialState: initialStateLecturer = {
-  lecturer: [],
+  lecturer: {
+    dataLecturer: [],
+    totalElements: 0,
+    totalPages: 0,
+    pageNumber: 0,
+    pageSize: 0,
+  },
   detailLecturer: null,
   isEditLecturer: false,
   isAddLecturer: false,
@@ -43,11 +51,18 @@ const { slice, reducer } = createResettableSlice({
       state.idDeleteLecturer = action.payload;
     },
     // lấy danh sách giảng viên
-    getLecturerRequest: (state) => {
+    getLecturerRequest: (
+      state,
+      _action: PayloadAction<IRequestSearchLecturer>
+    ) => {
       state.statusGetLecturer = ReduxStateType.LOADING;
     },
-    getLecturerSuccess: (state, action: PayloadAction<dataLecturer[]>) => {
-      state.lecturer = action.payload;
+    getLecturerSuccess: (state, action: PayloadAction<responseLecturer>) => {
+      state.lecturer.dataLecturer = action.payload.content;
+      state.lecturer.totalElements = action.payload.totalElements;
+      state.lecturer.totalPages = action.payload.totalPages;
+      state.lecturer.pageNumber = action.payload.pageNumber;
+      state.lecturer.pageSize = action.payload.pageSize;
       state.statusGetLecturer = ReduxStateType.SUCCESS;
     },
     getLecturerFailure: (state, _action: PayloadAction<string>) => {
@@ -61,7 +76,7 @@ const { slice, reducer } = createResettableSlice({
       state.statusAddLecturer = ReduxStateType.LOADING;
     },
     addLecturerSuccess: (state, action: PayloadAction<dataLecturer>) => {
-      state.lecturer.push(action.payload);
+      state.lecturer.dataLecturer.push(action.payload);
       state.statusAddLecturer = ReduxStateType.SUCCESS;
       state.isAddLecturer = false;
     },
@@ -77,8 +92,9 @@ const { slice, reducer } = createResettableSlice({
       state.statusEditLecturer = ReduxStateType.LOADING;
     },
     editLecturerSuccess: (state, action: PayloadAction<dataLecturer>) => {
-      state.lecturer = state.lecturer.map((lecturer) =>
-        lecturer.id === action.payload.id ? action.payload : lecturer
+      state.lecturer.dataLecturer = state.lecturer.dataLecturer.map(
+        (lecturer) =>
+          lecturer.id === action.payload.id ? action.payload : lecturer
       );
       state.statusEditLecturer = ReduxStateType.SUCCESS;
       state.isEditLecturer = false;
@@ -95,7 +111,7 @@ const { slice, reducer } = createResettableSlice({
       state.statusDeleteLecturer = ReduxStateType.LOADING;
     },
     deleteLecturerSuccess: (state, _action: PayloadAction<number>) => {
-      state.lecturer = state.lecturer.filter(
+      state.lecturer.dataLecturer = state.lecturer.dataLecturer.filter(
         (lecturer) => lecturer.id !== state.idDeleteLecturer
       );
       state.statusDeleteLecturer = ReduxStateType.SUCCESS;

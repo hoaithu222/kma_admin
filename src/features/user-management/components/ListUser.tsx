@@ -2,33 +2,51 @@ import { useEffect } from "react";
 import { useUser } from "../hooks/useUser";
 import Empty from "@/foundation/components/empty/Empty";
 import Table from "@/foundation/components/table/Table";
-import { ReduxStateType } from "@/app/store/types";
 import Button from "@/foundation/components/buttons/Button";
 import { EditIcon, Trash2Icon } from "lucide-react";
 import EditUser from "./EditUser";
 import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
+import {
+  deleteUserRequest,
+  setEditUser,
+  updateDeleteId,
+} from "../slice/user.slice";
+import { useDispatch } from "react-redux";
+import LoadingPage from "@/foundation/components/loading/LoadingPage";
 
 const ListUser = () => {
+  const dispatch = useDispatch();
   const {
     users,
-    isGetUser,
     getUser,
-    openModalUpdateUserDispatch,
-    openModalDeleteUserDispatch,
-    updateEditUserDispatch,
-    updateDeleteDispatch,
-    isModalUpdateUser,
-    isModalDeleteUser,
-    closeModalDeleteUserDispatch,
-
-    updateDeleteUserDispatch,
-
-    deleteUser,
+    handleUpdateUser,
+    handleDeleteUser,
+    isUpdateUser,
+    isDeleteUser,
+    isGetUser,
+    idDelete,
   } = useUser();
 
   useEffect(() => {
     getUser(true, 0, 10);
   }, []);
+
+  const handleDeleteClick = (user: any) => {
+    dispatch(updateDeleteId(Number(user.id)));
+    handleDeleteUser(true);
+  };
+
+  const handleEditClick = (user: any) => {
+    dispatch(setEditUser(user));
+    handleUpdateUser(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (idDelete) {
+      dispatch(deleteUserRequest(Number(idDelete)));
+    }
+    handleDeleteUser(false);
+  };
 
   const columns = [
     {
@@ -74,21 +92,13 @@ const ListUser = () => {
               variant="success"
               size="small"
               iconLeft={<EditIcon className="w-4 h-4" />}
-              onClick={() => {
-                openModalUpdateUserDispatch();
-                updateDeleteDispatch(value.id);
-                updateEditUserDispatch(value);
-              }}
+              onClick={() => handleEditClick(value)}
             />
             <Button
               variant="secondary"
               size="small"
               iconLeft={<Trash2Icon className="w-4 h-4" />}
-              onClick={() => {
-                openModalDeleteUserDispatch();
-                updateDeleteDispatch(value.id);
-                updateDeleteUserDispatch(value.username);
-              }}
+              onClick={() => handleDeleteClick(value)}
             />
           </div>
         );
@@ -96,33 +106,33 @@ const ListUser = () => {
     },
   ];
 
+  if (isGetUser) {
+    return <LoadingPage />;
+  }
+
   return (
     <div>
       <Table
         columns={columns}
-        data={users}
+        data={users || []}
         emptyText={<Empty variant="data" />}
         hoverColor="accent"
         pageSize={15}
         pagination={true}
         hover={true}
         hoverEffect="border"
-        loading={isGetUser === ReduxStateType.LOADING}
         hoverIntensity="medium"
         size="medium"
         striped={true}
       />
-      {isModalUpdateUser && <EditUser />}
-      {isModalDeleteUser && (
+      {isUpdateUser && <EditUser />}
+      {isDeleteUser && (
         <ModalConfirm
           isOpen={true}
-          onClose={() => {
-            closeModalDeleteUserDispatch();
-          }}
-          onConfirm={() => {
-            deleteUser();
-            closeModalDeleteUserDispatch();
-          }}
+          onClose={() => handleDeleteUser(false)}
+          onConfirm={handleConfirmDelete}
+          title="Xác nhận xóa"
+          message="Bạn có chắc chắn muốn xóa người dùng này không?"
         />
       )}
     </div>

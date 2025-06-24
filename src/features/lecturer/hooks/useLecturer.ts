@@ -11,6 +11,9 @@ import {
   selectLecturers,
   selectStatusGetDetailLecturer,
   selectDetailLecturer,
+  selectTotalPages,
+  selectCurrentLecturers,
+  selectTotalElements,
 } from "../slice/lecturer.slector";
 import {
   addLecturerRequest,
@@ -25,8 +28,10 @@ import {
 } from "../slice/lecturer.slice";
 import {
   IRequestCreateLecturer,
+  IRequestSearchLecturer,
   IRequestUpdateLecturer,
 } from "@/core/api/lecturer/types";
+import { useState } from "react";
 export const useLecturer = () => {
   const dispatch = useDispatch();
   const statusAddLecturer = useSelector(selectStatusAddLecturer);
@@ -40,6 +45,21 @@ export const useLecturer = () => {
   const lecturer = useSelector(selectLecturers);
   const statusGetDetailLecturer = useSelector(selectStatusGetDetailLecturer);
   const detailLecturer = useSelector(selectDetailLecturer);
+  const currentLecturers = useSelector(selectCurrentLecturers);
+  const totalElements = useSelector(selectTotalElements);
+  const totalPages = useSelector(selectTotalPages);
+
+  const [filter, setFilter] = useState<IRequestSearchLecturer>({
+    name: "",
+    majorId: "",
+    subMajorId: "",
+    title: "",
+    email: "",
+    position: "",
+    page: 0,
+    size: 9,
+  });
+
   const handleChangeAddLecturer = (value: boolean) => {
     dispatch(setIsAddLecturer(value));
   };
@@ -51,7 +71,7 @@ export const useLecturer = () => {
   };
 
   const getLecturers = () => {
-    dispatch(getLecturerRequest());
+    dispatch(getLecturerRequest(filter));
   };
   const addLecturer = (data: IRequestCreateLecturer) => {
     dispatch(addLecturerRequest(data));
@@ -68,7 +88,14 @@ export const useLecturer = () => {
   const getDetailLecturer = (id: number) => {
     dispatch(getDetailLecturerRequest(id));
   };
+
   return {
+    currentLecturers,
+    filter,
+    setFilter,
+    totalElements,
+    totalPages,
+
     statusAddLecturer,
     statusEditLecturer,
     statusDeleteLecturer,
