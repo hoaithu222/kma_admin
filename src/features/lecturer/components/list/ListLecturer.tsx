@@ -22,7 +22,7 @@ export default function ListLecturer() {
     statusGetLecturer,
     handleChangeIdDeleteLecturer,
     handleChangeEditLecturer,
-    currentLecturers,
+
     totalElements,
     totalPages,
 
@@ -55,17 +55,13 @@ export default function ListLecturer() {
   const handlePageChange = (page: number) => {
     setFilter((prev) => ({ ...prev, page }));
   };
-  // lọc danh sách theo displayOrder
-  const sortedLecturers = [...currentLecturers].sort(
-    (a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0)
-  );
 
   return (
     <div className="p-6 min-h-screen bg-background-base">
       <div className="mx-auto max-w-7xl">
         {/* Lecturer Cards */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {sortedLecturers.map((lecturer) => (
+          {lecturer.map((lecturer) => (
             <div
               key={lecturer.id}
               className="overflow-hidden rounded-2xl shadow-lg transition-all duration-300 transform bg-background-elevated hover:shadow-2xl hover:-translate-y-2"

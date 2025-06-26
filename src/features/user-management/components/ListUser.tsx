@@ -85,20 +85,20 @@ const ListUser = () => {
       key: "action",
       title: "Hành động",
       width: "100px",
-      render: (value: any, _record: any, _index: number) => {
+      render: (_value: any, record: any, _index: number) => {
         return (
           <div className="flex gap-2">
             <Button
               variant="success"
               size="small"
               iconLeft={<EditIcon className="w-4 h-4" />}
-              onClick={() => handleEditClick(value)}
+              onClick={() => handleEditClick(record)}
             />
             <Button
               variant="secondary"
               size="small"
               iconLeft={<Trash2Icon className="w-4 h-4" />}
-              onClick={() => handleDeleteClick(value)}
+              onClick={() => handleDeleteClick(record)}
             />
           </div>
         );

@@ -10,6 +10,7 @@ export interface IRequestSearchLecturer {
   position: string;
   page: number;
   size: number;
+  ordered: boolean;
 }
 
 export interface IRequestGetLecturerById {

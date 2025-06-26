@@ -11,42 +11,35 @@ import useSubmajor from "@/features/submajor/hooks/useSubmajor";
 import UploadImage from "@/foundation/components/upload/UploadImage";
 import { toast } from "react-toastify";
 import CustomReactQuill from "@/foundation/components/inputs/CustomReactQuill";
-import OrderInput, {
-  OrderItem,
-} from "@/foundation/components/inputs/OrderInput";
+import OrderInput from "@/foundation/components/inputs/OrderInput";
 
 export default function AddLecturer() {
-  const {
-    isAddLecturer,
-    handleChangeAddLecturer,
-    addLecturer,
-    currentLecturers,
-  } = useLecturer();
+  const { isAddLecturer, handleChangeAddLecturer, addLecturer } = useLecturer();
   const { majorData, getMajors } = useMajor();
   const { subMajorWithMajor, getSubMajorWithMajor } = useSubmajor();
-  const order = currentLecturers.map((lecturer) => {
-    return {
-      id: lecturer.id,
-      order: lecturer.displayOrder,
-      label: lecturer.name,
-    };
-  });
-  const [orders, setOrders] = useState<OrderItem[]>(order as OrderItem[]);
-  const [newItemOrder, setNewItemOrder] = useState<number | undefined>();
+  // const order = currentLecturers.map((lecturer) => {
+  //   return {
+  //     id: lecturer.id,
+  //     order: lecturer.displayOrder,
+  //     label: lecturer.name,
+  //   };
+  // });
+  // const [orders, setOrders] = useState<OrderItem[]>(order as OrderItem[]);
+  // const [newItemOrder, setNewItemOrder] = useState<number | undefined>();
   // const [editingItemId, setEditingItemId] = useState<number | null>(null);
   // const [editingOrder, setEditingOrder] = useState<number | undefined>();
 
-  const handleAddItem = () => {
-    if (newItemOrder !== undefined) {
-      const newItem: OrderItem = {
-        id: Date.now(),
-        order: newItemOrder,
-        label: `New Item ${newItemOrder}`,
-      };
-      setOrders([...orders, newItem]);
-      setNewItemOrder(undefined);
-    }
-  };
+  // const handleAddItem = () => {
+  //   if (newItemOrder !== undefined) {
+  //     const newItem: OrderItem = {
+  //       id: Date.now(),
+  //       order: newItemOrder,
+  //       label: `New Item ${newItemOrder}`,
+  //     };
+  //     setOrders([...orders, newItem]);
+  //     setNewItemOrder(undefined);
+  //   }
+  // };
   // const handleEditOrder = (itemId: number, newOrder: number | undefined) => {
   //   if (newOrder !== undefined) {
   //     setOrders(
@@ -333,21 +326,16 @@ export default function AddLecturer() {
               <div className="flex-1">
                 <OrderInput
                   label="Thứ tự sắp xếp"
-                  value={newItemOrder}
-                  existingOrders={orders}
-                  onChange={(value, _isValid) => setNewItemOrder(value)}
-                  showOrderList={true}
-                  autoSuggest={true}
+                  value={formData.displayOrder}
+                  onChange={(value, _isValid) =>
+                    setFormData((prevFormData) => ({
+                      ...prevFormData,
+                      displayOrder: value,
+                    }))
+                  }
                   fullWidth
                 />
               </div>
-              <button
-                onClick={handleAddItem}
-                disabled={newItemOrder === undefined}
-                className="px-4 py-2 h-10 text-white bg-blue-500 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Thêm
-              </button>
             </div>
           </div>
 
