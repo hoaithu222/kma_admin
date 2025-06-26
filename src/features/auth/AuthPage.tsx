@@ -4,7 +4,7 @@ import LoginPage from "./components/LoginPage";
 
 const AuthPage = () => {
   return (
-    <div className="container flex items-center justify-center h-screen mx-auto">
+    <div className="container flex justify-center items-center mx-auto h-screen">
       <LoginPage />
     </div>
   );

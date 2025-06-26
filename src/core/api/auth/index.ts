@@ -9,6 +9,7 @@ import {
   IResponseLogout,
   IResponseRegister,
   IRegister,
+  IRequestGetList,
 } from "./types";
 import { AUTH_PATH } from "./paths";
 import Axios from "@/core/base/Axios";
@@ -46,11 +47,12 @@ export const deleteUser = async (id: string) => {
   }
 };
 
-export const getUser = async (active: boolean) => {
+export const getUser = async (data: IRequestGetList) => {
   try {
-    const response = await Axios.post<IResponseGetUser>(AUTH_PATH.getUser, {
-      active,
-    });
+    const response = await Axios.post<IResponseGetUser>(
+      AUTH_PATH.getUser,
+      data
+    );
     return { ok: true, data: response.data };
   } catch (error) {
     return { ok: false, error: error };

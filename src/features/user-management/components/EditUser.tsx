@@ -15,7 +15,7 @@ const EditUser = () => {
   const editUser = useSelector(selectEditUser);
   const { handleUpdateUser, updateUser } = useUser();
   const [form, setForm] = useState<IRequestUpdateUser>({
-    username: editUser?.username || "",
+    fullName: editUser?.fullName || "",
     password: "",
   });
 
@@ -23,16 +23,21 @@ const EditUser = () => {
   useEffect(() => {
     if (editUser) {
       setForm({
-        username: editUser.username || "",
+        fullName: editUser.fullName || "",
         password: "",
+        active: editUser.active,
       });
     }
   }, [editUser]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editUser?.id && form.username.trim()) {
-      updateUser(editUser.id, form.username);
+    if (editUser?.id && form.fullName?.trim()) {
+      updateUser(editUser.id, {
+        fullName: form.fullName,
+        password: form.password,
+        active: form.active,
+      });
       handleUpdateUser(false);
     }
   };
@@ -47,14 +52,14 @@ const EditUser = () => {
     >
       <form className="space-y-4" onSubmit={handleSubmit}>
         <Input
-          placeholder="Tên người dùng"
+          placeholder="Họ và tên"
           fullWidth
-          label="Tên người dùng"
+          label="Họ và tên"
           className="w-full"
-          name="username"
+          name="fullName"
           iconLeft={<User className="w-4 h-4" />}
-          value={form.username}
-          onChange={(e) => setForm({ ...form, username: e.target.value })}
+          value={form.fullName}
+          onChange={(e) => setForm({ ...form, fullName: e.target.value })}
           required
         />
         <Input

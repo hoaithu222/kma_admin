@@ -254,6 +254,29 @@ export const NavbarItems: NavbarItem[] = [
       },
     ],
   },
+  // chuyên ngành
+  {
+    label: "Chuyên ngành",
+    icon: SchoolIcon,
+    path: "/majors-it",
+    children: [
+      {
+        label: "Ngành công nghệ thông tin",
+        icon: DatabaseIcon,
+        path: "/majors-it",
+      },
+      {
+        label: "Ngành an toàn thông tin",
+        icon: ShieldIcon,
+        path: "/majors-security",
+      },
+      {
+        label: "Ngành điện tử viễn thông",
+        icon: VideoIcon,
+        path: "/majors-telecommunication",
+      },
+    ],
+  },
   // // đào tạo
   // {
   //   label: "Đào tạo",

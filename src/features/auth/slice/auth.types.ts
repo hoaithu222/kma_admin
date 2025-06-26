@@ -19,6 +19,7 @@ export interface IUser {
   active: boolean;
   role: string;
   token: string;
+  fullName: string;
   createdAt: string;
   session: ISession;
 }

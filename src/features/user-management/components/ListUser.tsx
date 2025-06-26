@@ -3,7 +3,7 @@ import { useUser } from "../hooks/useUser";
 import Empty from "@/foundation/components/empty/Empty";
 import Table from "@/foundation/components/table/Table";
 import Button from "@/foundation/components/buttons/Button";
-import { EditIcon, Trash2Icon } from "lucide-react";
+import { EditIcon, LockIcon, Trash2Icon, UnlockIcon } from "lucide-react";
 import EditUser from "./EditUser";
 import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
 import {
@@ -24,11 +24,16 @@ const ListUser = () => {
     isUpdateUser,
     isDeleteUser,
     isGetUser,
+    statusUpdate,
+    statusDelete,
+    statusAdd,
     idDelete,
+
+    handleChangeActive,
   } = useUser();
 
   useEffect(() => {
-    getUser(true, 0, 10);
+    getUser();
   }, []);
 
   const handleDeleteClick = (user: any) => {
@@ -47,6 +52,10 @@ const ListUser = () => {
     }
     handleDeleteUser(false);
   };
+  // call lại getUser khi sửa hoặc xóa
+  useEffect(() => {
+    getUser();
+  }, [statusUpdate, statusDelete, statusAdd]);
 
   const columns = [
     {
@@ -57,9 +66,18 @@ const ListUser = () => {
         return <div>{value}</div>;
       },
     },
+
     {
       key: "username",
       title: "Tên người dùng",
+      width: "100px",
+      render: (value: any, _record: any, _index: number) => {
+        return <div>{value}</div>;
+      },
+    },
+    {
+      key: "fullName",
+      title: "Họ và tên",
       width: "100px",
       render: (value: any, _record: any, _index: number) => {
         return <div>{value}</div>;
@@ -73,6 +91,7 @@ const ListUser = () => {
         return <div>{value}</div>;
       },
     },
+
     {
       key: "createdAt",
       title: "Ngày tạo",
@@ -99,6 +118,19 @@ const ListUser = () => {
               size="small"
               iconLeft={<Trash2Icon className="w-4 h-4" />}
               onClick={() => handleDeleteClick(record)}
+            />
+            {/* active user or not */}
+            <Button
+              variant="secondary"
+              size="small"
+              iconLeft={
+                record.active ? (
+                  <LockIcon className="w-4 h-4" />
+                ) : (
+                  <UnlockIcon className="w-4 h-4" />
+                )
+              }
+              onClick={() => handleChangeActive(record)}
             />
           </div>
         );

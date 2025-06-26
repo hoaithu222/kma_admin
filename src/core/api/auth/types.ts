@@ -19,21 +19,26 @@ export interface IResponseDataLogin {
   token: string;
   createdAt: string;
   session: ISession;
+  fullName: string;
 }
 
 export interface IRequestUpdateUser {
-  username: string;
+  username?: string;
   password?: string;
+  active?: boolean;
+  fullName?: string;
 }
 export interface IRequestLogout {
   sessionId: string;
 }
 export interface IRegister {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
+  fullName?: string;
+  active?: boolean;
 }
 export interface IRequestGetList {
-  active: boolean;
+  active?: boolean;
   page?: number;
   size?: number;
 }

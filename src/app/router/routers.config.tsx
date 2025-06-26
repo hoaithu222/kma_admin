@@ -84,6 +84,17 @@ const NewNotiPage = lazy(() => import("@/features/new/NewNotiPage"));
 const NewCooperation = lazy(() => import("@/features/new/NewCooperation"));
 const NewResearch = lazy(() => import("@/features/new/NewResearch"));
 
+// chuyên ngành
+const MajorsIt = lazy(
+  () => import("@/foundation/components/major/pages/MajorsIt")
+);
+const MajorTele = lazy(
+  () => import("@/foundation/components/major/pages/MajorTele")
+);
+const MajorSecurity = lazy(
+  () => import("@/foundation/components/major/pages/MajorSecurity")
+);
+
 const defaultOptions = {
   requireAuth: true,
   hideInMenu: false,
@@ -352,6 +363,25 @@ export const ROUTE = {
   newsResearch: {
     path: "/news-research",
     element: <NewResearch />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // chuyên ngành
+  majorsIt: {
+    path: "/majors-it",
+    element: <MajorsIt />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  majorsTele: {
+    path: "/majors-telecommunication",
+    element: <MajorTele />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  majorsSecurity: {
+    path: "/majors-security",
+    element: <MajorSecurity />,
     layout: "main",
     options: defaultAuthOptions,
   },

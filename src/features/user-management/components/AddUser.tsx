@@ -12,18 +12,19 @@ import { IRegister } from "@/core/api/auth/types";
 const AddUser = () => {
   const { addUser, handleAddUser } = useUser();
   const [form, setForm] = useState<IRegister>({
-    username: "",
     password: "",
+    username: "",
+    fullName: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Ngăn reload trang
-    if (form.username.trim() && form.password.trim()) {
-      addUser(form.username, form.password);
+    if (form.fullName?.trim() && form.password?.trim()) {
+      addUser(form.username || "", form.password, form.fullName || "");
       // Không đóng modal ngay, để saga xử lý
       // handleAddUser(false);
       // Reset form
-      setForm({ username: "", password: "" });
+      setForm({ fullName: "", password: "", username: "" });
     }
   };
 
@@ -37,9 +38,9 @@ const AddUser = () => {
     >
       <form className="space-y-4" onSubmit={handleSubmit}>
         <Input
-          placeholder="Tên người dùng"
+          placeholder="Tên đăng nhập"
           fullWidth
-          label="Tên người dùng"
+          label="Tên đăng nhập"
           className="w-full"
           name="username"
           iconLeft={<User className="w-4 h-4" />}
@@ -47,6 +48,18 @@ const AddUser = () => {
           onChange={(e) => setForm({ ...form, username: e.target.value })}
           required
         />
+        <Input
+          placeholder="Họ và tên"
+          fullWidth
+          label="Họ và tên"
+          className="w-full"
+          name="fullName"
+          iconLeft={<User className="w-4 h-4" />}
+          value={form.fullName}
+          onChange={(e) => setForm({ ...form, fullName: e.target.value })}
+          required
+        />
+
         <Input
           placeholder="Mật khẩu"
           fullWidth

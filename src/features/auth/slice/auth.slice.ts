@@ -17,6 +17,7 @@ const initialState: IAuthState = {
     role: "",
     token: "",
     createdAt: "",
+    fullName: "",
     session: {
       sessionId: "",
       userId: "",

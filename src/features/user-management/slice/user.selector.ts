@@ -1,6 +1,7 @@
 import { RootState } from "@/app/store";
 import { IUserState } from "./user.types";
 import { createSelector } from "@reduxjs/toolkit";
+import { ReduxStateType } from "@/app/store/types";
 
 export const selectUser = (state: RootState) => state.user as IUserState;
 
@@ -39,4 +40,18 @@ export const selectIsGetUser = createSelector(
 export const selectEditUser = createSelector(
   [selectUser],
   (state) => state.editUser
+);
+// lây trạng thái thành công
+export const selectStatusAdd = createSelector(
+  [selectUser],
+  (state) => state.statusAdd === ReduxStateType.SUCCESS
+);
+
+export const selectStatusUpdate = createSelector(
+  [selectUser],
+  (state) => state.statusUpdate === ReduxStateType.SUCCESS
+);
+export const selectStatusDelete = createSelector(
+  [selectUser],
+  (state) => state.statusDelete === ReduxStateType.SUCCESS
 );
