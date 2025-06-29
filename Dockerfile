@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 
 # Cài đặt các dependencies
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Build ứng dụng Vite (output sẽ nằm trong thư mục dist)
 RUN npm run build
