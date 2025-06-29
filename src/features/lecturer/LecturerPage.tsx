@@ -4,9 +4,15 @@ import { useLecturer } from "./hooks/useLecturer";
 import clsx from "clsx";
 import { PlusIcon } from "lucide-react";
 import ListLecturer from "./components/list/ListLecturer";
+import { useMajor } from "../major/hooks/useMajor";
+import { useEffect } from "react";
 
 const LecturerPage = () => {
   const { handleChangeAddLecturer, isAddLecturer } = useLecturer();
+  const { getMajors } = useMajor();
+  useEffect(() => {
+    getMajors();
+  }, []);
   return (
     <div
       className={clsx(

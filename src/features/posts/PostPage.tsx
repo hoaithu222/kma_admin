@@ -5,11 +5,20 @@ import ListPost from "./components/list-post/ListPost";
 import { usePost } from "./hooks/usePost";
 import AddPost from "./components/add-post/AddPost";
 import EditPosts from "./components/edit/EditPosts";
-
 import { ResponseAddArticle } from "@/core/api/posts/types";
+import { useEffect } from "react";
 
 const PostPage = () => {
-  const { isAddPost, handleAddPost, isEditPost, editPost } = usePost();
+  const {
+    isAddPost,
+    handleAddPost,
+    isEditPost,
+    editPost,
+    handleGetCategoryAndSubCategory,
+  } = usePost();
+  useEffect(() => {
+    handleGetCategoryAndSubCategory();
+  }, []);
 
   return (
     <div

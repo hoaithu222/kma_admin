@@ -134,6 +134,7 @@ export default function AddLecturer() {
   // Tách riêng effect cho getMajors
   useEffect(() => {
     getMajors();
+    getSubMajorWithMajor(0);
   }, []);
 
   // Effect riêng cho việc set default majorId khi majorData thay đổi

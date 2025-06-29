@@ -256,33 +256,33 @@ export const NavbarItems: NavbarItem[] = [
       },
     ],
   },
-  // chuyên ngành
-  {
-    label: "Chuyên ngành",
-    icon: SchoolIcon,
-    path: "/majors-it",
-    role: "ADMIN",
-    children: [
-      {
-        label: "Ngành công nghệ thông tin",
-        icon: DatabaseIcon,
-        path: "/majors-it",
-        role: "ADMIN",
-      },
-      {
-        label: "Ngành an toàn thông tin",
-        icon: ShieldIcon,
-        path: "/majors-security",
-        role: "ADMIN",
-      },
-      {
-        label: "Ngành điện tử viễn thông",
-        icon: VideoIcon,
-        path: "/majors-telecommunication",
-        role: "ADMIN",
-      },
-    ],
-  },
+  // // chuyên ngành
+  // {
+  //   label: "Chuyên ngành",
+  //   icon: SchoolIcon,
+  //   path: "/majors-it",
+  //   role: "ADMIN",
+  //   children: [
+  //     {
+  //       label: "Ngành công nghệ thông tin",
+  //       icon: DatabaseIcon,
+  //       path: "/majors-it",
+  //       role: "ADMIN",
+  //     },
+  //     {
+  //       label: "Ngành an toàn thông tin",
+  //       icon: ShieldIcon,
+  //       path: "/majors-security",
+  //       role: "ADMIN",
+  //     },
+  //     {
+  //       label: "Ngành điện tử viễn thông",
+  //       icon: VideoIcon,
+  //       path: "/majors-telecommunication",
+  //       role: "ADMIN",
+  //     },
+  //   ],
+  // },
 
   // Giới thiệu
   {

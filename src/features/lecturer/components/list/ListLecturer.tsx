@@ -28,6 +28,9 @@ export default function ListLecturer() {
 
     filter,
     setFilter,
+    statusAddLecturer,
+    statusEditLecturer,
+    statusDeleteLecturer,
   } = useLecturer();
   const [lecturerEdit, setLecturerEdit] = useState<dataLecturer>();
 
@@ -48,7 +51,7 @@ export default function ListLecturer() {
 
   useEffect(() => {
     getLecturers();
-  }, [filter]);
+  }, [filter, statusAddLecturer, statusEditLecturer, statusDeleteLecturer]);
   if (statusGetLecturer === ReduxStateType.LOADING) {
     return <LecturerSkeleton />;
   }
