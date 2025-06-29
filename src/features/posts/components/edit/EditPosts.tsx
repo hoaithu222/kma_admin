@@ -61,8 +61,6 @@ export default function EditPosts({ post }: EditPostsProps) {
   const subCategoriesWithCategoryId = useSelector(
     subCategoriesWithCategoryIdSelector
   );
-  console.log(subCategoriesWithCategoryId);
-  console.log(post);
 
   const tags = useSelector(selectTags);
   const [formData, setFormData] = useState<FormData>({

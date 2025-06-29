@@ -19,11 +19,9 @@ export interface ResponseUploads {
 
 export const uploadFileFromQuill = async (file: File) => {
   try {
-    console.log("Creating FormData for file:", file.name);
     const formData = new FormData();
     formData.append("files", file);
 
-    console.log("Calling upload API directly...");
     // Gọi API trực tiếp như UploadFile component
     const response = await Axios.post<ResponseUploads>(
       UPLOAD_PATH.upload,
@@ -35,13 +33,10 @@ export const uploadFileFromQuill = async (file: File) => {
       }
     );
 
-    console.log("Upload API response:", response);
-
     if (response.data?.data) {
       const uploadResult: ResponseUpload[] = response.data.data;
       const fileData = uploadResult[0];
 
-      console.log("File data from response:", fileData);
       return {
         id: fileData.id,
         url: `${import.meta.env.VITE_API_URL_FILE}${fileData.filePath}`,

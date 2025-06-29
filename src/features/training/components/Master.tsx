@@ -258,7 +258,6 @@ const Master = () => {
 
       if (response.ok) {
         setSubmitStatus("success");
-        console.log("Data saved successfully:", data);
       } else {
         throw new Error("Failed to save");
       }

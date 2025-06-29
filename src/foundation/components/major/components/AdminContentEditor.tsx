@@ -84,8 +84,6 @@ const AdminContentEditor = () => {
     const isCurrentlyEditing = editingField === fieldId;
 
     const handleSave = () => {
-      // Here you would save the data
-      console.log(`Saving ${fieldId}:`, tempValue);
       stopEditing();
     };
 
@@ -374,68 +372,28 @@ const AdminContentEditor = () => {
                 />
               </div>
 
-              <ListEditor
-                title="Các mục tiêu cụ thể"
-                items={[]}
-                onAdd={(item: string) => console.log("Add objective:", item)}
-                onEdit={(index: number, item: string) =>
-                  console.log("Edit objective:", index, item)
-                }
-                onDelete={(index: number) =>
-                  console.log("Delete objective:", index)
-                }
-              />
+              <ListEditor title="Các mục tiêu cụ thể" items={[]} />
             </div>
 
             <div className="p-6 rounded-lg border bg-card-bg border-border-primary">
               <h3 className="mb-4 text-lg font-semibold text-text-primary">
                 Phẩm chất chính trị và đạo đức
               </h3>
-              <ListEditor
-                title="Các yêu cầu về phẩm chất"
-                items={[]}
-                onAdd={(item: string) => console.log("Add quality:", item)}
-                onEdit={(index: number, item: string) =>
-                  console.log("Edit quality:", index, item)
-                }
-                onDelete={(index: number) =>
-                  console.log("Delete quality:", index)
-                }
-              />
+              <ListEditor title="Các yêu cầu về phẩm chất" items={[]} />
             </div>
 
             <div className="p-6 rounded-lg border bg-card-bg border-border-primary">
               <h3 className="mb-4 text-lg font-semibold text-text-primary">
                 Kiến thức
               </h3>
-              <ListEditor
-                title="Các yêu cầu về kiến thức"
-                items={[]}
-                onAdd={(item: string) => console.log("Add knowledge:", item)}
-                onEdit={(index: number, item: string) =>
-                  console.log("Edit knowledge:", index, item)
-                }
-                onDelete={(index: number) =>
-                  console.log("Delete knowledge:", index)
-                }
-              />
+              <ListEditor title="Các yêu cầu về kiến thức" items={[]} />
             </div>
 
             <div className="p-6 rounded-lg border bg-card-bg border-border-primary">
               <h3 className="mb-4 text-lg font-semibold text-text-primary">
                 Kỹ năng chuyên môn
               </h3>
-              <ListEditor
-                title="Các kỹ năng cần đạt được"
-                items={[]}
-                onAdd={(item: string) => console.log("Add skill:", item)}
-                onEdit={(index: number, item: string) =>
-                  console.log("Edit skill:", index, item)
-                }
-                onDelete={(index: number) =>
-                  console.log("Delete skill:", index)
-                }
-              />
+              <ListEditor title="Các kỹ năng cần đạt được" items={[]} />
             </div>
           </div>
         );
@@ -473,25 +431,6 @@ const AdminContentEditor = () => {
                         <ListEditor
                           title={`Các môn học học kỳ ${semester}`}
                           items={[]}
-                          onAdd={(item: string) =>
-                            console.log(
-                              `Add course to semester ${semester}:`,
-                              item
-                            )
-                          }
-                          onEdit={(index: number, item: string) =>
-                            console.log(
-                              `Edit course in semester ${semester}:`,
-                              index,
-                              item
-                            )
-                          }
-                          onDelete={(index: number) =>
-                            console.log(
-                              `Delete course from semester ${semester}:`,
-                              index
-                            )
-                          }
                         />
                       </div>
                     )}
@@ -510,17 +449,7 @@ const AdminContentEditor = () => {
                 Cơ hội nghề nghiệp
               </h2>
 
-              <ListEditor
-                title="Các lĩnh vực nghề nghiệp"
-                items={[]}
-                onAdd={(item: string) => console.log("Add career:", item)}
-                onEdit={(index: number, item: string) =>
-                  console.log("Edit career:", index, item)
-                }
-                onDelete={(index: number) =>
-                  console.log("Delete career:", index)
-                }
-              />
+              <ListEditor title="Các lĩnh vực nghề nghiệp" items={[]} />
             </div>
           </div>
         );
