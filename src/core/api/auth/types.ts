@@ -55,5 +55,3 @@ export interface IResponseDeleteUser extends IResponse<{ message: string }> {}
 export interface IResponseGetUser extends IResponse<IResponseDataLogin[]> {}
 
 export interface IResponseRegister extends IResponse<IResponseDataLogin> {}
-
-export interface IResponseLogout extends IResponse<IResponseLogout> {}

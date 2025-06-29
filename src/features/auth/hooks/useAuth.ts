@@ -5,6 +5,7 @@ import {
   selectIsLoadingLogin,
   selectIsLoadingRegister,
   selectIsLogin,
+  selectIsAuthenticated,
   selectUser,
 } from "../slice/auth.selector";
 
@@ -20,6 +21,7 @@ const useAuth = () => {
   const isLoadingLogin = useSelector(selectIsLoadingLogin);
   const isLoadingRegister = useSelector(selectIsLoadingRegister);
   const user = useSelector(selectUser);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const onSubmitLogin = (data: IRequestLogin) => {
     dispatch(loginUser(data));
@@ -29,10 +31,10 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    if (user?.id && (user?.role === "ADMIN" || user?.role === "USER")) {
+    if (isAuthenticated) {
       navigate("/");
     }
-  }, [isLogin, user]);
+  }, [isAuthenticated, navigate]);
 
   return {
     isLogin,

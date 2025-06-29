@@ -37,6 +37,9 @@ export const { slice, reducer } = createResettableSlice({
   name: AppReducerType.AUTH,
   initialState,
   reducers: {
+    setIsAuthenticated: (state, action) => {
+      state.isAuthenticated = action.payload;
+    },
     setIsLogin: (state, action) => {
       state.isLogin = action.payload;
     },
@@ -92,6 +95,7 @@ export const { slice, reducer } = createResettableSlice({
   },
 });
 export const {
+  setIsAuthenticated,
   setIsLogin,
   setIsRegister,
   setIsLoadingLogin,
