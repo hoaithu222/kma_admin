@@ -10,8 +10,10 @@ RUN npm install --legacy-peer-deps
 # Build ứng dụng Vite (output sẽ nằm trong thư mục dist)
 RUN npm run build
 
-# Giai đoạn chạy với nginx
-FROM nginx:alpine
+# Production stage
+FROM nginx:1.27.5
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy output từ bước build vào nginx để phục vụ
 COPY --from=build /app/dist /usr/share/nginx/html
