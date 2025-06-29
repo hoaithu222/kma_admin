@@ -1,0 +1,574 @@
+{
+  "programName": "Chương trình giáo dục đại học hệ Chính quy ngành An toàn thông tin",
+  "trainingLevel": "Đại học",
+  "degreeAwarded": "Cử nhân và Kỹ sư",
+  "major": "An toàn thông tin",
+  "majorName": "Mã ngành",
+  "majorCode": "7.48.02.02",
+  "trainingType": "Chính quy",
+  "degreeTitle": "Bằng cấp",
+  "programDuration": "4 năm hoặc 4,5 năm",
+  "totalCredits": "153 TC",
+  "specializations": {
+    "title": "Chuyên ngành đào tạo",
+    "KM.A.2.1": "An toàn hệ thống thông tin",
+    "KM.A.2.2.1": "Kỹ nghệ an toàn mạng",
+    "KM.A.2.3.1": "Công nghệ phần mềm an toàn"
+  },
+  "trainingObjectives": {
+    "title": "Mục tiêu đào tạo",
+    "generalObjectives": "Các chương trình đào tạo đại học chính quy ngành An toàn thông tin sẽ trang bị cho người học:",
+    "generalPoints": [
+      "Kiến thức đại cương phù hợp với khối ngành đào tạo, đảm bảo tính liên thông với các chương trình đào tạo khác của Học viện và của các cơ sở đào tạo khác.",
+      "Kiến thức cơ sở ngành An toàn thông tin để người học hiểu được cấu trúc, hoạt động của các hệ thống công nghệ thông tin, nắm bắt được các hiểm họa an toàn đối với các hệ thống công nghệ thông tin, cũng như các phương pháp để phòng chống các hiểm họa đó.",
+      "Kiến thức và kỹ năng chuyên sâu để tác nghiệp trong lĩnh vực an toàn thông tin ứng với chuyên ngành được đào tạo."
+    ],
+    "specificObjectives": {
+      "title": "Mục tiêu cụ thể",
+      "systemSecurity": {
+        "title": "Chuyên ngành An toàn hệ thống thông tin",
+        "description": "Chương trình đào tạo theo chuyên ngành An toàn hệ thống thông tin trang bị cho người học kiến thức, kỹ năng chuyên sâu để có thể: thiết kế, triển khai giải pháp đảm bảo an toàn cho một hệ thống thông tin; tư vấn giải pháp an toàn thông tin cho các cơ quan, tổ chức; vận hành các công cụ phần cứng, phần mềm nhằm đảm bảo an toàn cho hệ thống thông tin; và giải quyết các sự cố an toàn thông tin phát sinh trong quá trình vận hành hệ thống."
+      },
+      "networkSecurityEngineering": {
+        "title": "Chuyên ngành Kỹ nghệ an toàn mạng",
+        "description": "Chương trình đào tạo theo chuyên ngành Kỹ nghệ an toàn mạng trang bị cho người học kiến thức, kỹ năng chuyên sâu để có thể: tác nghiệp, triển khai các nghiệp vụ chuyên sâu liên quan đến an toàn thông tin, an toàn các hệ thống mạng như: phân tích mã độc, giám sát an toàn hệ thống thông tin, phát hiện và khai thác lỗ hổng phần mềm, đánh giá và kiểm định an toàn hệ thống thông tin, các tác vụ liên quan đến tấn công và phòng thủ hệ thống mạng… Ngoài ra, chương trình đào tạo này cũng cung cấp khả năng thiết kế, phát triển, triển khai các giải pháp đảm bảo an toàn thông tin; tư vấn các giải pháp công nghệ an toàn thông tin; vận hành các công cụ phần cứng, phần mềm nhằm đảm bảo an toàn cho hệ thống thông tin; đồng thời có khả năng giải quyết các sự cố an toàn thông tin phát sinh trong quá trình vận hành hệ thống."
+      },
+      "secureSoftwareTechnology": {
+        "title": "Chuyên ngành Công nghệ phần mềm an toàn",
+        "description": "Chương trình đào tạo theo chuyên ngành Công nghệ phần mềm an toàn trang bị cho người học kiến thức cơ bản và chuyên sâu về công nghệ phần mềm, công nghệ phần mềm an toàn, giải pháp công nghệ an toàn: quy trình xây dựng, quản lý và bảo trì phần mềm an toàn, giải pháp công nghệ an toàn; phân tích, thiết kế và quản lý các dự án phần mềm an toàn/giải pháp công nghệ an toàn. Kỹ sư chuyên ngành Công nghệ phần mềm an toàn có khả năng tổ chức thực hiện và quản lý được các công việc trong lĩnh vực công nghệ phần mềm an toàn, có khả năng xây dựng mô hình và áp dụng các nguyên tắc của công nghệ phần mềm an toàn vào thực tế; Phân tích, kiểm chứng, kiểm thử, đánh giá phần mềm an toàn."
+      }
+    }
+  },
+  "admissionInfo": {
+    "title": "Thông tin tuyển sinh",
+    "targetApplicantsTitle": "Đối tượng tuyển sinh",
+    "targetApplicants": "Công dân Việt Nam trúng tuyển kỳ thi (hoặc xét tuyển) đại học.",
+    "admissionMethodTitle": "Phương thức tuyển sinh",
+    "admissionMethod": "Việc xét tuyển căn cứ kết quả thi của kỳ thi THPT quốc gia. Điểm xét tuyển là tổng điểm của một trong ba tổ hợp gồm 03 môn/bài thi (kỳ thi THPT quốc gia): Toán, Vật lý, Hóa học (A00); Toán, Vật lý, Tiếng Anh (A01); Toán, Khoa học tự nhiên, Tiếng Anh (D90)."
+  },
+  "additionalInfo": {
+    "title": "Thông tin bổ sung",
+    "graduationRequirementsTitle": "Yêu cầu tốt nghiệp",
+    "outcomeReferenceTitle": "Tham chiếu chuẩn đầu ra"
+  },
+  "tab": {
+    "generalInfo": "Thông tin chung",
+    "trainingObjectives": "Mục tiêu đào tạo",
+    "specificObjectives": "Mục tiêu cụ thể",
+    "programInfo": "Cấu trúc chương trình",
+    "professionalInfo": "Nghề nghiệp",
+    "admissionInfo": "Thông tin tuyển sinh",
+    "tuitionFee": "Học phí",
+    "document": "Tài liệu đào tạo",
+    "graduationRequirementsDetails": "Thông tin bổ sung"
+  },
+  "graduationRequirements": "Theo quy chế đào tạo trình độ đại học của Bộ Giáo dục và Đào tạo và các quy định của Học viện Kỹ thuật mật mã.",
+  "outcomeReference": "Chuẩn đầu ra và chi tiết chương trình đào tạo xem tại Chương trình đào tạo ngành An toàn thông tin.",
+  "programInfoDetails": {
+    "title": "Chương trình đào tạo chi tiết theo từng học kỳ",
+    "description": "Chương trình đào tạo chi tiết theo từng học kỳ",
+    "totalCourses": "Tổng số môn học",
+    "totalCredits": "Tổng số tín chỉ",
+    "semesters": "Tổng số học kỳ",
+    "semester": "Học kỳ",
+    "credits": "Tín chỉ",
+    "courses": "Môn học",
+    "electives": "Học phần chuyên ngành tự chọn",
+    "specializations": "Chuyên ngành đào tạo",
+    "informationSystemSecurity": "Chuyên ngành An toàn hệ thống thông tin",
+    "networkSecurityEngineering": "Chuyên ngành Kỹ nghệ an toàn mạng",
+    "secureSoftwareTechnology": "Chuyên ngành Công nghệ phần mềm an toàn"
+  },
+  "courseCategory": {
+    "legend": "Phân loại môn học",
+    "mandatory": "Bắt buộc chung",
+    "supportive": "Bổ trợ ngành",
+    "specialized": "Chuyên ngành",
+    "professional": "Giáo dục chuyên nghiệp",
+    "mandatoryGroup": "Bắt buộc chung nhóm ngành",
+    "foundation": "Cơ sở ngành",
+    "internship": "Thực tập",
+    "thesis": "Luận văn tốt nghiệp",
+    "other": "Khác"
+  },
+  "common": {
+    "credits": "tín chỉ",
+    "courses": "môn học",
+    "totalCredits": "Tổng tín chỉ"
+  },
+  "programInfo": {
+    "semester1": {
+      "title": "Học kỳ 1",
+      "courses": [
+        {
+          "name": "Giáo dục quốc phòng an ninh",
+          "credits": 8
+        },
+        {
+          "name": "Tin học đại cương",
+          "credits": 2
+        },
+        {
+          "name": "Triết học Mác –Lênin",
+          "credits": 3
+        },
+        {
+          "name": "Giải tích 1",
+          "credits": 3
+        },
+        {
+          "name": "Đại số tuyến tính",
+          "credits": 3
+        },
+        {
+          "name": "Giáo dục thể chất 1",
+          "credits": 1
+        },
+        {
+          "name": "Pháp luật đại cương",
+          "credits": 2
+        }
+      ]
+    },
+    "semester2": {
+      "title": "Học kỳ 2",
+      "courses": [
+        {
+          "name": "Giải tích 2",
+          "credits": 3
+        },
+        {
+          "name": "Vật lý đại cương 1",
+          "credits": 3
+        },
+        {
+          "name": "Kinh tế chính trị Mác – Lênin",
+          "credits": 2
+        },
+        {
+          "name": "Chủ Nghĩa xã hội Khoa học",
+          "credits": 2
+        },
+        {
+          "name": "Giáo dục thể chất 2",
+          "credits": 1
+        },
+        {
+          "name": "Tư tưởng Hồ Chí Minh",
+          "credits": 2
+        },
+        {
+          "name": "Lập trình căn bản",
+          "credits": 3
+        },
+        {
+          "name": "Pháp luật VN đại cương",
+          "credits": 2
+        },
+        {
+          "name": "Kỹ năng mềm",
+          "credits": 2
+        }
+      ]
+    },
+    "semester3": {
+      "title": "Học kỳ 3",
+      "courses": [
+        {
+          "name": "Vật lý đại cương 2",
+          "credits": 3
+        },
+        {
+          "name": "Toán xác suất thống kê",
+          "credits": 2
+        },
+        {
+          "name": "Toán chuyên đề",
+          "credits": 3
+        },
+        {
+          "name": "Tiếng Anh 1",
+          "credits": 3
+        },
+        {
+          "name": "Cấu trúc dữ liệu và giải thuật",
+          "credits": 2
+        },
+        {
+          "name": "Mạng máy tính",
+          "credits": 3
+        },
+        {
+          "name": "Toán rời rạc",
+          "credits": 2
+        },
+        {
+          "name": "Phương pháp tính",
+          "credits": 2
+        },
+        {
+          "name": "Giáo dục thể chất 3",
+          "credits": 1
+        },
+        {
+          "name": "Lịch sử Đảng Cộng sản Việt Nam",
+          "credits": 2
+        }
+      ]
+    },
+    "semester4": {
+      "title": "Học kỳ 4",
+      "courses": [
+        {
+          "name": "Tiếng Anh 2",
+          "credits": 3
+        },
+        {
+          "name": "Kỹ thuật truyền số liệu",
+          "credits": 2
+        },
+        {
+          "name": "Cơ sở lý thuyết truyền tin",
+          "credits": 2
+        },
+        {
+          "name": "Lý thuyết cơ sở dữ liệu",
+          "credits": 2
+        },
+        {
+          "name": "Hệ quản trị cơ sở dữ liệu",
+          "credits": 2
+        },
+        {
+          "name": "Quản trị mạng máy tính",
+          "credits": 2
+        },
+        {
+          "name": "Kiến trúc máy tính và hợp ngữ",
+          "credits": 3
+        }
+      ]
+    },
+    "semester5": {
+      "title": "Học kỳ 5",
+      "courses": [
+        {
+          "name": "Tiếng Anh 3",
+          "credits": 4
+        },
+        {
+          "name": "Lập trình hướng đối tượng",
+          "credits": 2
+        },
+        {
+          "name": "Phân tích, thiết kế hệ thống thông tin",
+          "credits": 2
+        },
+        {
+          "name": "Nguyên lý hệ điều hành",
+          "credits": 2
+        },
+        {
+          "name": "Linux và phần mềm nguồn mở",
+          "credits": 2
+        },
+        {
+          "name": "Thuật toán trong an toàn thông tin",
+          "credits": 2
+        },
+        {
+          "name": "Nhập môn mật mã học",
+          "credits": 3
+        }
+      ]
+    },
+    "semester6": {
+      "title": "Học kỳ 6",
+      "courses": [
+        {
+          "name": "Tiếng Anh chuyên ngành",
+          "credits": 4
+        },
+        {
+          "name": "Chuyên đề cơ sở",
+          "credits": 2
+        },
+        {
+          "name": "Cơ sở an toàn thông tin",
+          "credits": 3
+        },
+        {
+          "name": "An toàn mạng máy tính",
+          "credits": 3
+        },
+        {
+          "name": "Kỹ thuật lập trình",
+          "credits": 2
+        },
+        {
+          "name": "An toàn cơ sở dữ liệu",
+          "credits": 2
+        },
+        {
+          "name": "Giao thức an toàn mạng",
+          "credits": 2
+        }
+      ]
+    },
+    "semester7": {
+      "title": "Học kỳ 7",
+      "informationSystemSecurity": {
+        "title": "Chuyên ngành An toàn hệ thống thông tin",
+        "courses": [
+          {
+            "name": "Công nghệ web an toàn",
+            "credits": 3
+          },
+          {
+            "name": "Quản trị an toàn hệ thống",
+            "credits": 3
+          },
+          {
+            "name": "An toàn mạng không dây và di động",
+            "credits": 2
+          },
+          {
+            "name": "Phân tích thiết kế an toàn mạng máy tính",
+            "credits": 2
+          },
+          {
+            "name": "Mã độc",
+            "credits": 3
+          },
+          {
+            "name": "Chuyên đề An toàn hệ thống thông tin",
+            "credits": 2
+          }
+        ]
+      },
+      "networkSecurityEngineering": {
+        "title": "Chuyên ngành Kỹ nghệ an toàn mạng",
+        "courses": [
+          {
+            "name": "Công nghệ web an toàn",
+            "credits": 3
+          },
+          {
+            "name": "An toàn mạng không dây và di động",
+            "credits": 2
+          },
+          {
+            "name": "Mã độc",
+            "credits": 3
+          },
+          {
+            "name": "Khai thác lỗ hổng phần mềm",
+            "credits": 2
+          },
+          {
+            "name": "Tấn công và phòng thủ hệ thống",
+            "credits": 3
+          },
+          {
+            "name": "Chuyên đề Kỹ nghệ an toàn mạng",
+            "credits": 2
+          }
+        ]
+      },
+      "secureSoftwareTechnology": {
+        "title": "Chuyên ngành Công nghệ phần mềm an toàn",
+        "courses": [
+          {
+            "name": "Công nghệ web an toàn",
+            "credits": 3
+          },
+          {
+            "name": "Công nghệ phần mềm",
+            "credits": 3
+          },
+          {
+            "name": "Thiết kế giao diện người dùng",
+            "credits": 2
+          },
+          {
+            "name": "Đặc tả hình thức",
+            "credits": 2
+          },
+          {
+            "name": "Phát triển ứng dụng trên nền tảng di động",
+            "credits": 3
+          },
+          {
+            "name": "Chuyên đề Công nghệ phần mềm an toàn",
+            "credits": 2
+          }
+        ]
+      }
+    },
+    "semester8": {
+      "title": "Học kỳ 8",
+      "informationSystemSecurity": {
+        "title": "Chuyên ngành An toàn hệ thống thông tin",
+        "courses": [
+          {
+            "name": "Giám sát và ứng phó sự cố an toàn mạng",
+            "credits": 2
+          },
+          {
+            "name": "Kiểm thử và đánh giá an toàn hệ thống thông tin",
+            "credits": 3
+          },
+          {
+            "name": "Quản lý an toàn thông tin",
+            "credits": 2
+          },
+          {
+            "name": "Điều tra số",
+            "credits": 3
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 1",
+            "credits": 2
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 2",
+            "credits": 2
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 3",
+            "credits": 2
+          }
+        ]
+      },
+      "networkSecurityEngineering": {
+        "title": "Chuyên ngành Kỹ nghệ an toàn mạng",
+        "courses": [
+          {
+            "name": "Giám sát và ứng phó sự cố an toàn mạng",
+            "credits": 2
+          },
+          {
+            "name": "Kiểm thử và đánh giá an toàn hệ thống thông tin",
+            "credits": 3
+          },
+          {
+            "name": "Quản lý an toàn thông tin",
+            "credits": 2
+          },
+          {
+            "name": "Điều tra số",
+            "credits": 3
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 1",
+            "credits": 2
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 2",
+            "credits": 2
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 3",
+            "credits": 2
+          }
+        ]
+      },
+      "secureSoftwareTechnology": {
+        "title": "Chuyên ngành Công nghệ phần mềm an toàn",
+        "courses": [
+          {
+            "name": "Mật mã ứng dụng trong ATTT",
+            "credits": 3
+          },
+          {
+            "name": "Kỹ thuật lập trình an toàn",
+            "credits": 3
+          },
+          {
+            "name": "Kiểm thử và đảm bảo chất lượng phần mềm",
+            "credits": 2
+          },
+          {
+            "name": "Khai phá dữ liệu trong an toàn thông tin",
+            "credits": 2
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 1",
+            "credits": 2
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 2",
+            "credits": 2
+          },
+          {
+            "name": "Học phần chuyên ngành tự chọn 3",
+            "credits": 2
+          }
+        ]
+      }
+    },
+    "semester9": {
+      "title": "Học kỳ 9 (Kế hoạch chung)",
+      "courses": [
+        {
+          "name": "Thực tập tốt nghiệp",
+          "credits": 3
+        },
+        {
+          "name": "Đồ án tốt nghiệp",
+          "credits": 8
+        }
+      ]
+    }
+  },
+  "careerPathsInfoSec": {
+    "title": "Cơ hội nghề nghiệp sau khi tốt nghiệp ngành An toàn Thông tin",
+    "description": "Cơ hội nghề nghiệp sau khi tốt nghiệp ngành An toàn Thông tin",
+    "intro": "Sinh viên tốt nghiệp ngành ATTT có thể làm việc ở nhiều vị trí khác nhau trong bối cảnh nhu cầu bảo mật ngày càng tăng cao.",
+    "securityAnalystEngineer": {
+      "title": "1. 🔐 Chuyên viên An toàn Thông tin (Security Analyst / Engineer)",
+      "description": [
+        "Giám sát, phát hiện và ứng phó với các cuộc tấn công mạng.",
+        "Thiết lập các chính sách bảo mật, triển khai hệ thống tường lửa, IDS/IPS,...",
+        "Làm việc tại các Trung tâm điều hành an ninh mạng (SOC)."
+      ]
+    },
+    "malwareAnalystDigitalForensics": {
+      "title": "2. 🧠 Chuyên viên Phân tích Mã độc, Điều tra Số (Malware Analyst, Digital Forensics)",
+      "description": [
+        "Phân tích, bóc tách và truy vết mã độc, ransomware.",
+        "Điều tra các cuộc tấn công để tìm nguyên nhân và thủ phạm.",
+        "Làm việc tại các cơ quan điều tra công nghệ cao hoặc tổ chức tài chính."
+      ]
+    },
+    "pentestEngineer": {
+      "title": "3. 🛡️ Kỹ sư Pentest (Chuyên gia Kiểm thử Xâm nhập)",
+      "description": [
+        "Mô phỏng tấn công để kiểm tra lỗ hổng hệ thống.",
+        "Đưa ra giải pháp khắc phục điểm yếu bảo mật.",
+        "Thường làm việc tại các công ty bảo mật hoặc làm freelancer."
+      ]
+    },
+    "cryptographySpecialist": {
+      "title": "4. 🔒 Chuyên gia Mật mã (Cryptography Specialist)",
+      "description": [
+        "Phân tích, xây dựng và triển khai các thuật toán mã hóa.",
+        "Ứng dụng trong bảo mật dữ liệu, chữ ký số, thanh toán an toàn."
+      ]
+    },
+    "governmentTechnicalOfficer": {
+      "title": "5. 🧑‍💻 Cán bộ Kỹ thuật tại Cơ quan Nhà nước, Quốc phòng – An ninh",
+      "description": [
+        "Làm việc tại các đơn vị như: Ban Cơ yếu Chính phủ, Bộ Công an, Bộ Quốc phòng.",
+        "Tham gia xây dựng và bảo vệ hệ thống thông tin mật, tuyệt mật của Nhà nước."
+      ]
+    },
+    "cloudBlockchainSecuritySpecialist": {
+      "title": "6. ☁️ Chuyên viên Bảo mật Điện toán Đám mây, Blockchain",
+      "description": [
+        "Bảo vệ dữ liệu, dịch vụ trên nền tảng cloud như AWS, Azure, GCP.",
+        "Phân tích và xây dựng giải pháp bảo mật cho hệ thống sử dụng blockchain."
+      ]
+    }
+  }
+}

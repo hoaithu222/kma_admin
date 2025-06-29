@@ -12,6 +12,14 @@
     "contact": "Contact",
     "forum": "Forum"
   },
+  "banner": {
+    "title1": "Faculty of Information Technology",
+    "description1": "Academy of Cryptography Techniques",
+    "title2": "Computer Science",
+    "description2": "Academy of Cryptography Techniques",
+    "title3": "Computer Science",
+    "description3": "Academy of Cryptography Techniques"
+  },
   "footer": {
     "units": {
       "title": "Departments",
@@ -40,6 +48,10 @@
       "contact2": "acbd@actvn.edu.vn",
       "contact3": "(+84) 24 3869 2463"
     },
-    "copyright": "© 2025 Academy of Cryptography Techniques. All rights reserved."
+    "copyright": "© 2025 Academy of Cryptography Techniques. All rights reserved.",
+    "news": {
+      "title": "Latest News",
+      "buttonMore": "View more"
+    }
   }
 }

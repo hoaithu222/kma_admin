@@ -27,6 +27,8 @@ import {
   HandshakeIcon,
   FlaskConicalIcon,
   UserCogIcon,
+  Building2Icon,
+  MailIcon,
 } from "lucide-react";
 
 interface NavbarItem {
@@ -259,24 +261,85 @@ export const NavbarItems: NavbarItem[] = [
     label: "Chuyên ngành",
     icon: SchoolIcon,
     path: "/majors-it",
+    role: "ADMIN",
     children: [
       {
         label: "Ngành công nghệ thông tin",
         icon: DatabaseIcon,
         path: "/majors-it",
+        role: "ADMIN",
       },
       {
         label: "Ngành an toàn thông tin",
         icon: ShieldIcon,
         path: "/majors-security",
+        role: "ADMIN",
       },
       {
         label: "Ngành điện tử viễn thông",
         icon: VideoIcon,
         path: "/majors-telecommunication",
+        role: "ADMIN",
       },
     ],
   },
+
+  // Giới thiệu
+  {
+    label: "Giới thiệu",
+    icon: BookOpenIcon,
+    path: "/introduction",
+    role: "ADMIN",
+    children: [
+      {
+        label: "Tổng quan",
+        icon: BookOpenIcon,
+        path: "/introduction",
+        role: "ADMIN",
+      },
+      {
+        label: "Cơ cấu đào tạo",
+        icon: Building2Icon,
+        path: "/training-structure",
+        role: "ADMIN",
+      },
+      {
+        label: "Tổ chức",
+        icon: Building2Icon,
+        path: "/organization",
+        role: "ADMIN",
+      },
+    ],
+  },
+  // đào tạo
+  {
+    label: "Đào tạo",
+    icon: BookOpenIcon,
+    path: "/training",
+    role: "ADMIN",
+    children: [
+      {
+        label: "Chương trình đào tạo đại học",
+        icon: BookOpenIcon,
+        path: "/training",
+        role: "ADMIN",
+      },
+      {
+        label: "Chương trình đào tạo thạc sĩ",
+        icon: BookOpenIcon,
+        path: "/training-master",
+        role: "ADMIN",
+      },
+    ],
+  },
+  // liên hệ
+  {
+    label: "Liên hệ",
+    icon: MailIcon,
+    path: "/contact",
+    role: "ADMIN",
+  },
+
   // // đào tạo
   // {
   //   label: "Đào tạo",

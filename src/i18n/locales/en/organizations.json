@@ -1,0 +1,50 @@
+{
+  "academy_name": "Academy of Cryptography Techniques",
+  "organizational_chart": "Organizational Chart",
+  "school_council_title": "School Council",
+  "science_education_council": "Science and Education Council",
+  "management_board": "Management Board",
+  "international_advisory_council": "International Advisory Council",
+  "education_block": "Education Block",
+  "organizational_structure": {
+    "introduction": "Academy of Cryptography Techniques – includes:",
+    "faculties": {
+      "count": 3,
+      "description": "undertake professional work in teaching and scientific research",
+      "title": "Faculties"
+    },
+    "research_centers": {
+      "count": 4,
+      "description": "Research Centers",
+      "title": "Research Centers"
+    },
+    "support_centers": {
+      "count": 2,
+      "description": "support training activities (practice), scientific research, technology transfer, and innovation",
+      "title": "Support Centers"
+    },
+    "administrative_department": {
+      "count": 1,
+      "name": "administrative – school office department",
+      "role": "assisting the Board of Rectors as well as supporting departments and centers in implementing professional activities",
+      "title": "Administrative Department"
+    },
+    "introduction_text": "The Academy of Cryptography Techniques is a university-level educational organization directly under the Prime Minister's Office, with the mission of training high-quality human resources in cryptography and information security."
+  },
+  "school_council": {
+    "title": "School Council",
+    "description": "The School Council is an agency established by the decision of the Rector of the Academy of Cryptography Techniques to advise the Rector in implementing the management and operational tasks of the Academy."
+  },
+  "information_technology_faculty": "Information Technology Faculty",
+  "general_information_security_faculty": "Information Security Faculty",
+  "electronic_information_faculty": "Telecommunication Faculty",
+  "research_block": "Research Block",
+  "cryptography_security_center": "Cryptography and Security Center",
+  "information_center": "Information Center",
+  "practice_departments": "Practice Departments",
+  "testing_departments": "Testing Departments",
+  "support_block": "Support Block",
+  "school_office": "School Office",
+  "computing_center": "Computing Center",
+  "innovation_center": "Innovation Center"
+}

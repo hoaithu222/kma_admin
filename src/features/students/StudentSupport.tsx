@@ -4,7 +4,6 @@ import { PlusIcon } from "lucide-react";
 
 import { useBase } from "@/foundation/components/base/hooks/useBase";
 import ListPost from "@/foundation/components/base/ListPost";
-import { Post } from "@/foundation/components/base/slice/base-post.types";
 import EditPosts from "@/foundation/components/base/EditPost";
 import AddPost from "@/foundation/components/base/AddPost";
 import { STUDENT_IDS } from "@/shared/consts/consts";
@@ -39,7 +38,9 @@ const StudentSupport = () => {
           subCategoryId={STUDENT_IDS.STUDENT_SUPPORT}
         />
       </div>
-      {isEditPost && <EditPosts post={editPost.editPost as Post} />}
+      {isEditPost && editPost.editPost && (
+        <EditPosts post={editPost.editPost} />
+      )}
       {isAddPost && (
         <AddPost
           categoryId={STUDENT_IDS.STUDENT_CATEGORY}

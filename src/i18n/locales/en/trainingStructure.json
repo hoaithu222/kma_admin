@@ -1,0 +1,49 @@
+{
+  "heading": "Regarding training: The University offers training programs developed based on 03 core pillars of the field:",
+  "major_title": "Major Code",
+  "specialization_title": "Specialization",
+  "conclusion_title": "Conclusion",
+  "student_achievements_title": "Student Achievements",
+  "core_majors": [
+    {
+      "major_name": "Information Security",
+      "major_code": "7480202",
+      "specializations": [
+        "Information System Security",
+        "Network Security Engineering",
+        "Secure Software Technology"
+      ]
+    },
+    {
+      "major_name": "Information Technology",
+      "major_code": "7480201",
+      "major_title": "Major Code",
+      "specialization_title": "Specialization",
+      "specializations": [
+        "Embedded and Mobile Software Engineering",
+        "Applied Artificial Intelligence"
+      ]
+    },
+    {
+      "major_name": "Electronics and Telecommunications Engineering",
+      "major_code": "7520207",
+      "major_title": "Major Code",
+      "specialization_title": "Specialization",
+      "specializations": ["Embedded Systems and Automatic Control"]
+    }
+  ],
+  "admission_information": "With its established reputation, the University is always a prestigious training destination chosen by students and families pursuing their passion for IT, Information Security, and Electronics & Telecommunications. To be eligible for admission to the University's training programs, candidates must be in the top group of scores for Block A, A1 in the national high school graduation examination.",
+  "admission_information_title": "Admission Information",
+  "student_achievements": {
+    "student_achievements_title": "Student Achievements",
+    "introduction": "With good input and the support of highly qualified and experienced lecturers, student groups from the University consistently win top prizes in national and international IT competitions such as:",
+    "list_of_awards": [
+      "First prize in the “Students with ASEAN Information Security 2024” contest",
+      "First prize in the international “HackaThon Sejong 2024” contest in South Korea",
+      "Second prize in the student category at the “ASEAN Cyber Shield (ACS) 2024” contest",
+      "First prize in the Jeopardy section at “Students with ASEAN Information Security 2023”",
+      "Third prize in the “National Information Safety and Security CIS 2024” contest"
+    ]
+  },
+  "conclusion": "These achievements not only demonstrate the outstanding capabilities of students of the Academy of Cryptography Techniques in the fields of IT, Information Security, and Electronics & Telecommunications but also affirm the Academy's position in training high-quality human resources, meeting the increasing demands of society and the nation in the digital era."
+}

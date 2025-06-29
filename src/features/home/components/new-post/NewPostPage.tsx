@@ -4,10 +4,10 @@ import { PlusIcon } from "lucide-react";
 
 import { useBase } from "@/foundation/components/base/hooks/useBase";
 import ListPost from "@/foundation/components/base/ListPost";
-import { Post } from "@/foundation/components/base/slice/base-post.types";
 import EditPosts from "@/foundation/components/base/EditPost";
 import AddPost from "@/foundation/components/base/AddPost";
 import { CATEGORY_IDS, SUBCATEGORY_IDS } from "@/shared/consts/consts";
+import { ResponseAddArticle } from "@/core/api/posts/types";
 
 const NewPostPage = () => {
   const { isAddPost, handleAddPost, isEditPost, editPost } = useBase();
@@ -39,7 +39,9 @@ const NewPostPage = () => {
           subCategoryId={SUBCATEGORY_IDS.NEWS}
         />
       </div>
-      {isEditPost && <EditPosts post={editPost.editPost as Post} />}
+      {isEditPost && (
+        <EditPosts post={editPost.editPost as unknown as ResponseAddArticle} />
+      )}
       {isAddPost && (
         <AddPost
           categoryId={CATEGORY_IDS.NEWS}

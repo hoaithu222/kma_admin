@@ -35,7 +35,6 @@ const FilterPanel = ({
       categoryId: null,
       subCategoryId: null,
       status: null,
-      isPrivate: null,
       tag: null,
       sort: null,
       order: null,

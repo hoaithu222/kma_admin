@@ -94,6 +94,23 @@ const MajorTele = lazy(
 const MajorSecurity = lazy(
   () => import("@/foundation/components/major/pages/MajorSecurity")
 );
+// giới thiệu
+const Overview = lazy(() => import("@/features/about/components/Overview"));
+const TrainingStructure = lazy(
+  () => import("@/features/about/components/TrainingStructure")
+);
+const Organizations = lazy(
+  () => import("@/features/about/components/Organizations")
+);
+// đào tạo
+const Training = lazy(
+  () => import("@/features/training/components/UndergraduateProgram")
+);
+const TrainingMaster = lazy(
+  () => import("@/features/training/components/Master")
+);
+// liên hệ
+const ContactPage = lazy(() => import("@/features/contact/ContactPage"));
 
 const defaultOptions = {
   requireAuth: true,
@@ -382,6 +399,45 @@ export const ROUTE = {
   majorsSecurity: {
     path: "/majors-security",
     element: <MajorSecurity />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // giới thiệu
+  overview: {
+    path: "/introduction",
+    element: <Overview />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  trainingStructure: {
+    path: "/training-structure",
+    element: <TrainingStructure />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  organizations: {
+    path: "/organization",
+    element: <Organizations />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // đào tạo
+  training: {
+    path: "/training",
+    element: <Training />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  trainingMaster: {
+    path: "/training-master",
+    element: <TrainingMaster />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
+  // liên hệ
+  contact: {
+    path: "/contact",
+    element: <ContactPage />,
     layout: "main",
     options: defaultAuthOptions,
   },

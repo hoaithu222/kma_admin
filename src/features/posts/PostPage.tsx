@@ -6,7 +6,7 @@ import { usePost } from "./hooks/usePost";
 import AddPost from "./components/add-post/AddPost";
 import EditPosts from "./components/edit/EditPosts";
 
-import { Post } from "./slice/posts.type";
+import { ResponseAddArticle } from "@/core/api/posts/types";
 
 const PostPage = () => {
   const { isAddPost, handleAddPost, isEditPost, editPost } = usePost();
@@ -34,7 +34,9 @@ const PostPage = () => {
       <div className="mt-4">
         <ListPost />
       </div>
-      {isEditPost && <EditPosts post={editPost.editPost as Post} />}
+      {isEditPost && (
+        <EditPosts post={editPost.editPost as unknown as ResponseAddArticle} />
+      )}
       {isAddPost && <AddPost />}
     </div>
   );

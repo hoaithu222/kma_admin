@@ -1,0 +1,550 @@
+{
+  "degreeTitle": "Bằng cấp",
+  "programDuration": "Thời gian",
+  "programCredits": "Tín chỉ",
+  "admissionInfo": "Mục tiêu đào tạo",
+  "graduationRequirements": "Mục tiêu cụ thể",
+  "knowledgeInfo": "Kiến thức",
+  "technicalSkills": "Kỹ năng chuyên môn",
+  "ethicalQualities": "Phẩm chất chính trị và đạo đức",
+  "generalTrainingGoals": "Mục tiêu chung",
+  "programInfo": {
+    "programName": "Chương trình giáo dục đại học hệ Chính quy ngành Công nghệ thông tin",
+    "trainingLevel": "Đại học",
+    "degreeAwarded": "Cử nhân và Kỹ sư",
+    "major": "Công nghệ thông tin",
+    "majorCode": "7.48.01.01",
+    "specialization": "Kỹ thuật phần mềm nhúng và phần mềm di động",
+    "trainingType": "Chính quy",
+    "programCode": "KMC.1.1.1",
+    "framework": "Chương trình được xây dựng theo hướng tiếp cận chuẩn đầu ra CDIO (Conceive – Design – Implement – Operate)"
+  },
+  "trainingObjectives": {
+    "general": {
+      "introduction": "Mục tiêu của Chương trình giáo dục đại học chính quy ngành Công nghệ thông tin, chuyên ngành Kỹ thuật phần mềm nhúng và di động (Mobile and Embedded Software Engineering - MESE) là trang bị cho người học:",
+      "item1": "Phẩm chất chính trị, đạo đức nghề nghiệp để đáp ứng yêu cầu hoạt động trong khu vực an ninh, quốc phòng, và kinh tế xã hội;",
+      "item2": "Kiến thức đại cương về khoa học tự nhiên, xã hội và kiến thức cơ sở, nền tảngvề điện tử viễn thông và công nghệ thông tin;",
+      "item3": "Khối kiến thức nền tảng về công nghệ phần mềm, đáp ứng được các công việc của kỹ sư phát triển phần mềm;",
+      "item4": "Kiến thức lý thuyết và kỹ năng thực hành về chuyên ngành Kỹ thuật phần mềm nhúng và di động theo hai hướng chuyên sâu: kỹ sư phát triển phần mềm cho các thiết bị di động và kỹ sư phát triển phần mềm trong các hệ thống nhúng;",
+      "item5": "Kỹ năng xã hội cần thiết, khả năng tự học, tự nghiên cứu để thành công trong cuộc sống và nghề nghiệp;",
+      "item6": "Chương trình đào tạo cho phép khả năng chuyển đổi linh động giữa hai chuyên ngành \"An toàn thông tin\" và \"Kỹ thuật phần mềm nhúng và di động\"."
+    },
+    "specific": {
+      "introduction": "Sau khi tốt nghiệp, kỹ sư Kỹ thuật phần mềm nhúng và di động phải có được:",
+      "ethicalQualities": {
+        "eq1": "Tuyệt đối trung thành với Tổ quốc, với nhân dân, với mục tiêu lý tưởng và đường lối cách mạng của Đảng Cộng sản Việt Nam; có lòng yêu nước, yêu chủ nghĩa xã hội; có tinh thần trách nhiệm cao, có ý thức vươn lên trong cuộc sống và công việc;",
+        "eq2": "Có ý thức tổ chức kỷ luật, nghiêm chỉnh chấp hành chủ trương, đường lối của Đảng, chính sách, pháp luật của Nhà nước. Có phẩm chất đạo đức tốt, lối sống lành mạnh, giản dị. Có tác phong làm việc khoa học, chính xác, chặt chẽ."
+      },
+      "knowledge": {
+        "kn1": "Hiểu biết cơ bản về Chủ nghĩa Mác - Lênin và tư tưởng Hồ Chí Minh.Xây dựng được thế giới quan, nhân sinh quan và phương pháp luận khoa học. Nắm được các chủ trương, đường lối của Đảng, chính sách, pháp luật của Nhà nước;",
+        "kn2": "Nắm được các kiến thức cơ bản về toán học, vật lý học. Nắm được các kiến thức cơ sở chuyên ngành về công nghệ thông tin, điện tử viễn thông;",
+        "kn3": "Nắm được các kiến thức cơ bản của chuyên ngành Kỹ thuật phần mềm;",
+        "kn4": "Nắm được phương pháp, kỹ thuật và các kỹ năng phát triển phần mềm trên các hệ thống nhúng theo các lĩnh vực ứng dụng khác nhau;",
+        "kn5": "Nắm được phương pháp, kỹ thuật và các kỹ năng phát triển phần mềm trên các thiết bị di động;",
+        "kn6": "Có thể giao tiếp, sử dụng tiếng Anh trong công việc;",
+        "kn7": "Có đủ kiến thức để học tiếp lên bậc học cao hơn."
+      },
+      "skills": {
+        "s1_softwareEngineer_title": "Kỹ sư phát triển phần mềm thông thường",
+        "s2_mobileEngineer_title": "Kỹ sư phát triển phần mềm di động",
+        "s3_embeddedEngineer_title": "Kỹ sư phát triển phần mềm nhúng",
+        "s1_softwareEngineer": "Sau 3,5 năm đầu (đã học hết các học phần cần thiết chuyên ngành kỹ thuật phần mềm + thực tập cơ sở), sinh viên có khả năng phân tích, thiết kế, lập trình, kiểm thử, triển khai các dự án phần mềm ứng dụng, websites; có khả năng sử dụng các phương pháp, kỹ thuật và công cụ hiện đại trong phát triển phần mềm.",
+        "s2_mobileEngineer": "Sinh viên theo hướng phát triển phần mềm di động có khả năng phát triển phần mềm cho các thiết bị di động trên cả 3 nền tảng công nghệ phổ biến nhất là: Android, iOS, Windows Phone.",
+        "s3_embeddedEngineer": "Sinh viên theo hướng phát triển phần mềm nhúng mức thấp có thể làm việc trong các lĩnh vực như: Phát triển phần mềm trong các hệ thống nhúng dân dụng (máy bán hàng tự động, máy thanh toán thẻ, máy ảnh số, tivi thông minh, máy nghe nhạc, v.v.), Phát triển phần mềm nhúng trong các hệ thống, thiết bị truyền thông (modem, firewall, v.v.), Phát triển phần mềm nhúng trong công nghiệp (lập trình PLC trong dây truyền sản xuất tự động, mạng công nghiệp, v.v), Phát triển phần mềm nhúng trong các hệ thống giám sát và điều khiển (ngôi nhà thông minh, hệ thống báo động, hệ thống phòng cháy, v.v.), Lập trình đa phương tiện trong các thiết bị nhúng (thiết bị nghe nhạc, xem phim, cầm tay, đầu đọc mã vạch, v.v.)."
+      }
+    }
+  },
+  "programDurationDetails": {
+    "totalTime": "4 hoặc 5 năm."
+  },
+  "programCreditDetails": {
+    "totalCredits": "176 tín chỉ."
+  },
+  "admissionDetails": {
+    "admissionInfo": "Thông tin tuyển sinh",
+    "targetApplicants": "Công dân Việt Nam trúng tuyển kỳ thi (hoặc xét tuyển) đại học. Việc xét tuyển căn cứ kết quả thi của kỳ thi THPT quốc gia. Điểm xét tuyển là tổng điểm của một trong ba tổ hợp gồm 03 môn/bài thi (kỳ thi THPT quốc gia): Toán, Vật lý, Hóa học (A00); Toán, Vật lý, Tiếng Anh (A01); Toán, Khoa học tự nhiên, Tiếng Anh (D90)."
+  },
+  "graduationRequirementsDetails": {
+    "title": "Thông tin bổ sung",
+    "details": "Theo qui chế hiện hành của Bộ Giáo dục và Đào tạo và các quy định của Học viện Kỹ thuật mật mã."
+  },
+  "knowledgeReference": {
+    "knowledgeReference": "Tham khảo kiến thức",
+    "outcomeReference": "Chuẩn đầu ra và chi tiết chương trình đào tạo xem tại ",
+    "outcomeReferenceLink": "Chương trình đào tạo ngành Công nghệ thông tin."
+  },
+  "tab": {
+    "generalInfo": "Thông tin chung",
+    "trainingObjectives": "Mục tiêu đào tạo",
+    "specificObjectives": "Mục tiêu cụ thể",
+    "programInfo": "Cấu trúc chương trình",
+    "professionalInfo": "Nghề nghiệp",
+    "admissionInfo": "Thông tin tuyển sinh",
+    "tuitionFee": "Học phí",
+    "document": "Tài liệu đào tạo",
+    "graduationRequirementsDetails": "Thông tin bổ sung"
+  },
+  "courseCategory": {
+    "legend": "Phân loại môn học",
+    "mandatory": "Bắt buộc chung",
+    "supportive": "Bổ trợ ngành",
+    "specialized": "Chuyên ngành",
+    "professional": "Giáo dục chuyên nghiệp",
+    "mandatoryGroup": "Bắt buộc chung nhóm ngành",
+    "foundation": "Cơ sở ngành",
+    "internship": "Thực tập",
+    "thesis": "Luận văn tốt nghiệp",
+    "other": "Khác"
+  },
+  "common": {
+    "credits": "tín chỉ",
+    "courses": "môn học",
+    "totalCredits": "Tổng tín chỉ"
+  },
+  "learningProgramDetails": {
+    "title": "Chương trình đào tạo",
+    "description": "Chương trình đào tạo chi tiết theo từng học kỳ",
+    "noData": "Không có dữ liệu chương trình học"
+  },
+  "learningProgram": {
+    "semester1": {
+      "title": "Học kỳ 1",
+      "courses": [
+        {
+          "name": "Giải tích 1",
+          "credits": 3
+        },
+        {
+          "name": "Đại số tuyến tính",
+          "credits": 3
+        },
+        {
+          "name": "Tin học đại cương",
+          "credits": 2
+        },
+        {
+          "name": "Triết học Mác – Lê nin",
+          "credits": 3
+        },
+        {
+          "name": "Giáo dục quốc phòng an ninh",
+          "credits": 8
+        },
+        {
+          "name": "Giáo dục thể chất 1",
+          "credits": 1
+        }
+      ]
+    },
+    "semester2": {
+      "title": "Học kỳ 2",
+      "courses": [
+        {
+          "name": "Vật lý đại cương 1",
+          "credits": 3
+        },
+        {
+          "name": "Giải tích 2",
+          "credits": 3
+        },
+        {
+          "name": "Lập trình căn bản",
+          "credits": 3
+        },
+        {
+          "name": "Kinh tế chính trị Mác – Lênin",
+          "credits": 2
+        },
+        {
+          "name": "Lịch sử Đảng Cộng sản Việt Nam",
+          "credits": 2
+        },
+        {
+          "name": "Giáo dục thể chất 2",
+          "credits": 1
+        },
+        {
+          "name": "Kỹ năng mềm",
+          "credits": 2
+        }
+      ],
+      "electives": {
+        "title": "Môn tự chọn",
+        "credits": 2,
+        "options": [
+          "Khoa học quản lý",
+          "Pháp luật VN đại cương",
+          "Tâm lý học đại cương",
+          "Logic học"
+        ]
+      }
+    },
+    "semester3": {
+      "title": "Học kỳ 3",
+      "courses": [
+        {
+          "name": "Vật lý đại cương 2",
+          "credits": 3
+        },
+        {
+          "name": "Thực hành vật lý đại cương 1 & 2",
+          "credits": 2
+        },
+        {
+          "name": "Tiếng Anh 1",
+          "credits": 3
+        },
+        {
+          "name": "Xác suất thống kê",
+          "credits": 2
+        },
+        {
+          "name": "Phương pháp tính",
+          "credits": 2
+        },
+        {
+          "name": "Mạng máy tính",
+          "credits": 3
+        },
+        {
+          "name": "Tư tưởng Hồ Chí Minh",
+          "credits": 2
+        },
+        {
+          "name": "Giáo dục thể chất 3",
+          "credits": 1
+        }
+      ]
+    },
+    "semester4": {
+      "title": "Học kỳ 4",
+      "courses": [
+        {
+          "name": "Tiếng Anh 2",
+          "credits": 3
+        },
+        {
+          "name": "Toán rời rạc",
+          "credits": 2
+        },
+        {
+          "name": "Quản trị mạng máy tính",
+          "credits": 2
+        },
+        {
+          "name": "Otomat và ngôn ngữ hình thức",
+          "credits": 2
+        },
+        {
+          "name": "Chương trình dịch",
+          "credits": 2
+        },
+        {
+          "name": "Lý thuyết cơ sở dữ liệu",
+          "credits": 2
+        },
+        {
+          "name": "Điện tử tương tự và điện tử số",
+          "credits": 3
+        },
+        {
+          "name": "Giáo dục thể chất 4",
+          "credits": 1
+        },
+        {
+          "name": "Chủ Nghĩa xã hội Khoa học",
+          "credits": 2
+        }
+      ]
+    },
+    "semester5": {
+      "title": "Học kỳ 5",
+      "courses": [
+        {
+          "name": "Tiếng Anh 3",
+          "credits": 4
+        },
+        {
+          "name": "Lập trình hướng đối tượng",
+          "credits": 2
+        },
+        {
+          "name": "Phát triển phần mềm ứng dụng",
+          "credits": 2
+        },
+        {
+          "name": "Cấu trúc dữ liệu và giải thuật",
+          "credits": 2
+        },
+        {
+          "name": "Lý thuyết độ phức tạp tính toán",
+          "credits": 2
+        },
+        {
+          "name": "Hệ quản trị cơ sở dữ liệu",
+          "credits": 2
+        },
+        {
+          "name": "Kỹ thuật vi xử lý",
+          "credits": 2
+        },
+        {
+          "name": "Cơ sở lý thuyết truyền tin",
+          "credits": 2
+        },
+        {
+          "name": "Giáo dục thể chất 5",
+          "credits": 1
+        }
+      ]
+    },
+    "semester6": {
+      "title": "Học kỳ 6",
+      "courses": [
+        {
+          "name": "Tiếng Anh chuyên ngành",
+          "credits": 4
+        },
+        {
+          "name": "Kiến trúc máy tính",
+          "credits": 2
+        },
+        {
+          "name": "Nguyên lý hệ điều hành",
+          "credits": 2
+        },
+        {
+          "name": "Phát triển ứng dụng web",
+          "credits": 2
+        },
+        {
+          "name": "Công nghệ phần mềm",
+          "credits": 2
+        },
+        {
+          "name": "Phân tích, thiết kế hệ thống thông tin",
+          "credits": 2
+        },
+        {
+          "name": "Xử lý tín hiệu số",
+          "credits": 2
+        },
+        {
+          "name": "Kỹ thuật truyền số liệu",
+          "credits": 2
+        },
+        {
+          "name": "Hệ thống viễn thông",
+          "credits": 2
+        },
+        {
+          "name": "Hệ thống thông tin di động",
+          "credits": 2
+        }
+      ]
+    },
+    "semester7": {
+      "title": "Học kỳ 7",
+      "courses": [
+        {
+          "name": "Thiết kế hệ thống nhúng",
+          "credits": 3
+        },
+        {
+          "name": "Công nghệ phần mềm nhúng",
+          "credits": 2
+        },
+        {
+          "name": "Hệ điều hành nhúng thời gian thực",
+          "credits": 3
+        },
+        {
+          "name": "Kiểm thử phần mềm nhúng",
+          "credits": 2
+        },
+        {
+          "name": "Cơ sở an toàn và bảo mật thông tin",
+          "credits": 3
+        },
+        {
+          "name": "Linux và phần mềm nguồn mở",
+          "credits": 2
+        },
+        {
+          "name": "Lập trình hợp ngữ",
+          "credits": 3
+        },
+        {
+          "name": "Quản trị dự án phần mềm",
+          "credits": 2
+        },
+        {
+          "name": "Thực tập cơ sở chuyên ngành",
+          "credits": 3
+        }
+      ]
+    },
+    "semester8": {
+      "title": "Học kỳ 8",
+      "compulsory": {
+        "title": "Phần kiến thức bắt buộc chung",
+        "courses": [
+          {
+            "name": "Lập trình nhân Linux",
+            "credits": 4
+          },
+          {
+            "name": "Lập trình driver",
+            "credits": 4
+          }
+        ]
+      },
+      "embeddedTrack": {
+        "title": "Phần kiến thức theo hướng phát triển phần mềm nhúng",
+        "courses": [
+          {
+            "name": "Lập trình ARM cơ bản",
+            "credits": 3
+          },
+          {
+            "name": "Lập trình hệ thống nhúng Linux",
+            "credits": 3
+          }
+        ]
+      },
+      "mobileTrack": {
+        "title": "Phần kiến thức theo hướng phát triển phần mềm trên thiết bị di động",
+        "courses": [
+          {
+            "name": "Lập trình Android cơ bản",
+            "credits": 3
+          },
+          {
+            "name": "Phát triển phần mềm trong thẻ thông minh",
+            "credits": 3
+          }
+        ]
+      }
+    },
+    "semester9": {
+      "title": "Học kỳ 9",
+      "embeddedTrack": {
+        "title": "Phần kiến thức theo hướng phát triển phần mềm nhúng",
+        "courses": [
+          {
+            "name": "Lập trình ARM nâng cao",
+            "credits": 3
+          },
+          {
+            "name": "Thị giác máy tính trên nền nhúng",
+            "credits": 3
+          },
+          {
+            "name": "An toàn và bảo mật trong hệ thống nhúng",
+            "credits": 3
+          },
+          {
+            "name": "Tối ưu phần mềm nhúng",
+            "credits": 3
+          }
+        ]
+      },
+      "mobileTrack": {
+        "title": "Phần kiến thức theo hướng phát triển phần mềm trên thiết bị di động",
+        "courses": [
+          {
+            "name": "Lập trình Android nâng cao",
+            "credits": 3
+          },
+          {
+            "name": "Phát triển game trên Android",
+            "credits": 3
+          },
+          {
+            "name": "An toàn và bảo mật trong phát triển phần mềm di động",
+            "credits": 3
+          },
+          {
+            "name": "Tối ưu phần mềm di động",
+            "credits": 3
+          }
+        ]
+      }
+    },
+    "semester10": {
+      "title": "Học kỳ 10",
+      "courses": [
+        {
+          "name": "Thực tập tốt nghiệp",
+          "credits": 3
+        },
+        {
+          "name": "Đồ án tốt nghiệp",
+          "credits": 8
+        }
+      ]
+    },
+    "description": "[TODO] Detailed curriculum by semester",
+    "noData": "[TODO] No program data available"
+  },
+  "careerProspects": {
+    "title": "Nghề nghiệp",
+    "description": "Nghề nghiệp",
+    "noData": "Không có dữ liệu nghề nghiệp",
+    "careerPaths": {
+      "title": "Các Lĩnh vực Nghề nghiệp cho Sinh viên Ngành Công nghệ Thông tin",
+      "securitySpecialist": {
+        "title": "1. Chuyên viên An toàn Thông tin (Security Engineer, Security Analyst)",
+        "description": [
+          "Làm việc tại các trung tâm điều hành an ninh mạng (SOC).",
+          "Phân tích, phát hiện và xử lý các cuộc tấn công mạng.",
+          "Triển khai giải pháp bảo mật cho hệ thống thông tin."
+        ]
+      },
+      "softwareDeveloper": {
+        "title": "2. Lập trình viên Phần mềm (Software Developer)",
+        "description": [
+          "Tham gia phát triển phần mềm, ứng dụng desktop, web hoặc mobile.",
+          "Có thể làm backend, frontend, fullstack hoặc AI, Machine Learning."
+        ]
+      },
+      "systemNetworkEngineer": {
+        "title": "3. Kỹ sư Hệ thống và Mạng (System/Network Engineer)",
+        "description": [
+          "Quản trị hệ thống CNTT, giám sát mạng máy tính.",
+          "Triển khai các giải pháp bảo mật mạng: firewall, VPN, IDS/IPS,..."
+        ]
+      },
+      "cryptographySpecialist": {
+        "title": "4. Chuyên viên Mã hóa và Mật mã (Cryptography Specialist)",
+        "description": [
+          "Phân tích, xây dựng các thuật toán mã hóa.",
+          "Phục vụ trong lĩnh vực bảo vệ dữ liệu, truyền thông an toàn."
+        ]
+      },
+      "softwareTesterQA": {
+        "title": "5. Kiểm thử và Đảm bảo Chất lượng Phần mềm (Tester/QA)",
+        "description": [
+          "Kiểm tra, đánh giá tính bảo mật và chất lượng phần mềm.",
+          "Có thể đảm nhận vai trò kiểm thử bảo mật (Security Tester)."
+        ]
+      },
+      "governmentTechnicalOfficer": {
+        "title": "6. Cán bộ Kỹ thuật tại các Cơ quan Nhà nước",
+        "description": [
+          "Làm việc trong các cơ quan thuộc Bộ Quốc phòng, Bộ Công an, Ban Cơ yếu Chính phủ, Bộ Thông tin & Truyền thông,...",
+          "Tham gia xây dựng, vận hành các hệ thống CNTT mật và tối mật."
+        ]
+      },
+      "techEntrepreneurship": {
+        "title": "7. Khởi nghiệp Công nghệ",
+        "description": [
+          "Với nền tảng tốt, sinh viên có thể phát triển sản phẩm, startup trong lĩnh vực:",
+          "An ninh mạng, bảo mật dữ liệu",
+          "Ứng dụng công nghệ blockchain",
+          "Giải pháp phần mềm theo nhu cầu thực tế"
+        ]
+      }
+    }
+  }
+}

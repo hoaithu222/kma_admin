@@ -1,0 +1,49 @@
+{
+  "heading": "Về đào tạo: Trường đang cung cấp các chương trình đào tạo được phát triển dựa trên 03 ngành trụ cột của lĩnh vực:",
+  "major_title": "Mã ngành",
+  "specialization_title": "Chuyên ngành",
+  "conclusion_title": "Kết luận",
+  "student_achievements_title": "Thành tích sinh viên",
+  "core_majors": [
+    {
+      "major_name": "An toàn thông tin",
+      "major_code": "7480202",
+      "specializations": [
+        "An toàn hệ thống thông tin",
+        "Kỹ nghệ an toàn mạng",
+        "Công nghệ phần mềm an toàn"
+      ]
+    },
+    {
+      "major_name": "Công nghệ thông tin",
+      "major_code": "7480201",
+      "specialization_title": "Chuyên ngành",
+      "specializations": [
+        "Kỹ thuật phần mềm nhúng và di động",
+        "Trí tuệ nhân tạo ứng dụng"
+      ],
+      "major_title": "Mã ngành"
+    },
+    {
+      "major_name": "Kỹ thuật Điện tử – Viễn thông",
+      "major_code": "7520207",
+      "major_title": "Mã ngành",
+      "specializations": ["Hệ thống nhúng và điều khiển tự động"],
+      "specialization_title": "Chuyên ngành"
+    }
+  ],
+  "admission_information_title": "Thông tin tuyển sinh",
+  "admission_information": "Với uy tín đã được xây dựng, Trường luôn là địa chỉ đào tạo uy tín được các em học sinh và gia đình lựa chọn khi theo đuổi đam mê về CNTT, ATTT, DTVT. Để đủ điểm vào học các chương trình đào tạo của Trường, thí sinh phải thuộc vào nhóm Top điểm khối A, A1 trong kỳ thi trung học phổ thông quốc gia.",
+  "student_achievements": {
+    "introduction": "Với đầu vào tốt lại được sự giúp sức của các thầy cô giỏi chuyên môn và giàu kinh nghiệm, các nhóm sinh viên của Trường luôn giành được giải cao nhất tại các cuộc thi quốc gia và quốc tế về CNTT như:",
+    "list_of_awards": [
+      "Giải nhất cuộc thi “Sinh viên với An toàn thông tin ASEAN 2024”",
+      "Giải nhất cuộc thi quốc tế “HackaThon Sejong 2024” tại Hàn Quốc",
+      "Giải nhì bảng sinh viên tại cuộc thi “ASEAN Cyber Shield (ACS) 2024”",
+      "Giải nhất phần thi Jeopardy tại “Sinh viên với An toàn thông tin ASEAN 2023”",
+      "Giải ba cuộc thi “An toàn và Bảo mật Thông tin Toàn quốc CIS 2024”"
+    ],
+    "student_achievements_title": "Thành tích sinh viên"
+  },
+  "conclusion": "Những thành tích trên không chỉ thể hiện năng lực vượt trội của sinh viên Học viện Kỹ thuật Mật mã trong lĩnh vực CNTT, ATTT và DTVT mà còn khẳng định vị thế của Học viện trong việc đào tạo nguồn nhân lực chất lượng cao, đáp ứng nhu cầu ngày càng cao của xã hội và quốc gia trong kỷ nguyên số."
+}

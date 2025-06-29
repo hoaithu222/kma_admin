@@ -1,0 +1,205 @@
+{
+  "menu": {
+    "overview": "Academy Overview",
+    "history": "Brief History",
+    "structureAndTeam": "Organizational Structure and Team",
+    "researchAndTransfer": "Scientific Research and Technology Transfer",
+    "externalCooperation": "External Cooperation",
+    "alumni": "Alumni"
+  },
+  "academyOverview": {
+    "title": "Introduction to the Academy of Cryptography Techniques (ACT)",
+    "content": [
+      "The Academy of Cryptography Techniques (ACT) is a public higher education institution under the Government Cipher Committee. It plays a pioneering role in training high-quality human resources and conducting in-depth scientific research in cryptography, information security, and information technology.",
+      "Over nearly 50 years of establishment and development, from a school for training cipher officers with many initial difficulties, the Academy has continuously grown to become a prestigious center for training and research, making important contributions to national security and socio-economic development.",
+      "With a strategic vision, the Academy of Cryptography Techniques aims to become a multidisciplinary research-oriented university, promoting innovation and international integration, and to be one of Vietnam's leading institutions in information security and digital technology."
+    ]
+  },
+  "briefHistory": {
+    "title": "Brief History",
+    "timeline": [
+      {
+        "year": 1976,
+        "event": "The Cipher Officer Training School was established under a decision by the Central Cipher Committee (now the Government Cipher Committee), initially tasked with training technical cryptography officers for the armed forces and government agencies."
+      },
+      {
+        "year": 1995,
+        "event": "The school was renamed the Intermediate Cryptography Technical School and began upgrading its training programs."
+      },
+      {
+        "year": 2001,
+        "event": "The Government officially authorized the school to offer formal undergraduate programs."
+      },
+      {
+        "year": 2007,
+        "event": "The school was upgraded to the Academy of Cryptography Techniques by a decision of the Prime Minister."
+      },
+      {
+        "milestone": "The Academy developed into a multidisciplinary institution while maintaining its core role in training cryptographic engineering, information security, and secure technologies for defense and security."
+      },
+      {
+        "milestone": "A new training facility was opened in Ho Chi Minh City, expanding enrollment scale and international cooperation."
+      },
+      {
+        "milestone": "The Academy was granted permission to offer a master's degree in Information Security to meet the growing demand for highly qualified professionals in the field."
+      },
+      {
+        "status": "Currently, the Academy is the only institution under the Government Cipher Committee authorized to offer undergraduate and postgraduate education specializing in cryptography, ciphers, and information security."
+      },
+      {
+        "reputation": "Recognized as the cradle for training Vietnam’s top cryptographic and cybersecurity experts."
+      }
+    ],
+    "summary": "Over the past 48 years of development, from a small cipher officer training school with just over ten staff and poor facilities, the Academy has grown into a multidisciplinary training institution. It now provides high-level human resources for both the Cipher sector and national socio-economic needs, with a dedicated, highly qualified faculty and modern campuses in both Hanoi and Ho Chi Minh City. This growth affirms the Academy's position as a key training center for the Cipher sector and a pioneer university in information security and cybersecurity education in Vietnam.",
+    "futureGoals": "ACT aims to become a high-quality education institution in cryptography and information security, meeting both national cipher demands and socio-economic needs. The Academy is set to evolve into a center for innovation and digital transformation, offering personalized education through digital infrastructure. It also strives to be a strategic research institution for national security and contribute to building a modern, professional Cipher sector in Vietnam."
+  },
+  "organizationalStructureAndTeam": {
+    "title": "Organizational Structure and Team",
+    "introduction": "The Academy boasts a team of highly qualified lecturers and staff, many of whom hold titles such as Professors, Associate Professors, and PhDs. They not only teach but also actively engage in scientific research, technology development, and international cooperation, contributing to improved training quality and the Academy's prestige.",
+    "boardOfDirectors": {
+      "title": "Board of Directors",
+      "members": [
+        {
+          "name": "Dr. Hoang Van Thuc",
+          "position": "Director",
+          "specialization": "Expert in Information Security and Cryptography"
+        },
+        {
+          "name": "Assoc. Prof. Dr. Luong The Dung",
+          "position": "Deputy Director",
+          "specialization": "Expert in Information System Security"
+        },
+        {
+          "name": "Dr. Nguyen Tan Dang",
+          "position": "Deputy Director",
+          "specialization": "Expert in Cryptographic Technology"
+        },
+        {
+          "name": "Prof. Dr. Nguyen Hieu Minh",
+          "position": "Deputy Director",
+          "specialization": "Expert in Information Security and Data Protection"
+        }
+      ],
+      "description": "This is the highest leadership team responsible for the strategic direction, management, and operations of the Academy."
+    },
+    "functionalDepartments": {
+      "title": "Functional Departments",
+      "introduction": "The Academy has functional departments supporting management and training, including:",
+      "list": [
+        "Political and Organizational Department",
+        "Training Department",
+        "Testing and Quality Assurance Department",
+        "Postgraduate Department",
+        "Administrative Department",
+        "Planning and Finance Department",
+        "Equipment and Facilities Management Department"
+      ],
+      "description": "These departments are responsible for advising, organizing, and managing the Academy’s professional, administrative, financial, and infrastructure activities."
+    },
+    "specializedFaculties": {
+      "title": "Specialized Faculties",
+      "description": "The Academy delivers training and scientific research through its specialized faculties, aligned with its development direction and the demand for high-quality human resources in cryptography and information security."
+    }
+  },
+  "scientificResearchAndTechnologyTransfer": {
+    "title": "Scientific Research and Technology Transfer",
+    "activities": [
+      {
+        "id": 1,
+        "activityTitle": "Organizing national and international scientific conferences",
+        "description": "The Academy regularly organizes scientific conferences to update and share new knowledge in cryptography and information security. For example, the 'Applied Cryptography and Information Security - CryptoJS 2022' conference gathered top experts from Vietnam and abroad to create an academic forum and foster research collaboration."
+      },
+      {
+        "id": 2,
+        "activityTitle": "Research collaboration with institutes and universities",
+        "description": "The Academy collaborates with the Institute of Information Technology (Vietnam National University, Hanoi) in areas such as semiconductor chip design, big data security, and artificial intelligence. Joint training sessions, PhD supervision, and innovation/startup projects are also organized."
+      },
+      {
+        "id": 3,
+        "activityTitle": "Developing and transferring security solutions",
+        "description": "The Academy implements research projects and develops applied security solutions for the cipher field and big data protection. Collaborating with institutions like the Institute of Information Technology allows both sides to leverage strengths and contribute to sustainable development."
+      },
+      {
+        "id": 4,
+        "activityTitle": "Training and developing high-quality human resources",
+        "description": "The Academy was the first institution in Vietnam permitted to train Information Security Engineers and offer a master's degree in this field. It also trains personnel for friendly countries and prioritizes scientific cooperation to develop the national information security workforce."
+      }
+    ]
+  },
+  "externalCooperation": {
+    "title": "External Cooperation",
+    "cooperations": [
+      {
+        "title": "Strategic Human Resources Alliance under Resolution 57-NQ/TW",
+        "events": [
+          {
+            "title": "Strategic Human Resources Alliance under Resolution 57-NQ/TW",
+            "date": "May 7, 2025",
+            "description": "ACT, together with the Ho Chi Minh National Academy of Politics, University of Engineering and Technology (VNU Hanoi), Hanoi University of Science and Technology, and FPT University, signed an agreement to establish the Strategic Human Resources Alliance. This alliance aims to develop high-quality human resources ready for the digital transformation era."
+          }
+        ],
+        "id": "1",
+        "event": "Strategic Human Resources Alliance under Resolution 57-NQ/TW",
+        "date": "May 7, 2025",
+        "description": "ACT, together with the Ho Chi Minh National Academy of Politics, University of Engineering and Technology (VNU Hanoi), Hanoi University of Science and Technology, and FPT University, signed an agreement to establish the Strategic Human Resources Alliance. This alliance aims to develop high-quality human resources ready for the digital transformation era."
+      },
+      {
+        "title": "Collaboration with Da Nang Center for IC Design and AI Research & Training",
+        "events": [
+          {
+            "title": "Collaboration with Da Nang Center for IC Design and AI Research & Training",
+            "date": "March 7, 2025",
+            "description": "The Academy signed a memorandum of understanding with the Da Nang Center for IC Design and AI. The goal is to cooperate in research and training in semiconductor and AI, contributing to the development of this sector in Da Nang and nationwide."
+          }
+        ],
+        "id": "2",
+        "event": "Collaboration with Da Nang Center for IC Design and AI Research & Training",
+        "date": "March 7, 2025",
+        "description": "The Academy signed a memorandum of understanding with the Da Nang Center for IC Design and AI. The goal is to cooperate in research and training in semiconductor and AI, contributing to the development of this sector in Da Nang and nationwide."
+      },
+      {
+        "title": "Meeting with Japan Advanced Institute of Science and Technology (JAIST)",
+        "events": [
+          {
+            "title": "Meeting with Japan Advanced Institute of Science and Technology (JAIST)",
+            "date": "February 27, 2023",
+            "description": "The Academy welcomed a delegation from JAIST to discuss opportunities for cooperation in advanced technology research and education."
+          }
+        ],
+        "id": "3",
+        "event": "Meeting with Japan Advanced Institute of Science and Technology (JAIST)",
+        "date": "February 27, 2023",
+        "description": "The Academy welcomed a delegation from JAIST to discuss opportunities for cooperation in advanced technology research and education."
+      }
+    ]
+  },
+  "alumni": {
+    "title": "Alumni",
+    "achievements": [
+      {
+        "id": 1,
+        "category": "Key positions in government agencies",
+        "description": "Many ACT alumni hold critical positions in state management agencies related to cybersecurity, national defense, public security, and IT ministries. They play key roles in policy-making, legal frameworks, and implementing national cybersecurity strategies. For instance, some are senior officials in the Authority of Information Security, Ministry of Information and Communications, and cybersecurity units of the Ministry of Public Security and Ministry of National Defense."
+      },
+      {
+        "id": 2,
+        "category": "Leading experts in information security",
+        "details": [
+          "ACT is the cradle of many highly skilled information security experts recognized nationally and internationally.",
+          "International competitions: Many alumni have been core members of top CTF (Capture The Flag) teams, winning awards in major competitions such as DEF CON CTF, Pwn2Own, etc., which require deep knowledge and practical security skills.",
+          "Research and development: Some alumni have become researchers, developing advanced security technologies, contributing to national defense systems, encryption solutions, and cyber-attack detection.",
+          "Academia: Many have returned to ACT or joined other universities and research institutes to teach and conduct deep research, passing knowledge to the next generation."
+        ]
+      },
+      {
+        "id": 3,
+        "category": "Success in the business sector",
+        "details": [
+          "Many ACT alumni have founded or held senior management roles in major tech corporations and leading cybersecurity companies in Vietnam.",
+          "They leverage their security expertise to develop high-quality products and services for enterprises, organizations, and individuals.",
+          "Some have successfully launched cybersecurity startups offering consulting and implementation services, contributing to Vietnam’s tech ecosystem."
+        ]
+      }
+    ]
+  }
+}

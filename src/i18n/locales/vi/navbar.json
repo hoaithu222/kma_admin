@@ -1,0 +1,67 @@
+{
+  "about": "Giới thiệu",
+  "about-overview": "Tổng quan",
+  "about-structure": "Cơ cấu đào tạo",
+  "about-organizations": "Tổ chức",
+  "lecturers": "Đội ngũ giảng viên",
+
+  "training": "Đào tạo",
+  "training-overview": "Tổng quan",
+  "training-undergraduate": "Chương trình Đại học",
+  "training-master": "Chương trình Thạc sĩ",
+  "training-doctor": "Chương trình Tiến sĩ",
+
+  "departments": "Khoa - Trung tâm",
+  "department-it": "Công nghệ thông tin",
+  "department-security": "An toàn thông tin",
+  "department-telecom": "Viễn thông",
+
+  "research": "Nghiên cứu",
+  "research-overview": "Tổng quan",
+  "-ti-nghin-cu": "Đề tài nghiên cứu",
+  "cng-b-khoa-hc": "Công bố khoa học",
+
+  "admission": "Tuyển sinh",
+  "admission-overview": "Tổng quan",
+  "admission-undergraduate": "Tuyển sinh Đại học",
+  "admission-master": "Tuyển sinh Thạc sĩ",
+  "admission-doctor": "Tuyển sinh Tiến sĩ",
+  "tuyn-sinh-cng-ngh-thng-tin": "Tuyển sinh công nghệ thông tin",
+  "tuyn-sinh-an-ton-thng-tin": "Tuyển sinh an toàn thông tin",
+  "tuyn-sinh-in-t-vin-thng": "Tuyển sinh điện tử viễn thông",
+
+  "student": "Sinh viên",
+  "student-forms": "Quy định sinh viên",
+  "student-registration": "Đăng ký học",
+  "student-research": "Nghiên cứu sinh viên",
+  "student-internship": "Thực tập",
+  "student-project-practice": "Đồ án - Thực hành",
+  "student-thesis": "Khóa luận",
+  "hot-ng-ngoi-kha": "Hoạt động ngoại khóa",
+  "vic-lm-thc-tp": "Việc làm thực tập",
+  "h-tr-sinh-vin": "Hỗ trợ sinh viên",
+  "hng-dn-th-tc": "Hướng dẫn thủ tục",
+  "o-to-tuyn-sinh": "Đào tạo tuyển sinh",
+  "cu-sinh-vin": "Cựu sinh viên",
+  "-n-thc-hnh": "Đồ án thực hành",
+
+  "contact": "Liên hệ",
+  "contact-introduction": "Giới thiệu",
+  "contact-info": "Thông tin liên hệ",
+  "post": "Bài viết",
+
+  "hp-tc-i-ngoi": "Hợp tác đối ngoại",
+  "nghin-cu-khoa-hc": "Nghiên cứu khoa học",
+  "thng-bo-chung": "Thông báo chung",
+  "tin-tc-mi-nht": "Tin tức mới nhất",
+  "tin-tc-ni-bt": "Tin tức nổi bật",
+
+  "article": "Bài viết",
+  "article-news": "Tin tức",
+  "article-posts": "Bài viết",
+
+  "event": "Sự kiện",
+  "s-kin-mi-nht": "Sự kiện mới nhất",
+  "s-kin-sp-ti": "Sự kiện sắp tới",
+  "s-kin-din-ra": "Sự kiện đã diễn ra"
+}

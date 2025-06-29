@@ -1,0 +1,517 @@
+{
+  "programName": "Full-time Undergraduate Program in Electronics and Telecommunications",
+  "trainingLevel": "Undergraduate",
+  "degreeAwarded": "Bachelor and Engineer",
+  "major": "Electronics and Telecommunications",
+  "majorName": "Major Code",
+  "majorCode": "7.52.02.07",
+  "specialization": "Embedded Systems and Automatic Control",
+  "trainingType": "Full-time",
+  "programCode": "KM.D.2.1",
+  "programDurationTitle": "Program Duration",
+  "programDuration": "4 and 4.5 years",
+  "totalCreditsTitle": "Total Credits",
+  "totalCredits": "169 credits",
+  "degreeTitle": "Degree",
+  "trainingObjectives": {
+    "general": {
+      "introduction": "The objective of the full-time undergraduate program in Electronic and Communication Engineering, specializing in Embedded Systems and Automatic Control, is to equip students with:",
+      "points": [
+        "Political qualities and professional ethics to meet the requirements of working in the socio-economic, security, and national defense sectors.",
+        "Solid fundamental professional knowledge to adapt well to jobs in the field of Electronic and Communication Engineering.",
+        "The ability to participate in building and developing electronic and telecommunication systems, designing and manufacturing electronic products, embedded systems, and PLC systems, serving the Cipher industry in particular and society in general, amidst the rapid development of the Electronic and Communication Engineering sector.",
+        "Necessary social skills, self-study, and research capabilities to succeed in life and career.",
+        "The training program allows for flexible transition between specializations within the Electronic and Communication Engineering major."
+      ],
+      "framework": "The full-time undergraduate program in Electronic and Communication Engineering, specializing in Embedded Systems and Automatic Control, is built upon the framework program for Electronic and Communication Engineering of the Ministry of Education and Training, with reference to the framework programs of several domestic and international universities: Hanoi University of Science and Technology; Posts and Telecommunications Institute of Technology; Military Technical Academy; Ho Chi Minh City National University; Brunel University London – UK; Aalborg University – Denmark; University of Nottingham Ningbo China – China; National University of Ireland – Ireland; University of Leeds – UK, etc. This is combined with practical surveys at various enterprises such as SAMSUNG, Foxconn, Viettel, LG Vietnam."
+    },
+    "specific": {
+      "ethicalQualities": {
+        "title": "On Political Qualities and Professional Ethics",
+        "postGraduationNote": "Upon graduation, engineers in Embedded Systems and Automatic Control must possess:",
+        "objectives": [
+          "MT1: Absolute loyalty to the Fatherland, to the ideal goals and revolutionary path of the Communist Party of Vietnam; patriotism, love for socialism; high sense of responsibility, desire to excel in life and work.",
+          "MT2: A sense of organizational discipline, strict adherence to the Party's guidelines and policies, and State laws. Good moral character, healthy and simple lifestyle. Scientific, precise, and meticulous work ethic.",
+          "MT3: A correct worldview and philosophy of life, and the ability to logically and positively perceive and evaluate phenomena."
+        ]
+      },
+      "professionalKnowledge": {
+        "title": "On Professional Knowledge",
+        "objectives": [
+          "MT4: Understanding of the basic principles of Marxism-Leninism, the revolutionary path of the Communist Party of Vietnam, Ho Chi Minh Thought.",
+          "MT5: Ability to apply fundamental mathematical and physical knowledge to calculate and simulate Electronic and Communication systems; design and manufacturing processes in the field of Electronics and Telecommunications.",
+          "MT6: English proficiency equivalent to Toeic 400.",
+          "MT7: Ability to apply core industry knowledge (circuit theory, electronic components, analog electronics, digital electronics, microprocessors, signals and systems, ...) combined with the ability to exploit and use modern methods and tools (simulation tools, design aids, electronic printed circuit board design tools) to design and evaluate electronic and telecommunication devices and systems.",
+          "MT8: Ability to design and develop embedded systems using microprocessors, microcontrollers, DSP, FPGA, etc.",
+          "MT9: Develop PLC control systems, industrial communication networks.",
+          "MT10: Possess foundational knowledge of very large-scale integrated (VLSI) microelectronic circuit systems: digital integrated circuits, analog integrated circuits, etc., used in civil and specialized electronic devices."
+        ]
+      },
+      "professionalSkills": {
+        "title": "On Professional Skills",
+        "description": "Possess the necessary professional skills and personal qualities to succeed in the profession:",
+        "objectives": [
+          "MT11: Technical problem analysis and resolution reasoning.",
+          "MT12: Ability to plan and organize work.",
+          "MT13: Ability to research, experiment, and discover knowledge.",
+          "MT14: Dynamism, creativity, and discipline.",
+          "MT15: Professional ethics and responsibility.",
+          "MT16: Understanding of contemporary issues and a commitment to lifelong learning."
+        ]
+      },
+      "socialSkills": {
+        "title": "On Social Skills",
+        "objectives": [
+          "MT17: Teamwork skills.",
+          "MT18: Communication skills through document creation, presentation, discussion, negotiation, and mastering situations.",
+          "MT19: Ability to effectively use modern tools and equipment."
+        ]
+      }
+    },
+    "careerProspects": {
+      "title": "Job Placement After Graduation",
+      "description": "Upon graduation, engineers specializing in Embedded Systems and Automatic Control, in the field of Electronic and Communication Engineering, can undertake the following positions:",
+      "positions": [
+        "Teaching subjects related to Electronic and Communication Engineering at universities, colleges, and professional secondary schools.",
+        "Scientific research in the fields of Electronic and Communication Engineering at research institutes, and research and development (R&D) centers of electronics corporations such as SAMSUNG, LG, Viettel, etc.",
+        "Working in design and maintenance departments of electronic systems in industrial, civil, and specialized sectors for domestic and international companies and organizations.",
+        "Working in specialized fields of embedded system design, industrial control system design, and microchip design for companies, organizations, and research institutes.",
+        "Working at agencies and units in the Cipher industry in fields such as deploying and developing specialized cryptographic products."
+      ]
+    },
+    "futureDevelopment": {
+      "title": "Development Direction",
+      "description": "Capable of continuing studies and research at higher levels."
+    }
+  },
+  "admissionInfo": {
+    "targetApplicantsTitle": "Target Applicants",
+    "targetApplicants": "Vietnamese citizens who pass the university entrance examination (or admission review).",
+    "admissionMethodTitle": "Admission Method",
+    "admissionMethod": "Admission is based on the results of the national high school graduation examination. The admission score is the total score of one of three combinations of 03 subjects/tests (national high school graduation examination): Mathematics, Physics, Chemistry (A00); Mathematics, Physics, English (A01); Mathematics, Natural Sciences, English (D90)."
+  },
+  "graduationRequirements": "According to the current regulations of the Ministry of Education and Training and the regulations of the Cryptography Technical Academy.",
+  "outcomeReference": "For detailed output standards and curriculum, please refer to the Electronic and Telecommunications program.",
+  "footer": {
+    "title": "Cryptography Technical Academy",
+    "description": "High-quality training program - Research and application orientation"
+  },
+  "tab": {
+    "generalInfo": "General Information",
+    "trainingObjectives": "Training Objectives",
+    "specificObjectives": "Specific Objectives",
+    "programInfo": "Program Structure",
+    "professionalInfo": "Professional Information",
+    "admissionInfo": "Admission Information",
+    "tuitionFee": "Tuition Fee",
+    "document": "Document",
+    "graduationRequirementsDetails": "Additional Information"
+  },
+  "programInfoDetails": {
+    "title": "Detailed Training Program by Semester",
+    "description": "Detailed Training Program by Semester",
+    "totalCourses": "Total Courses",
+    "totalCredits": "Total Credits",
+    "semesters": "Total Semesters",
+    "semester": "Semester",
+    "credits": "Credits",
+    "courses": "Courses",
+    "electives": "Specialized Elective Courses",
+    "specializations": "Training Specializations",
+    "informationSystemSecurity": "Information System Security",
+    "networkSecurityEngineering": "Network Security Engineering",
+    "secureSoftwareTechnology": "Secure Software Technology"
+  },
+  "courseCategory": {
+    "legend": "Course Classification",
+    "mandatory": "General Mandatory",
+    "supportive": "Supportive for Major",
+    "specialized": "Specialized",
+    "professional": "Professional Education",
+    "mandatoryGroup": "Group-wide Mandatory",
+    "foundation": "Major Foundation",
+    "internship": "Internship",
+    "thesis": "Graduation Thesis",
+    "other": "Other"
+  },
+  "common": {
+    "credits": "credits",
+    "courses": "courses",
+    "totalCredits": "Total Credits"
+  },
+  "learningProgramDetails": {
+    "title": "Training Program Structure"
+  },
+  "learningProgram": {
+    "semester1": {
+      "title": "Semester 1",
+      "courses": [
+        {
+          "name": "National Defense and Security Education",
+          "credits": 8
+        },
+        {
+          "name": "Marxism–Leninism Philosophy",
+          "credits": 3
+        },
+        {
+          "name": "Advanced Mathematics 1",
+          "credits": 4
+        },
+        {
+          "name": "General Physics 1",
+          "credits": 3
+        },
+        {
+          "name": "General Informatics",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 1",
+          "credits": 1
+        }
+      ]
+    },
+    "semester2": {
+      "title": "Semester 2",
+      "courses": [
+        {
+          "name": "Advanced Mathematics 2",
+          "credits": 3
+        },
+        {
+          "name": "General Physics 2",
+          "credits": 3
+        },
+        {
+          "name": "Introduction to Programming",
+          "credits": 3
+        },
+        {
+          "name": "Marxist-Leninist Political Economy",
+          "credits": 2
+        },
+        {
+          "name": "History of the Communist Party of Vietnam",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 2",
+          "credits": 1
+        },
+        {
+          "name": "Scientific Socialism",
+          "credits": 2
+        }
+      ],
+      "electives": {
+        "title": "Elective Courses",
+        "credits": 2,
+        "options": [
+          "Management Science",
+          "General Law of Vietnam",
+          "General Psychology",
+          "Logic"
+        ]
+      }
+    },
+    "semester3": {
+      "title": "Semester 3",
+      "courses": [
+        {
+          "name": "Advanced Mathematics 3",
+          "credits": 3
+        },
+        {
+          "name": "Probability and Statistics",
+          "credits": 3
+        },
+        {
+          "name": "General Physics Lab 1&2",
+          "credits": 2
+        },
+        {
+          "name": "English 1",
+          "credits": 3
+        },
+        {
+          "name": "Ho Chi Minh Ideology",
+          "credits": 2
+        },
+        {
+          "name": "Computer Network Technology",
+          "credits": 2
+        },
+        {
+          "name": "Programming Techniques",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 3",
+          "credits": 1
+        },
+        {
+          "name": "Soft Skills",
+          "credits": 2
+        }
+      ]
+    },
+    "semester4": {
+      "title": "Semester 4",
+      "courses": [
+        {
+          "name": "English 2",
+          "credits": 3
+        },
+        {
+          "name": "Discrete Mathematics",
+          "credits": 2
+        },
+        {
+          "name": "Signals and Systems",
+          "credits": 2
+        },
+        {
+          "name": "Electrical Engineering",
+          "credits": 2
+        },
+        {
+          "name": "Electronic Components",
+          "credits": 3
+        },
+        {
+          "name": "Circuit Theory",
+          "credits": 2
+        },
+        {
+          "name": "Power Electronics",
+          "credits": 2
+        },
+        {
+          "name": "Analog Electronics",
+          "credits": 3
+        },
+        {
+          "name": "Physical Education 4",
+          "credits": 1
+        }
+      ]
+    },
+    "semester5": {
+      "title": "Semester 5",
+      "courses": [
+        {
+          "name": "English 3",
+          "credits": 3
+        },
+        {
+          "name": "Digital Communication",
+          "credits": 2
+        },
+        {
+          "name": "Electronic Measurement Techniques",
+          "credits": 3
+        },
+        {
+          "name": "Microprocessor Engineering",
+          "credits": 2
+        },
+        {
+          "name": "Digital Electronics",
+          "credits": 3
+        },
+        {
+          "name": "Computer-Aided Circuit Design",
+          "credits": 2
+        },
+        {
+          "name": "Basic Internship 1",
+          "credits": 2
+        },
+        {
+          "name": "Fundamentals of Automation",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 5",
+          "credits": 1
+        }
+      ]
+    },
+    "semester6": {
+      "title": "Semester 6",
+      "courses": [
+        {
+          "name": "Technical English",
+          "credits": 3
+        },
+        {
+          "name": "Theory of Information Transmission",
+          "credits": 2
+        },
+        {
+          "name": "Data Communication Engineering",
+          "credits": 2
+        },
+        {
+          "name": "Telecommunication Systems",
+          "credits": 2
+        },
+        {
+          "name": "Digital System Design",
+          "credits": 3
+        },
+        {
+          "name": "Computer Architecture",
+          "credits": 2
+        },
+        {
+          "name": "Industrial Electronics",
+          "credits": 2
+        },
+        {
+          "name": "Project 1",
+          "credits": 2
+        }
+      ],
+      "electives": {
+        "title": "Major Foundation Electives",
+        "credits": 2,
+        "options": [
+          "Operating System Principles",
+          "Sensor Engineering",
+          "Automatic Measurement"
+        ]
+      }
+    },
+    "semester7": {
+      "title": "Semester 7",
+      "courses": [
+        {
+          "name": "Peripheral Devices and Interfacing",
+          "credits": 2
+        },
+        {
+          "name": "Digital Signal Processing",
+          "credits": 3
+        },
+        {
+          "name": "Real-Time Embedded Operating Systems",
+          "credits": 3
+        },
+        {
+          "name": "Cryptography Theory",
+          "credits": 2
+        },
+        {
+          "name": "Embedded Systems",
+          "credits": 3
+        },
+        {
+          "name": "VLSI Design Fundamentals",
+          "credits": 3
+        },
+        {
+          "name": "Basic Internship 2",
+          "credits": 2
+        },
+        {
+          "name": "Project 2",
+          "credits": 2
+        }
+      ]
+    },
+    "semester8": {
+      "title": "Semester 8",
+      "courses": [
+        {
+          "name": "Embedded System Design",
+          "credits": 3
+        },
+        {
+          "name": "IoT Application Development",
+          "credits": 3
+        },
+        {
+          "name": "PLC Design",
+          "credits": 3
+        },
+        {
+          "name": "Elective 1",
+          "credits": 3
+        },
+        {
+          "name": "Elective 2",
+          "credits": 3
+        },
+        {
+          "name": "Basic Internship 3",
+          "credits": 2
+        },
+        {
+          "name": "Project 3",
+          "credits": 2
+        }
+      ]
+    },
+    "semester9": {
+      "title": "Semester 9",
+      "courses": [
+        {
+          "name": "Graduation Internship",
+          "credits": 3
+        },
+        {
+          "name": "Graduation Thesis",
+          "credits": 8
+        }
+      ]
+    }
+  },
+  "careerPathsTelecom": {
+    "title": "Career Opportunities After Graduating in Electronics and Telecommunications",
+    "intro": "Graduates can pursue many attractive positions in high-tech fields:",
+    "telecomEngineer": {
+      "title": "1. 📡 Telecom Engineer",
+      "description": [
+        "Design, operate, and maintain fixed and mobile telecommunication network systems.",
+        "Work at major corporations such as Viettel, VNPT, MobiFone, FPT Telecom,..."
+      ]
+    },
+    "networkCommunicationSpecialist": {
+      "title": "2. 📶 Network Communication Specialist (Network Engineer)",
+      "description": [
+        "Deploy and monitor data communication networks, LAN/WAN, and optical transmission networks.",
+        "Ensure stable and secure system operation."
+      ]
+    },
+    "electronicsCircuitDesignEngineer": {
+      "title": "3. 🛠️ Electronics Engineer – Circuit Design",
+      "description": [
+        "Design and develop electronic circuits, microprocessors, and microcontrollers in communication devices.",
+        "Apply them in industrial products, military equipment, medical devices,..."
+      ]
+    },
+    "secureCommunicationEngineer": {
+      "title": "4. 🔐 Secure Communication Engineer",
+      "description": [
+        "Integrate security into communication systems, design encrypted communication systems.",
+        "Work at special technical units such as the Government Cipher Committee, Ministry of National Defense,..."
+      ]
+    },
+    "iotWirelessCommunicationSpecialist": {
+      "title": "5. 🌐 IoT and Wireless Communication Specialist",
+      "description": [
+        "Design wireless communication systems for smart homes, autonomous vehicles, medical devices, etc.",
+        "Develop embedded systems and network-connected sensors."
+      ]
+    },
+    "satelliteRadioCommunicationEngineer": {
+      "title": "6. 🛰️ Satellite and Radio Communication Engineer",
+      "description": [
+        "Analyze, build, and operate satellite communication systems, radar, and digital television.",
+        "Work in national defense – security research units or telecommunication companies."
+      ]
+    }
+  }
+}

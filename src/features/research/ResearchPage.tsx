@@ -4,7 +4,6 @@ import { PlusIcon } from "lucide-react";
 
 import { useBase } from "@/foundation/components/base/hooks/useBase";
 import ListPost from "@/foundation/components/base/ListPost";
-import { Post } from "@/foundation/components/base/slice/base-post.types";
 import EditPosts from "@/foundation/components/base/EditPost";
 import AddPost from "@/foundation/components/base/AddPost";
 import { RESEARCH_IDS } from "@/shared/consts/consts";
@@ -39,7 +38,9 @@ const ResearchPage = () => {
           subCategoryId={RESEARCH_IDS.RESEARCH_SCIENTIFIC_PUBLICATION}
         />
       </div>
-      {isEditPost && <EditPosts post={editPost.editPost as Post} />}
+      {isEditPost && editPost.editPost && (
+        <EditPosts post={editPost.editPost} />
+      )}
       {isAddPost && (
         <AddPost
           categoryId={RESEARCH_IDS.RESEARCH_CATEGORY}

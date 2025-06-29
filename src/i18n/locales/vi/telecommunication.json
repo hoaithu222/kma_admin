@@ -1,0 +1,322 @@
+{
+  "programName": "Chương trình giáo dục đại học hệ Chính quy ngành Điện tử viễn thông",
+  "trainingLevel": "Đại học",
+  "degreeAwarded": "Cử nhân và Kỹ sư",
+  "major": "Điện tử viễn thông",
+  "majorName": "Mã ngành",
+  "majorCode": "7.52.02.07",
+  "specialization": "Hệ thống nhúng và điều khiển tự động",
+  "trainingType": "Chính quy",
+  "programCode": "KM.D.2.1",
+  "programDurationTitle": "Thời gian đào tạo",
+  "programDuration": "4 và 4,5 năm",
+  "totalCreditsTitle": "Tổng số tín chỉ",
+  "totalCredits": "169 tín chỉ",
+  "degreeTitle": "Bằng cấp",
+  "trainingObjectives": {
+    "general": {
+      "introduction": "Mục tiêu của Chương trình giáo dục đại học chính quy ngành Kỹ thuật điện tử, truyền thông, chuyên ngành Hệ thống nhúng và điều khiển tự động (Embedded Systems and Automatic Control) là trang bị cho người học:",
+      "points": [
+        "Phẩm chất chính trị, đạo đức nghề nghiệp để đáp ứng yêu cầu hoạt động trong khu vực kinh tế xã hội và an ninh, quốc phòng.",
+        "Kiến thức cơ sở chuyên môn vững chắc để thích ứng tốt với những công việc trong lĩnh vực Kỹ thuật điện tử, truyền thông.",
+        "Có năng lực tham gia xây dựng và phát triển hệ thống điện tử, viễn thông, thiết kế chế tạo các sản phẩm điện tử, hệ thống nhúng và hệ thống PLC, phục vụ ngành Cơ yếu nói riêng và xã hội nói chung trong bối cảnh phát triển rất nhanh của ngành Kỹ thuật điện tử, truyền thông.",
+        "Kỹ năng xã hội cần thiết, khả năng tự học, tự nghiên cứu để thành công trong cuộc sống và nghề nghiệp.",
+        "Chương trình đào tạo cho phép khả năng chuyển đổi linh hoạt giữa các chuyên ngành trong ngành Kỹ thuật Điện tử, Truyền thông."
+      ],
+      "framework": "Chương trình giáo dục đại học chính quy ngành Kỹ thuật điện tử, truyền thông, chuyên ngành Hệ thống nhúng và điều khiển tự động được xây dựng trên cơ sở khung chương trình đào tạo ngành Kỹ thuật điện tử, truyền thông của Bộ Giáo dục và Đào tạo, cùng với sự tham khảo chương trình khung của một số trường đại học trong và ngoài nước: Đại học Bách khoa Hà Nội; Học viện Công nghệ Bưu chính Viễn thông; Học viện KTQS; Đại học Quốc gia TPHCM; Đại học Brunel London (Brunel University London) – Vương quốc Anh; Đại học Aalborg (Aalborg University) – Đan Mạch; Đại học Nottingham Ningbo China (University of Nottingham Ningbo China) – Trung Quốc; Đại học Quốc gia Ireland (National University of Ireland) – Ai Len; Đại học Leeds (University of Leeds) – Vương quốc Anh,... Kết hợp với quá trình khảo sát thực tế tại một số doanh nghiệp: Tập đoàn SAMSUNG, Foxconn, Viettel, LG Việt Nam."
+    },
+    "specific": {
+      "ethicalQualities": {
+        "title": "Về phẩm chất chính trị, đạo đức nghề nghiệp",
+        "postGraduationNote": "Sau khi tốt nghiệp, kỹ sư Hệ thống nhúng và điều khiển tự động phải có được:",
+        "objectives": [
+          "MT1: Tuyệt đối trung thành với Tổ quốc, với mục tiêu lý tưởng và đường lối cách mạng của Đảng cộng sản Việt Nam; có lòng yêu nước, yêu chủ nghĩa xã hội; có tinh thần trách nhiệm cao, có ý thức vươn lên trong cuộc sống và công việc.",
+          "MT2: Có ý thức tổ chức kỷ luật, nghiêm chỉnh chấp hành đường lối chủ trương chính sách của Đảng, pháp luật của Nhà nước. Có phẩm chất đạo đức tốt, lối sống lành mạnh, giản dị. Có tác phong làm việc khoa học, chính xác, chặt chẽ.",
+          "MT3: Có thế giới quan, nhân sinh quan đúng đắn và có khả năng nhận thức đánh giá các hiện tượng một cách logic và tích cực."
+        ]
+      },
+      "professionalKnowledge": {
+        "title": "Về kiến thức chuyên môn",
+        "objectives": [
+          "MT4: Hiểu biết về các nguyên lý cơ bản của chủ nghĩa Mác - Lênin, Đường lối cách mạng của Đảng Cộng sản Việt Nam, Tư tưởng Hồ Chí Minh.",
+          "MT5: Có khả năng áp dụng kiến thức cơ sở toán học, vật lý để tính toán, mô phỏng các hệ thống Điện tử, Truyền thông; các quá trình thiết kế và chế tạo sản phẩm trong lĩnh vực Điện tử, Truyền thông.",
+          "MT6: Tiếng Anh đạt trình độ tương đương Toeic 400.",
+          "MT7: Khả năng áp dụng kiến thức cốt lõi ngành (lý thuyết mạch, linh kiện điện tử, điện tử tương tự, điện tử số, vi xử lý, tín hiệu và hệ thống, ...) kết hợp với khả năng khai thác, sử dụng các phương pháp, công cụ hiện đại (công cụ mô phỏng, trợ giúp thiết kế, công cụ thiết kế mạch in điện tử) để thiết kế và đánh giá các thiết bị, hệ thống điện tử, truyền thông.",
+          "MT8: Khả năng thiết kế, phát triển các hệ thống nhúng sử dụng các bộ vi xử lý, vi điều khiển, DSP, FPGA,…",
+          "MT9: Phát triển hệ thống điều khiển PLC, mạng truyền thông công nghiệp.",
+          "MT10: Có kiến thức nền tảng về các hệ thống mạch vi điện tử mật độ tích hợp rất cao (VLSI): vi mạch số, vi mạch tương tự,… dùng trong các thiết bị điện tử dân dụng và chuyên dụng."
+        ]
+      },
+      "professionalSkills": {
+        "title": "Về kỹ năng nghề nghiệp",
+        "description": "Có kỹ năng chuyên nghiệp và phẩm chất cá nhân cần thiết để thành công trong nghề nghiệp:",
+        "objectives": [
+          "MT11: Lập luận phân tích và giải quyết vấn đề kỹ thuật.",
+          "MT12: Khả năng lập kế hoạch và tổ chức công việc.",
+          "MT13: Khả năng nghiên cứu, thử nghiệm và khám phá tri thức.",
+          "MT14: Tính năng động, sáng tạo và kỷ luật.",
+          "MT15: Đạo đức và trách nhiệm nghề nghiệp.",
+          "MT16: Hiểu biết các vấn đề đương đại và ý thức học suốt đời."
+        ]
+      },
+      "socialSkills": {
+        "title": "Về kỹ năng xã hội",
+        "objectives": [
+          "MT17: Kỹ năng làm việc nhóm.",
+          "MT18: Kỹ năng giao tiếp thông qua việc tạo lập văn bản, thuyết trình, thảo luận, đàm phán, làm chủ tình huống.",
+          "MT19: Kỹ năng sử dụng hiệu quả các công cụ và phương tiện hiện đại."
+        ]
+      }
+    },
+    "careerProspects": {
+      "title": "Vị trí làm việc sau tốt nghiệp",
+      "description": "Sau khi tốt nghiệp ra trường các kỹ sư chuyên ngành Hệ thống nhúng và điều khiển tự động, ngành Kỹ thuật điện tử, truyền thông có thể đảm nhiệm các vị trí sau:",
+      "positions": [
+        "Giảng dạy các môn liên quan đến ngành Kỹ thuật điện tử, truyền thông tại các trường đại học, cao đẳng, trung học chuyên nghiệp.",
+        "Nghiên cứu khoa học thuộc các lĩnh vực về Kỹ thuật điện tử, truyền thông tại các viện nghiên cứu, các trung tâm nghiên cứu và phát triển (R&D) của các tập đoàn điện tử như SAMSUNG, LG, Viettel, …",
+        "Làm việc tại các bộ phận thiết kế, bảo trì các hệ thống điện tử trong công nghiệp, dân dụng và chuyên dụng của các công ty và tổ chức trong và ngoài nước.",
+        "Làm việc trong các lĩnh vực chuyên sâu về thiết kế các hệ thống nhúng, thiết kế hệ thống điều khiển công nghiệp và thiết kế vi mạch cho các công ty, tổ chức và các Viện nghiên cứu.",
+        "Làm việc tại các cơ quan, đơn vị trong ngành Cơ yếu về các lĩnh vực như triển khai và phát triển các sản phẩm mật mã chuyên dụng."
+      ]
+    },
+    "futureDevelopment": {
+      "title": "Hướng phát triển",
+      "description": "Có khả năng tiếp tục học tập nghiên cứu ở các trình độ cao hơn."
+    }
+  },
+  "admissionInfo": {
+    "targetApplicantsTitle": "Đối tượng tuyển sinh",
+    "targetApplicants": "Công dân Việt Nam trúng tuyển kỳ thi (hoặc xét tuyển) đại học.",
+    "admissionMethodTitle": "Phương thức xét tuyển",
+    "admissionMethod": "Việc xét tuyển căn cứ kết quả thi của kỳ thi THPT quốc gia. Điểm xét tuyển là tổng điểm của một trong ba tổ hợp gồm 03 môn/bài thi (kỳ thi THPT quốc gia): Toán, Vật lý, Hóa học (A00); Toán, Vật lý, Tiếng Anh (A01); Toán, Khoa học tự nhiên, Tiếng Anh (D90)."
+  },
+  "graduationRequirements": "Theo quy chế hiện hành của Bộ Giáo dục và Đào tạo và các quy định của Học viện Kỹ thuật mật mã.",
+  "outcomeReference": "Chuẩn đầu ra và chi tiết chương trình đào tạo xem tại Chương trình đào tạo ngành ĐT-VT.",
+  "footer": {
+    "title": "Học Viện Kỹ thuật Mật Mã",
+    "description": "Chương trình đào tạo chất lượng cao - Định hướng nghiên cứu và ứng dụng"
+  },
+  "tab": {
+    "generalInfo": "Thông tin chung",
+    "trainingObjectives": "Mục tiêu đào tạo",
+    "specificObjectives": "Mục tiêu cụ thể",
+    "programInfo": "Cấu trúc chương trình",
+    "professionalInfo": "Nghề nghiệp",
+    "admissionInfo": "Thông tin tuyển sinh",
+    "tuitionFee": "Học phí",
+    "document": "Tài liệu đào tạo",
+    "graduationRequirementsDetails": "Thông tin bổ sung"
+  },
+  "programInfoDetails": {
+    "title": "Chương trình đào tạo chi tiết theo từng học kỳ",
+    "description": "Chương trình đào tạo chi tiết theo từng học kỳ",
+    "totalCourses": "Tổng số môn học",
+    "totalCredits": "Tổng số tín chỉ",
+    "semesters": "Tổng số học kỳ",
+    "semester": "Học kỳ",
+    "credits": "Tín chỉ",
+    "courses": "Môn học",
+    "electives": "Học phần chuyên ngành tự chọn",
+    "specializations": "Chuyên ngành đào tạo",
+    "informationSystemSecurity": "Chuyên ngành An toàn hệ thống thông tin",
+    "networkSecurityEngineering": "Chuyên ngành Kỹ nghệ an toàn mạng",
+    "secureSoftwareTechnology": "Chuyên ngành Công nghệ phần mềm an toàn"
+  },
+  "courseCategory": {
+    "legend": "Phân loại môn học",
+    "mandatory": "Bắt buộc chung",
+    "supportive": "Bổ trợ ngành",
+    "specialized": "Chuyên ngành",
+    "professional": "Giáo dục chuyên nghiệp",
+    "mandatoryGroup": "Bắt buộc chung nhóm ngành",
+    "foundation": "Cơ sở ngành",
+    "internship": "Thực tập",
+    "thesis": "Luận văn tốt nghiệp",
+    "other": "Khác"
+  },
+  "common": {
+    "credits": "tín chỉ",
+    "courses": "môn học",
+    "totalCredits": "Tổng tín chỉ"
+  },
+  "learningProgramDetails": {
+    "title": "Cấu trúc chương trình đào tạo"
+  },
+  "learningProgram": {
+    "semester1": {
+      "title": "Học kỳ 1",
+      "courses": [
+        { "name": "Giáo dục quốc phòng an ninh", "credits": 8 },
+        { "name": "Triết học Mác – Lênin", "credits": 3 },
+        { "name": "Toán cao cấp 1", "credits": 4 },
+        { "name": "Vật lý đại cương 1", "credits": 3 },
+        { "name": "Tin học đại cương", "credits": 2 },
+        { "name": "Giáo dục thể chất 1", "credits": 1 }
+      ]
+    },
+    "semester2": {
+      "title": "Học kỳ 2",
+      "courses": [
+        { "name": "Toán cao cấp 2", "credits": 3 },
+        { "name": "Vật lý đại cương 2", "credits": 3 },
+        { "name": "Lập trình căn bản", "credits": 3 },
+        { "name": "Kinh tế chính trị Mác – Lênin", "credits": 2 },
+        { "name": "Lịch sử Đảng Cộng sản Việt Nam", "credits": 2 },
+        { "name": "Giáo dục thể chất 2", "credits": 1 },
+        { "name": "Chủ Nghĩa xã hội Khoa học", "credits": 2 }
+      ],
+      "electives": {
+        "title": "Môn tự chọn",
+        "credits": 2,
+        "options": [
+          "Khoa học quản lý",
+          "Pháp luật VN đại cương",
+          "Tâm lý học đại cương",
+          "Logic học"
+        ]
+      }
+    },
+    "semester3": {
+      "title": "Học kỳ 3",
+      "courses": [
+        { "name": "Toán cao cấp 3", "credits": 3 },
+        { "name": "Xác suất thống kê", "credits": 3 },
+        { "name": "Thực hành vật lý đại cương 1&2", "credits": 2 },
+        { "name": "Tiếng Anh 1", "credits": 3 },
+        { "name": "Tư tưởng Hồ Chí Minh", "credits": 2 },
+        { "name": "Công nghệ mạng máy tính", "credits": 2 },
+        { "name": "Kỹ thuật lập trình", "credits": 2 },
+        { "name": "Giáo dục thể chất 3", "credits": 1 },
+        { "name": "Kỹ năng mềm", "credits": 2 }
+      ]
+    },
+    "semester4": {
+      "title": "Học kỳ 4",
+      "courses": [
+        { "name": "Tiếng Anh 2", "credits": 3 },
+        { "name": "Toán rời rạc", "credits": 2 },
+        { "name": "Tín hiệu và hệ thống", "credits": 2 },
+        { "name": "Kỹ thuật điện", "credits": 2 },
+        { "name": "Linh kiện điện tử", "credits": 3 },
+        { "name": "Lý thuyết mạch", "credits": 2 },
+        { "name": "Điện tử công suất", "credits": 2 },
+        { "name": "Điện tử tương tự", "credits": 3 },
+        { "name": "Giáo dục thể chất 4", "credits": 1 }
+      ]
+    },
+    "semester5": {
+      "title": "Học kỳ 5",
+      "courses": [
+        { "name": "Tiếng Anh 3", "credits": 3 },
+        { "name": "Thông tin số", "credits": 2 },
+        { "name": "Kỹ thuật đo lường điện tử", "credits": 3 },
+        { "name": "Kỹ thuật vi xử lý", "credits": 2 },
+        { "name": "Điện tử số", "credits": 3 },
+        { "name": "Thiết kế mạch điện tử sử dụng máy tính", "credits": 2 },
+        { "name": "Thực tập cơ sở 1", "credits": 2 },
+        { "name": "Cơ sở điều khiển tự động", "credits": 2 },
+        { "name": "Giáo dục thể chất 5", "credits": 1 }
+      ]
+    },
+    "semester6": {
+      "title": "Học kỳ 6",
+      "courses": [
+        { "name": "Tiếng Anh chuyên ngành", "credits": 3 },
+        { "name": "Cơ sở lý thuyết truyền tin", "credits": 2 },
+        { "name": "Kỹ thuật truyền số liệu", "credits": 2 },
+        { "name": "Hệ thống viễn thông", "credits": 2 },
+        { "name": "Thiết kế hệ thống số", "credits": 3 },
+        { "name": "Kiến trúc máy tính", "credits": 2 },
+        { "name": "Điện tử công nghiệp", "credits": 2 },
+        { "name": "Đồ án 1", "credits": 2 }
+      ],
+      "electives": {
+        "title": "Lựa chọn cơ sở ngành",
+        "credits": 2,
+        "options": [
+          "Nguyên lý hệ điều hành",
+          "Kỹ thuật cảm biến",
+          "Đo lường tự động"
+        ]
+      }
+    },
+    "semester7": {
+      "title": "Học kỳ 7",
+      "courses": [
+        { "name": "Thiết bị ngoại vi và kỹ thuật ghép nối", "credits": 2 },
+        { "name": "Xử lý tín hiệu số", "credits": 3 },
+        { "name": "Hệ điều hành nhúng thời gian thực", "credits": 3 },
+        { "name": "Mật mã lý thuyết", "credits": 2 },
+        { "name": "Hệ thống nhúng", "credits": 3 },
+        { "name": "Cơ sở thiết kế VLSI", "credits": 3 },
+        { "name": "Thực tập cơ sở 2", "credits": 2 },
+        { "name": "Đồ án 2", "credits": 2 }
+      ]
+    },
+    "semester8": {
+      "title": "Học kỳ 8",
+      "courses": [
+        { "name": "Thiết kế hệ thống nhúng", "credits": 3 },
+        { "name": "Phát triển ứng dụng IoT", "credits": 3 },
+        { "name": "Thiết kế PLC", "credits": 3 },
+        { "name": "Lựa chọn 1", "credits": 3 },
+        { "name": "Lựa chọn 2", "credits": 3 },
+        { "name": "Thực tập cơ sở 3", "credits": 2 },
+        { "name": "Đồ án 3", "credits": 2 }
+      ]
+    },
+    "semester9": {
+      "title": "Học kỳ 9",
+      "courses": [
+        { "name": "Thực tập tốt nghiệp", "credits": 3 },
+        { "name": "Đồ án tốt nghiệp", "credits": 8 }
+      ]
+    }
+  },
+  "careerPathsTelecom": {
+    "title": "Cơ hội nghề nghiệp sau khi tốt nghiệp ngành Điện tử Viễn thông",
+    "intro": "Sinh viên tốt nghiệp có thể đảm nhận nhiều vị trí hấp dẫn trong các lĩnh vực công nghệ cao:",
+    "telecomEngineer": {
+      "title": "1. 📡 Kỹ sư viễn thông (Telecom Engineer)",
+      "description": [
+        "Thiết kế, vận hành, bảo trì hệ thống mạng viễn thông cố định và di động.",
+        "Làm việc tại các tập đoàn lớn như Viettel, VNPT, MobiFone, FPT Telecom,..."
+      ]
+    },
+    "networkCommunicationSpecialist": {
+      "title": "2. 📶 Chuyên viên mạng truyền thông (Network Engineer)",
+      "description": [
+        "Triển khai và giám sát các mạng truyền thông dữ liệu, mạng LAN/WAN, mạng truyền dẫn quang.",
+        "Đảm bảo hệ thống hoạt động ổn định và an toàn."
+      ]
+    },
+    "electronicsCircuitDesignEngineer": {
+      "title": "3. 🛠️ Kỹ sư điện tử – thiết kế mạch (Electronics Engineer)",
+      "description": [
+        "Thiết kế, phát triển mạch điện tử, mạch vi xử lý, vi điều khiển trong thiết bị truyền thông.",
+        "Ứng dụng trong các sản phẩm công nghiệp, quân sự, thiết bị y tế,..."
+      ]
+    },
+    "secureCommunicationEngineer": {
+      "title": "4. 🔐 Chuyên viên tích hợp viễn thông và bảo mật (Secure Communication Engineer)",
+      "description": [
+        "Tích hợp bảo mật vào hệ thống truyền thông, thiết kế hệ thống truyền tin mã hóa.",
+        "Làm việc tại các đơn vị kỹ thuật đặc biệt như Ban Cơ yếu Chính phủ, Bộ Quốc phòng,..."
+      ]
+    },
+    "iotWirelessCommunicationSpecialist": {
+      "title": "5. 🌐 Chuyên viên IoT và truyền thông không dây",
+      "description": [
+        "Thiết kế hệ thống truyền thông không dây cho nhà thông minh, xe tự hành, thiết bị y tế,...",
+        "Phát triển các hệ thống nhúng và cảm biến kết nối mạng."
+      ]
+    },
+    "satelliteRadioCommunicationEngineer": {
+      "title": "6. 🛰️ Kỹ sư truyền thông vệ tinh và vô tuyến",
+      "description": [
+        "Phân tích, xây dựng và vận hành hệ thống liên lạc vệ tinh, radar, truyền hình số.",
+        "Làm việc trong các đơn vị nghiên cứu quốc phòng – an ninh hoặc hãng viễn thông."
+      ]
+    }
+  }
+}

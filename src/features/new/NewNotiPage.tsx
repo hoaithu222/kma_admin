@@ -4,7 +4,6 @@ import { PlusIcon } from "lucide-react";
 
 import { useBase } from "@/foundation/components/base/hooks/useBase";
 import ListPost from "@/foundation/components/base/ListPost";
-import { Post } from "@/foundation/components/base/slice/base-post.types";
 import EditPosts from "@/foundation/components/base/EditPost";
 import AddPost from "@/foundation/components/base/AddPost";
 import { NEWS_IDS } from "@/shared/consts/consts";
@@ -39,7 +38,9 @@ const NewNotiPage = () => {
           subCategoryId={NEWS_IDS.NEWS_NOTICE}
         />
       </div>
-      {isEditPost && <EditPosts post={editPost.editPost as Post} />}
+      {isEditPost && editPost.editPost && (
+        <EditPosts post={editPost.editPost} />
+      )}
       {isAddPost && (
         <AddPost
           categoryId={NEWS_IDS.NEWS_CATEGORY}

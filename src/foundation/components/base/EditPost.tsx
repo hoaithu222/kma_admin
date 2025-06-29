@@ -18,12 +18,13 @@ import { ReduxStateType } from "@/app/store/types";
 import { toast } from "react-toastify";
 import CustomReactQuill from "@/foundation/components/inputs/CustomReactQuill";
 import { uploadFileFromQuill } from "@/shared/utils/fileUploadHelper";
+import { Post } from "./slice/base-post.types";
 
 interface FormData extends Omit<IRequestAddArticle, "tagIds"> {
   tagIds: string[];
 }
 export interface EditPostsProps {
-  post: ResponseAddArticle;
+  post: Post | ResponseAddArticle;
 }
 
 export default function EditPosts({ post }: EditPostsProps) {

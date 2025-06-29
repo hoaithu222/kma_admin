@@ -1,0 +1,30 @@
+{
+  "title": "Training",
+  "certificate": "Bachelor",
+  "engineer": "Engineer",
+  "undergraduate_programs": {
+    "title": "Training Models and Programs (Civil System)",
+    "introduction": "Currently, the Academy of Cryptography Engineering offers training at both undergraduate and postgraduate levels. For undergraduate studies, the Academy offers three majors as follows:",
+    "information_security": {
+      "title": "Information Security Program (Major Code: 7480202)",
+      "bachelor": "Bachelor of Information Security (4 years): with 3 specialization branches in the final year: Information System Security, Network Security Engineering, and Secure Software Technology.",
+      "engineer": "Engineer of Computer Science (+0.5 years): specializing in Software Technology, and Information Systems.",
+      "details_link": "Details see here.",
+      "link": "/center-department/information-security"
+    },
+    "information_technology": {
+      "title": "Information Technology Program (Major Code: 7480201)",
+      "bachelor": "Bachelor of Information Technology (4 years): with 3 specialization branches in the final year: Embedded Software Technology, Mobile Software, and Artificial Intelligence.",
+      "engineer": "Engineer of Information Technology (+0.5 years or +1 year): specializing in: Embedded Software Technology, Mobile Software, and Artificial Intelligence.",
+      "details_link": "Details see here.",
+      "link": "/center-department/information-technology"
+    },
+    "electronics_telecommunications": {
+      "title": "Electronics and Telecommunications Program (Major Code: 7520207)",
+      "bachelor": "Bachelor of Electronics and Telecommunications (4 years): with specialization branch in the final year: Embedded Systems and Automatic Control.",
+      "engineer": "Engineer of Electronics and Telecommunications (+0.5 years): specializing in Embedded Systems and Automatic Control.",
+      "details_link": "Details see here.",
+      "link": "/center-department/telecommunication"
+    }
+  }
+}

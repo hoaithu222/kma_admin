@@ -1,0 +1,205 @@
+{
+  "menu": {
+    "overview": "Tổng quan về Học viện",
+    "history": "Sơ lược lịch sử",
+    "structureAndTeam": "Cơ cấu tổ chức và đội ngũ",
+    "researchAndTransfer": "Nghiên cứu khoa học và chuyển giao công nghệ",
+    "externalCooperation": "Hợp tác đối ngoại",
+    "alumni": "Cựu sinh viên"
+  },
+  "academyOverview": {
+    "title": "Giới thiệu Học Viện Kỹ thuật Mật Mã (ACT)",
+    "content": [
+      "Học Viện Kỹ thuật Mật Mã (ACT) là cơ sở giáo dục đại học công lập trực thuộc Ban Cơ yếu Chính phủ, có vai trò tiên phong trong đào tạo nguồn nhân lực chất lượng cao và nghiên cứu khoa học chuyên sâu về mật mã, an toàn thông tin, và công nghệ thông tin.",
+      "Trải qua gần 50 năm hình thành và phát triển, từ một trường đào tạo cán bộ cơ yếu với điều kiện ban đầu còn nhiều khó khăn, Học viện đã không ngừng lớn mạnh, trở thành một trung tâm đào tạo và nghiên cứu uy tín, đóng góp quan trọng vào sự nghiệp bảo vệ an ninh quốc gia và phát triển kinh tế - xã hội của đất nước.",
+      "Với tầm nhìn chiến lược, Học viện Kỹ thuật Mật mã đặt mục tiêu trở thành một trường đại học đa ngành theo định hướng nghiên cứu, đổi mới sáng tạo, hội nhập quốc tế, và là một trong những cơ sở đào tạo hàng đầu Việt Nam trong lĩnh vực an toàn thông tin và công nghệ số."
+    ]
+  },
+  "briefHistory": {
+    "title": "Sơ lược lịch sử",
+    "timeline": [
+      {
+        "year": 1976,
+        "event": "Trường Đào tạo cán bộ Cơ yếu được thành lập theo Quyết định của Ban Cơ yếu Trung ương (nay là Ban Cơ yếu Chính phủ) với mục tiêu ban đầu là đào tạo cán bộ kỹ thuật mật mã, phục vụ công tác cơ yếu và bảo mật thông tin trong lực lượng vũ trang và cơ quan nhà nước."
+      },
+      {
+        "year": 1995,
+        "event": "Trường được đổi tên thành Trường Trung học Kỹ thuật Mật mã, bắt đầu nâng cấp chương trình đào tạo."
+      },
+      {
+        "year": 2001,
+        "event": "Chính phủ chính thức cho phép trường đào tạo hệ đại học chính quy."
+      },
+      {
+        "year": 2007,
+        "event": "Được nâng cấp thành Học viện Kỹ thuật Mật mã theo Quyết định của Thủ tướng Chính phủ."
+      },
+      {
+        "milestone": "Học viện phát triển đa ngành nhưng vẫn giữ vai trò cốt lõi là đào tạo kỹ thuật mật mã, an toàn thông tin, và công nghệ bảo mật phục vụ quốc phòng – an ninh."
+      },
+      {
+        "milestone": "Mở thêm cơ sở đào tạo tại TP. Hồ Chí Minh, mở rộng quy mô tuyển sinh và hợp tác quốc tế."
+      },
+      {
+        "milestone": "Được phép đào tạo thạc sĩ chuyên ngành An toàn thông tin, phục vụ nhu cầu cao về nhân lực chất lượng cao trong lĩnh vực bảo mật."
+      },
+      {
+        "status": "Hiện nay học viên là trường duy nhất trực thuộc Ban Cơ yếu Chính phủ có chức năng đào tạo đại học – sau đại học chuyên sâu về mật mã, cơ yếu và an toàn thông tin."
+      },
+      {
+        "reputation": "Được đánh giá là cái nôi đào tạo cán bộ kỹ thuật mật mã và bảo mật hàng đầu Việt Nam."
+      }
+    ],
+    "summary": "Trải qua 48 năm hành thành và phát triển, từ một trường đào tạo cán bộ cho ngành Cơ yếu, đội ngũ cán bộ chỉ có hơn mười người, cơ sở vật chất đơn sơ, thiếu thốn. Suốt thời gian qua, Học viện không ngừng phát triển, mở rộng cơ sở vật chất đã trở thành một Học viện đào tạo đa ngành, đào tạo nguồn nhân lực cho ngành Cơ yếu và nhu cầu kinh tế - xã hội; đội ngũ cán bộ, giảng viên có trình độ cao, tâm huyết với nghề; cơ sở vật chất khang trang, hiện đại tại 02 cơ sở ở Hà Nội và TP. Hồ Chí Minh. Điều đó đã khẳng định vững chắc vị thế của Học viện là trung tâm đào tạo cán bộ trình độ cao cho toàn ngành Cơ yếu và là trường đại học tiên phong trong lĩnh vực đào tạo nguồn nhân lực bảo mật, an toàn thông tin cho lĩnh vực kinh tế - xã hội.",
+    "futureGoals": "Học viện KTMM xác định mục tiêu trong thời gian tới sẽ xây dựng Học viện thành cơ sở đào tạo chất lượng cao về KTMM và ATTT, đáp ứng nguồn nhân lực cơ yếu và nhu cầu kinh tế - xã hội; định hướng xây dựng Học viện thành trung tâm đổi mới - sáng tạo, chuyển đổi số và sử dụng hạ tầng số để cung cấp dịch vụ đào tạo cá thể hóa cho người học. Đồng thời phát triển Học viện theo mô hình vừa là cơ sở đào tạo chất lượng cao vừa là cơ quan nghiên cứu chiến lược về bảo mật, an toàn thông tin quốc gia góp phần quan trọng xây dựng ngành Cơ yếu Việt Nam cách mạng, chính quy, hiện đại."
+  },
+  "organizationalStructureAndTeam": {
+    "title": "Cơ cấu tổ chức và đội ngũ",
+    "introduction": "Học viện sở hữu đội ngũ giảng viên và cán bộ có trình độ cao, nhiều người đạt học hàm, học vị như Giáo sư, Phó Giáo sư, Tiến sĩ. Đội ngũ này không chỉ giảng dạy mà còn tham gia tích cực vào các hoạt động nghiên cứu khoa học, phát triển công nghệ và hợp tác quốc tế, góp phần nâng cao chất lượng đào tạo và uy tín của Học viện.",
+    "boardOfDirectors": {
+      "title": "Ban Giám đốc Học viện",
+      "members": [
+        {
+          "name": "Tiến sĩ Hoàng Văn Thức",
+          "position": "Giám đốc",
+          "specialization": "Chuyên gia về An toàn thông tin và Mật mã học"
+        },
+        {
+          "name": "Phó Giáo sư, Tiến sĩ Lương Thế Dũng",
+          "position": "Phó Giám đốc",
+          "specialization": "Chuyên gia về Bảo mật hệ thống thông tin"
+        },
+        {
+          "name": "Tiến sĩ Nguyễn Tân Đăng",
+          "position": "Phó Giám đốc",
+          "specialization": "Chuyên gia về Công nghệ mật mã"
+        },
+        {
+          "name": "Giáo sư, Tiến sĩ Nguyễn Hiếu Minh",
+          "position": "Phó Giám đốc",
+          "specialization": "Chuyên gia về An toàn thông tin và Bảo mật dữ liệu"
+        }
+      ],
+      "description": "Đây là đội ngũ lãnh đạo cao nhất, chịu trách nhiệm định hướng chiến lược, quản lý và điều hành toàn bộ hoạt động của Học viện."
+    },
+    "functionalDepartments": {
+      "title": "Các phòng, ban chức năng",
+      "introduction": "Học viện có các phòng, ban chức năng hỗ trợ công tác quản lý và đào tạo, bao gồm:",
+      "list": [
+        "Phòng Chính trị – Tổ chức",
+        "Phòng Đào tạo",
+        "Phòng Khảo thí và Đảm bảo chất lượng đào tạo",
+        "Phòng Sau đại học",
+        "Phòng Hành chính",
+        "Phòng Kế hoạch – Tài chính",
+        "Phòng Thiết bị – Quản trị"
+      ],
+      "description": "Các phòng, ban này có chức năng tham mưu, tổ chức và quản lý các hoạt động chuyên môn, hành chính, tài chính và cơ sở vật chất của Học viện."
+    },
+    "specializedFaculties": {
+      "title": "Các khoa chuyên môn",
+      "description": "Học viện tổ chức đào tạo và nghiên cứu khoa học thông qua các khoa chuyên môn, phù hợp với định hướng phát triển và nhu cầu đào tạo nguồn nhân lực chất lượng cao trong lĩnh vực an toàn thông tin và mật mã."
+    }
+  },
+  "scientificResearchAndTechnologyTransfer": {
+    "title": "Nghiên cứu khoa học và chuyển giao công nghệ",
+    "activities": [
+      {
+        "id": 1,
+        "activityTitle": "Tổ chức hội thảo khoa học quốc gia và quốc tế",
+        "description": "Học viện thường xuyên tổ chức các hội thảo khoa học nhằm cập nhật và chia sẻ kiến thức mới trong lĩnh vực mật mã và an toàn thông tin. Ví dụ, hội thảo \"Nghiên cứu ứng dụng Mật mã và An toàn thông tin - CryptoJS 2022\" đã quy tụ nhiều chuyên gia hàng đầu trong và ngoài nước, tạo diễn đàn trao đổi học thuật và thúc đẩy hợp tác nghiên cứu khoa học cơ bản và ứng dụng về mật mã, an toàn thông tin tại Việt Nam."
+      },
+      {
+        "id": 2,
+        "activityTitle": "Hợp tác nghiên cứu với các viện và trường đại học",
+        "description": "Học viện đã hợp tác với Viện Công nghệ Thông tin, Đại học Quốc gia Hà Nội trong các lĩnh vực như thiết kế chip bán dẫn, an toàn cơ sở dữ liệu lớn và trí tuệ nhân tạo. Hai bên cũng phối hợp tổ chức các lớp đào tạo, đồng hướng dẫn nghiên cứu sinh và hợp tác trong các dự án liên quan đến đổi mới sáng tạo và khởi nghiệp."
+      },
+      {
+        "id": 3,
+        "activityTitle": "Phát triển và chuyển giao giải pháp bảo mật",
+        "description": "Học viện đã triển khai các dự án nghiên cứu và phát triển các giải pháp bảo mật ứng dụng trong lĩnh vực cơ yếu và phát triển các giải pháp bảo mật đối với dữ liệu lớn. Việc hợp tác với các đơn vị như Viện Công nghệ Thông tin, Đại học Quốc gia Hà Nội giúp Học viện tận dụng và phát huy tối ưu thế mạnh của hai bên, đóng góp vào định hướng cho sự phát triển bền vững và lâu dài."
+      },
+      {
+        "id": 4,
+        "activityTitle": "Đào tạo và bồi dưỡng nguồn nhân lực chất lượng cao",
+        "description": "Học viện là cơ sở đầu tiên trong cả nước được phép đào tạo kỹ sư An toàn thông tin và cũng là cơ sở đầu tiên được phép đào tạo trình độ thạc sĩ chuyên ngành này. Ngoài ra, Học viện còn đào tạo cán bộ cho nước bạn và chú trọng nhiệm vụ hợp tác nghiên cứu khoa học, góp phần phát triển nguồn nhân lực an toàn thông tin cho xã hội trước yêu cầu phát triển mới."
+      }
+    ]
+  },
+  "externalCooperation": {
+    "title": "Hợp tác đối ngoại",
+    "cooperations": [
+      {
+        "title": "Liên minh nhân lực Chiến lược thực thi Nghị quyết 57-NQ/TW",
+        "events": [
+          {
+            "title": "Liên minh nhân lực Chiến lược thực thi Nghị quyết 57-NQ/TW",
+            "date": "Ngày 7/5/2025",
+            "description": "Học viện Kỹ thuật Mật mã cùng Học viện Chính trị quốc gia Hồ Chí Minh, Trường Đại học Công nghệ (ĐHQG Hà Nội), Đại học Bách khoa Hà Nội và Trường Đại học FPT đã ký kết thành lập Liên minh nhân lực Chiến lược. Liên minh này nhằm xây dựng lực lượng nhân sự chất lượng cao, sẵn sàng thích ứng với thời đại chuyển đổi số."
+          }
+        ],
+        "id": "1",
+        "event": "Liên minh nhân lực Chiến lược thực thi Nghị quyết 57-NQ/TW",
+        "date": "Ngày 7/5/2025",
+        "description": "Học viện Kỹ thuật Mật mã cùng Học viện Chính trị quốc gia Hồ Chí Minh, Trường Đại học Công nghệ (ĐHQG Hà Nội), Đại học Bách khoa Hà Nội và Trường Đại học FPT đã ký kết thành lập Liên minh nhân lực Chiến lược. Liên minh này nhằm xây dựng lực lượng nhân sự chất lượng cao, sẵn sàng thích ứng với thời đại chuyển đổi số."
+      },
+      {
+        "title": "Hợp tác với Trung tâm nghiên cứu, đào tạo thiết kế vi mạch và trí tuệ nhân tạo Đà Nẵng",
+        "events": [
+          {
+            "title": "Hợp tác với Trung tâm nghiên cứu, đào tạo thiết kế vi mạch và trí tuệ nhân tạo Đà Nẵng",
+            "date": "Ngày 7/3/2025",
+            "description": "Học viện ký biên bản ghi nhớ với Trung tâm nghiên cứu, đào tạo thiết kế vi mạch và trí tuệ nhân tạo Đà Nẵng. Mục tiêu là hợp tác nghiên cứu, đào tạo trong lĩnh vực vi mạch bán dẫn và trí tuệ nhân tạo, góp phần phát triển lĩnh vực này tại Đà Nẵng và cả nước."
+          }
+        ],
+        "id": "2",
+        "event": "Hợp tác với Trung tâm nghiên cứu, đào tạo thiết kế vi mạch và trí tuệ nhân tạo Đà Nẵng",
+        "date": "Ngày 7/3/2025",
+        "description": "Học viện ký biên bản ghi nhớ với Trung tâm nghiên cứu, đào tạo thiết kế vi mạch và trí tuệ nhân tạo Đà Nẵng. Mục tiêu là hợp tác nghiên cứu, đào tạo trong lĩnh vực vi mạch bán dẫn và trí tuệ nhân tạo, góp phần phát triển lĩnh vực này tại Đà Nẵng và cả nước."
+      },
+      {
+        "title": "Làm việc với Viện Khoa học Công nghệ tiên tiến Nhật Bản (JAIST)",
+        "events": [
+          {
+            "title": "Làm việc với Viện Khoa học Công nghệ tiên tiến Nhật Bản (JAIST)",
+            "date": "Ngày 27/02/2023",
+            "description": "Học viện đón tiếp và làm việc với đoàn đại biểu Viện Khoa học Công nghệ tiên tiến Nhật Bản (JAIST). Hai bên trao đổi về khả năng hợp tác trong nghiên cứu và đào tạo, đặc biệt trong lĩnh vực công nghệ tiên tiến."
+          }
+        ],
+        "id": "3",
+        "event": "Làm việc với Viện Khoa học Công nghệ tiên tiến Nhật Bản (JAIST)",
+        "date": "Ngày 27/02/2023",
+        "description": "Học viện đón tiếp và làm việc với đoàn đại biểu Viện Khoa học Công nghệ tiên tiến Nhật Bản (JAIST). Hai bên trao đổi về khả năng hợp tác trong nghiên cứu và đào tạo, đặc biệt trong lĩnh vực công nghệ tiên tiến."
+      }
+    ]
+  },
+  "alumni": {
+    "title": "Cựu sinh viên",
+    "achievements": [
+      {
+        "id": 1,
+        "category": "Những người giữ vị trí quan trọng trong các cơ quan nhà nước",
+        "description": "Nhiều cựu sinh viên của Học viện Kỹ thuật Mật mã hiện đang nắm giữ các vị trí chủ chốt trong các cơ quan quản lý nhà nước về an ninh mạng, quốc phòng, công an, và các bộ ngành liên quan đến công nghệ thông tin. Họ đóng vai trò quan trọng trong việc xây dựng chính sách, pháp luật, và triển khai các giải pháp bảo vệ an ninh quốc gia trên không gian mạng. Ví dụ, có thể kể đến các cán bộ cấp cao trong Cục An toàn thông tin, Bộ Thông tin và Truyền thông, các đơn vị nghiệp vụ về an ninh mạng của Bộ Công an, Bộ Quốc phòng."
+      },
+      {
+        "id": 2,
+        "category": "Chuyên gia hàng đầu về an toàn thông tin",
+        "details": [
+          "ACT là cái nôi đào tạo ra rất nhiều chuyên gia an toàn thông tin có trình độ cao, được cộng đồng trong nước và quốc tế công nhận.",
+          "Tham gia các cuộc thi quốc tế: Nhiều cựu sinh viên đã và đang là thành viên cốt cán của các đội tuyển thi đấu CTF (Capture The Flag) uy tín, giành được các giải thưởng cao tại các cuộc thi quốc tế lớn như DEF CON CTF, Pwn2Own, v.v. Những cuộc thi này đòi hỏi kiến thức sâu rộng và kỹ năng thực chiến về bảo mật.",
+          "Nghiên cứu và phát triển: Một số cựu sinh viên trở thành nhà nghiên cứu, phát triển các công nghệ bảo mật tiên tiến, đóng góp vào việc xây dựng các hệ thống phòng thủ, mã hóa, và phát hiện tấn công cho Việt Nam.",
+          "Giảng viên, nhà khoa học: Nhiều người quay trở lại Học viện hoặc công tác tại các trường đại học, viện nghiên cứu khác để truyền đạt kiến thức và kinh nghiệm cho thế hệ trẻ, đồng thời tham gia các dự án nghiên cứu khoa học chuyên sâu."
+        ]
+      },
+      {
+        "id": 3,
+        "category": "Thành công trong lĩnh vực doanh nghiệp",
+        "details": [
+          "Không ít cựu sinh viên ACT đã thành lập hoặc giữ các vị trí lãnh đạo, quản lý cấp cao trong các tập đoàn công nghệ lớn, các công ty bảo mật hàng đầu Việt Nam.",
+          "Họ mang kiến thức và kinh nghiệm về an toàn thông tin để xây dựng các sản phẩm, dịch vụ bảo mật chất lượng cao, phục vụ cho các doanh nghiệp, tổ chức và người dùng cá nhân.",
+          "Có những cựu sinh viên đã khởi nghiệp thành công, xây dựng các công ty chuyên về an ninh mạng, tư vấn và triển khai giải pháp bảo mật, đóng góp vào sự phát triển của hệ sinh thái công nghệ Việt Nam."
+        ]
+      }
+    ]
+  }
+}

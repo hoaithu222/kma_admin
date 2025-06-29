@@ -1,0 +1,116 @@
+{
+  "admission_contact": {
+    "title": "Admission Information",
+    "info": "For detailed information on admission procedures and application deadlines, please contact: https://actvn.edu.vn/News/Detail?NewsId=23314",
+    "details_link": "View details at",
+    "major_code": "Major Code",
+    "organizations_providing_services": "Organizations providing services in Information Security",
+    "organizations_with_it_networks": "Organizations with IT networks",
+    "research_teaching_organizations": "Organizations with research and teaching in Information Security"
+  },
+  "undergraduate_programs": {
+    "title": "Training Models and Programs (Civil System)",
+    "introduction": "Currently, the Academy of Cryptography Engineering offers training at both undergraduate and postgraduate levels. For undergraduate studies, the Academy offers three majors as follows:",
+    "information_security": {
+      "title": "Information Security Program (Major Code: 7480202)",
+      "bachelor": "Bachelor of Information Security (4 years): with 3 specialization branches in the final year: Information System Security, Network Security Engineering, and Secure Software Technology.",
+      "engineer": "Engineer of Computer Science (+0.5 years): specializing in Software Technology, and Information Systems.",
+      "details_link": "Details see here."
+    },
+    "information_technology": {
+      "title": "Information Technology Program (Major Code: 7480201)",
+      "bachelor": "Bachelor of Information Technology (4 years): with 3 specialization branches in the final year: Embedded Software Technology, Mobile Software, and Artificial Intelligence.",
+      "engineer": "Engineer of Information Technology (+0.5 years or +1 year): specializing in: Embedded Software Technology, Mobile Software, and Artificial Intelligence.",
+      "details_link": "Details see here."
+    },
+    "electronics_telecommunications": {
+      "title": "Electronics and Telecommunications Program (Major Code: 7520207)",
+      "bachelor": "Bachelor of Electronics and Telecommunications (4 years): with specialization branch in the final year: Embedded Systems and Automatic Control.",
+      "engineer": "Engineer of Electronics and Telecommunications (+0.5 years): specializing in Embedded Systems and Automatic Control.",
+      "details_link": "Details see here."
+    }
+  },
+  "master_program_information_security": {
+    "program_title": "Master's Program in Information Security",
+    "major": "Information Security",
+    "major_code": "8480202",
+    "general_introduction": {
+      "title": "I. GENERAL INTRODUCTION TO THE TRAINING PROGRAM",
+      "objectives": {
+        "title": "Program Objectives",
+        "general_objective": "To train Master's graduates in Information Security with strong professional expertise (theory and practice) and management skills; capable of research and development in Information Security science and technology; able to work independently and in teams, identify and effectively solve problems in the field of Information Security."
+      },
+      "career_prospects": {
+        "title": "Career Opportunities and Positions after Graduation",
+        "introduction": "The training program allows students to choose suitable courses to take on roles in the following areas:",
+        "organizations_providing_services": "At organizations and businesses providing products, services, or specialized agencies in information security: consulting, designing, building, deploying information security solutions; security assessment for information systems; monitoring and responding to information security incidents.",
+        "organizations_with_it_networks": "At agencies, organizations, and businesses with information technology network systems: deploying, managing, monitoring, operating information security systems; analyzing risk identification, designing, deploying solutions to ensure security for information technology systems.",
+        "research_teaching_organizations": "At agencies, organizations, and businesses involved in research and teaching in information security: research, teaching in information security, developing information security products."
+      },
+      "training_duration": {
+        "title": "Training Duration",
+        "duration": "The official training duration for the Master's program is 2 years (4 semesters)."
+      },
+      "degree_name": {
+        "title": "Degree Name",
+        "vietnamese": "Vietnamese Name: Thạc sĩ An toàn thông tin",
+        "english": "English Name: Master of Information Security"
+      }
+    },
+    "learning_outcomes": {
+      "title": "II. LEARNING OUTCOMES",
+      "introduction": "Graduates of the Master's program in Information Security must meet the following outcome standards:",
+      "knowledge": {
+        "title": "Knowledge",
+        "comprehensive_understanding": "Upon graduation, Master's graduates in Information Security will have a comprehensive understanding of the major;",
+        "advanced_knowledge": "Possess advanced knowledge in the major compared to the undergraduate program in Information Security, such as knowledge of Network Security; System Security; Database Security; cryptography and other modern products and technologies in the field of information security.",
+        "threats_solutions": "Understand information security threats and corresponding technical and technological solutions for prevention.",
+        "application_orientation": {
+          "title": "For application orientation:",
+          "assessment_incident_response": "Understand the knowledge and techniques for assessing, monitoring, and responding to information security incidents for information systems.",
+          "system_analysis_management": "Possess methodologies for analyzing, designing, building, managing, deploying, and operating secure information systems;",
+          "project_management": "Possess methodologies for planning, project formulation, organizing, directing, and managing projects in the Information Security field."
+        },
+        "research_orientation": {
+          "title": "For research orientation:",
+          "foundational_knowledge": "Possess foundational knowledge and methodologies for researching, teaching, developing solutions, and products in the field of information security and secure information technology products."
+        }
+      },
+      "skills": {
+        "title": "Skills",
+        "writing_presentation": "Possess techniques and skills for clear writing and presentation. Capable of completing complex, infrequent, and non-routine tasks.",
+        "technology_application": "Skills in learning, deploying, and applying new technologies to Information Security projects. Independent research skills to develop and test new solutions.",
+        "system_security_skills": "Skills in surveying, analyzing, designing, deploying, managing, and operating solutions to ensure security for information systems.",
+        "scientific_method_strategic_thinking": "Possess a scientific working method, strategic vision, and ability to propose solutions to Information Security issues.",
+        "application_orientation": {
+          "title": "For application orientation:",
+          "incident_response_skills": "Skills in assessing, monitoring, and responding to information security incidents for information systems."
+        },
+        "research_orientation": {
+          "title": "For research orientation:",
+          "teaching_development_skills": "Skills in teaching information security, designing, and building information security products and secure information technology products."
+        }
+      },
+      "qualities_attitude": {
+        "title": "Qualities and Attitude",
+        "responsibility_ethics": "Possess a sense of civic responsibility, proper professional attitude and ethics. Able to work independently or in a team.",
+        "lifelong_learning": "Possess a commitment to lifelong learning and scientific work."
+      },
+      "competencies": {
+        "title": "Competencies",
+        "systemic_thinking_self_research": "Ability for systemic thinking, self-research on issues related to specialized fields.",
+        "research_application_new_technologies": "Competence in researching and applying new technological knowledge to ensure information security for systems, researching and building information security solutions and products, and secure Information Technology.",
+        "teaching_phd_potential": "Ability to take on teaching positions at institutions with information security programs, and potential for doctoral research.",
+        "expert_roles": "Ability to effectively undertake the tasks of an information security specialist such as: information security solutions analyst and designer, information security assessor, information security systems manager and operator, incident response analyst, and information security monitor;",
+        "project_planning_management": "Ability to plan, formulate projects, organize, direct, and manage Information Security projects.",
+        "knowledge_update_new_technologies": "Competence in updating specialized knowledge and grasping new technologies in Information Security;",
+        "problem_solving_innovation": "Competence in identifying and solving problems within the trained specialty, proposing valuable initiatives.",
+        "adaptability": "Competence in adapting to a highly competitive environment.",
+        "team_management": "Competence in organizing and managing working groups."
+      }
+    },
+    "admission_contact": {
+      "info": "For detailed information on admission procedures and application deadlines, please contact: https://actvn.edu.vn/News/Detail?NewsId=23314"
+    }
+  }
+}

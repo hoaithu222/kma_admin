@@ -1,0 +1,30 @@
+{
+  "title": "Đào tạo",
+  "certificate": "Cử nhân",
+  "engineer": "Kỹ sư",
+  "undergraduate_programs": {
+    "title": "Mô hình và chương trình đào tạo (Hệ dân sự)",
+    "introduction": "Hiện nay Học viện Kỹ thuật mật mã đào tạo ở cả hai bậc, đại học và sau đại học. Đối với bậc đại học Học viện đào tạo Ba chuyên ngành như sau:",
+    "information_security": {
+      "title": "Chương trình An toàn thông tin (Mã ngành: 7480202)",
+      "bachelor": "Cử nhân An toàn thông tin (4 năm): theo 3 định hướng phân nhánh ở năm cuối: An toàn hệ thống thông tin, Kỹ nghệ an toàn mạng và Công nghệ phần mềm an toàn.",
+      "engineer": "Kỹ sư Khoa học Máy tính (+0.5 năm): định hướng chuyên sâu Công nghệ phần mềm, và Hệ thống thông tin.",
+      "details_link": "Chi tiết xem tại đây",
+      "link": "/center-department/information-security"
+    },
+    "information_technology": {
+      "title": "Chương trình Công nghệ thông tin (Mã ngành: 7480201)",
+      "bachelor": "Cử nhân Công nghệ thông tin (4 năm): theo 3 định hướng phân nhánh ở năm cuối: Công nghệ phần mềm nhúng, phần mềm di động và trí tuệ nhân tạo.",
+      "engineer": "Kỹ sư Công nghệ thông tin (+0.5 năm hoặc +1 năm): định hướng chuyên sâu: Công nghệ phần mềm nhúng, phần mềm di động và trí tuệ nhân tạo.",
+      "details_link": "Chi tiết xem tại đây",
+      "link": "/center-department/information-technology"
+    },
+    "electronics_telecommunications": {
+      "title": "Chương trình Điện tử viễn thông (Mã ngành: 7520207)",
+      "bachelor": "Cử nhân Điện tử viễn thông (4 năm): theo định hướng phân nhánh ở năm cuối: Hệ thống nhúng và điều khiển tự động.",
+      "engineer": "Kỹ sư Điện tử viễn thông (+0.5 năm): định hướng chuyên sâu Hệ thống nhúng và điều khiển tự động.",
+      "details_link": "Chi tiết xem tại đây",
+      "link": "/center-department/telecommunication"
+    }
+  }
+}

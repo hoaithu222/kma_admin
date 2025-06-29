@@ -141,7 +141,32 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
       ">
 
         <!-- File Icon -->
-        <div style="
+          <a  href="${fileUrl}" target="_blank" rel="noopener noreferrer"
+             onclick="event.stopPropagation();"
+             style="
+               padding: 6px 14px;
+               background: ${fileInfo.color};
+               color: #fff;
+               border-radius: 8px;
+               font-size: 13px;
+               font-weight: 500;
+               text-decoration: none;
+               display: flex;
+               align-items: center;
+               gap: 6px;
+               box-shadow: 0 2px 6px ${fileInfo.color}40;
+               transition: transform 0.2s, box-shadow 0.2s;
+               white-space: nowrap;
+             "
+             onmouseover="
+               this.style.transform = 'scale(1.05)';
+               this.style.boxShadow = '0 4px 10px ${fileInfo.color}60';
+             "
+             onmouseout="
+               this.style.transform = 'scale(1)';
+               this.style.boxShadow = '0 2px 6px ${fileInfo.color}40';
+             ">
+                  <div style="
           width: 52px;
           height: 52px;
           background: ${fileInfo.color}20;
@@ -178,39 +203,39 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
           ">
             ${fileName}
           </div>
-
-          <a href="${fileUrl}" target="_blank" rel="noopener noreferrer"
-             onclick="event.stopPropagation();"
-             style="
-               padding: 6px 14px;
-               background: ${fileInfo.color};
-               color: #fff;
-               border-radius: 8px;
-               font-size: 13px;
-               font-weight: 500;
-               text-decoration: none;
-               display: flex;
-               align-items: center;
-               gap: 6px;
-               box-shadow: 0 2px 6px ${fileInfo.color}40;
-               transition: transform 0.2s, box-shadow 0.2s;
-               white-space: nowrap;
-             "
-             onmouseover="
-               this.style.transform = 'scale(1.05)';
-               this.style.boxShadow = '0 4px 10px ${fileInfo.color}60';
-             "
-             onmouseout="
-               this.style.transform = 'scale(1)';
-               this.style.boxShadow = '0 2px 6px ${fileInfo.color}40';
-             ">
-            📥 Tải xuống
           </a>
+
+
         </div>
       </div>
     </div>
   `;
   };
+  //  href="${fileUrl}" target="_blank" rel="noopener noreferrer"
+  //            onclick="event.stopPropagation();"
+  //            style="
+  //              padding: 6px 14px;
+  //              background: ${fileInfo.color};
+  //              color: #fff;
+  //              border-radius: 8px;
+  //              font-size: 13px;
+  //              font-weight: 500;
+  //              text-decoration: none;
+  //              display: flex;
+  //              align-items: center;
+  //              gap: 6px;
+  //              box-shadow: 0 2px 6px ${fileInfo.color}40;
+  //              transition: transform 0.2s, box-shadow 0.2s;
+  //              white-space: nowrap;
+  //            "
+  //            onmouseover="
+  //              this.style.transform = 'scale(1.05)';
+  //              this.style.boxShadow = '0 4px 10px ${fileInfo.color}60';
+  //            "
+  //            onmouseout="
+  //              this.style.transform = 'scale(1)';
+  //              this.style.boxShadow = '0 2px 6px ${fileInfo.color}40';
+  //            "
 
   // Create file table HTML for multiple files
   const createFileDisplayTableHTML = (

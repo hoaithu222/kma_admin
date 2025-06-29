@@ -1,0 +1,574 @@
+{
+  "programName": "Undergraduate Regular Education Program in Information Security",
+  "trainingLevel": "Undergraduate",
+  "degreeAwarded": "Bachelor and Engineer",
+  "major": "Information Security",
+  "majorName": "Information Security",
+  "majorCode": "7.48.02.02",
+  "trainingType": "Full-time",
+  "degreeTitle": "Degree Title",
+  "programDuration": "4 years or 4.5 years",
+  "totalCredits": "153 credits",
+  "specializations": {
+    "title": "Training Specializations",
+    "KM.A.2.1": "Information Systems Security",
+    "KM.A.2.2.1": "Network Security Engineering",
+    "KM.A.2.3.1": "Secure Software Technology"
+  },
+  "trainingObjectives": {
+    "title": "Training Objectives",
+    "generalObjectives": "The regular undergraduate programs in Information Security will equip learners with:",
+    "generalPoints": [
+      "General knowledge suitable for the training field, ensuring compatibility with other training programs of the Academy and other institutions.",
+      "Fundamental knowledge in Information Security to understand the structure and operation of IT systems, recognize potential security threats, and apply methods to prevent them.",
+      "Specialized knowledge and skills to work professionally in the field of information security based on their chosen specialization."
+    ],
+    "specificObjectives": {
+      "title": "Specific Objectives",
+      "systemSecurity": {
+        "title": "Information Systems Security Specialization",
+        "description": "This specialization equips learners with in-depth knowledge and skills to: design and implement security solutions for information systems; consult for security solutions; operate security hardware and software tools; and handle security incidents during system operations."
+      },
+      "networkSecurityEngineering": {
+        "title": "Network Security Engineering Specialization",
+        "description": "This specialization provides learners with advanced knowledge and skills to work in and implement deep-level tasks related to information security and network security, such as malware analysis, system security monitoring, vulnerability detection and exploitation, security evaluation and assessment of information systems, and offensive/defensive security operations. Additionally, learners will be capable of designing, developing, and deploying security solutions, consulting on security technologies, operating security tools, and resolving incidents arising during system operation."
+      },
+      "secureSoftwareTechnology": {
+        "title": "Secure Software Technology Specialization",
+        "description": "This specialization provides both fundamental and advanced knowledge in software engineering and secure software technology, including: safe software development processes, software maintenance, security technology solutions, and the analysis, design, and management of secure software projects. Graduates will be capable of organizing, managing, and executing tasks in the field of secure software technology; modeling and applying secure software principles in practice; and analyzing, verifying, testing, and evaluating secure software."
+      }
+    }
+  },
+  "admissionInfo": {
+    "title": "Admission Information",
+    "targetApplicantsTitle": "Eligible Applicants",
+    "targetApplicants": "Vietnamese citizens who are admitted via the national university entrance exam (or equivalent evaluation).",
+    "admissionMethodTitle": "Admission Method",
+    "admissionMethod": "Admission is based on the results of the national high school graduation exam. The admission score is the total of one of the following subject combinations: Mathematics, Physics, Chemistry (A00); Mathematics, Physics, English (A01); Mathematics, Natural Sciences, English (D90)."
+  },
+  "additionalInfo": {
+    "title": "Additional Information",
+    "graduationRequirementsTitle": "Graduation Requirements",
+    "outcomeReferenceTitle": "Learning Outcomes Reference"
+  },
+  "graduationRequirements": "According to the undergraduate training regulations of the Ministry of Education and Training and the regulations of the Academy of Cryptography Techniques.",
+  "outcomeReference": "Learning outcomes and detailed training programs can be found in the Information Security training program.",
+  "tab": {
+    "generalInfo": "General Information",
+    "trainingObjectives": "Training Objectives",
+    "specificObjectives": "Specific Objectives",
+    "programInfo": "Program Structure",
+    "professionalInfo": "Professional Information",
+    "admissionInfo": "Admission Information",
+    "tuitionFee": "Tuition Fee",
+    "document": "Document",
+    "graduationRequirementsDetails": "Additional Information"
+  },
+  "programInfoDetails": {
+    "title": "Detailed Training Program by Semester",
+    "description": "Detailed training program for each semester",
+    "totalCourses": "Total Courses",
+    "totalCredits": "Total Credits",
+    "semesters": "Total Semesters",
+    "semester": "Semester",
+    "credits": "Credits",
+    "courses": "Courses",
+    "electives": "Specialized Elective Courses",
+    "specializations": "Training Specializations",
+    "informationSystemSecurity": "Information System Security",
+    "networkSecurityEngineering": "Network Security Engineering",
+    "secureSoftwareTechnology": "Secure Software Technology"
+  },
+  "courseCategory": {
+    "legend": "Course Classification",
+    "mandatory": "General Mandatory",
+    "supportive": "Supportive Courses",
+    "specialized": "Specialized Courses",
+    "professional": "Professional Education",
+    "mandatoryGroup": "Group-based Mandatory",
+    "foundation": "Foundation Courses",
+    "internship": "Internship",
+    "thesis": "Thesis",
+    "other": "Other"
+  },
+  "common": {
+    "credits": "credits",
+    "courses": "courses",
+    "totalCredits": "Total Credits"
+  },
+  "programInfo": {
+    "semester1": {
+      "title": "Semester 1",
+      "courses": [
+        {
+          "name": "National Defense and Security Education",
+          "credits": 8
+        },
+        {
+          "name": "General Informatics",
+          "credits": 2
+        },
+        {
+          "name": "Marxist–Leninist Philosophy",
+          "credits": 3
+        },
+        {
+          "name": "Calculus 1",
+          "credits": 3
+        },
+        {
+          "name": "Linear Algebra",
+          "credits": 3
+        },
+        {
+          "name": "Physical Education 1",
+          "credits": 1
+        },
+        {
+          "name": "General Law",
+          "credits": 2
+        }
+      ]
+    },
+    "semester2": {
+      "title": "Semester 2",
+      "courses": [
+        {
+          "name": "Calculus 2",
+          "credits": 3
+        },
+        {
+          "name": "General Physics 1",
+          "credits": 3
+        },
+        {
+          "name": "Marxist–Leninist Political Economy",
+          "credits": 2
+        },
+        {
+          "name": "Scientific Socialism",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 2",
+          "credits": 1
+        },
+        {
+          "name": "Ho Chi Minh Thought",
+          "credits": 2
+        },
+        {
+          "name": "Fundamentals of Programming",
+          "credits": 3
+        },
+        {
+          "name": "Vietnamese General Law",
+          "credits": 2
+        },
+        {
+          "name": "Soft Skills",
+          "credits": 2
+        }
+      ]
+    },
+    "semester3": {
+      "title": "Semester 3",
+      "courses": [
+        {
+          "name": "General Physics 2",
+          "credits": 3
+        },
+        {
+          "name": "Probability and Statistics",
+          "credits": 2
+        },
+        {
+          "name": "Advanced Mathematics",
+          "credits": 3
+        },
+        {
+          "name": "English 1",
+          "credits": 3
+        },
+        {
+          "name": "Data Structures and Algorithms",
+          "credits": 2
+        },
+        {
+          "name": "Computer Networks",
+          "credits": 3
+        },
+        {
+          "name": "Discrete Mathematics",
+          "credits": 2
+        },
+        {
+          "name": "Numerical Methods",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 3",
+          "credits": 1
+        },
+        {
+          "name": "History of the Communist Party of Vietnam",
+          "credits": 2
+        }
+      ]
+    },
+    "semester4": {
+      "title": "Semester 4",
+      "courses": [
+        {
+          "name": "English 2",
+          "credits": 3
+        },
+        {
+          "name": "Data Transmission Techniques",
+          "credits": 2
+        },
+        {
+          "name": "Fundamentals of Information Theory",
+          "credits": 2
+        },
+        {
+          "name": "Database Theory",
+          "credits": 2
+        },
+        {
+          "name": "Database Management Systems",
+          "credits": 2
+        },
+        {
+          "name": "Computer Network Administration",
+          "credits": 2
+        },
+        {
+          "name": "Computer Architecture and Assembly Language",
+          "credits": 3
+        }
+      ]
+    },
+    "semester5": {
+      "title": "Semester 5",
+      "courses": [
+        {
+          "name": "English 3",
+          "credits": 4
+        },
+        {
+          "name": "Object-Oriented Programming",
+          "credits": 2
+        },
+        {
+          "name": "System Analysis and Design",
+          "credits": 2
+        },
+        {
+          "name": "Principles of Operating Systems",
+          "credits": 2
+        },
+        {
+          "name": "Linux and Open Source Software",
+          "credits": 2
+        },
+        {
+          "name": "Algorithms in Information Security",
+          "credits": 2
+        },
+        {
+          "name": "Introduction to Cryptography",
+          "credits": 3
+        }
+      ]
+    },
+    "semester6": {
+      "title": "Semester 6",
+      "courses": [
+        {
+          "name": "English for Specific Purposes",
+          "credits": 4
+        },
+        {
+          "name": "Core Topics in the Field",
+          "credits": 2
+        },
+        {
+          "name": "Fundamentals of Information Security",
+          "credits": 3
+        },
+        {
+          "name": "Computer Network Security",
+          "credits": 3
+        },
+        {
+          "name": "Programming Techniques",
+          "credits": 2
+        },
+        {
+          "name": "Database Security",
+          "credits": 2
+        },
+        {
+          "name": "Network Security Protocols",
+          "credits": 2
+        }
+      ]
+    },
+    "semester7": {
+      "title": "Semester 7",
+      "informationSystemSecurity": {
+        "title": "Information System Security",
+        "courses": [
+          {
+            "name": "Secure Web Technologies",
+            "credits": 3
+          },
+          {
+            "name": "System Security Administration",
+            "credits": 3
+          },
+          {
+            "name": "Wireless and Mobile Network Security",
+            "credits": 2
+          },
+          {
+            "name": "Network Security Design and Analysis",
+            "credits": 2
+          },
+          {
+            "name": "Malware",
+            "credits": 3
+          },
+          {
+            "name": "Seminar on Information System Security",
+            "credits": 2
+          }
+        ]
+      },
+      "networkSecurityEngineering": {
+        "title": "Network Security Engineering",
+        "courses": [
+          {
+            "name": "Secure Web Technologies",
+            "credits": 3
+          },
+          {
+            "name": "Wireless and Mobile Network Security",
+            "credits": 2
+          },
+          {
+            "name": "Malware",
+            "credits": 3
+          },
+          {
+            "name": "Software Vulnerability Exploitation",
+            "credits": 2
+          },
+          {
+            "name": "System Attack and Defense",
+            "credits": 3
+          },
+          {
+            "name": "Seminar on Network Security Engineering",
+            "credits": 2
+          }
+        ]
+      },
+      "secureSoftwareTechnology": {
+        "title": "Secure Software Technology",
+        "courses": [
+          {
+            "name": "Secure Web Technologies",
+            "credits": 3
+          },
+          {
+            "name": "Software Engineering",
+            "credits": 3
+          },
+          {
+            "name": "User Interface Design",
+            "credits": 2
+          },
+          {
+            "name": "Formal Specification",
+            "credits": 2
+          },
+          {
+            "name": "Mobile Application Development",
+            "credits": 3
+          },
+          {
+            "name": "Seminar on Secure Software Technology",
+            "credits": 2
+          }
+        ]
+      }
+    },
+    "semester8": {
+      "title": "Semester 8",
+      "informationSystemSecurity": {
+        "title": "Information System Security",
+        "courses": [
+          {
+            "name": "Network Security Monitoring and Incident Response",
+            "credits": 2
+          },
+          {
+            "name": "System Security Testing and Evaluation",
+            "credits": 3
+          },
+          {
+            "name": "Information Security Management",
+            "credits": 2
+          },
+          {
+            "name": "Digital Forensics",
+            "credits": 3
+          },
+          {
+            "name": "Specialized Elective 1",
+            "credits": 2
+          },
+          {
+            "name": "Specialized Elective 2",
+            "credits": 2
+          },
+          {
+            "name": "Specialized Elective 3",
+            "credits": 2
+          }
+        ]
+      },
+      "networkSecurityEngineering": {
+        "title": "Network Security Engineering",
+        "courses": [
+          {
+            "name": "Network Security Monitoring and Incident Response",
+            "credits": 2
+          },
+          {
+            "name": "System Security Testing and Evaluation",
+            "credits": 3
+          },
+          {
+            "name": "Information Security Management",
+            "credits": 2
+          },
+          {
+            "name": "Digital Forensics",
+            "credits": 3
+          },
+          {
+            "name": "Specialized Elective 1",
+            "credits": 2
+          },
+          {
+            "name": "Specialized Elective 2",
+            "credits": 2
+          },
+          {
+            "name": "Specialized Elective 3",
+            "credits": 2
+          }
+        ]
+      },
+      "secureSoftwareTechnology": {
+        "title": "Secure Software Technology",
+        "courses": [
+          {
+            "name": "Applied Cryptography in Information Security",
+            "credits": 3
+          },
+          {
+            "name": "Secure Programming Techniques",
+            "credits": 3
+          },
+          {
+            "name": "Software Testing and Quality Assurance",
+            "credits": 2
+          },
+          {
+            "name": "Data Mining in Information Security",
+            "credits": 2
+          },
+          {
+            "name": "Specialized Elective 1",
+            "credits": 2
+          },
+          {
+            "name": "Specialized Elective 2",
+            "credits": 2
+          },
+          {
+            "name": "Specialized Elective 3",
+            "credits": 2
+          }
+        ]
+      }
+    },
+    "semester9": {
+      "title": "Semester 9 (General Plan)",
+      "courses": [
+        {
+          "name": "Graduation Internship",
+          "credits": 3
+        },
+        {
+          "name": "Graduation Thesis",
+          "credits": 8
+        }
+      ]
+    }
+  },
+  "careerPathsInfoSec": {
+    "title": "Career Opportunities After Graduating in Information Security",
+    "intro": "Graduates with an Information Security (IS) degree can pursue various roles amidst the increasing demand for cybersecurity.",
+    "securityAnalystEngineer": {
+      "title": "1. 🔐 Security Analyst / Engineer",
+      "description": [
+        "Monitor, detect, and respond to cyberattacks.",
+        "Establish security policies, deploy firewalls, IDS/IPS, etc.",
+        "Work at Security Operations Centers (SOCs)."
+      ]
+    },
+    "malwareAnalystDigitalForensics": {
+      "title": "2. 🧠 Malware Analyst, Digital Forensics Specialist",
+      "description": [
+        "Analyze, deconstruct, and trace malware, ransomware.",
+        "Investigate cyberattacks to determine causes and perpetrators.",
+        "Work at high-tech investigation agencies or financial organizations."
+      ]
+    },
+    "pentestEngineer": {
+      "title": "3. 🛡️ Pentest Engineer (Penetration Testing Specialist)",
+      "description": [
+        "Simulate attacks to test system vulnerabilities.",
+        "Propose solutions to fix security weaknesses.",
+        "Often work at security companies or as a freelancer."
+      ]
+    },
+    "cryptographySpecialist": {
+      "title": "4. 🔒 Cryptography Specialist",
+      "description": [
+        "Analyze, build, and implement cryptographic algorithms.",
+        "Apply them in data security, digital signatures, and secure payments."
+      ]
+    },
+    "governmentTechnicalOfficer": {
+      "title": "5. 🧑‍💻 Technical Officer in Government Agencies, National Defense – Security",
+      "description": [
+        "Work at units such as: Government Cipher Committee, Ministry of Public Security, Ministry of National Defense.",
+        "Participate in building and protecting classified and top-secret information systems of the State."
+      ]
+    },
+    "cloudBlockchainSecuritySpecialist": {
+      "title": "6. ☁️ Cloud and Blockchain Security Specialist",
+      "description": [
+        "Protect data and services on cloud platforms like AWS, Azure, GCP.",
+        "Analyze and build security solutions for systems using blockchain."
+      ]
+    },
+    "description": "Career opportunities after graduating in Information Security"
+  }
+}

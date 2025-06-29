@@ -12,6 +12,14 @@
     "contact": "Liên hệ",
     "forum": "Diễn đàn"
   },
+  "banner": {
+    "title1": "Khoa công nghệ thông tin",
+    "description1": "Học Viện Kỹ Thuật Mật Mã",
+    "title2": "Khoa học máy tính",
+    "description2": "Học Viện Kỹ Thuật Mật Mã",
+    "title3": "Khoa học máy tính",
+    "description3": "Học Viện Kỹ Thuật Mật Mã"
+  },
   "footer": {
     "units": {
       "title": "Các đơn vị",
@@ -44,7 +52,6 @@
       "title": "Tin tức mới nhất",
       "buttonMore": "Xem thêm"
     },
-
     "copyright": "© 2025 Học Viện Kỹ Thuật Mật Mã. All rights reserved."
   }
 }

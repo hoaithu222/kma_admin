@@ -4,10 +4,9 @@ import { PlusIcon } from "lucide-react";
 
 import { useBase } from "@/foundation/components/base/hooks/useBase";
 import ListPost from "@/foundation/components/base/ListPost";
-import { Post } from "@/foundation/components/base/slice/base-post.types";
 import EditPosts from "@/foundation/components/base/EditPost";
 import AddPost from "@/foundation/components/base/AddPost";
-import { NEWS_IDS } from "@/shared/consts/consts";
+import { CATEGORY_IDS, SUBCATEGORY_IDS } from "@/shared/consts/consts";
 
 const NewCooperation = () => {
   const { isAddPost, handleAddPost, isEditPost, editPost } = useBase();
@@ -35,15 +34,17 @@ const NewCooperation = () => {
       </div>
       <div className="mt-4">
         <ListPost
-          categoryId={NEWS_IDS.NEWS_CATEGORY}
-          subCategoryId={NEWS_IDS.NEWS_COOPERATION}
+          categoryId={CATEGORY_IDS.NEWS}
+          subCategoryId={SUBCATEGORY_IDS.COOPERATION}
         />
       </div>
-      {isEditPost && <EditPosts post={editPost.editPost as Post} />}
+      {isEditPost && editPost.editPost && (
+        <EditPosts post={editPost.editPost} />
+      )}
       {isAddPost && (
         <AddPost
-          categoryId={NEWS_IDS.NEWS_CATEGORY}
-          subCategoryId={NEWS_IDS.NEWS_COOPERATION}
+          categoryId={CATEGORY_IDS.NEWS}
+          subCategoryId={SUBCATEGORY_IDS.COOPERATION}
         />
       )}
     </div>

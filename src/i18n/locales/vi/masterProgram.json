@@ -1,0 +1,116 @@
+{
+  "admission_contact": {
+    "title": "Thông tin tuyển sinh",
+    "info": "Thông tin chi tiết về cách thức tuyển sinh, và thời hạn đăng ký nộp hồ sơ vui lòng liên hệ tại: https://actvn.edu.vn/News/Detail?NewsId=23314",
+    "details_link": "Xem chi tiết tại",
+    "major_code": "Mã ngành",
+    "organizations_providing_services": "Tổ chức cung cấp dịch vụ ATTT",
+    "organizations_with_it_networks": "Doanh nghiệp có hệ thống IT",
+    "research_teaching_organizations": "Tổ chức có nghiên cứu, giảng dạy về ATTT"
+  },
+  "undergraduate_programs": {
+    "title": "Mô hình và chương trình đào tạo (Hệ dân sự)",
+    "introduction": "Hiện nay Học viện Kỹ thuật mật mã đào tạo ở cả hai bậc, đại học và sau đại học. Đối với bậc đại học Học viện đào tạo Ba chuyên ngành như sau:",
+    "information_security": {
+      "title": "Chương trình An toàn thông tin (Mã ngành: 7480202)",
+      "bachelor": "Cử nhân An toàn thông tin (4 năm): theo 3 định hướng phân nhánh ở năm cuối: An toàn hệ thống thông tin, Kỹ nghệ an toàn mạng và Công nghệ phần mềm an toàn.",
+      "engineer": "Kỹ sư Khoa học Máy tính (+0.5 năm): định hướng chuyên sâu Công nghệ phần mềm, và Hệ thống thông tin.",
+      "details_link": "Chi tiết xem tại đây."
+    },
+    "information_technology": {
+      "title": "Chương trình Công nghệ thông tin (Mã ngành: 7480201)",
+      "bachelor": "Cử nhân Công nghệ thông tin (4 năm): theo 3 định hướng phân nhánh ở năm cuối: Công nghệ phần mềm nhúng, phần mềm di động và trí tuệ nhân tạo.",
+      "engineer": "Kỹ sư Công nghệ thông tin (+0.5 năm hoặc +1 năm): định hướng chuyên sâu: Công nghệ phần mềm nhúng, phần mềm di động và trí tuệ nhân tạo.",
+      "details_link": "Chi tiết xem tại đây."
+    },
+    "electronics_telecommunications": {
+      "title": "Chương trình Điện tử viễn thông (Mã ngành: 7520207)",
+      "bachelor": "Cử nhân Điện tử viễn thông (4 năm): theo định hướng phân nhánh ở năm cuối: Hệ thống nhúng và điều khiển tự động.",
+      "engineer": "Kỹ sư Điện tử viễn thông (+0.5 năm): định hướng chuyên sâu Hệ thống nhúng và điều khiển tự động.",
+      "details_link": "Chi tiết xem tại đây."
+    }
+  },
+  "master_program_information_security": {
+    "program_title": "Chương trình đào tạo Thạc sĩ An toàn thông tin",
+    "major": "An toàn thông tin",
+    "major_code": "8480202",
+    "general_introduction": {
+      "title": "I. GIỚI THIỆU CHUNG VỀ CHƯƠNG TRÌNH ĐÀO TẠO",
+      "objectives": {
+        "title": "Mục tiêu của chương trình đào tạo",
+        "general_objective": "Đào tạo đội ngũ Thạc sĩ chuyên ngành An toàn thông tin đạt trình độ chuyên môn (lý thuyết và thực hành), trình độ quản lý vững vàng; có khả năng nghiên cứu phát triển khoa học, công nghệ An toàn thông tin; có khả năng làm việc độc lập và khả năng tập hợp lực lượng làm việc theo nhóm, phát hiện và giải quyết tốt các vấn đề thuộc lĩnh vực An toàn thông tin."
+      },
+      "career_prospects": {
+        "title": "Khả năng và vị trí công tác của người học sau khi tốt nghiệp",
+        "introduction": "Chương trình đào tạo cho phép học viên lựa chọn các môn học phù hợp để đảm nhiệm các lĩnh vực công tác sau:",
+        "organizations_providing_services": "Tại các tổ chức, doanh nghiệp cung cấp sản phẩm, dịch vụ hoặc các cơ quan chuyên trách về an toàn thông tin: tư vấn, thiết kế, xây dựng, triển khai giải pháp an toàn thông tin; đánh giá an toàn cho hệ thống thông tin; giám sát và ứng phó sự cố an toàn thông tin.",
+        "organizations_with_it_networks": "Tại các cơ quan, tổ chức, doanh nghiệp có hệ thống mạng công nghệ thông tin: triển khai, quản lý, giám sát, vận hành hệ thống an toàn thông tin; phân tích xác định rủi ro, thiết kế, triển khai các giải pháp đảm bảo an toàn cho hệ thống công nghệ thông tin.",
+        "research_teaching_organizations": "Tại các cơ quan, tổ chức, doanh nghiệp có nghiên cứu, giảng dạy về an toàn thông tin: nghiên cứu, giảng dạy về an toàn thông tin, phát triển các sản phẩm an toàn thông tin."
+      },
+      "training_duration": {
+        "title": "Thời gian đào tạo",
+        "duration": "Thời gian đào tạo chính thức của khóa đào tạo Thạc sĩ là 2 năm (4 học kỳ)."
+      },
+      "degree_name": {
+        "title": "Tên văn bằng",
+        "vietnamese": "Tên tiếng Việt: Thạc sĩ An toàn thông tin",
+        "english": "Tên tiếng Anh: Master of Information Security"
+      }
+    },
+    "learning_outcomes": {
+      "title": "II. CHUẨN ĐẦU RA",
+      "introduction": "Học viên tốt nghiệp chương trình đào tạo Thạc sĩ ngành ATTT phải đáp ứng các yêu cầu về tiêu chuẩn đầu ra sau",
+      "knowledge": {
+        "title": "Về kiến thức",
+        "comprehensive_understanding": "Khi tốt nghiệp, Thạc sĩ chuyên ngành An toàn thông tin có hiểu biết một cách toàn diện về chuyên ngành;",
+        "advanced_knowledge": "Có kiến thức nâng cao về chuyên ngành so với chương trình đào tạo bậc đại học ngành ATTT như các kiến thức về An toàn mạng; An toàn hệ thống; An toàn cơ sở dữ liệu; mật mã học và các sản phẩm, công nghệ hiện đại khác trong lĩnh vực an toàn thông tin.",
+        "threats_solutions": "Nắm được các hiểm họa an toàn thông tin và các giải pháp kỹ thuật, công nghệ để phòng chống tương ứng.",
+        "application_orientation": {
+          "title": "Đối với định hướng ứng dụng:",
+          "assessment_incident_response": "Nắm được các kiến thức, kỹ thuật để đánh giá, giám sát, xử lý ứng phó sự cố an toàn thông tin cho hệ thống thông tin.",
+          "system_analysis_management": "Có phương pháp luận để phân tích, thiết kế, xây dựng, quản lý, triển khai, vận hành các hệ thống thông tin an toàn;",
+          "project_management": "Có phương pháp luận để xây dựng kế hoạch, lập dự án, tổ chức, điều hành và quản lý các công trình trong lĩnh vực ATTT."
+        },
+        "research_orientation": {
+          "title": "Đối với định hướng nghiên cứu:",
+          "foundational_knowledge": "Có các kiến thức nền tảng và phương pháp luận để nghiên cứu, giảng dạy, phát triển các giải pháp, sản phẩm trong lĩnh vực an toàn thông tin, các sản phẩm công nghệ thông tin an toàn."
+        }
+      },
+      "skills": {
+        "title": "Về kỹ năng",
+        "writing_presentation": "Có kỹ thuật, kỹ năng viết và trình bày vấn đề rõ ràng. Có kỹ năng hoàn thành công việc phức tạp, không thường xuyên xảy ra, không có tính quy luật.",
+        "technology_application": "Kỹ năng tìm hiểu, triển khai, ứng dụng các công nghệ mới vào trong các dự án, công trình ATTT. Có kỹ năng nghiên cứu độc lập để phát triển và thí nghiệm những giải pháp mới.",
+        "system_security_skills": "Có kỹ năng khảo sát, phân tích, thiết kế, triển khai, quản lý, vận hành các giải pháp đảm bảo an toàn cho các hệ thống thông tin.",
+        "scientific_method_strategic_thinking": "Có phương pháp làm việc khoa học, có tầm nhìn chiến lược và đề xuất hướng giải quyết các vấn đề về ATTT.",
+        "application_orientation": {
+          "title": "Đối với định hướng ứng dụng:",
+          "incident_response_skills": "Kỹ năng đánh giá, giám sát, xử lý ứng phó sự cố an toàn thông tin cho hệ thống thông tin."
+        },
+        "research_orientation": {
+          "title": "Đối với định hướng nghiên cứu:",
+          "teaching_development_skills": "Kỹ năng giảng dạy an toàn thông tin, thiết kế, xây dựng các sản phẩm an toàn thông tin, các sản phẩm công nghệ thông tin an toàn."
+        }
+      },
+      "qualities_attitude": {
+        "title": "Về phẩm chất, thái độ",
+        "responsibility_ethics": "Có ý thức trách nhiệm công dân, có thái độ và đạo đức nghề nghiệp đúng đắn. Có thể làm việc độc lập hoặc làm việc nhóm.",
+        "lifelong_learning": "Có ý thức học tập suốt đời, làm việc khoa học."
+      },
+      "competencies": {
+        "title": "Về năng lực",
+        "systemic_thinking_self_research": "Có khả năng tư duy hệ thống, khả năng tự nghiên cứu về các vấn đề thuộc các lĩnh vực chuyên ngành liên quan.",
+        "research_application_new_technologies": "Có năng lực nghiên cứu và vận dụng được các kiến thức công nghệ mới để đảm bảo an toàn thông tin cho các hệ thống, nghiên cứu xây dựng các giải pháp, sản phẩm an toàn thông tin và Công nghệ thông tin an toàn.",
+        "teaching_phd_potential": "Có thể đảm nhiệm vị trí giảng dạy tại các trường có ngành an toàn thông tin, và có khả năng phát triển nghiên cứu ở bậc Tiến sĩ.",
+        "expert_roles": "Có khả năng đảm trách tốt nhiệm vụ của một chuyên gia ngành an toàn thông tin như: chuyên gia phân tích thiết kế các giải pháp ATTT, chuyên gia đánh giá ATTT, chuyên gia quản lý vận hành các hệ thống ATTT, chuyên gia phân tích ứng phó sự cố và giám sát an toàn thông tin;",
+        "project_planning_management": "Có khả năng xây dựng kế hoạch, lập dự án, tổ chức, điều hành và quản lý các công trình ATTT.",
+        "knowledge_update_new_technologies": "Có năng lực cập nhật các kiến thức chuyên sâu, nắm bắt các công nghệ mới về ATTT;",
+        "problem_solving_innovation": "Có năng lực phát hiện và giải quyết các vấn đề thuộc chuyên môn được đào tạo, đề xuất những sáng kiến có giá trị.",
+        "adaptability": "Có năng lực thích nghi với môi trường cạnh tranh cao.",
+        "team_management": "Có năng lực tổ chức quản lý các nhóm làm việc"
+      }
+    },
+    "admission_contact": {
+      "info": "Thông tin chi tiết về cách thức tuyển sinh, và thời hạn đăng ký nộp hồ sơ vui lòng liên hệ tại: https://actvn.edu.vn/News/Detail?NewsId=23314"
+    }
+  }
+}

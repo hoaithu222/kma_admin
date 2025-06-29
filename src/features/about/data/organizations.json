@@ -1,0 +1,50 @@
+{
+  "academy_name": "Học Viện Kỹ Thuật Mật Mã",
+  "organizational_chart": "Sơ đồ tổ chức",
+  "school_council_title": "Hội đồng Trường",
+  "science_education_council": "Hội đồng Khoa học và Đào tạo",
+  "management_board": "Ban Giám hiệu",
+  "international_advisory_council": "Hội đồng tư vấn quốc tế",
+  "education_block": "Khối đào tạo",
+  "information_technology_faculty": "Khoa Công nghệ thông tin",
+  "general_information_security_faculty": "Khoa An toàn thông tin",
+  "electronic_information_faculty": "Khoa Điện tử - Viễn thông",
+  "research_block": "Khối nghiên cứu",
+  "cryptography_security_center": "Trung tâm Mật mã và An toàn",
+  "information_center": "Trung tâm Thông tin",
+  "practice_departments": "Phòng Thực hành",
+  "testing_departments": "Phòng Kiểm thử",
+  "support_block": "Khối phục vụ",
+  "school_office": "Văn phòng Trường",
+  "computing_center": "Trung tâm Máy tính",
+  "innovation_center": "Trung tâm Đổi mới sáng tạo",
+  "organizational_structure": {
+    "introduction": "Học Viện Kỹ Thuật Mật Mã – bao gồm:",
+    "introduction_text": "Học Viện Kỹ Thuật Mật Mã là một tổ chức giáo dục đại học trực thuộc Ban Cơ yếu Chính phủ, có nhiệm vụ đào tạo nguồn nhân lực chất lượng cao về kỹ thuật mật mã và an toàn thông tin.",
+    "faculties": {
+      "title": "Các khoa",
+      "count": 3,
+      "description": "đảm nhận công tác chuyên môn trong giảng dạy và nghiên cứu khoa học"
+    },
+    "research_centers": {
+      "title": "Trung tâm nghiên cứu",
+      "count": 4,
+      "description": "Trung tâm nghiên cứu"
+    },
+    "support_centers": {
+      "title": "Trung tâm hỗ trợ",
+      "count": 2,
+      "description": "hỗ trợ các hoạt động đào tạo (thực hành), nghiên cứu khoa học, chuyển giao công nghệ và đổi mới sáng tạo"
+    },
+    "administrative_department": {
+      "title": "Bộ phận hành chính",
+      "count": 1,
+      "name": "bộ phận hành chính – văn phòng Trường",
+      "role": "giúp việc cho Ban giám hiệu cũng như hỗ trợ các bộ môn và trung tâm trong triển khai các hoạt động chuyên môn"
+    }
+  },
+  "school_council": {
+    "title": "Hội đồng Trường",
+    "description": "Hội đồng Trường là cơ quan do Hiệu trưởng Học viện kỹ thuật mật mã đưa ra quyết định thành lập để tư vấn cho Hiệu trưởng trong việc triển khai thực hiện các nhiệm vụ quản lý và điều hành Học viện."
+  }
+}

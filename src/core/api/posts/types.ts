@@ -52,6 +52,8 @@ export interface ResponseAddArticle {
   publishedAt: string;
   updatedAt: string;
   isPrivate: boolean;
+  authorId: number;
+  authorName: string;
 }
 
 export interface IResponseAddArticle extends IResponse<ResponseAddArticle> {}

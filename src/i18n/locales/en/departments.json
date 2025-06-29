@@ -1,0 +1,76 @@
+{
+  "tuitionFees": {
+    "title": "🎓 Tuition Fees at the Academy of Cryptography Techniques",
+    "undergraduate": {
+      "title": "1. Tuition for Full-time Undergraduate Programs",
+      "currentRate": "Current rate:",
+      "perCredit": "👉 {{amount}} VND / credit",
+      "semesterCostTitle": "Total tuition per semester depends on the number of credits registered. On average, students enroll in about {{minCredits}}–{{maxCredits}} credits per semester, equivalent to:",
+      "cost15Credits": "{{credits}} credits → {{amount}} VND",
+      "cost20Credits": "{{credits}} credits → {{amount}} VND",
+      "trainingDuration": "Training duration: {{years}} years ({{semesters}} semesters)"
+    },
+    "mastersInfoSec": {
+      "title": "2. Tuition for Master’s Program in Information Security",
+      "currentRate": "Current rate:",
+      "perCredit": "👉 {{amount}} VND / credit",
+      "reasonHigherFee": "The tuition is higher than the undergraduate level due to the advanced training program, high demand for infrastructure, specialized labs, and top-tier lecturers."
+    },
+    "policiesAndSupport": {
+      "title": "3. Tuition Policies and Student Support",
+      "paymentMethod": "Tuition is collected per semester based on the number of credits registered, not per academic year.",
+      "installmentOption": "The Academy allows students with financial difficulties to pay tuition in installments.",
+      "feeExemptionReduction": "Tuition exemptions/reductions are available for the following groups:",
+      "exemptions": [
+        "Children of war invalids/martyrs",
+        "Low-income and near-poor households",
+        "Ethnic minorities from remote and disadvantaged areas (as regulated by the government)"
+      ],
+      "scholarship": "Scholarships are awarded to students with good academic results and conduct (assessed once per semester)."
+    }
+  },
+  "trainingMaterials": {
+    "title": "📚 Training Materials",
+    "description": "Training materials at the Academy of Cryptography Techniques are designed for common use across Information Technology, Information Security, and Telecommunications Engineering majors.",
+    "objectives": [
+      "Provide a solid and modern foundational knowledge base.",
+      "Keep students up-to-date with technological trends.",
+      "Develop practical skills, research capabilities, and critical thinking.",
+      "Ensure employability both domestically and internationally."
+    ],
+    "structure": {
+      "curriculum": {
+        "title": "Curriculum Framework",
+        "parts": [
+          "General knowledge: Mathematics, Physics, English, Computer Fundamentals...",
+          "Core knowledge: Programming, Databases, Computer Networks...",
+          "Specialized knowledge: Network Security, Cryptography, IoT, Embedded Systems, Wireless Communication..."
+        ]
+      },
+      "textbooks": {
+        "title": "Textbooks and Learning Resources",
+        "features": [
+          "Lecturers of the Academy compile dedicated textbooks.",
+          "Resources include both Vietnamese and original English materials.",
+          "Notable references: Kurose & Ross, Clean Code, Applied Cryptography, Haykin..."
+        ]
+      },
+      "labs": {
+        "title": "Lab Materials and Practice",
+        "items": [
+          "Detailed lab manuals for each subject.",
+          "Specialized laboratories: security, networks, electronics, IoT.",
+          "Project-based learning: personal and group capstone projects."
+        ]
+      }
+    },
+    "support": {
+      "title": "Learning Resource Support",
+      "methods": [
+        "Digital materials (PDFs) available via internal LMS system.",
+        "Extended reading materials for research-oriented students.",
+        "Graduation thesis/project requires applying accumulated knowledge in real-world use cases."
+      ]
+    }
+  }
+}

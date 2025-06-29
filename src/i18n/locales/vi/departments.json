@@ -1,0 +1,76 @@
+{
+  "tuitionFees": {
+    "title": "🎓 Học phí tại Học viện Kỹ thuật Mật mã",
+    "undergraduate": {
+      "title": "1. Học phí chương trình đào tạo đại học chính quy",
+      "currentRate": "Mức học phí hiện hành:",
+      "perCredit": "👉 {{amount}} VNĐ / tín chỉ",
+      "semesterCostTitle": "Tổng học phí mỗi học kỳ sẽ phụ thuộc vào số lượng tín chỉ sinh viên đăng ký. Trung bình mỗi học kỳ đăng ký khoảng {{minCredits}}–{{maxCredits}} tín chỉ, tương đương:",
+      "cost15Credits": "{{credits}} tín chỉ → {{amount}} VNĐ",
+      "cost20Credits": "{{credits}} tín chỉ → {{amount}} VNĐ",
+      "trainingDuration": "Thời gian đào tạo: {{years}} năm ({{semesters}} học kỳ)"
+    },
+    "mastersInfoSec": {
+      "title": "2. Học phí chương trình đào tạo Thạc sĩ ngành An toàn thông tin (ATTT)",
+      "currentRate": "Mức học phí hiện hành:",
+      "perCredit": "👉 {{amount}} VNĐ / tín chỉ",
+      "reasonHigherFee": "Học phí cao hơn hệ cử nhân do chương trình đào tạo chuyên sâu, yêu cầu cao về cơ sở vật chất, phòng lab, giảng viên chất lượng cao."
+    },
+    "policiesAndSupport": {
+      "title": "3. Chính sách học phí và hỗ trợ sinh viên",
+      "paymentMethod": "Học viện không thu học phí theo năm, mà thu theo từng học kỳ dựa trên số tín chỉ mà sinh viên đăng ký.",
+      "installmentOption": "Học viện tạo điều kiện cho sinh viên được đóng học phí thành nhiều đợt nếu có hoàn cảnh khó khăn.",
+      "feeExemptionReduction": "Có chính sách miễn/giảm học phí cho các đối tượng:",
+      "exemptions": [
+        "Con thương binh/liệt sĩ",
+        "Hộ nghèo, cận nghèo",
+        "Người dân tộc thiểu số, vùng sâu vùng xa (theo quy định Nhà nước)"
+      ],
+      "scholarship": "Cung cấp học bổng khuyến khích học tập dành cho sinh viên có kết quả học tập tốt, hạnh kiểm tốt (trung bình mỗi kỳ xét học bổng một lần)."
+    }
+  },
+  "trainingMaterials": {
+    "title": "📚 Tài liệu đào tạo",
+    "description": "Tài liệu đào tạo tại Học viện Kỹ thuật Mật mã được thiết kế dùng chung cho các ngành Công nghệ thông tin, An toàn thông tin và Điện tử viễn thông.",
+    "objectives": [
+      "Cung cấp kiến thức nền tảng vững chắc và hiện đại.",
+      "Giúp sinh viên bắt kịp xu hướng công nghệ.",
+      "Phát triển kỹ năng thực hành, nghiên cứu và tư duy phản biện.",
+      "Đảm bảo đáp ứng yêu cầu tuyển dụng trong và ngoài nước."
+    ],
+    "structure": {
+      "curriculum": {
+        "title": "Chương trình khung",
+        "parts": [
+          "Kiến thức đại cương: Toán, Lý, Ngoại ngữ, Tin học cơ sở...",
+          "Kiến thức cơ sở ngành: Lập trình, Cơ sở dữ liệu, Mạng máy tính...",
+          "Kiến thức chuyên ngành: An toàn mạng, Mã hóa, IoT, Nhúng, Truyền thông vô tuyến..."
+        ]
+      },
+      "textbooks": {
+        "title": "Giáo trình và tài liệu học tập",
+        "features": [
+          "Giáo trình biên soạn bởi giảng viên Học viện.",
+          "Kết hợp tài liệu tiếng Việt và tài liệu gốc tiếng Anh.",
+          "Tài liệu tham khảo nổi bật: Kurose & Ross, Clean Code, Applied Cryptography, Haykin..."
+        ]
+      },
+      "labs": {
+        "title": "Tài liệu thực hành – Lab",
+        "items": [
+          "Có tài liệu hướng dẫn bài lab chi tiết cho từng môn học.",
+          "Phòng lab chuyên dụng: bảo mật, mạng, điện tử, IoT.",
+          "Thực hiện đồ án cá nhân và nhóm để áp dụng thực tiễn."
+        ]
+      }
+    },
+    "support": {
+      "title": "Hỗ trợ tài liệu",
+      "methods": [
+        "Tài liệu số (PDF) được cung cấp trên hệ thống LMS nội bộ.",
+        "Tài liệu mở rộng cho sinh viên có định hướng nghiên cứu khoa học.",
+        "Yêu cầu đồ án tốt nghiệp tích hợp toàn bộ kiến thức đã học."
+      ]
+    }
+  }
+}

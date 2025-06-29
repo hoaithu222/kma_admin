@@ -1,0 +1,548 @@
+{
+  "degreeTitle": "Degree",
+  "programDuration": "Duration",
+  "programCredits": "Credits",
+  "admissionInfo": "Training Objectives",
+  "graduationRequirements": "Specific Objectives",
+  "knowledgeInfo": "Knowledge",
+  "technicalSkills": "Professional Skills",
+  "ethicalQualities": "Political and Ethical Qualities",
+  "generalTrainingGoals": "General Goals",
+  "programInfo": {
+    "programName": "Full-time Undergraduate Program in Information Technology",
+    "trainingLevel": "Undergraduate",
+    "degreeAwarded": "Bachelor and Engineer",
+    "major": "Information Technology",
+    "majorCode": "7.48.01.01",
+    "specialization": "Embedded Software and Mobile Software Engineering",
+    "trainingType": "Full-time",
+    "programCode": "KMC.1.1.1",
+    "framework": "The program is built using the CDIO (Conceive – Design – Implement – Operate) output standard approach."
+  },
+  "trainingObjectives": {
+    "general": {
+      "introduction": "The objectives of the full-time undergraduate program in Information Technology, specializing in Mobile and Embedded Software Engineering (MESE), are to equip students with:",
+      "item1": "Political and professional ethics to meet the requirements of working in national security, defense, and socio-economic sectors;",
+      "item2": "General knowledge of natural and social sciences, and fundamental knowledge of electronics, telecommunications, and information technology;",
+      "item3": "A foundational knowledge base in software technology, enabling them to work as software development engineers;",
+      "item4": "Theoretical knowledge and practical skills in Mobile and Embedded Software Engineering, with two specialized directions: software development engineer for mobile devices and software development engineer in embedded systems;",
+      "item5": "Necessary social skills, self-study, and research abilities to succeed in life and career;",
+      "item6": "The training program allows for flexible transition between the two specializations: \"Information Security\" and \"Embedded and Mobile Software Engineering\"."
+    },
+    "specific": {
+      "introduction": "Upon graduation, Mobile and Embedded Software Engineers must possess:",
+      "ethicalQualities": {
+        "eq1": "Absolute loyalty to the Fatherland, to the people, to the ideals and revolutionary path of the Communist Party of Vietnam; patriotism, love for socialism; high sense of responsibility, desire to excel in life and work;",
+        "eq2": "A sense of organizational discipline, strict adherence to the Party's guidelines, and the State's policies and laws. Good moral character, healthy and simple lifestyle. Scientific, precise, and meticulous work ethic."
+      },
+      "knowledge": {
+        "kn1": "Basic understanding of Marxism-Leninism and Ho Chi Minh's thought. Ability to establish a worldview, philosophy of life, and scientific methodology. Grasping the Party's guidelines, and the State's policies and laws;",
+        "kn2": "Understanding of basic knowledge in mathematics and physics. Understanding of fundamental specialized knowledge in information technology, electronics, and telecommunications;",
+        "kn3": "Understanding of basic knowledge of Software Engineering specialization;",
+        "kn4": "Understanding of methods, techniques, and skills for software development on embedded systems across various application areas;",
+        "kn5": "Understanding of methods, techniques, and skills for software development on mobile devices;",
+        "kn6": "Ability to communicate and use English in their work;",
+        "kn7": "Sufficient knowledge to pursue higher education."
+      },
+      "skills": {
+        "s1_softwareEngineer_title": "General Software Development Engineer",
+        "s2_mobileEngineer_title": "Mobile Device Software Development Engineer",
+        "s3_embeddedEngineer_title": "Embedded Software Development Engineer",
+        "s1_softwareEngineer": "After the first 3.5 years (having completed all necessary software engineering specialized modules + basic internship), students will be capable of analyzing, designing, programming, testing, and deploying application software projects and websites; capable of using modern methods, techniques, and tools in software development.",
+        "s2_mobileEngineer": "Students specializing in mobile software development will be capable of developing software for mobile devices across the three most popular technology platforms: Android, iOS, and Windows Phone.",
+        "s3_embeddedEngineer": "Students specializing in low-level embedded software development can work in areas such as: Software development in civil embedded systems (vending machines, card payment machines, digital cameras, smart TVs, music players, etc.), Embedded software development in communication systems and devices (modems, firewalls, etc.), Embedded software development in industry (PLC programming in automated production lines, industrial networks, etc.), Embedded software development in monitoring and control systems (smart homes, alarm systems, fire protection systems, etc.), Multimedia programming in embedded devices (music players, video players, handheld devices, barcode readers, etc.)."
+      }
+    }
+  },
+  "programDurationDetails": {
+    "totalTime": "4 or 5 years."
+  },
+  "programCreditDetails": {
+    "totalCredits": "176 credits."
+  },
+  "admissionDetails": {
+    "admissionInfo": "Admission Information",
+    "targetApplicants": "Vietnamese citizens who pass the university entrance examination (or admission review). Admission is based on the results of the national high school graduation examination. The admission score is the total score of one of three combinations of 03 subjects/tests (national high school graduation examination): Mathematics, Physics, Chemistry (A00); Mathematics, Physics, English (A01); Mathematics, Natural Sciences, English (D90)."
+  },
+  "graduationRequirementsDetails": {
+    "title": "Additional Information",
+    "details": "According to the current regulations of the Ministry of Education and Training and the regulations of the Cryptography Technical Academy."
+  },
+  "knowledgeReference": {
+    "knowledgeReference": "Knowledge Reference",
+    "outcomeReference": "For detailed output standards and curriculum, please refer to the",
+    "outcomeReferenceLink": "Information Technology program."
+  },
+  "tab": {
+    "generalInfo": "General Information",
+    "trainingObjectives": "Training Objectives",
+    "specificObjectives": "Specific Objectives",
+    "programInfo": "Program Structure",
+    "professionalInfo": "Professional Information",
+    "admissionInfo": "Admission Information",
+    "tuitionFee": "Tuition Fee",
+    "document": "Document",
+    "graduationRequirementsDetails": "Additional Information"
+  },
+  "courseCategory": {
+    "legend": "Course Categories",
+    "mandatory": "General Mandatory",
+    "supportive": "Supporting Courses",
+    "specialized": "Specialized",
+    "professional": "Professional Education",
+    "mandatoryGroup": "Group Mandatory",
+    "foundation": "Foundation",
+    "internship": "Internship",
+    "thesis": "Graduation Thesis",
+    "other": "Other"
+  },
+  "common": {
+    "credits": "credits",
+    "courses": "courses",
+    "totalCredits": "Total Credits"
+  },
+  "learningProgramDetails": {
+    "title": "Learning Program",
+    "description": "Detailed curriculum by semester",
+    "noData": "No program data available"
+  },
+  "learningProgram": {
+    "semester1": {
+      "title": "Semester 1",
+      "courses": [
+        {
+          "name": "Calculus 1",
+          "credits": 3
+        },
+        {
+          "name": "Linear Algebra",
+          "credits": 3
+        },
+        {
+          "name": "Introduction to Informatics",
+          "credits": 2
+        },
+        {
+          "name": "Marxist-Leninist Philosophy",
+          "credits": 3
+        },
+        {
+          "name": "National Defense and Security Education",
+          "credits": 8
+        },
+        {
+          "name": "Physical Education 1",
+          "credits": 1
+        }
+      ]
+    },
+    "semester2": {
+      "title": "Semester 2",
+      "courses": [
+        {
+          "name": "General Physics 1",
+          "credits": 3
+        },
+        {
+          "name": "Calculus 2",
+          "credits": 3
+        },
+        {
+          "name": "Basic Programming",
+          "credits": 3
+        },
+        {
+          "name": "Marxist-Leninist Political Economy",
+          "credits": 2
+        },
+        {
+          "name": "History of the Communist Party of Vietnam",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 2",
+          "credits": 1
+        },
+        {
+          "name": "Soft Skills",
+          "credits": 2
+        }
+      ],
+      "electives": {
+        "title": "Elective",
+        "credits": 2,
+        "options": [
+          "Management Science",
+          "Introduction to Vietnamese Law",
+          "Introduction to Psychology",
+          "Logic"
+        ]
+      }
+    },
+    "semester3": {
+      "title": "Semester 3",
+      "courses": [
+        {
+          "name": "General Physics 2",
+          "credits": 3
+        },
+        {
+          "name": "General Physics Laboratory 1 & 2",
+          "credits": 2
+        },
+        {
+          "name": "English 1",
+          "credits": 3
+        },
+        {
+          "name": "Probability and Statistics",
+          "credits": 2
+        },
+        {
+          "name": "Numerical Methods",
+          "credits": 2
+        },
+        {
+          "name": "Computer Networks",
+          "credits": 3
+        },
+        {
+          "name": "Ho Chi Minh's Thought",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 3",
+          "credits": 1
+        }
+      ]
+    },
+    "semester4": {
+      "title": "Semester 4",
+      "courses": [
+        {
+          "name": "English 2",
+          "credits": 3
+        },
+        {
+          "name": "Discrete Mathematics",
+          "credits": 2
+        },
+        {
+          "name": "Computer Network Administration",
+          "credits": 2
+        },
+        {
+          "name": "Automata and Formal Languages",
+          "credits": 2
+        },
+        {
+          "name": "Compilers",
+          "credits": 2
+        },
+        {
+          "name": "Database Theory",
+          "credits": 2
+        },
+        {
+          "name": "Analog and Digital Electronics",
+          "credits": 3
+        },
+        {
+          "name": "Physical Education 4",
+          "credits": 1
+        },
+        {
+          "name": "Scientific Socialism",
+          "credits": 2
+        }
+      ]
+    },
+    "semester5": {
+      "title": "Semester 5",
+      "courses": [
+        {
+          "name": "English 3",
+          "credits": 4
+        },
+        {
+          "name": "Object-Oriented Programming",
+          "credits": 2
+        },
+        {
+          "name": "Application Software Development",
+          "credits": 2
+        },
+        {
+          "name": "Data Structures and Algorithms",
+          "credits": 2
+        },
+        {
+          "name": "Computational Complexity Theory",
+          "credits": 2
+        },
+        {
+          "name": "Database Management Systems",
+          "credits": 2
+        },
+        {
+          "name": "Microprocessor Engineering",
+          "credits": 2
+        },
+        {
+          "name": "Information Transmission Theory",
+          "credits": 2
+        },
+        {
+          "name": "Physical Education 5",
+          "credits": 1
+        }
+      ]
+    },
+    "semester6": {
+      "title": "Semester 6",
+      "courses": [
+        {
+          "name": "English for Specific Purposes",
+          "credits": 4
+        },
+        {
+          "name": "Computer Architecture",
+          "credits": 2
+        },
+        {
+          "name": "Operating Systems Principles",
+          "credits": 2
+        },
+        {
+          "name": "Web Application Development",
+          "credits": 2
+        },
+        {
+          "name": "Software Engineering",
+          "credits": 2
+        },
+        {
+          "name": "Information System Analysis and Design",
+          "credits": 2
+        },
+        {
+          "name": "Digital Signal Processing",
+          "credits": 2
+        },
+        {
+          "name": "Data Transmission Engineering",
+          "credits": 2
+        },
+        {
+          "name": "Telecommunication Systems",
+          "credits": 2
+        },
+        {
+          "name": "Mobile Information Systems",
+          "credits": 2
+        }
+      ]
+    },
+    "semester7": {
+      "title": "Semester 7",
+      "courses": [
+        {
+          "name": "Embedded Systems Design",
+          "credits": 3
+        },
+        {
+          "name": "Embedded Software Engineering",
+          "credits": 2
+        },
+        {
+          "name": "Real-Time Embedded Operating Systems",
+          "credits": 3
+        },
+        {
+          "name": "Embedded Software Testing",
+          "credits": 2
+        },
+        {
+          "name": "Fundamentals of Information Security and Privacy",
+          "credits": 3
+        },
+        {
+          "name": "Linux and Open Source Software",
+          "credits": 2
+        },
+        {
+          "name": "Assembly Language Programming",
+          "credits": 3
+        },
+        {
+          "name": "Software Project Management",
+          "credits": 2
+        },
+        {
+          "name": "Specialized Field Internship",
+          "credits": 3
+        }
+      ]
+    },
+    "semester8": {
+      "title": "Semester 8",
+      "compulsory": {
+        "title": "General Compulsory Knowledge",
+        "courses": [
+          {
+            "name": "Linux Kernel Programming",
+            "credits": 4
+          },
+          {
+            "name": "Driver Programming",
+            "credits": 4
+          }
+        ]
+      },
+      "embeddedTrack": {
+        "title": "Specialization in Embedded Software Development",
+        "courses": [
+          {
+            "name": "Basic ARM Programming",
+            "credits": 3
+          },
+          {
+            "name": "Linux Embedded Systems Programming",
+            "credits": 3
+          }
+        ]
+      },
+      "mobileTrack": {
+        "title": "Specialization in Mobile Device Software Development",
+        "courses": [
+          {
+            "name": "Basic Android Programming",
+            "credits": 3
+          },
+          {
+            "name": "Smart Card Software Development",
+            "credits": 3
+          }
+        ]
+      }
+    },
+    "semester9": {
+      "title": "Semester 9",
+      "embeddedTrack": {
+        "title": "Specialization in Embedded Software Development",
+        "courses": [
+          {
+            "name": "Advanced ARM Programming",
+            "credits": 3
+          },
+          {
+            "name": "Computer Vision on Embedded Platforms",
+            "credits": 3
+          },
+          {
+            "name": "Security and Privacy in Embedded Systems",
+            "credits": 3
+          },
+          {
+            "name": "Embedded Software Optimization",
+            "credits": 3
+          }
+        ]
+      },
+      "mobileTrack": {
+        "title": "Specialization in Mobile Device Software Development",
+        "courses": [
+          {
+            "name": "Advanced Android Programming",
+            "credits": 3
+          },
+          {
+            "name": "Game Development on Android",
+            "credits": 3
+          },
+          {
+            "name": "Security and Privacy in Mobile Software Development",
+            "credits": 3
+          },
+          {
+            "name": "Mobile Software Optimization",
+            "credits": 3
+          }
+        ]
+      }
+    },
+    "semester10": {
+      "title": "Semester 10",
+      "courses": [
+        {
+          "name": "Graduation Internship",
+          "credits": 3
+        },
+        {
+          "name": "Graduation Thesis",
+          "credits": 8
+        }
+      ]
+    }
+  },
+  "careerProspects": {
+    "title": "Career Prospects",
+    "description": "Career Prospects",
+    "noData": "No career prospects data available",
+    "careerPaths": {
+      "title": "Career Fields for Information Technology Students",
+      "securitySpecialist": {
+        "title": "1. Cybersecurity Specialist (Security Engineer, Security Analyst)",
+        "description": [
+          "Work at Security Operations Centers (SOCs).",
+          "Analyze, detect, and handle cyberattacks.",
+          "Implement security solutions for information systems."
+        ]
+      },
+      "softwareDeveloper": {
+        "title": "2. Software Developer",
+        "description": [
+          "Participate in developing software, desktop applications, web, or mobile apps.",
+          "Can specialize in backend, frontend, fullstack, or AI, Machine Learning."
+        ]
+      },
+      "systemNetworkEngineer": {
+        "title": "3. System and Network Engineer",
+        "description": [
+          "Administer IT systems, monitor computer networks.",
+          "Deploy network security solutions such as: firewalls, VPNs, IDS/IPS, etc."
+        ]
+      },
+      "cryptographySpecialist": {
+        "title": "4. Cryptography Specialist",
+        "description": [
+          "Analyze and build cryptographic algorithms.",
+          "Serve in the field of data protection and secure communication."
+        ]
+      },
+      "softwareTesterQA": {
+        "title": "5. Software Tester and Quality Assurance (Tester/QA)",
+        "description": [
+          "Test and evaluate the security and quality of software.",
+          "Can undertake the role of a Security Tester."
+        ]
+      },
+      "governmentTechnicalOfficer": {
+        "title": "6. Technical Officer in Government Agencies",
+        "description": [
+          "Work in agencies under the Ministry of National Defense, Ministry of Public Security, Government Cipher Committee, Ministry of Information & Communications, etc.",
+          "Participate in building and operating classified and top-secret IT systems."
+        ]
+      },
+      "techEntrepreneurship": {
+        "title": "7. Tech Entrepreneurship",
+        "description": [
+          "With a strong foundation, students can develop products and start companies in fields such as:",
+          "Cybersecurity, data protection",
+          "Blockchain technology applications",
+          "Custom software solutions"
+        ]
+      }
+    }
+  }
+}
