@@ -29,10 +29,10 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    if (user?.id && user?.role === "ADMIN") {
+    if (user?.id) {
       navigate("/");
     }
-  }, [isLogin, user, onSubmitLogin]);
+  }, [isLogin, user]);
 
   return {
     isLogin,
