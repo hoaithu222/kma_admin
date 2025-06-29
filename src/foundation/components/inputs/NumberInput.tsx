@@ -194,17 +194,18 @@ const NumberInput: React.FC<NumberInputProps> = ({
   };
 
   // Classes CSS
-  const baseClasses = "transition-all duration-200 focus:outline-none";
+  const baseClasses =
+    "transition-all duration-200 focus:outline-none text-text-primary placeholder:text-text-muted";
 
   const variantClasses = {
     default:
-      "border border-gray-300 bg-white rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+      "border border-border-primary bg-background-surface rounded-lg focus:border-secondary focus:ring-2 focus:ring-secondary/20",
     outlined:
-      "border border-gray-300 bg-white rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+      "border border-border-primary bg-background-surface rounded-lg focus:border-secondary focus:ring-2 focus:ring-secondary/20",
     filled:
-      "border-0 bg-gray-50 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-100",
+      "border-0 bg-background-muted rounded-lg focus:bg-background-surface focus:ring-2 focus:ring-secondary/20",
     underlined:
-      "border-0 border-b-2 border-gray-300 bg-transparent rounded-none focus:border-blue-500",
+      "border-0 border-b-2 border-border-primary bg-transparent rounded-none focus:border-secondary",
   };
 
   const sizeClasses = {
@@ -215,20 +216,20 @@ const NumberInput: React.FC<NumberInputProps> = ({
 
   const statusClasses = {
     default: "",
-    success: "border-green-500 focus:border-green-500 focus:ring-green-100",
-    error: "border-red-500 focus:border-red-500 focus:ring-red-100",
-    warning: "border-yellow-500 focus:border-yellow-500 focus:ring-yellow-100",
+    success: "border-success focus:border-success focus:ring-success/20",
+    error: "border-error focus:border-error focus:ring-error/20",
+    warning: "border-accent focus:border-accent focus:ring-accent/20",
   };
 
   // Get status icon
   const getStatusIcon = () => {
     switch (status) {
       case "success":
-        return <Check className="w-4 h-4 text-green-500" />;
+        return <Check className="w-4 h-4 text-success" />;
       case "error":
-        return <X className="w-4 h-4 text-red-500" />;
+        return <X className="w-4 h-4 text-error" />;
       case "warning":
-        return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
+        return <AlertTriangle className="w-4 h-4 text-accent" />;
       default:
         return null;
     }
@@ -242,7 +243,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
     sizeClasses[size],
     status !== "default" ? statusClasses[status] : "",
     fullWidth ? "w-full" : "",
-    disabled ? "opacity-50 cursor-not-allowed bg-gray-50" : "",
+    disabled ? "opacity-50 cursor-not-allowed bg-background-muted" : "",
     showControls ? "pr-16" : "pr-3",
     "pl-3",
     "text-right", // Căn phải cho số
@@ -252,10 +253,10 @@ const NumberInput: React.FC<NumberInputProps> = ({
     .join(" ");
 
   const helperTextColor = {
-    default: "text-gray-500",
-    success: "text-green-600",
-    error: "text-red-600",
-    warning: "text-yellow-600",
+    default: "text-text-muted",
+    success: "text-success",
+    error: "text-error",
+    warning: "text-accent",
   };
 
   const buttonSize =
@@ -266,7 +267,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
   return (
     <div className={`${fullWidth ? "w-full" : ""}`}>
       {label && (
-        <label className="block mb-1 text-sm font-medium text-gray-700">
+        <label className="block mb-1 text-sm font-medium text-text-primary">
           {label}
         </label>
       )}
@@ -296,7 +297,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
                   numericValue !== undefined &&
                   numericValue >= max)
               }
-              className={`flex justify-center items-center text-gray-400 rounded transition-colors ${buttonSize} ${iconSize} hover:text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`flex justify-center items-center text-text-muted rounded transition-colors ${buttonSize} ${iconSize} hover:text-text-primary hover:bg-background-muted disabled:opacity-50 disabled:cursor-not-allowed`}
             >
               <Plus className={iconSize} />
             </button>
@@ -310,7 +311,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
                   numericValue !== undefined &&
                   numericValue <= min)
               }
-              className={`flex justify-center items-center text-gray-400 rounded transition-colors ${buttonSize} ${iconSize} hover:text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`flex justify-center items-center text-text-muted rounded transition-colors ${buttonSize} ${iconSize} hover:text-text-primary hover:bg-background-muted disabled:opacity-50 disabled:cursor-not-allowed`}
             >
               <Minus className={iconSize} />
             </button>

@@ -99,12 +99,12 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
       { color: string; text: string; icon?: React.ReactNode }
     > = {
       published: {
-        color: "bg-gradient-to-r from-emerald-500 to-green-500 text-white",
+        color: "bg-gradient-to-r from-success to-success text-white",
         text: "Đã xuất bản",
         icon: <Globe size={12} />,
       },
       draft: {
-        color: "bg-gradient-to-r from-amber-500 to-yellow-500 text-white",
+        color: "bg-gradient-to-r from-accent to-accent-dark text-white",
         text: "Bản nháp",
         icon: <Edit2 size={12} />,
       },
@@ -132,13 +132,13 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
         {(item.categoryName || item.subCategoryName) && (
           <div className="flex flex-wrap items-center gap-2">
             {item.categoryName && (
-              <div className="flex items-center gap-1.5  text-blue-700 px-3 py-1.5 rounded-lg border border-blue-100">
+              <div className="flex items-center gap-1.5 text-secondary px-3 py-1.5 rounded-lg border border-secondary/20 bg-secondary/10">
                 <Tag size={12} />
                 <span className="font-medium">{item.categoryName}</span>
               </div>
             )}
             {item.subCategoryName && (
-              <div className="bg-gradient-to-r from-purple-50 to-pink-50 text-purple-700 px-3 py-1.5 rounded-lg border border-purple-100">
+              <div className="bg-gradient-to-r from-accent/10 to-accent-dark/10 text-accent px-3 py-1.5 rounded-lg border border-accent/20">
                 <span className="text-xs font-medium">
                   {item.subCategoryName}
                 </span>
@@ -150,17 +150,17 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
         {/* Stats and info */}
         <div className="flex items-center justify-between">
           {item.viewCount !== undefined && (
-            <div className="flex items-center gap-1.5 text-gray-600">
-              <Eye size={14} className="text-blue-500" />
+            <div className="flex items-center gap-1.5 text-text-secondary">
+              <Eye size={14} className="text-secondary" />
               <span className="font-medium">
                 {item.viewCount.toLocaleString()}
               </span>
-              <span className="text-xs text-gray-500">lượt xem</span>
+              <span className="text-xs text-text-muted">lượt xem</span>
             </div>
           )}
           {item.updatedAt && (
-            <div className="flex items-center gap-1.5 text-gray-600">
-              <Clock size={14} className="text-green-500" />
+            <div className="flex items-center gap-1.5 text-text-secondary">
+              <Clock size={14} className="text-success" />
               <span className="font-medium">{formatDate(item.updatedAt)}</span>
             </div>
           )}
@@ -168,7 +168,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
 
         {/* Additional info */}
         {item.files && item.files.length > 0 && (
-          <div className="flex items-center gap-1.5 text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-100">
+          <div className="flex items-center gap-1.5 text-secondary bg-secondary/10 px-3 py-1.5 rounded-lg border border-secondary/20">
             <Download size={14} />
             <span className="font-medium">
               {item.files.length} tệp đính kèm
@@ -195,11 +195,11 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
     return (
       <div
         key={item.id || index}
-        className="relative overflow-hidden transition-all duration-500 border border-gray-100 shadow-sm bg-background-surface group rounded-2xl hover:shadow-xl hover:border-blue-200 hover:-translate-y-2"
+        className="relative overflow-hidden transition-all duration-500 border border-border-primary shadow-sm bg-background-surface group rounded-2xl hover:shadow-xl hover:border-secondary hover:-translate-y-2"
       >
         {/* Image */}
         {cardConfig.showImage && (
-          <div className="relative h-56 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+          <div className="relative h-56 overflow-hidden bg-gradient-to-br from-background-subtle via-background-muted to-background-elevated">
             <img
               src={imageUrl}
               alt={item[cardConfig.titleKey || "title"]}
@@ -229,20 +229,20 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
                   className="p-2.5 rounded-full bg-background-surface/90 backdrop-blur-sm shadow-lg hover:bg-background-surface hover:scale-110 transition-all duration-200"
                   title="Xem chi tiết"
                 >
-                  <Eye size={16} className="text-blue-600" />
+                  <Eye size={16} className="text-secondary" />
                 </button>
               )}
               <button
                 className="p-2.5 rounded-full bg-background-surface/90 backdrop-blur-sm shadow-lg hover:bg-background-surface hover:scale-110 transition-all duration-200"
                 title="Yêu thích"
               >
-                <Heart size={16} className="text-red-500" />
+                <Heart size={16} className="text-error" />
               </button>
               <button
                 className="p-2.5 rounded-full bg-background-surface/90 backdrop-blur-sm shadow-lg hover:bg-background-surface hover:scale-110 transition-all duration-200"
                 title="Chia sẻ"
               >
-                <Share2 size={16} className="text-green-600" />
+                <Share2 size={16} className="text-success" />
               </button>
             </div>
           </div>
@@ -251,7 +251,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
         {/* Content */}
         <div className="p-6">
           {/* Title */}
-          <h3 className="mb-3 text-xl font-bold text-gray-900 transition-colors duration-200 line-clamp-2 group-hover:text-blue-600">
+          <h3 className="mb-3 text-xl font-bold text-text-primary transition-colors duration-200 line-clamp-2 group-hover:text-secondary">
             {truncateText(
               item[cardConfig.titleKey || "title"] || "Không có tiêu đề",
               60
@@ -260,7 +260,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
 
           {/* Description */}
           {item[cardConfig.descriptionKey || "summary"] && (
-            <p className="mb-4 text-sm leading-relaxed text-gray-600 line-clamp-3">
+            <p className="mb-4 text-sm leading-relaxed text-text-secondary line-clamp-3">
               {truncateText(item[cardConfig.descriptionKey || "summary"], 120)}
             </p>
           )}
@@ -273,12 +273,12 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
           {/* Actions */}
           {cardConfig.showActions &&
             (enableView || enableEdit || enableDelete) && (
-              <div className="flex items-center justify-between pt-5 border-t border-gray-100">
+              <div className="flex items-center justify-between pt-5 border-t border-border-primary">
                 <div className="flex items-center gap-2">
                   {enableView && (
                     <button
                       onClick={() => onView?.(item)}
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 transition-all duration-200 hover:bg-blue-50 rounded-xl hover:scale-105"
+                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary transition-all duration-200 hover:bg-secondary/10 rounded-xl hover:scale-105"
                     >
                       <BookOpen size={14} />
                       Xem
@@ -287,7 +287,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
                   {enableEdit && (
                     <button
                       onClick={() => onEdit?.(item)}
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-200 text-emerald-600 hover:bg-emerald-50 rounded-xl hover:scale-105"
+                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-200 text-success hover:bg-success/10 rounded-xl hover:scale-105"
                     >
                       <Edit2 size={14} />
                       Sửa
@@ -297,7 +297,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
 
                 <div className="flex items-center gap-2">
                   <button
-                    className="p-2 text-gray-400 transition-all duration-200 rounded-lg hover:text-blue-600 hover:bg-blue-50"
+                    className="p-2 text-text-muted transition-all duration-200 rounded-lg hover:text-secondary hover:bg-secondary/10"
                     title="Liên kết ngoài"
                   >
                     <ExternalLink size={16} />
@@ -306,7 +306,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
                   {enableDelete && (
                     <button
                       onClick={() => handleDelete(item)}
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-600 transition-all duration-200 hover:bg-red-50 rounded-xl hover:scale-105"
+                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-error transition-all duration-200 hover:bg-error/10 rounded-xl hover:scale-105"
                     >
                       <Trash2 size={14} />
                       Xóa
@@ -327,15 +327,15 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
         {data.length === 0 ? (
           <div className="py-20 text-center">
             <div className="max-w-md mx-auto">
-              <div className="flex items-center justify-center w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-gray-100 to-gray-200">
-                <BookOpen size={48} className="text-gray-400" />
+              <div className="flex items-center justify-center w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-background-muted to-background-elevated">
+                <BookOpen size={48} className="text-text-muted" />
               </div>
               {typeof emptyMessage === "string" ? (
                 <div>
-                  <h3 className="mb-3 text-2xl font-semibold text-gray-900">
+                  <h3 className="mb-3 text-2xl font-semibold text-text-primary">
                     Chưa có dữ liệu
                   </h3>
-                  <p className="text-lg text-gray-600">{emptyMessage}</p>
+                  <p className="text-lg text-text-secondary">{emptyMessage}</p>
                 </div>
               ) : (
                 emptyMessage

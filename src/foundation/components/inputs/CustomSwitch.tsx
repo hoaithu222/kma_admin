@@ -43,17 +43,17 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
 
   const variantClasses = {
     default: checked
-      ? "bg-blue-600 border-blue-600"
-      : "bg-gray-200 border-gray-300",
+      ? "bg-secondary border-secondary"
+      : "bg-background-muted border-border-secondary",
     success: checked
-      ? "bg-green-600 border-green-600"
-      : "bg-gray-200 border-gray-300",
+      ? "bg-success border-success"
+      : "bg-background-muted border-border-secondary",
     danger: checked
-      ? "bg-red-600 border-red-600"
-      : "bg-gray-200 border-gray-300",
+      ? "bg-error border-error"
+      : "bg-background-muted border-border-secondary",
     warning: checked
-      ? "bg-yellow-600 border-yellow-600"
-      : "bg-gray-200 border-gray-300",
+      ? "bg-warning border-warning"
+      : "bg-background-muted border-border-secondary",
   };
 
   return (
@@ -66,7 +66,7 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
             ${variantClasses[variant]}
             relative inline-flex items-center rounded-full border-2
             transition-colors duration-200 ease-in-out focus:outline-none
-            focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+            focus:ring-2 focus:ring-secondary focus:ring-offset-2
             ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
           `}
           onClick={() => !disabled && onChange && onChange(!checked)}
@@ -78,12 +78,14 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
             className={`
               ${thumbSizes[size]}
               ${translateX[size]}
-              inline-block transform rounded-full bg-white shadow-lg ring-0
+              inline-block transform rounded-full bg-background-base shadow-lg ring-0
               transition-transform duration-200 ease-in-out
               flex items-center justify-center
             `}
           >
-            {icon && <span className="text-gray-600 text-xs">{icon}</span>}
+            {icon && (
+              <span className="text-text-secondary text-xs">{icon}</span>
+            )}
           </span>
         </button>
       </div>
@@ -91,12 +93,12 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
       {(label || description) && (
         <div className="flex flex-col">
           {label && (
-            <label className="text-sm font-medium text-gray-900 cursor-pointer">
+            <label className="text-sm font-medium text-text-primary cursor-pointer">
               {label}
             </label>
           )}
           {description && (
-            <span className="text-xs text-gray-500">{description}</span>
+            <span className="text-xs text-text-muted">{description}</span>
           )}
         </div>
       )}

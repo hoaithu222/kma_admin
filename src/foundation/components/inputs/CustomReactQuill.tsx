@@ -432,10 +432,10 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                 justifyContent: "center",
                 width: "28px",
                 height: "28px",
-                border: "1px solid #d1d5db",
+                border: "1px solid var(--color-border-secondary)",
                 borderRadius: "4px",
-                background: "white",
-                color: "#374151",
+                background: "var(--color-background-base)",
+                color: "var(--color-text-primary)",
                 cursor: "pointer",
                 transition: "all 0.2s ease",
               });
@@ -444,13 +444,17 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
 
               // Add hover effects
               fileButton.addEventListener("mouseenter", () => {
-                (fileButton as HTMLButtonElement).style.background = "#f3f4f6";
-                (fileButton as HTMLButtonElement).style.borderColor = "#9ca3af";
+                (fileButton as HTMLButtonElement).style.background =
+                  "var(--color-background-subtle)";
+                (fileButton as HTMLButtonElement).style.borderColor =
+                  "var(--color-border-primary)";
               });
 
               fileButton.addEventListener("mouseleave", () => {
-                (fileButton as HTMLButtonElement).style.background = "white";
-                (fileButton as HTMLButtonElement).style.borderColor = "#d1d5db";
+                (fileButton as HTMLButtonElement).style.background =
+                  "var(--color-background-base)";
+                (fileButton as HTMLButtonElement).style.borderColor =
+                  "var(--color-border-secondary)";
               });
 
               fileButton.addEventListener("click", (e: Event) => {
@@ -557,10 +561,10 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                 justifyContent: "center",
                 width: "28px",
                 height: "28px",
-                border: "1px solid #d1d5db",
+                border: "1px solid var(--color-border-secondary)",
                 borderRadius: "4px",
-                background: "white",
-                color: "#374151",
+                background: "var(--color-background-base)",
+                color: "var(--color-text-primary)",
                 cursor: "pointer",
                 transition: "all 0.2s ease",
                 marginLeft: "4px",
@@ -570,15 +574,17 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
 
               // Add hover effects
               tableButton.addEventListener("mouseenter", () => {
-                (tableButton as HTMLButtonElement).style.background = "#f3f4f6";
+                (tableButton as HTMLButtonElement).style.background =
+                  "var(--color-background-subtle)";
                 (tableButton as HTMLButtonElement).style.borderColor =
-                  "#9ca3af";
+                  "var(--color-border-primary)";
               });
 
               tableButton.addEventListener("mouseleave", () => {
-                (tableButton as HTMLButtonElement).style.background = "white";
+                (tableButton as HTMLButtonElement).style.background =
+                  "var(--color-background-base)";
                 (tableButton as HTMLButtonElement).style.borderColor =
-                  "#d1d5db";
+                  "var(--color-border-secondary)";
               });
 
               tableButton.addEventListener("click", (e: Event) => {
@@ -707,7 +713,7 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "var(--color-modal-overlay)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -717,10 +723,10 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
         >
           <div
             style={{
-              backgroundColor: "white",
+              backgroundColor: "var(--color-modal-bg)",
               padding: "24px",
               borderRadius: "8px",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+              boxShadow: "var(--color-modal-shadow)",
               minWidth: "300px",
             }}
             onClick={(e) => e.stopPropagation()}
@@ -730,6 +736,7 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                 margin: "0 0 16px 0",
                 fontSize: "18px",
                 fontWeight: "600",
+                color: "var(--color-text-primary)",
               }}
             >
               Chèn bảng
@@ -742,6 +749,7 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                   marginBottom: "4px",
                   fontSize: "14px",
                   fontWeight: "500",
+                  color: "var(--color-text-primary)",
                 }}
               >
                 Số hàng:
@@ -758,9 +766,11 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                 style={{
                   width: "100%",
                   padding: "8px",
-                  border: "1px solid #d1d5db",
+                  border: "1px solid var(--color-input-border)",
                   borderRadius: "4px",
                   fontSize: "14px",
+                  backgroundColor: "var(--color-input-bg)",
+                  color: "var(--color-input-text)",
                 }}
               />
             </div>
@@ -772,6 +782,7 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                   marginBottom: "4px",
                   fontSize: "14px",
                   fontWeight: "500",
+                  color: "var(--color-text-primary)",
                 }}
               >
                 Số cột:
@@ -788,9 +799,11 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                 style={{
                   width: "100%",
                   padding: "8px",
-                  border: "1px solid #d1d5db",
+                  border: "1px solid var(--color-input-border)",
                   borderRadius: "4px",
                   fontSize: "14px",
+                  backgroundColor: "var(--color-input-bg)",
+                  color: "var(--color-input-text)",
                 }}
               />
             </div>
@@ -800,15 +813,15 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
               style={{
                 marginBottom: "20px",
                 padding: "12px",
-                backgroundColor: "#f9fafb",
+                backgroundColor: "var(--color-background-subtle)",
                 borderRadius: "4px",
-                border: "1px solid #e5e7eb",
+                border: "1px solid var(--color-border-primary)",
               }}
             >
               <div
                 style={{
                   fontSize: "12px",
-                  color: "#6b7280",
+                  color: "var(--color-text-muted)",
                   marginBottom: "8px",
                 }}
               >
@@ -819,18 +832,22 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                   display: "grid",
                   gridTemplateColumns: `repeat(${tableCols}, 1fr)`,
                   gap: "1px",
-                  backgroundColor: "#d1d5db",
+                  backgroundColor: "var(--color-border-secondary)",
                 }}
               >
                 {Array.from({ length: tableRows * tableCols }, (_, i) => (
                   <div
                     key={i}
                     style={{
-                      backgroundColor: i < tableCols ? "#e2e8f0" : "#ffffff",
+                      backgroundColor:
+                        i < tableCols
+                          ? "var(--color-background-muted)"
+                          : "var(--color-background-base)",
                       padding: "4px 6px",
                       fontSize: "10px",
                       textAlign: "center",
                       minHeight: "20px",
+                      color: "var(--color-text-primary)",
                     }}
                   >
                     {i < tableCols ? "H" : "C"}
@@ -850,22 +867,26 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                 onClick={() => setShowTableModal(false)}
                 style={{
                   padding: "8px 16px",
-                  border: "1px solid #d1d5db",
+                  border: "1px solid var(--color-border-secondary)",
                   borderRadius: "4px",
-                  background: "white",
-                  color: "#374151",
+                  background: "var(--color-background-base)",
+                  color: "var(--color-text-primary)",
                   cursor: "pointer",
                   fontSize: "14px",
                   fontWeight: "500",
                   transition: "all 0.2s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#f9fafb";
-                  e.currentTarget.style.borderColor = "#9ca3af";
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-background-subtle)";
+                  e.currentTarget.style.borderColor =
+                    "var(--color-border-primary)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "white";
-                  e.currentTarget.style.borderColor = "#d1d5db";
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-background-base)";
+                  e.currentTarget.style.borderColor =
+                    "var(--color-border-secondary)";
                 }}
               >
                 Hủy
@@ -876,7 +897,7 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                   padding: "8px 16px",
                   border: "none",
                   borderRadius: "4px",
-                  background: "#3b82f6",
+                  background: "var(--color-secondary)",
                   color: "white",
                   cursor: "pointer",
                   fontSize: "14px",
@@ -884,11 +905,13 @@ const CustomReactQuill: React.FC<CustomReactQuillProps> = ({
                   transition: "all 0.2s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#2563eb";
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-secondary-dark)";
                   e.currentTarget.style.transform = "translateY(-1px)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "#3b82f6";
+                  e.currentTarget.style.backgroundColor =
+                    "var(--color-secondary)";
                   e.currentTarget.style.transform = "translateY(0)";
                 }}
               >

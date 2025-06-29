@@ -95,7 +95,7 @@ const UploadImage = ({
   showPreview = true,
   previewSize = "medium",
   variant = "default",
-  className = "",
+  className = "bg-background-elevated",
   dropzoneClassName = "",
   previewClassName = "",
   showProgress = true,
@@ -517,7 +517,7 @@ const UploadImage = ({
             className={`
             relative transition-colors cursor-pointer
             ${getVariantClasses()}
-            ${isDragging ? "border-primary bg-background-subtle" : "hover:border-gray-400"}
+            ${isDragging ? "border-primary bg-background-elevated" : "hover:border-gray-400"}
             ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
             ${error ? "border-error" : ""} ${dropzoneClassName}`}
             onDragEnter={handleDragEnter}

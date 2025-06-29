@@ -33,30 +33,30 @@ const FileList: React.FC<FileListProps> = ({
 }) => {
   const getFileIcon = (fileName: string | null | undefined) => {
     if (!fileName) {
-      return <FaFile className="text-gray-400" />;
+      return <FaFile className="text-text-muted" />;
     }
 
     const extension = fileName.split(".").pop()?.toLowerCase();
     switch (extension) {
       case "pdf":
-        return <FaFilePdf className="text-red-500" />;
+        return <FaFilePdf className="text-error" />;
       case "doc":
       case "docx":
-        return <FaFileWord className="text-blue-500" />;
+        return <FaFileWord className="text-secondary" />;
       case "xls":
       case "xlsx":
-        return <FaFileExcel className="text-green-500" />;
+        return <FaFileExcel className="text-success" />;
       case "ppt":
       case "pptx":
-        return <FaFilePowerpoint className="text-orange-500" />;
+        return <FaFilePowerpoint className="text-accent" />;
       case "txt":
-        return <FaFileAlt className="text-gray-500" />;
+        return <FaFileAlt className="text-text-muted" />;
       case "zip":
       case "rar":
       case "7z":
-        return <FaFileArchive className="text-purple-500" />;
+        return <FaFileArchive className="text-accent-dark" />;
       default:
-        return <FaFile className="text-gray-400" />;
+        return <FaFile className="text-text-muted" />;
     }
   };
 
@@ -107,7 +107,7 @@ const FileList: React.FC<FileListProps> = ({
               {showRemove && onRemove && (
                 <button
                   onClick={() => onRemove(file.id)}
-                  className="p-2 text-red-500 transition-colors rounded-md hover:bg-red-500/10"
+                  className="p-2 text-error transition-colors rounded-md hover:bg-error/10"
                   title="Remove file"
                 >
                   <FaTrash size={14} />

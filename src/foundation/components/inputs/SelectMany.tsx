@@ -144,11 +144,11 @@ const SelectMany = ({
       "border transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1";
     switch (variant) {
       case "outlined":
-        return `${baseClasses} border-2 border-border-primary bg-background-surface hover:border-border-secondary focus:border-secondary focus:ring-secondary/20`;
+        return `${baseClasses} border-2 border-border-primary bg-background-elevated hover:border-border-secondary focus:border-secondary focus:ring-secondary/20`;
       case "filled":
-        return `${baseClasses} border-border-primary bg-background-muted hover:bg-background-subtle focus:bg-background-surface focus:border-secondary focus:ring-secondary/20`;
+        return `${baseClasses} border-border-primary bg-background-elevated hover:bg-background-elevated focus:bg-background-surface focus:border-secondary focus:ring-secondary/20`;
       default:
-        return `${baseClasses} border-border-primary bg-background-surface hover:border-border-secondary focus:border-secondary focus:ring-secondary/20`;
+        return `${baseClasses} border-border-primary bg-background-elevated hover:border-border-secondary focus:border-secondary focus:ring-secondary/20`;
     }
   }, [variant]);
 
@@ -161,18 +161,18 @@ const SelectMany = ({
         <div className="flex items-center flex-1 space-x-3">
           <div className="flex-1 min-w-0">
             <div
-              className={`font-medium truncate ${isSelected ? "text-blue-700" : "text-gray-900"}`}
+              className={`font-medium truncate ${isSelected ? "text-secondary" : "text-text-primary"}`}
             >
               {option.label}
             </div>
             {option.description && (
-              <div className="text-xs text-gray-500 truncate mt-0.5">
+              <div className="text-xs text-text-muted truncate mt-0.5">
                 {option.description}
               </div>
             )}
           </div>
           {option.icon && (
-            <span className="flex-shrink-0 text-gray-500">{option.icon}</span>
+            <span className="flex-shrink-0 text-text-muted">{option.icon}</span>
           )}
         </div>
       );
@@ -185,17 +185,19 @@ const SelectMany = ({
       return renderSelected(selectedOptions);
     }
     if (selectedOptions.length === 0) {
-      return <span className="text-gray-500">{placeholder}</span>;
+      return <span className="text-text-muted">{placeholder}</span>;
     }
     if (selectedOptions.length === 1) {
-      return <span className="text-gray-900">{selectedOptions[0].label}</span>;
+      return (
+        <span className="text-text-primary">{selectedOptions[0].label}</span>
+      );
     }
     return (
       <div className="flex items-center space-x-2">
-        <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-blue-800 bg-blue-100 rounded-full">
+        <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-secondary bg-secondary/10 rounded-full">
           {selectedOptions.length}
         </span>
-        <span className="text-gray-900">mục đã chọn</span>
+        <span className="text-text-primary">mục đã chọn</span>
       </div>
     );
   }, [renderSelected, selectedOptions, placeholder]);
@@ -297,7 +299,7 @@ const SelectMany = ({
                     placeholder="Tìm kiếm..."
                     value={searchQuery}
                     onChange={(e) => handleSearch(e.target.value)}
-                    className="w-full py-2 pl-10 pr-3 text-sm border rounded-lg bg-background-surface border-border-primary focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary"
+                    className="w-full py-2 pl-10 pr-3 text-sm border rounded-lg bg-background-surface border-border-primary focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary text-text-primary placeholder:text-text-muted"
                   />
                 </div>
               </div>
@@ -308,7 +310,7 @@ const SelectMany = ({
                 <button
                   type="button"
                   onClick={handleSelectAll}
-                  className="w-full px-3 py-2 text-sm font-medium text-left transition-colors rounded-lg text-secondary hover:bg-secondary-light"
+                  className="w-full px-3 py-2 text-sm font-medium text-left transition-colors rounded-lg text-secondary hover:bg-secondary/10"
                 >
                   {internalValue.length ===
                   filteredOptions.filter((opt) => !opt.disabled).length
@@ -353,10 +355,10 @@ const SelectMany = ({
                       disabled={isDisabled || false}
                       className={`
                         w-full flex items-center space-x-3 transition-all duration-150 text-left
-                        hover:bg-secondary-light focus:bg-secondary-light focus:outline-none
+                        hover:bg-secondary/10 focus:bg-secondary/10 focus:outline-none
                         disabled:opacity-50 disabled:cursor-not-allowed
                         ${sizeClasses.option}
-                        ${isSelected ? "bg-secondary-light border-r-2 border-secondary" : "hover:bg-background-muted"}
+                        ${isSelected ? "bg-secondary/10 border-r-2 border-secondary" : "hover:bg-background-muted"}
                       `}
                     >
                       <div className="relative">
@@ -372,7 +374,7 @@ const SelectMany = ({
                         />
                         {isSelected && (
                           <svg
-                            className="absolute top-0.5 left-0.5 w-3 h-3 text-text-on-primary pointer-events-none"
+                            className="absolute top-0.5 left-0.5 w-3 h-3 text-white pointer-events-none"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >

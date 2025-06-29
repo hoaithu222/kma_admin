@@ -29,7 +29,7 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    if (user?.id) {
+    if (user?.id && (user?.role === "ADMIN" || user?.role === "USER")) {
       navigate("/");
     }
   }, [isLogin, user]);

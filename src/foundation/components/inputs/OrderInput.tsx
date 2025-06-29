@@ -185,13 +185,13 @@ const OrderInput: React.FC<OrderInputProps> = ({
 
   const variantClasses = {
     default:
-      "border border-gray-300 bg-white rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+      "border border-border-primary bg-background-surface rounded-lg focus:border-secondary focus:ring-2 focus:ring-secondary/20",
     outlined:
-      "border border-gray-300 bg-white rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+      "border border-border-primary bg-background-surface rounded-lg focus:border-secondary focus:ring-2 focus:ring-secondary/20",
     filled:
-      "border-0 bg-gray-50 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-100",
+      "border-0 bg-background-muted rounded-lg focus:bg-background-surface focus:ring-2 focus:ring-secondary/20",
     underlined:
-      "border-0 border-b-2 border-gray-300 bg-transparent rounded-none focus:border-blue-500",
+      "border-0 border-b-2 border-border-primary bg-transparent rounded-none focus:border-secondary",
   };
 
   const sizeClasses = {
@@ -202,19 +202,19 @@ const OrderInput: React.FC<OrderInputProps> = ({
 
   const statusClasses = {
     default: "",
-    success: "border-green-500 focus:border-green-500 focus:ring-green-100",
-    error: "border-red-500 focus:border-red-500 focus:ring-red-100",
-    warning: "border-yellow-500 focus:border-yellow-500 focus:ring-yellow-100",
+    success: "border-success focus:border-success focus:ring-success/20",
+    error: "border-error focus:border-error focus:ring-error/20",
+    warning: "border-accent focus:border-accent focus:ring-accent/20",
   };
 
   const getStatusIcon = () => {
     switch (computedStatus) {
       case "success":
-        return <Check className="w-4 h-4 text-green-500" />;
+        return <Check className="w-4 h-4 text-success" />;
       case "error":
-        return <X className="w-4 h-4 text-red-500" />;
+        return <X className="w-4 h-4 text-error" />;
       case "warning":
-        return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
+        return <AlertTriangle className="w-4 h-4 text-accent" />;
       default:
         return null;
     }
@@ -228,25 +228,25 @@ const OrderInput: React.FC<OrderInputProps> = ({
     sizeClasses[size],
     computedStatus !== "default" ? statusClasses[computedStatus] : "",
     fullWidth ? "w-full" : "",
-    disabled ? "opacity-50 cursor-not-allowed bg-gray-50" : "",
+    disabled ? "opacity-50 cursor-not-allowed bg-background-elevated" : "",
     "pr-10",
-    "text-center", // Căn giữa cho số thứ tự
+    "text-center text-text-primary", // Căn giữa cho số thứ tự
     className,
   ]
     .filter(Boolean)
     .join(" ");
 
   const helperTextColor = {
-    default: "text-gray-500",
-    success: "text-green-600",
-    error: "text-red-600",
-    warning: "text-yellow-600",
+    default: "text-text-muted",
+    success: "text-success",
+    error: "text-error",
+    warning: "text-accent",
   };
 
   return (
     <div className={`${fullWidth ? "w-full" : ""}`}>
       {label && (
-        <label className="block mb-1 text-sm font-medium text-gray-700">
+        <label className="block mb-1 text-sm font-medium text-text-primary">
           {label}
         </label>
       )}
@@ -279,7 +279,7 @@ const OrderInput: React.FC<OrderInputProps> = ({
             <button
               type="button"
               onClick={applySuggestion}
-              className="inline-flex items-center px-2 py-1 text-xs text-blue-700 bg-blue-50 rounded transition-colors hover:bg-blue-100"
+              className="inline-flex items-center px-2 py-1 text-xs text-secondary bg-secondary/10 rounded transition-colors hover:bg-secondary/20"
             >
               <ArrowUp className="mr-1 w-3 h-3" />
               Gợi ý: {suggestedOrder}
@@ -296,10 +296,10 @@ const OrderInput: React.FC<OrderInputProps> = ({
 
       {/* Order List */}
       {showOrderList && filteredExistingOrders.length > 0 && (
-        <div className="p-3 mt-3 bg-gray-50 rounded-lg">
+        <div className="p-3 mt-3 bg-background-muted rounded-lg">
           <div className="flex gap-1 items-center mb-2">
-            <List className="w-4 h-4 text-gray-500" />
-            <span className="text-sm font-medium text-gray-700">
+            <List className="w-4 h-4 text-text-muted" />
+            <span className="text-sm font-medium text-text-primary">
               Thứ tự đã sử dụng:
             </span>
           </div>
@@ -309,12 +309,12 @@ const OrderInput: React.FC<OrderInputProps> = ({
               .map((item) => (
                 <span
                   key={item.id}
-                  className="inline-flex items-center px-2 py-1 text-xs bg-white rounded border"
+                  className="inline-flex items-center px-2 py-1 text-xs bg-background-surface rounded border border-border-primary"
                   title={item.label || `ID: ${item.id}`}
                 >
                   #{item.order}
                   {item.label && (
-                    <span className="ml-1 text-gray-500">({item.label})</span>
+                    <span className="ml-1 text-text-muted">({item.label})</span>
                   )}
                 </span>
               ))}

@@ -57,17 +57,18 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
     const isFloating =
       isFocused || hasValue || (value && value.toString().length > 0);
 
-    const baseClasses = "transition-all duration-200 focus:outline-none";
+    const baseClasses =
+      "transition-all duration-200 focus:outline-none text-text-primary placeholder:text-text-muted";
 
     const variantClasses = {
       default:
-        "border border-gray-300 bg-background-elevated rounded-lg focus:border-primary focus:ring-2 focus:ring-primary-light",
+        "border border-border-secondary bg-background-elevated rounded-lg focus:border-border-focus focus:ring-2 focus:ring-secondary/20",
       outlined:
-        "border border-gray-300 bg-background-elevated rounded-xl focus:border-secondary focus:ring-2 focus:ring-primary-light",
+        "border border-border-secondary bg-background-elevated rounded-xl focus:border-border-focus focus:ring-2 focus:ring-secondary/20",
       filled:
-        "border-0 bg-background-muted rounded-lg focus:bg-background-elevated focus:ring-2 focus:ring-primary-light",
+        "border-0 bg-background-muted rounded-lg focus:bg-background-elevated focus:ring-2 focus:ring-secondary/20",
       underlined:
-        "border-0 border-b-2 border-gray-300 bg-transparent rounded-none focus:border-primary",
+        "border-0 border-b-2 border-border-secondary bg-transparent rounded-none focus:border-border-focus",
     };
 
     const sizeClasses = {
@@ -77,10 +78,10 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
     };
 
     const statusClasses = {
-      default: "border-secondary",
-      success: "border-success focus:border-success focus:ring-success",
-      error: "border-error focus:border-error focus:ring-error",
-      warning: "border-warning focus:border-warning focus:ring-warning",
+      default: "border-border-secondary",
+      success: "border-success focus:border-success focus:ring-success/20",
+      error: "border-error focus:border-error focus:ring-error/20",
+      warning: "border-warning focus:border-warning focus:ring-warning/20",
     };
 
     // Label positioning based on size and floating state
@@ -121,7 +122,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
       sizeClasses[size],
       status !== "default" ? statusClasses[status] : "",
       fullWidth ? "w-full" : "",
-      disabled ? "opacity-50 cursor-not-allowed bg-gray-50" : "",
+      disabled ? "opacity-50 cursor-not-allowed bg-background-muted" : "",
       iconLeft || iconRight || showPasswordToggle || statusIcon ? "pr-10" : "",
       iconLeft ? "pl-10" : "",
       // Override browser autofill styles
@@ -132,10 +133,10 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
       .join(" ");
 
     const helperTextColor = {
-      default: "text-gray-500",
-      success: "text-green-600",
-      error: "text-red-600",
-      warning: "text-yellow-600",
+      default: "text-text-muted",
+      success: "text-success",
+      error: "text-error",
+      warning: "text-warning",
     };
 
     const labelColor = {

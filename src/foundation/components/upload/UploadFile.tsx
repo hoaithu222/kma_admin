@@ -78,7 +78,7 @@ const UploadFile = ({
   required = false,
   multiple = true,
   showPreview = true,
-  className = "",
+  className = "bg-background-elevated",
   dropzoneClassName = "",
   previewClassName = "",
   showProgress = true,
@@ -338,7 +338,7 @@ const UploadFile = ({
           <div
             className={`
             relative border-2 border-dashed rounded-lg p-4 sm:p-6 md:p-8 cursor-pointer transition-colors
-            ${isDragging ? "border-primary bg-background-subtle" : "hover:border-gray-400"}
+            ${isDragging ? "border-primary bg-background-elevated" : "hover:border-gray-400"}
             ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}
             ${error ? "border-error" : ""}
             ${dropzoneClassName}

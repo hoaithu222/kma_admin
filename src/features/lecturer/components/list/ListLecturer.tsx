@@ -83,29 +83,31 @@ export default function ListLecturer() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold">{lecturer.name}</h3>
-                    <p className="text-blue-100">{lecturer.title}</p>
+                    <p className="text-primary-foreground/80">
+                      {lecturer.title}
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Card Body */}
               <div className="p-6 space-y-4">
-                <div className="flex items-center space-x-3 text-gray-600">
-                  <Mail size={18} className="text-blue-500" />
+                <div className="flex items-center space-x-3 text-text-secondary">
+                  <Mail size={18} className="text-secondary" />
                   <span className="text-sm">{lecturer.email}</span>
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-start space-x-3">
-                    <BookOpen size={18} className="mt-1 text-green-500" />
+                    <BookOpen size={18} className="mt-1 text-success" />
                     <div>
-                      <p className="font-semibold text-gray-800">
+                      <p className="font-semibold text-text-primary">
                         Chuyên ngành
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-text-secondary">
                         {lecturer.majorName}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-text-muted">
                         {lecturer.subMajorName}
                       </p>
                     </div>
@@ -113,8 +115,8 @@ export default function ListLecturer() {
                 </div>
 
                 {stripHtml(lecturer.position) && (
-                  <div className="p-3 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-700">
+                  <div className="p-3 bg-background-muted rounded-lg">
+                    <p className="text-sm text-text-primary">
                       <span className="font-semibold">Vị trí: </span>
                       {stripHtml(lecturer.position)}
                     </p>
@@ -123,11 +125,11 @@ export default function ListLecturer() {
 
                 {stripHtml(lecturer.researchInterests) && (
                   <div className="space-y-2">
-                    <p className="flex items-center font-semibold text-gray-800">
-                      <Award size={16} className="mr-2 text-yellow-500" />
+                    <p className="flex items-center font-semibold text-text-primary">
+                      <Award size={16} className="mr-2 text-accent" />
                       Lĩnh vực nghiên cứu
                     </p>
-                    <div className="p-3 text-sm text-gray-600 bg-yellow-50 rounded-lg">
+                    <div className="p-3 text-sm text-text-secondary bg-accent/10 rounded-lg">
                       {stripHtml(lecturer.researchInterests).substring(0, 100)}
                       {stripHtml(lecturer.researchInterests).length > 100 &&
                         "..."}

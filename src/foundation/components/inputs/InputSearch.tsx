@@ -42,7 +42,7 @@ const InputSearch = ({
   return (
     <div className={clsx("relative", className)}>
       <div className="relative">
-        <div className="absolute inset-0 rounded-full border border-border-strong p-[1px]">
+        <div className="absolute inset-0 rounded-full border border-border-primary p-[1px]">
           <div className="w-full h-full rounded-full" />
         </div>
 
@@ -58,10 +58,12 @@ const InputSearch = ({
             selectedSize.pl,
             "focus:ring-2 focus:outline-none",
             "transition-all duration-200 ease-in-out",
-            "border border-info-light",
+            "border border-border-secondary",
             "bg-background-muted",
-            "text-info-light",
-            "focus:ring-info-light"
+            "text-text-primary",
+            "placeholder:text-text-muted",
+            "focus:ring-secondary/20",
+            "focus:border-border-focus"
           )}
         />
       </div>
@@ -73,7 +75,7 @@ const InputSearch = ({
             "absolute -translate-y-1/2 top-1/2 pointer-events-none",
             size === "sm" ? "left-1.5" : size === "md" ? "left-2" : "left-3",
             selectedSize.iconContainer,
-            "text-info-light"
+            "text-text-muted"
           )}
         >
           {icon}

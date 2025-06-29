@@ -61,7 +61,7 @@ const MyEditor = () => {
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: "text-blue-600 hover:text-blue-800 underline",
+          class: "text-secondary hover:text-secondary-dark underline",
         },
       }),
       Image,
@@ -100,15 +100,15 @@ const MyEditor = () => {
         editor?.chain().focus().setImage({ src: fileUrl }).run();
       } else {
         const html = `
-          <div style="border: 1px solid #e2e8f0; padding: 12px; margin: 12px 0; border-radius: 8px; background: #f8fafc;">
+          <div style="border: 1px solid var(--border-primary); padding: 12px; margin: 12px 0; border-radius: 8px; background: var(--background-muted);">
             <div style="display: flex; align-items: center; gap: 8px;">
               <span style="font-size: 20px;">📎</span>
               <div>
-                <strong style="color: #1e293b;">${file.name}</strong>
-                <div style="font-size: 12px; color: #64748b;">${(file.size / 1024).toFixed(1)} KB</div>
+                <strong style="color: var(--text-primary);">${file.name}</strong>
+                <div style="font-size: 12px; color: var(--text-muted);">${(file.size / 1024).toFixed(1)} KB</div>
               </div>
             </div>
-            <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none; font-size: 14px;">📥 Tải xuống</a>
+            <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--secondary); text-decoration: none; font-size: 14px;">📥 Tải xuống</a>
           </div>
         `;
         editor?.commands.insertContent(html);
@@ -233,8 +233,8 @@ const MyEditor = () => {
       title={title}
       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
         active
-          ? "text-blue-700 bg-blue-100 border border-blue-300"
-          : "text-gray-700 bg-white border border-gray-300 hover:bg-gray-50"
+          ? "text-secondary bg-secondary/10 border border-secondary/30"
+          : "text-text-primary bg-background-surface border border-border-primary hover:bg-background-muted"
       }`}
     >
       {children}
@@ -242,17 +242,17 @@ const MyEditor = () => {
   );
 
   return (
-    <div className="p-4 mx-auto max-w-6xl min-h-screen bg-gray-50">
+    <div className="p-4 mx-auto max-w-6xl min-h-screen bg-background-muted">
       {/* Header */}
-      <div className="p-4 mb-4 bg-white rounded-lg shadow-sm">
+      <div className="p-4 mb-4 bg-background-surface rounded-lg shadow-sm">
         <div className="flex justify-between items-center mb-4">
           <div className="flex gap-4 items-center">
-            <FileText className="w-6 h-6 text-blue-600" />
+            <FileText className="w-6 h-6 text-secondary" />
             <input
               type="text"
               value={documentTitle}
               onChange={(e) => setDocumentTitle(e.target.value)}
-              className="text-xl font-semibold bg-transparent border-none outline-none"
+              className="text-xl font-semibold bg-transparent border-none outline-none text-text-primary placeholder:text-text-muted"
               placeholder="Tên tài liệu"
             />
           </div>
@@ -260,14 +260,14 @@ const MyEditor = () => {
             <button
               type="button"
               onClick={() => setShowSettings(!showSettings)}
-              className="p-2 text-gray-600 hover:text-gray-800"
+              className="p-2 text-text-muted hover:text-text-primary"
             >
               <Settings className="w-5 h-5" />
             </button>
             <button
               type="button"
               onClick={() => setIsPreviewMode(!isPreviewMode)}
-              className="p-2 text-gray-600 hover:text-gray-800"
+              className="p-2 text-text-muted hover:text-text-primary"
             >
               <Eye className="w-5 h-5" />
             </button>
@@ -279,7 +279,7 @@ const MyEditor = () => {
           <button
             type="button"
             onClick={saveDocument}
-            className="flex gap-2 items-center px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+            className="flex gap-2 items-center px-4 py-2 text-white bg-secondary rounded-md hover:bg-secondary-dark"
           >
             <Save className="w-4 h-4" />
             Lưu
@@ -287,7 +287,7 @@ const MyEditor = () => {
           <button
             type="button"
             onClick={exportAsHTML}
-            className="flex gap-2 items-center px-4 py-2 text-white bg-green-600 rounded-md hover:bg-green-700"
+            className="flex gap-2 items-center px-4 py-2 text-white bg-success rounded-md hover:bg-success-dark"
           >
             <Download className="w-4 h-4" />
             Xuất HTML
@@ -295,7 +295,7 @@ const MyEditor = () => {
           <button
             type="button"
             onClick={importDocument}
-            className="flex gap-2 items-center px-4 py-2 text-white bg-purple-600 rounded-md hover:bg-purple-700"
+            className="flex gap-2 items-center px-4 py-2 text-white bg-accent rounded-md hover:bg-accent-dark"
           >
             <Upload className="w-4 h-4" />
             Nhập
@@ -304,15 +304,17 @@ const MyEditor = () => {
 
         {/* Settings Panel */}
         {showSettings && (
-          <div className="p-4 mb-4 bg-gray-50 rounded-lg">
-            <h3 className="mb-3 font-semibold">Cài đặt</h3>
+          <div className="p-4 mb-4 bg-background-muted rounded-lg">
+            <h3 className="mb-3 font-semibold text-text-primary">Cài đặt</h3>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               <div>
-                <label className="block mb-1 text-sm font-medium">Cỡ chữ</label>
+                <label className="block mb-1 text-sm font-medium text-text-primary">
+                  Cỡ chữ
+                </label>
                 <select
                   value={fontSize}
                   onChange={(e) => setFontSize(Number(e.target.value))}
-                  className="p-2 w-full rounded-md border"
+                  className="p-2 w-full rounded-md border border-border-primary bg-background-surface text-text-primary"
                 >
                   <option value={12}>12px</option>
                   <option value={14}>14px</option>
@@ -323,7 +325,7 @@ const MyEditor = () => {
                 </select>
               </div>
               <div>
-                <label className="block mb-1 text-sm font-medium">
+                <label className="block mb-1 text-sm font-medium text-text-primary">
                   Tìm kiếm
                 </label>
                 <input
@@ -331,11 +333,11 @@ const MyEditor = () => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Từ khóa tìm kiếm"
-                  className="p-2 w-full rounded-md border"
+                  className="p-2 w-full rounded-md border border-border-primary bg-background-surface text-text-primary placeholder:text-text-muted"
                 />
               </div>
               <div>
-                <label className="block mb-1 text-sm font-medium">
+                <label className="block mb-1 text-sm font-medium text-text-primary">
                   Thay thế
                 </label>
                 <div className="flex gap-2">
@@ -344,12 +346,12 @@ const MyEditor = () => {
                     value={replaceTerm}
                     onChange={(e) => setReplaceTerm(e.target.value)}
                     placeholder="Thay thế bằng"
-                    className="flex-1 p-2 rounded-md border"
+                    className="flex-1 p-2 rounded-md border border-border-primary bg-background-surface text-text-primary placeholder:text-text-muted"
                   />
                   <button
                     type="button"
                     onClick={searchAndReplace}
-                    className="px-3 py-2 text-white bg-orange-600 rounded-md hover:bg-orange-700"
+                    className="px-3 py-2 text-white bg-accent rounded-md hover:bg-accent-dark"
                   >
                     <Replace className="w-4 h-4" />
                   </button>
@@ -360,9 +362,9 @@ const MyEditor = () => {
         )}
 
         {/* Toolbar */}
-        <div className="flex flex-wrap gap-2 p-4 bg-gray-50 rounded-lg">
+        <div className="flex flex-wrap gap-2 p-4 bg-background-muted rounded-lg">
           {/* Text Formatting */}
-          <div className="flex gap-1 pr-2 border-r border-gray-300">
+          <div className="flex gap-1 pr-2 border-r border-border-primary">
             <ToolbarButton
               onClick={() => editor?.chain().focus().toggleBold().run()}
               active={editor?.isActive("bold")}
@@ -394,7 +396,7 @@ const MyEditor = () => {
           </div>
 
           {/* Headings */}
-          <div className="flex gap-1 pr-2 border-r border-gray-300">
+          <div className="flex gap-1 pr-2 border-r border-border-primary">
             <ToolbarButton
               onClick={() =>
                 editor?.chain().focus().toggleHeading({ level: 1 }).run()
@@ -425,31 +427,31 @@ const MyEditor = () => {
           </div>
 
           {/* Lists */}
-          <div className="flex gap-1 pr-2 border-r border-gray-300">
+          <div className="flex gap-1 pr-2 border-r border-border-primary">
             <ToolbarButton
               onClick={() => editor?.chain().focus().toggleBulletList().run()}
               active={editor?.isActive("bulletList")}
-              title="Danh sách có dấu đầu dòng"
+              title="Danh sách không thứ tự"
             >
               •
             </ToolbarButton>
             <ToolbarButton
               onClick={() => editor?.chain().focus().toggleOrderedList().run()}
               active={editor?.isActive("orderedList")}
-              title="Danh sách có số"
+              title="Danh sách có thứ tự"
             >
               1.
             </ToolbarButton>
           </div>
 
           {/* Alignment */}
-          <div className="flex gap-1 pr-2 border-r border-gray-300">
+          <div className="flex gap-1 pr-2 border-r border-border-primary">
             <ToolbarButton
               onClick={() => editor?.chain().focus().setTextAlign("left").run()}
               active={editor?.isActive({ textAlign: "left" })}
               title="Căn trái"
             >
-              ⬅️
+              ←
             </ToolbarButton>
             <ToolbarButton
               onClick={() =>
@@ -458,7 +460,7 @@ const MyEditor = () => {
               active={editor?.isActive({ textAlign: "center" })}
               title="Căn giữa"
             >
-              ↔️
+              ↔
             </ToolbarButton>
             <ToolbarButton
               onClick={() =>
@@ -467,118 +469,89 @@ const MyEditor = () => {
               active={editor?.isActive({ textAlign: "right" })}
               title="Căn phải"
             >
-              ➡️
+              →
             </ToolbarButton>
           </div>
 
           {/* Special Elements */}
-          <div className="flex gap-1 pr-2 border-r border-gray-300">
+          <div className="flex gap-1 pr-2 border-r border-border-primary">
             <ToolbarButton
               onClick={() => editor?.chain().focus().toggleBlockquote().run()}
               active={editor?.isActive("blockquote")}
               title="Trích dẫn"
             >
-              💬
+              "
             </ToolbarButton>
             <ToolbarButton
               onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
               active={editor?.isActive("codeBlock")}
               title="Khối code"
             >
-              💻
-            </ToolbarButton>
-            <ToolbarButton onClick={insertLink} title="Chèn liên kết">
-              🔗
-            </ToolbarButton>
-          </div>
-
-          {/* Insert */}
-          <div className="flex gap-1 pr-2 border-r border-gray-300">
-            <ToolbarButton onClick={insertFile} title="Chèn file/ảnh">
-              📎
-            </ToolbarButton>
-            <ToolbarButton onClick={insertTable} title="Chèn bảng">
-              📊
+              &lt;/&gt;
             </ToolbarButton>
             <ToolbarButton
               onClick={() => editor?.chain().focus().setHorizontalRule().run()}
               title="Đường kẻ ngang"
             >
-              ➖
+              —
             </ToolbarButton>
           </div>
 
-          {/* Actions */}
-          <div className="flex gap-1">
+          {/* Links and Media */}
+          <div className="flex gap-1 pr-2 border-r border-border-primary">
             <ToolbarButton
-              onClick={() => editor?.chain().focus().undo().run()}
-              title="Hoàn tác"
+              onClick={insertLink}
+              active={editor?.isActive("link")}
+              title="Chèn liên kết"
             >
-              ↶
+              🔗
             </ToolbarButton>
-            <ToolbarButton
-              onClick={() => editor?.chain().focus().redo().run()}
-              title="Làm lại"
-            >
-              ↷
+            <ToolbarButton onClick={insertFile} title="Chèn file">
+              📎
             </ToolbarButton>
-            <ToolbarButton
-              onClick={() => editor?.commands.clearNodes()}
-              title="Xóa định dạng"
-            >
-              🧹
+            <ToolbarButton onClick={insertTable} title="Chèn bảng">
+              ⊞
             </ToolbarButton>
           </div>
         </div>
       </div>
 
-      {/* Editor */}
-      <div className="overflow-hidden bg-white rounded-lg shadow-sm">
-        <div
-          className="p-6 min-h-96 focus-within:ring-2 focus-within:ring-blue-500"
+      {/* Editor Content */}
+      <div className="bg-background-surface rounded-lg shadow-sm overflow-hidden">
+        <EditorContent
+          editor={editor}
+          className={`prose max-w-none p-6 text-text-primary ${
+            isPreviewMode ? "bg-background-muted" : ""
+          }`}
           style={{ fontSize: `${fontSize}px` }}
-        >
-          {isPreviewMode ? (
-            <div
-              dangerouslySetInnerHTML={{ __html: editor?.getHTML() || "" }}
-              className="max-w-none prose"
-            />
-          ) : (
-            <EditorContent
-              editor={editor}
-              className="max-w-none prose focus:outline-none"
-            />
-          )}
-        </div>
+        />
       </div>
 
-      {/* Status Bar */}
-      <div className="p-4 mt-4 bg-white rounded-lg shadow-sm">
-        <div className="flex justify-between items-center text-sm text-gray-600">
-          <div className="flex gap-4 items-center">
-            <span>Từ: {wordCount}</span>
-            <span>Ký tự: {charCount}</span>
-            <span>Cỡ chữ: {fontSize}px</span>
-          </div>
-          <div className="flex gap-4 items-center">
-            <span>Chế độ: {isPreviewMode ? "Xem trước" : "Chỉnh sửa"}</span>
-            <span>Đã lưu: {documents.length} tài liệu</span>
-          </div>
+      {/* Footer Stats */}
+      <div className="mt-4 p-4 bg-background-surface rounded-lg shadow-sm">
+        <div className="flex justify-between items-center text-sm text-text-muted">
+          <span>Từ: {wordCount}</span>
+          <span>Ký tự: {charCount}</span>
+          <span>Chế độ: {isPreviewMode ? "Xem trước" : "Chỉnh sửa"}</span>
         </div>
       </div>
 
       {/* Saved Documents */}
       {documents.length > 0 && (
-        <div className="p-4 mt-4 bg-white rounded-lg shadow-sm">
-          <h3 className="mb-3 font-semibold">Tài liệu đã lưu</h3>
+        <div className="p-4 mt-4 bg-background-surface rounded-lg shadow-sm">
+          <h3 className="mb-3 font-semibold text-text-primary">
+            Tài liệu đã lưu
+          </h3>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
             {documents.map((doc) => (
               <div
                 key={doc.id}
-                className="p-3 rounded-lg border hover:bg-gray-50"
+                className="p-3 rounded-lg border hover:bg-background-muted"
               >
-                <h4 className="text-sm font-medium">{doc.title}</h4>
-                <p className="text-xs text-gray-600">
+                <h4 className="text-sm font-medium text-text-primary">
+                  {doc.title}
+                </h4>
+                <p className="text-xs text-text-muted">
                   {doc.wordCount} từ •{" "}
                   {new Date(doc.createdAt).toLocaleDateString("vi-VN")}
                 </p>
@@ -588,7 +561,7 @@ const MyEditor = () => {
                     editor?.commands.setContent(doc.content || "");
                     setDocumentTitle(doc.title);
                   }}
-                  className="mt-1 text-xs text-blue-600 hover:text-blue-800"
+                  className="mt-1 text-xs text-text-primary hover:text-text-primary"
                 >
                   Mở
                 </button>

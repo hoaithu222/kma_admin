@@ -47,17 +47,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         : "password"
       : type;
 
-    const baseClasses = "transition-all duration-200 focus:outline-none";
+    const baseClasses =
+      "transition-all duration-200 focus:outline-none text-text-primary placeholder:text-text-muted";
 
     const variantClasses = {
       default:
-        "border border-gray-300 bg-background-elevated rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+        "border border-border-secondary bg-background-elevated rounded-lg focus:border-border-focus focus:ring-2 focus:ring-secondary/20",
       outlined:
-        "border border-gray-300 bg-background-elevated rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+        "border border-border-secondary bg-background-elevated rounded-lg focus:border-border-focus focus:ring-2 focus:ring-secondary/20",
       filled:
-        "border-0 bg-background-muted rounded-lg focus:bg-background-elevated focus:ring-2 focus:ring-blue-100",
+        "border-0 bg-background-muted rounded-lg focus:bg-background-elevated focus:ring-2 focus:ring-secondary/20",
       underlined:
-        "border-0 border-b-2 border-gray-300 bg-transparent rounded-none focus:border-blue-500",
+        "border-0 border-b-2 border-border-secondary bg-transparent rounded-none focus:border-border-focus",
     };
 
     const sizeClasses = {
@@ -68,21 +69,20 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const statusClasses = {
       default: "",
-      success: "border-green-500 focus:border-green-500 focus:ring-green-100",
-      error: "border-red-500 focus:border-red-500 focus:ring-red-100",
-      warning:
-        "border-yellow-500 focus:border-yellow-500 focus:ring-yellow-100",
+      success: "border-success focus:border-success focus:ring-success/20",
+      error: "border-error focus:border-error focus:ring-error/20",
+      warning: "border-warning focus:border-warning focus:ring-warning/20",
     };
 
     // Get status icon
     const getStatusIcon = () => {
       switch (status) {
         case "success":
-          return <Check className="w-4 h-4 text-green-500" />;
+          return <Check className="w-4 h-4 text-success" />;
         case "error":
-          return <X className="w-4 h-4 text-red-500" />;
+          return <X className="w-4 h-4 text-error" />;
         case "warning":
-          return <AlertTriangle className="w-4 h-4 text-yellow-500" />;
+          return <AlertTriangle className="w-4 h-4 text-warning" />;
         default:
           return null;
       }
@@ -96,7 +96,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       sizeClasses[size],
       status !== "default" ? statusClasses[status] : "",
       fullWidth ? "w-full" : "",
-      disabled ? "opacity-50 cursor-not-allowed bg-gray-50" : "",
+      disabled ? "opacity-50 cursor-not-allowed bg-background-muted" : "",
       iconLeft || iconRight || showPasswordToggle || statusIcon ? "pr-10" : "",
       iconLeft ? "pl-10" : "",
       isFocused ? "border-primary" : "",
@@ -106,22 +106,22 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       .join(" ");
 
     const helperTextColor = {
-      default: "text-gray-500",
-      success: "text-green-600",
-      error: "text-red-600",
-      warning: "text-yellow-600",
+      default: "text-text-muted",
+      success: "text-success",
+      error: "text-error",
+      warning: "text-warning",
     };
 
     return (
       <div className={`${fullWidth ? "w-full" : ""}`}>
         {label && (
-          <label className="block mb-1 text-sm font-medium text-gray-700">
+          <label className="block mb-1 text-sm font-medium text-text-primary">
             {label}
           </label>
         )}
         <div className="relative">
           {iconLeft && (
-            <div className="absolute text-gray-400 transform -translate-y-1/2 left-3 top-1/2">
+            <div className="absolute text-text-muted transform -translate-y-1/2 left-3 top-1/2">
               {iconLeft}
             </div>
           )}
@@ -139,7 +139,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-text-muted hover:text-text-secondary"
               >
                 {showPassword ? (
                   <EyeOff className="w-4 h-4" />
@@ -150,7 +150,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             )}
             {statusIcon}
             {iconRight && !statusIcon && (
-              <div className="text-gray-400">{iconRight}</div>
+              <div className="text-text-muted">{iconRight}</div>
             )}
           </div>
         </div>

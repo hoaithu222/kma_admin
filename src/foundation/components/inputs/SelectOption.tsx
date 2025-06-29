@@ -66,18 +66,18 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
 
     // Base classes
     const baseClasses =
-      "transition-all duration-200 focus:outline-none appearance-none cursor-pointer";
+      "transition-all duration-200 focus:outline-none appearance-none cursor-pointer text-text-primary";
 
     // Variant classes
     const variantClasses = {
       default:
-        "border border-gray-300 bg-white rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+        "border border-border-secondary bg-background-elevated text-text-primary rounded-lg focus:border-border-focus focus:ring-2 focus:ring-secondary/20",
       outlined:
-        "border border-gray-300 bg-white rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+        "border border-border-secondary bg-background-elevated text-text-primary rounded-lg focus:border-border-focus focus:ring-2 focus:ring-secondary/20",
       filled:
-        "border-0 bg-gray-100 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-100",
+        "border-0 bg-background-elevated rounded-lg focus:bg-background-base focus:ring-2 focus:ring-secondary/20",
       underlined:
-        "border-0 border-b-2 border-gray-300 bg-transparent rounded-none focus:border-blue-500",
+        "border-0 border-b-2 border-border-secondary bg-transparent rounded-none focus:border-border-focus",
     };
 
     // Size classes
@@ -90,10 +90,9 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     // Status classes
     const statusClasses = {
       default: "",
-      success: "border-green-500 focus:border-green-500 focus:ring-green-100",
-      error: "border-red-500 focus:border-red-500 focus:ring-red-100",
-      warning:
-        "border-yellow-500 focus:border-yellow-500 focus:ring-yellow-100",
+      success: "border-success focus:border-success focus:ring-success/20",
+      error: "border-error focus:border-error focus:ring-error/20",
+      warning: "border-warning focus:border-warning focus:ring-warning/20",
     };
 
     const selectClasses = [
@@ -102,9 +101,9 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       sizeClasses[size],
       status !== "default" ? statusClasses[status] : "",
       fullWidth ? "w-full" : "",
-      disabled ? "opacity-50 cursor-not-allowed bg-gray-50" : "",
+      disabled ? "opacity-50 cursor-not-allowed bg-background-muted" : "",
       iconLeft ? "pl-10" : "",
-      isFocused ? "border-blue-500" : "",
+      isFocused ? "border-secondary" : "",
       "pr-10",
       className,
     ]
@@ -117,15 +116,16 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       sizeClasses[size],
       "pr-20",
       fullWidth ? "w-full" : "",
+      "placeholder:text-text-muted",
     ]
       .filter(Boolean)
       .join(" ");
 
     const helperTextColor = {
-      default: "text-gray-500",
-      success: "text-green-600",
-      error: "text-red-600",
-      warning: "text-yellow-600",
+      default: "text-text-muted",
+      success: "text-success",
+      error: "text-error",
+      warning: "text-warning",
     };
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -168,7 +168,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className={`${fullWidth ? "w-full" : ""}`}>
         {label && (
-          <label className="block mb-1 text-sm font-medium text-gray-700">
+          <label className="block mb-1 text-sm font-medium text-text-primary">
             {label}
           </label>
         )}
@@ -189,7 +189,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               <button
                 type="button"
                 onClick={handleAddNew}
-                className="p-1 text-green-600 hover:text-green-700 focus:outline-none"
+                className="p-1 text-success hover:text-success-dark focus:outline-none"
                 disabled={!newValue.trim()}
               >
                 <Plus className="w-4 h-4" />
@@ -197,7 +197,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               <button
                 type="button"
                 onClick={handleCancelAdd}
-                className="p-1 text-gray-400 hover:text-gray-600 focus:outline-none"
+                className="p-1 text-text-muted hover:text-text-primary focus:outline-none"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -207,7 +207,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           // Normal select mode
           <div className="relative">
             {iconLeft && (
-              <div className="absolute left-3 top-1/2 text-gray-400 transform -translate-y-1/2">
+              <div className="absolute left-3 top-1/2 text-text-muted transform -translate-y-1/2">
                 {iconLeft}
               </div>
             )}
@@ -238,14 +238,14 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               {allowAddNew && (
                 <option
                   value="__ADD_NEW__"
-                  className="font-medium text-blue-600"
+                  className="font-medium text-secondary"
                 >
                   + {addNewText}
                 </option>
               )}
             </select>
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-              <ChevronDown className="w-4 h-4 text-gray-400" />
+              <ChevronDown className="w-4 h-4 text-text-muted" />
             </div>
           </div>
         )}

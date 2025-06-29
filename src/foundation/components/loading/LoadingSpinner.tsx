@@ -29,12 +29,12 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
       <div className="relative">
         {/* Outer ring */}
         <div
-          className={`${sizeClasses[size]} border-2 border-blue-200 rounded-full animate-spin`}
+          className={`${sizeClasses[size]} border-2 border-secondary-light rounded-full animate-spin`}
         ></div>
 
         {/* Inner ring */}
         <div
-          className={`absolute top-0.5 left-0.5 ${sizeClasses[size]} border-2 border-transparent border-t-blue-600 rounded-full animate-spin`}
+          className={`absolute top-0.5 left-0.5 ${sizeClasses[size]} border-2 border-transparent border-t-secondary rounded-full animate-spin`}
           style={{
             animationDirection: "reverse",
             animationDuration: "0.8s",
@@ -46,7 +46,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         {/* Center icon */}
         <div className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
           <GraduationCap
-            className={`${iconSizes[size]} text-blue-600 animate-pulse`}
+            className={`${iconSizes[size]} text-secondary animate-pulse`}
           />
         </div>
       </div>
