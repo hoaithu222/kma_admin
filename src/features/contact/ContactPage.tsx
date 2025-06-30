@@ -22,6 +22,9 @@ import {
   FileText,
 } from "lucide-react";
 import contactData from "./data/contact.json";
+import { useContact } from "./hooks/useContact";
+import { updatePage } from "@/core/api/pageApi";
+import { PageRequestUpdate } from "@/core/api/pageApi/types";
 
 // TypeScript interfaces
 interface EditableTextProps {
@@ -31,7 +34,7 @@ interface EditableTextProps {
   placeholder?: string;
 }
 
-interface ContactData {
+interface ContactContent {
   title: string;
   name: string;
   description: string;
@@ -62,18 +65,71 @@ interface ContactData {
 }
 
 const ContactPage = () => {
-  const [data, setData] = useState<ContactData>(contactData as ContactData);
+  const { contact, isLoading, error, getContact } = useContact();
+
+  useEffect(() => {
+    getContact();
+  }, []);
+
+  // Initialize data with contact content or fallback to contactData
+  const [data, setData] = useState<ContactContent>(() => {
+    if (contact?.content) {
+      try {
+        const parsedContent =
+          typeof contact.content === "string"
+            ? JSON.parse(contact.content)
+            : contact.content;
+        return parsedContent as ContactContent;
+      } catch (error) {
+        console.error("Error parsing contact content:", error);
+        return contactData as ContactContent;
+      }
+    }
+    return contactData as ContactContent;
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
   const [hasChanges, setHasChanges] = useState(false);
 
+  // Update data when contact changes
+  useEffect(() => {
+    if (contact?.content) {
+      try {
+        let parsedContent;
+        if (typeof contact.content === "string") {
+          parsedContent = JSON.parse(contact.content);
+        } else {
+          parsedContent = contact.content;
+        }
+
+        setData(parsedContent as ContactContent);
+      } catch (error) {
+        console.error("Error parsing contact content:", error);
+        setData(contactData as ContactContent);
+      }
+    }
+  }, [contact]);
+
   // Track changes
   useEffect(() => {
-    const isChanged = JSON.stringify(data) !== JSON.stringify(contactData);
-    setHasChanges(isChanged);
-  }, [data]);
+    if (contact?.content) {
+      try {
+        const originalContent =
+          typeof contact.content === "string"
+            ? JSON.parse(contact.content)
+            : contact.content;
+        const isChanged =
+          JSON.stringify(data) !== JSON.stringify(originalContent);
+        setHasChanges(isChanged);
+      } catch (error) {
+        console.error("Error parsing contact content for comparison:", error);
+        setHasChanges(false);
+      }
+    }
+  }, [data, contact]);
 
   // Editable Text Component
   const EditableText: React.FC<EditableTextProps> = ({
@@ -152,7 +208,7 @@ const ContactPage = () => {
   };
 
   // Update functions
-  const updateField = (field: keyof ContactData, value: string) => {
+  const updateField = (field: keyof ContactContent, value: string) => {
     setData((prev) => ({
       ...prev,
       [field]: value,
@@ -161,23 +217,28 @@ const ContactPage = () => {
 
   // Submit to server
   const handleSubmit = async () => {
+    if (!contact?.id) {
+      setSubmitStatus("error");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const updatePageData: PageRequestUpdate = {
+        id: contact.id,
+        title: contact.title,
+        content: data,
+        path: contact.path || "contact",
+      };
 
-      if (response.ok) {
-        setSubmitStatus("success");
-      } else {
-        throw new Error("Failed to save");
-      }
+      const response = await updatePage(contact.id, updatePageData);
+      console.log("updatePageData", response);
+      setSubmitStatus("success");
+
+      // Refresh contact data
+      await getContact();
     } catch (error) {
       setSubmitStatus("error");
       console.error("Error saving data:", error);
@@ -187,9 +248,44 @@ const ContactPage = () => {
   };
 
   const handleReset = () => {
-    setData(contactData as ContactData);
+    if (contact?.content) {
+      try {
+        const parsedContent =
+          typeof contact.content === "string"
+            ? JSON.parse(contact.content)
+            : contact.content;
+        setData(parsedContent as ContactContent);
+      } catch (error) {
+        console.error("Error parsing contact content for reset:", error);
+        setData(contactData as ContactContent);
+      }
+    } else {
+      setData(contactData as ContactContent);
+    }
     setSubmitStatus(null);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="text-center">
+          <RefreshCw className="mx-auto mb-4 w-8 h-8 animate-spin text-primary" />
+          <p className="text-text-secondary">Đang tải dữ liệu...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="text-center">
+          <AlertCircle className="mx-auto mb-4 w-8 h-8 text-error" />
+          <p className="text-text-secondary">Có lỗi xảy ra: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background-base">

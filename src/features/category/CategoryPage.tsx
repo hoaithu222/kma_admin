@@ -4,8 +4,14 @@ import { PlusIcon } from "lucide-react";
 import LitsCategory from "./components/LitsCategory";
 import { useCategory } from "./hooks/useCategory";
 import AddCategory from "./components/AddCategory";
+import { useEffect } from "react";
 const CategoryPage = () => {
-  const { isAddCategory, handleAddCategory } = useCategory();
+  const { isAddCategory, handleAddCategory, getCategoriesAction } =
+    useCategory();
+  useEffect(() => {
+    getCategoriesAction();
+  }, []);
+
   return (
     <div
       className={clsx(

@@ -95,15 +95,10 @@ export const NavbarItems: NavbarItem[] = [
     ],
   },
   {
-    label: "Bài viết",
-    icon: FileTextIcon,
-    path: "/posts",
+    label: "Cài đặt menu",
+    icon: FolderKanbanIcon,
+    path: "/categories",
     children: [
-      {
-        label: "Bài viết",
-        icon: FileTextIcon,
-        path: "/posts",
-      },
       {
         label: "Danh mục",
         icon: FolderKanbanIcon,
@@ -114,6 +109,19 @@ export const NavbarItems: NavbarItem[] = [
         icon: FolderTreeIcon,
         path: "/subcategories",
       },
+    ],
+  },
+  {
+    label: "Bài viết",
+    icon: FileTextIcon,
+    path: "/posts",
+    children: [
+      {
+        label: "Bài viết",
+        icon: FileTextIcon,
+        path: "/posts",
+      },
+
       {
         label: "Danh sách tag",
         icon: TagsIcon,

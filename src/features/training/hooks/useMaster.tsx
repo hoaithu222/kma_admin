@@ -2,18 +2,18 @@ import { getPage } from "@/core/api/pageApi";
 import { Page } from "@/core/api/pageApi/types";
 import { useState } from "react";
 
-export const useAbout = () => {
-  const [about, setAbout] = useState<Page | null>(null);
+export const useMaster = () => {
+  const [master, setMaster] = useState<Page | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getAbout = async () => {
+  const getMaster = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await getPage("2");
+      const response = await getPage("6"); // Assuming master page has ID 6
       // Handle the API response structure: { status: 200, data: Page, message: "Success" }
-      setAbout(response.data || response);
+      setMaster(response.data || response);
     } catch (error) {
       setError(error as string);
     } finally {
@@ -22,9 +22,9 @@ export const useAbout = () => {
   };
 
   return {
-    about,
+    master,
     isLoading,
     error,
-    getAbout,
+    getMaster,
   };
 };

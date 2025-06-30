@@ -20,6 +20,8 @@ import {
   MessageSquare,
 } from "lucide-react";
 import trainingStructure from "../data/trainingStructure.json";
+import { useUnder } from "../hooks/useUnder";
+import { updatePage } from "@/core/api/pageApi";
 
 // TypeScript interfaces
 interface EditableTextProps {
@@ -57,21 +59,67 @@ interface TrainingStructureData {
 }
 
 const UndergraduateProgram = () => {
-  const [data, setData] = useState<TrainingStructureData>(
-    trainingStructure as TrainingStructureData
-  );
+  const { under, isLoading, error, getUnder } = useUnder();
+  const [data, setData] = useState<TrainingStructureData>(() => {
+    if (under?.content) {
+      try {
+        const parsedContent =
+          typeof under.content === "string"
+            ? JSON.parse(under.content)
+            : under.content;
+        return parsedContent;
+      } catch (error) {
+        console.error("Error parsing content:", error);
+        return trainingStructure as TrainingStructureData;
+      }
+    }
+    return trainingStructure as TrainingStructureData;
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
   const [hasChanges, setHasChanges] = useState(false);
 
+  // Load data from API on component mount
+  useEffect(() => {
+    getUnder();
+  }, []);
+
+  // Parse content from API and update local state
+  useEffect(() => {
+    if (under?.content) {
+      try {
+        const parsedContent =
+          typeof under.content === "string"
+            ? JSON.parse(under.content)
+            : under.content;
+        setData(parsedContent);
+      } catch (error) {
+        console.error("Error parsing content:", error);
+        // Fallback to default data if parsing fails
+        setData(trainingStructure as TrainingStructureData);
+      }
+    }
+  }, [under]);
+
   // Track changes
   useEffect(() => {
-    const isChanged =
-      JSON.stringify(data) !== JSON.stringify(trainingStructure);
-    setHasChanges(isChanged);
-  }, [data]);
+    if (under?.content) {
+      try {
+        const originalContent =
+          typeof under.content === "string"
+            ? JSON.parse(under.content)
+            : under.content;
+        const isChanged =
+          JSON.stringify(data) !== JSON.stringify(originalContent);
+        setHasChanges(isChanged);
+      } catch (error) {
+        console.error("Error comparing changes:", error);
+        setHasChanges(false);
+      }
+    }
+  }, [data, under]);
 
   // Editable Text Component
   const EditableText: React.FC<EditableTextProps> = ({
@@ -276,23 +324,21 @@ const UndergraduateProgram = () => {
 
   // Submit to server
   const handleSubmit = async () => {
+    if (!under?.id) return;
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      const response = await fetch("/api/undergraduate-program", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      await updatePage(under.id.toString(), {
+        id: under.id.toString(),
+        title: under.title,
+        content: data, // Send as object, not string
+        path: under.path,
       });
-
-      if (response.ok) {
-        setSubmitStatus("success");
-      } else {
-        throw new Error("Failed to save");
-      }
+      setSubmitStatus("success");
+      // Refresh data after successful update
+      await getUnder();
     } catch (error) {
       setSubmitStatus("error");
       console.error("Error saving data:", error);
@@ -302,12 +348,84 @@ const UndergraduateProgram = () => {
   };
 
   const handleReset = () => {
-    setData(trainingStructure as TrainingStructureData);
+    if (under?.content) {
+      try {
+        const originalContent =
+          typeof under.content === "string"
+            ? JSON.parse(under.content)
+            : under.content;
+        setData(originalContent);
+      } catch (error) {
+        console.error("Error resetting data:", error);
+        setData(trainingStructure as TrainingStructureData);
+      }
+    } else {
+      setData(trainingStructure as TrainingStructureData);
+    }
     setSubmitStatus(null);
   };
 
-  const [newSpecialization, setNewSpecialization] = useState("");
+  const [newSpecializations, setNewSpecializations] = useState<string[]>([]);
   const [newAchievement, setNewAchievement] = useState("");
+
+  // Initialize newSpecializations array based on number of majors
+  useEffect(() => {
+    setNewSpecializations(new Array(data.core_majors.length).fill(""));
+  }, [data.core_majors.length]);
+
+  // Update new specialization for specific major
+  const updateNewSpecialization = (majorIndex: number, value: string) => {
+    setNewSpecializations((prev) => {
+      const newArray = [...prev];
+      newArray[majorIndex] = value;
+      return newArray;
+    });
+  };
+
+  // Add specialization for specific major
+  const addSpecializationForMajor = (majorIndex: number) => {
+    const newSpec = newSpecializations[majorIndex];
+    if (newSpec.trim()) {
+      addSpecialization(majorIndex, newSpec);
+      // Clear only this major's input
+      updateNewSpecialization(majorIndex, "");
+    }
+  };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="flex gap-3 items-center p-6 rounded-lg border bg-card-bg border-border-primary">
+          <RefreshCw size={24} className="animate-spin text-primary" />
+          <span className="text-text-primary">Đang tải dữ liệu...</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="flex gap-3 items-center p-6 rounded-lg border bg-error/10 border-error/20">
+          <AlertCircle size={24} className="text-error" />
+          <div>
+            <h3 className="text-lg font-semibold text-error">
+              Lỗi tải dữ liệu
+            </h3>
+            <p className="text-text-secondary">{error}</p>
+            <button
+              onClick={getUnder}
+              className="px-4 py-2 mt-2 text-white rounded bg-primary hover:bg-primary-dark"
+            >
+              Thử lại
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background-base">
@@ -489,16 +607,15 @@ const UndergraduateProgram = () => {
                       <div className="flex gap-2 items-center">
                         <input
                           type="text"
-                          value={newSpecialization}
-                          onChange={(e) => setNewSpecialization(e.target.value)}
+                          value={newSpecializations[majorIndex]}
+                          onChange={(e) =>
+                            updateNewSpecialization(majorIndex, e.target.value)
+                          }
                           className="flex-1 p-2 rounded border text-text-primary bg-background-elevated border-border-secondary focus:border-primary focus:outline-none"
                           placeholder="Thêm chuyên ngành mới..."
                         />
                         <button
-                          onClick={() => {
-                            addSpecialization(majorIndex, newSpecialization);
-                            setNewSpecialization("");
-                          }}
+                          onClick={() => addSpecializationForMajor(majorIndex)}
                           className="p-2 text-white rounded transition-all bg-success hover:bg-success-dark"
                         >
                           <Plus size={16} />

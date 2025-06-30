@@ -18,6 +18,9 @@ import {
   Building,
 } from "lucide-react";
 import trainingStructureData from "../data/trainingStructure.json";
+import { useTrainingStructure } from "../hooks/useTrainingStructure";
+import { updatePage } from "@/core/api/pageApi";
+import { PageRequestUpdate } from "@/core/api/pageApi/types";
 
 interface CoreMajor {
   major_name: string;
@@ -47,21 +50,73 @@ interface TrainingStructureData {
 }
 
 const TrainingStructure = () => {
-  const [data, setData] = useState<TrainingStructureData>(
-    trainingStructureData as TrainingStructureData
-  );
+  const { trainingStructure, isLoading, error, getTrainingStructure } =
+    useTrainingStructure();
+
+  useEffect(() => {
+    getTrainingStructure();
+  }, []);
+
+  const [data, setData] = useState<TrainingStructureData>(() => {
+    if (trainingStructure?.content) {
+      try {
+        const parsedContent =
+          typeof trainingStructure.content === "string"
+            ? JSON.parse(trainingStructure.content)
+            : trainingStructure.content;
+        return parsedContent as TrainingStructureData;
+      } catch (error) {
+        console.error("Error parsing trainingStructure content:", error);
+        return trainingStructureData as TrainingStructureData;
+      }
+    }
+    return trainingStructureData as TrainingStructureData;
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
   const [hasChanges, setHasChanges] = useState(false);
 
+  // Update data when trainingStructure changes
+  useEffect(() => {
+    if (trainingStructure?.content) {
+      try {
+        let parsedContent;
+        if (typeof trainingStructure.content === "string") {
+          parsedContent = JSON.parse(trainingStructure.content);
+        } else {
+          parsedContent = trainingStructure.content;
+        }
+
+        setData(parsedContent as TrainingStructureData);
+      } catch (error) {
+        console.error("Error parsing trainingStructure content:", error);
+        setData(trainingStructureData as TrainingStructureData);
+      }
+    }
+  }, [trainingStructure]);
+
   // Track changes
   useEffect(() => {
-    const isChanged =
-      JSON.stringify(data) !== JSON.stringify(trainingStructureData);
-    setHasChanges(isChanged);
-  }, [data]);
+    if (trainingStructure?.content) {
+      try {
+        const originalContent =
+          typeof trainingStructure.content === "string"
+            ? JSON.parse(trainingStructure.content)
+            : trainingStructure.content;
+        const isChanged =
+          JSON.stringify(data) !== JSON.stringify(originalContent);
+        setHasChanges(isChanged);
+      } catch (error) {
+        console.error(
+          "Error parsing trainingStructure content for comparison:",
+          error
+        );
+        setHasChanges(false);
+      }
+    }
+  }, [data, trainingStructure]);
 
   // Editable Text Component
   const EditableText = ({
@@ -273,24 +328,28 @@ const TrainingStructure = () => {
 
   // Submit to server
   const handleSubmit = async () => {
+    if (!trainingStructure?.id) {
+      setSubmitStatus("error");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      // Simulate API call
-      const response = await fetch("/api/training-structure", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const updatePageData: PageRequestUpdate = {
+        id: trainingStructure.id,
+        title: trainingStructure.title,
+        content: data, // Send as object, not JSON string
+        path: trainingStructure.path || "training-structure",
+      };
 
-      if (response.ok) {
-        setSubmitStatus("success");
-      } else {
-        throw new Error("Failed to save");
-      }
+      const response = await updatePage(trainingStructure.id, updatePageData);
+      console.log("updatePageData", response);
+      setSubmitStatus("success");
+
+      // Refresh trainingStructure data
+      await getTrainingStructure();
     } catch (error) {
       setSubmitStatus("error");
       console.error("Error saving data:", error);
@@ -301,12 +360,74 @@ const TrainingStructure = () => {
 
   // Reset data
   const handleReset = () => {
-    setData(trainingStructureData as TrainingStructureData);
+    if (trainingStructure?.content) {
+      try {
+        const parsedContent =
+          typeof trainingStructure.content === "string"
+            ? JSON.parse(trainingStructure.content)
+            : trainingStructure.content;
+        setData(parsedContent as TrainingStructureData);
+      } catch (error) {
+        console.error(
+          "Error parsing trainingStructure content for reset:",
+          error
+        );
+        setData(trainingStructureData as TrainingStructureData);
+      }
+    } else {
+      setData(trainingStructureData as TrainingStructureData);
+    }
     setSubmitStatus(null);
   };
 
-  const [newSpecialization, setNewSpecialization] = useState("");
+  const [newSpecializations, setNewSpecializations] = useState<string[]>([]);
   const [newAchievement, setNewAchievement] = useState("");
+
+  // Initialize newSpecializations array based on number of majors
+  useEffect(() => {
+    setNewSpecializations(new Array(data.core_majors.length).fill(""));
+  }, [data.core_majors.length]);
+
+  // Update new specialization for specific major
+  const updateNewSpecialization = (majorIndex: number, value: string) => {
+    setNewSpecializations((prev) => {
+      const newArray = [...prev];
+      newArray[majorIndex] = value;
+      return newArray;
+    });
+  };
+
+  // Add specialization for specific major
+  const addSpecializationForMajor = (majorIndex: number) => {
+    const newSpec = newSpecializations[majorIndex];
+    if (newSpec.trim()) {
+      addSpecialization(majorIndex, newSpec);
+      // Clear only this major's input
+      updateNewSpecialization(majorIndex, "");
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="text-center">
+          <RefreshCw className="mx-auto mb-4 w-8 h-8 animate-spin text-primary" />
+          <p className="text-text-secondary">Đang tải dữ liệu...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="text-center">
+          <AlertCircle className="mx-auto mb-4 w-8 h-8 text-error" />
+          <p className="text-text-secondary">Có lỗi xảy ra: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background-base">
@@ -484,17 +605,16 @@ const TrainingStructure = () => {
                     <div className="p-4 rounded-lg border bg-success/10 border-success/20">
                       <input
                         type="text"
-                        value={newSpecialization}
-                        onChange={(e) => setNewSpecialization(e.target.value)}
+                        value={newSpecializations[majorIndex]}
+                        onChange={(e) =>
+                          updateNewSpecialization(majorIndex, e.target.value)
+                        }
                         className="p-3 w-full rounded-lg border border-success/30 focus:border-success focus:outline-none bg-background-elevated text-text-primary"
                         placeholder="Thêm chuyên ngành mới..."
                       />
                       <div className="flex gap-2 mt-3">
                         <button
-                          onClick={() => {
-                            addSpecialization(majorIndex, newSpecialization);
-                            setNewSpecialization("");
-                          }}
+                          onClick={() => addSpecializationForMajor(majorIndex)}
                           className="flex gap-1 items-center px-4 py-2 text-white bg-gradient-to-r rounded-lg shadow-md transition-all from-success to-success hover:from-success-dark hover:to-success-dark"
                         >
                           <Plus size={16} />

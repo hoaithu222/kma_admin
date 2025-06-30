@@ -4,7 +4,7 @@ import Input from "@/foundation/components/inputs/Input";
 import { FolderPen, PlusIcon } from "lucide-react";
 import Textarea from "@/foundation/components/inputs/TextArea";
 import Button from "@/foundation/components/buttons/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Category } from "../slice/category.type";
 const EditCategory = ({ category }: { category: Category }) => {
   const [data, setData] = useState({
@@ -13,11 +13,15 @@ const EditCategory = ({ category }: { category: Category }) => {
     description: category.description,
   });
 
-  const { handleEditCategory, editCategoryDispatch } = useCategory();
+  const { handleEditCategory, editCategoryDispatch, getCategoriesAction } =
+    useCategory();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     editCategoryDispatch(data);
   };
+  useEffect(() => {
+    getCategoriesAction();
+  }, []);
   return (
     <Modal
       isOpen={true}

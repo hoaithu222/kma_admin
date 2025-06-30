@@ -1,21 +1,26 @@
 import Modal from "@/foundation/components/modal/Modal";
 import { useCategory } from "../hooks/useCategory";
 import Input from "@/foundation/components/inputs/Input";
+
 import { FolderPen, PlusIcon } from "lucide-react";
 import Textarea from "@/foundation/components/inputs/TextArea";
 import Button from "@/foundation/components/buttons/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AddCategory = () => {
   const [data, setData] = useState({
     name: "",
     description: "",
   });
-  const { handleAddCategory, addCategoryDispatch } = useCategory();
+  const { handleAddCategory, addCategoryDispatch, getCategoriesAction } =
+    useCategory();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addCategoryDispatch(data);
   };
+  useEffect(() => {
+    getCategoriesAction();
+  }, []);
   return (
     <Modal
       isOpen={true}

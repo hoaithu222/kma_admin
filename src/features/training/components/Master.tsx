@@ -19,6 +19,8 @@ import {
   MessageSquare,
 } from "lucide-react";
 import masterProgram from "../data/masterProgram.json";
+import { useMaster } from "../hooks/useMaster";
+import { updatePage } from "@/core/api/pageApi";
 
 // TypeScript interfaces
 interface EditableTextProps {
@@ -53,20 +55,69 @@ interface MasterProgramData {
 }
 
 const Master = () => {
+  const { master, isLoading, error, getMaster } = useMaster();
+
   const initialMasterProgramData = masterProgram as MasterProgramData;
-  const [data, setData] = useState<MasterProgramData>(initialMasterProgramData);
+  const [data, setData] = useState<MasterProgramData>(() => {
+    if (master?.content) {
+      try {
+        const parsedContent =
+          typeof master.content === "string"
+            ? JSON.parse(master.content)
+            : master.content;
+        return parsedContent;
+      } catch (error) {
+        console.error("Error parsing content:", error);
+        return initialMasterProgramData;
+      }
+    }
+    return initialMasterProgramData;
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
   const [hasChanges, setHasChanges] = useState(false);
 
+  // Load data from API on component mount
+  useEffect(() => {
+    getMaster();
+  }, []);
+
+  // Parse content from API and update local state
+  useEffect(() => {
+    if (master?.content) {
+      try {
+        const parsedContent =
+          typeof master.content === "string"
+            ? JSON.parse(master.content)
+            : master.content;
+        setData(parsedContent);
+      } catch (error) {
+        console.error("Error parsing content:", error);
+        // Fallback to default data if parsing fails
+        setData(initialMasterProgramData);
+      }
+    }
+  }, [master]);
+
   // Track changes
   useEffect(() => {
-    const isChanged =
-      JSON.stringify(data) !== JSON.stringify(initialMasterProgramData);
-    setHasChanges(isChanged);
-  }, [data]);
+    if (master?.content) {
+      try {
+        const originalContent =
+          typeof master.content === "string"
+            ? JSON.parse(master.content)
+            : master.content;
+        const isChanged =
+          JSON.stringify(data) !== JSON.stringify(originalContent);
+        setHasChanges(isChanged);
+      } catch (error) {
+        console.error("Error comparing changes:", error);
+        setHasChanges(false);
+      }
+    }
+  }, [data, master]);
 
   // Editable Text Component
   const EditableText: React.FC<EditableTextProps> = ({
@@ -182,34 +233,6 @@ const Master = () => {
     }));
   };
 
-  // const updateMasterProgram = (
-  //   section: string,
-  //   subsection: string,
-  //   field: string,
-  //   value: string
-  // ) => {
-  //   setData((prev) => ({
-  //     ...prev,
-  //     master_program_information_security: {
-  //       ...prev.master_program_information_security,
-  //       [section]: {
-  //         ...prev.master_program_information_security[section],
-  //         [subsection]:
-  //           typeof prev.master_program_information_security[section][
-  //             subsection
-  //           ] === "object"
-  //             ? {
-  //                 ...prev.master_program_information_security[section][
-  //                   subsection
-  //                 ],
-  //                 [field]: value,
-  //               }
-  //             : value,
-  //       },
-  //     },
-  //   }));
-  // };
-
   const updateMasterProgramDirect = (field: string, value: string) => {
     setData((prev) => ({
       ...prev,
@@ -220,47 +243,23 @@ const Master = () => {
     }));
   };
 
-  // const updateLearningOutcomes = (
-  //   section: string,
-  //   field: string,
-  //   value: string
-  // ) => {
-  //   setData((prev) => ({
-  //     ...prev,
-  //     master_program_information_security: {
-  //       ...prev.master_program_information_security,
-  //       learning_outcomes: {
-  //         ...prev.master_program_information_security.learning_outcomes,
-  //         [section]: {
-  //           ...prev.master_program_information_security.learning_outcomes[
-  //             section
-  //           ],
-  //           [field]: value,
-  //         },
-  //       },
-  //     },
-  //   }));
-  // };
-
   // Submit to server
   const handleSubmit = async () => {
+    if (!master?.id) return;
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      const response = await fetch("/api/master-program", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      await updatePage(master.id.toString(), {
+        id: master.id.toString(),
+        title: master.title,
+        content: data, // Send as object, not string
+        path: master.path,
       });
-
-      if (response.ok) {
-        setSubmitStatus("success");
-      } else {
-        throw new Error("Failed to save");
-      }
+      setSubmitStatus("success");
+      // Refresh data after successful update
+      await getMaster();
     } catch (error) {
       setSubmitStatus("error");
       console.error("Error saving data:", error);
@@ -270,9 +269,57 @@ const Master = () => {
   };
 
   const handleReset = () => {
-    setData(initialMasterProgramData);
+    if (master?.content) {
+      try {
+        const originalContent =
+          typeof master.content === "string"
+            ? JSON.parse(master.content)
+            : master.content;
+        setData(originalContent);
+      } catch (error) {
+        console.error("Error resetting data:", error);
+        setData(initialMasterProgramData);
+      }
+    } else {
+      setData(initialMasterProgramData);
+    }
     setSubmitStatus(null);
   };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="flex gap-3 items-center p-6 rounded-lg border bg-card-bg border-border-primary">
+          <RefreshCw size={24} className="animate-spin text-primary" />
+          <span className="text-text-primary">Đang tải dữ liệu...</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="flex gap-3 items-center p-6 rounded-lg border bg-error/10 border-error/20">
+          <AlertCircle size={24} className="text-error" />
+          <div>
+            <h3 className="text-lg font-semibold text-error">
+              Lỗi tải dữ liệu
+            </h3>
+            <p className="text-text-secondary">{error}</p>
+            <button
+              onClick={getMaster}
+              className="px-4 py-2 mt-2 text-white rounded bg-primary hover:bg-primary-dark"
+            >
+              Thử lại
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background-base">

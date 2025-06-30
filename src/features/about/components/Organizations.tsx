@@ -19,6 +19,10 @@ import {
 } from "lucide-react";
 import organizationsData from "../data/organizations.json";
 
+import { updatePage } from "@/core/api/pageApi";
+import { PageRequestUpdate } from "@/core/api/pageApi/types";
+import { useOrganization } from "../hooks/useOrganization";
+
 // TypeScript interfaces
 interface OrganizationalStructure {
   introduction: string;
@@ -76,21 +80,72 @@ interface OrganizationsData {
 }
 
 const Organizations = () => {
-  const [data, setData] = useState<OrganizationsData>(
-    organizationsData as OrganizationsData
-  );
+  const { organization, isLoading, error, getOrganization } = useOrganization();
+
+  useEffect(() => {
+    getOrganization();
+  }, []);
+
+  const [data, setData] = useState<OrganizationsData>(() => {
+    if (organization?.content) {
+      try {
+        const parsedContent =
+          typeof organization.content === "string"
+            ? JSON.parse(organization.content)
+            : organization.content;
+        return parsedContent as OrganizationsData;
+      } catch (error) {
+        console.error("Error parsing organization content:", error);
+        return organizationsData as OrganizationsData;
+      }
+    }
+    return organizationsData as OrganizationsData;
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
   const [hasChanges, setHasChanges] = useState(false);
 
+  // Update data when organization changes
+  useEffect(() => {
+    if (organization?.content) {
+      try {
+        let parsedContent;
+        if (typeof organization.content === "string") {
+          parsedContent = JSON.parse(organization.content);
+        } else {
+          parsedContent = organization.content;
+        }
+
+        setData(parsedContent as OrganizationsData);
+      } catch (error) {
+        console.error("Error parsing organization content:", error);
+        setData(organizationsData as OrganizationsData);
+      }
+    }
+  }, [organization]);
+
   // Track changes
   useEffect(() => {
-    const isChanged =
-      JSON.stringify(data) !== JSON.stringify(organizationsData);
-    setHasChanges(isChanged);
-  }, [data]);
+    if (organization?.content) {
+      try {
+        const originalContent =
+          typeof organization.content === "string"
+            ? JSON.parse(organization.content)
+            : organization.content;
+        const isChanged =
+          JSON.stringify(data) !== JSON.stringify(originalContent);
+        setHasChanges(isChanged);
+      } catch (error) {
+        console.error(
+          "Error parsing organization content for comparison:",
+          error
+        );
+        setHasChanges(false);
+      }
+    }
+  }, [data, organization]);
 
   // Editable Text Component
   const EditableText = ({
@@ -206,24 +261,28 @@ const Organizations = () => {
 
   // Submit to server
   const handleSubmit = async () => {
+    if (!organization?.id) {
+      setSubmitStatus("error");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      // Simulate API call
-      const response = await fetch("/api/organizations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const updatePageData: PageRequestUpdate = {
+        id: organization.id,
+        title: organization.title,
+        content: data, // Send as object, not JSON string
+        path: organization.path || "about",
+      };
 
-      if (response.ok) {
-        setSubmitStatus("success");
-      } else {
-        throw new Error("Failed to save");
-      }
+      const response = await updatePage(organization.id, updatePageData);
+      console.log("updatePageData", response);
+      setSubmitStatus("success");
+
+      // Refresh organization data
+      await getOrganization();
     } catch (error) {
       setSubmitStatus("error");
       console.error("Error saving data:", error);
@@ -234,9 +293,44 @@ const Organizations = () => {
 
   // Reset data
   const handleReset = () => {
-    setData(organizationsData as OrganizationsData);
+    if (organization?.content) {
+      try {
+        const parsedContent =
+          typeof organization.content === "string"
+            ? JSON.parse(organization.content)
+            : organization.content;
+        setData(parsedContent as OrganizationsData);
+      } catch (error) {
+        console.error("Error parsing organization content for reset:", error);
+        setData(organizationsData as OrganizationsData);
+      }
+    } else {
+      setData(organizationsData as OrganizationsData);
+    }
     setSubmitStatus(null);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="text-center">
+          <RefreshCw className="mx-auto mb-4 w-8 h-8 animate-spin text-primary" />
+          <p className="text-text-secondary">Đang tải dữ liệu...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="text-center">
+          <AlertCircle className="mx-auto mb-4 w-8 h-8 text-error" />
+          <p className="text-text-secondary">Có lỗi xảy ra: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background-base">

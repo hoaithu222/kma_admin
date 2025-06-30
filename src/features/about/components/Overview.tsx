@@ -21,6 +21,9 @@ import {
   HandshakeIcon,
 } from "lucide-react";
 import aboutOverviewData from "../data/aboutOverview.json";
+import { useAbout } from "../hooks/useAbout";
+import { updatePage } from "@/core/api/pageApi";
+import { PageRequestUpdate } from "@/core/api/pageApi/types";
 
 // TypeScript interfaces
 interface TimelineItem {
@@ -114,19 +117,71 @@ interface AboutData {
 }
 
 const Overview = () => {
-  const [data, setData] = useState<AboutData>(aboutOverviewData as AboutData);
+  const { about, isLoading, error, getAbout } = useAbout();
+
+  useEffect(() => {
+    getAbout();
+  }, []);
+
+  // Initialize data with about content or fallback to aboutOverviewData
+  const [data, setData] = useState<AboutData>(() => {
+    if (about?.content) {
+      try {
+        const parsedContent =
+          typeof about.content === "string"
+            ? JSON.parse(about.content)
+            : about.content;
+        return parsedContent as AboutData;
+      } catch (error) {
+        console.error("Error parsing about content:", error);
+        return aboutOverviewData as AboutData;
+      }
+    }
+    return aboutOverviewData as AboutData;
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
   );
   const [hasChanges, setHasChanges] = useState(false);
 
+  // Update data when about changes
+  useEffect(() => {
+    if (about?.content) {
+      try {
+        let parsedContent;
+        if (typeof about.content === "string") {
+          parsedContent = JSON.parse(about.content);
+        } else {
+          parsedContent = about.content;
+        }
+
+        setData(parsedContent as AboutData);
+      } catch (error) {
+        console.error("Error parsing about content:", error);
+        setData(aboutOverviewData as AboutData);
+      }
+    }
+  }, [about]);
+
   // Track changes
   useEffect(() => {
-    const isChanged =
-      JSON.stringify(data) !== JSON.stringify(aboutOverviewData);
-    setHasChanges(isChanged);
-  }, [data]);
+    if (about?.content) {
+      try {
+        const originalContent =
+          typeof about.content === "string"
+            ? JSON.parse(about.content)
+            : about.content;
+        const isChanged =
+          JSON.stringify(data) !== JSON.stringify(originalContent);
+        setHasChanges(isChanged);
+      } catch (error) {
+        console.error("Error parsing about content for comparison:", error);
+        setHasChanges(false);
+      }
+    }
+  }, [data, about]);
 
   // Editable Text Component
   const EditableText = ({
@@ -310,24 +365,28 @@ const Overview = () => {
 
   // Submit to server
   const handleSubmit = async () => {
+    if (!about?.id) {
+      setSubmitStatus("error");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      // Simulate API call
-      const response = await fetch("/api/about-overview", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const updatePageData: PageRequestUpdate = {
+        id: about.id,
+        title: about.title,
+        content: data, // Send as object, not JSON string
+        path: about.path || "about",
+      };
 
-      if (response.ok) {
-        setSubmitStatus("success");
-      } else {
-        throw new Error("Failed to save");
-      }
+      const response = await updatePage(about.id, updatePageData);
+      console.log("updatePageData", response);
+      setSubmitStatus("success");
+
+      // Refresh about data
+      await getAbout();
     } catch (error) {
       setSubmitStatus("error");
       console.error("Error saving data:", error);
@@ -338,11 +397,46 @@ const Overview = () => {
 
   // Reset data
   const handleReset = () => {
-    setData(aboutOverviewData as AboutData);
+    if (about?.content) {
+      try {
+        const parsedContent =
+          typeof about.content === "string"
+            ? JSON.parse(about.content)
+            : about.content;
+        setData(parsedContent as AboutData);
+      } catch (error) {
+        console.error("Error parsing about content for reset:", error);
+        setData(aboutOverviewData as AboutData);
+      }
+    } else {
+      setData(aboutOverviewData as AboutData);
+    }
     setSubmitStatus(null);
   };
 
   const [newContent, setNewContent] = useState("");
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="text-center">
+          <RefreshCw className="mx-auto mb-4 w-8 h-8 animate-spin text-primary" />
+          <p className="text-text-secondary">Đang tải dữ liệu...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-background-base">
+        <div className="text-center">
+          <AlertCircle className="mx-auto mb-4 w-8 h-8 text-error" />
+          <p className="text-text-secondary">Có lỗi xảy ra: {error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background-base">
