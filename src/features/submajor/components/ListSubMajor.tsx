@@ -40,14 +40,6 @@ const ListSubMajor = () => {
     : submajorData;
   console.log(majorData);
 
-  const majorOptions = [
-    { value: "", label: "Tất cả chuyên ngành cha" },
-    ...majorData.map((major) => ({
-      value: String(major.id),
-      label: major.name,
-    })),
-  ];
-
   const columns = [
     {
       key: "id",
