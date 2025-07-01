@@ -34,9 +34,9 @@ const AddMajor = () => {
     >
       <form className="space-y-4" onSubmit={handleSubmit}>
         <Input
-          placeholder="Tên tag"
+          placeholder="Tên chuyên ngành"
           fullWidth
-          label="Tên "
+          label="Tên chuyên ngành"
           className="w-full"
           name="name"
           iconLeft={<FolderPen className="w-4 h-4" />}
