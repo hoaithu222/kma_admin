@@ -10,11 +10,13 @@ import { useEffect } from "react";
 import ModalConfirm from "@/foundation/components/modal/ModalConfirm";
 
 import Button from "@/foundation/components/buttons/Button";
+import Select from "@/foundation/components/inputs/SelectOption";
 
 import { useSubmajor } from "../hooks/useSubmajor";
 import { dataSubMajor } from "@/core/api/sub-major/types";
 import { setIdDeleteSubmajor } from "../slice/submajor.slice";
 import EditSubMajor from "./EditSubMajor";
+import { useMajor } from "@/features/major/hooks/useMajor";
 
 const ListSubMajor = () => {
   const {
@@ -30,6 +32,21 @@ const ListSubMajor = () => {
 
   const dispatch = useDispatch();
   const [submajor, setSubmajor] = useState<dataSubMajor | null>(null);
+  const { majorData, getMajors } = useMajor();
+  const [selectedMajorId, setSelectedMajorId] = useState<string>("");
+
+  const filteredSubmajors = selectedMajorId
+    ? submajorData.filter((item) => String(item.majorId) === selectedMajorId)
+    : submajorData;
+  console.log(majorData);
+
+  const majorOptions = [
+    { value: "", label: "Tất cả chuyên ngành cha" },
+    ...majorData.map((major) => ({
+      value: String(major.id),
+      label: major.name,
+    })),
+  ];
 
   const columns = [
     {
@@ -49,7 +66,7 @@ const ListSubMajor = () => {
       },
     },
     {
-      key: "majorId",
+      key: "majorName",
       title: "Chuyên ngành cha",
       width: "100px",
       render: (value: any, _record: any, _index: number) => {
@@ -95,13 +112,27 @@ const ListSubMajor = () => {
   ];
   useEffect(() => {
     getSubmajor();
+    getMajors();
   }, []);
 
   return (
     <div>
+      <div className="mb-4 w-64">
+        <Select
+          options={majorData.map((major) => ({
+            label: major.name,
+            value: major.id.toString(),
+          }))}
+          placeholder="Chọn chuyên ngành cha"
+          name="majorId"
+          value={selectedMajorId}
+          onChange={(value) => setSelectedMajorId(value)}
+          fullWidth={true}
+        />
+      </div>
       <Table
         columns={columns}
-        data={submajorData}
+        data={filteredSubmajors}
         emptyText={<Empty variant="data" />}
         pageSize={10}
         pagination={true}

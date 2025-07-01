@@ -17,6 +17,7 @@ import {
   selectSubcategories,
 } from "../slice/subcategory.selector";
 import Button from "@/foundation/components/buttons/Button";
+import Select from "@/foundation/components/inputs/SelectOption";
 
 const LitsSubCategory = () => {
   const {
@@ -35,6 +36,14 @@ const LitsSubCategory = () => {
   const subcategories = useSelector(selectSubcategories);
   const idDelete = useSelector(idDeleteSelector);
   const { categories } = useCategory();
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
+
+  // Lọc subcategories theo categoryId nếu có chọn
+  const filteredSubcategories = selectedCategoryId
+    ? subcategories.filter(
+        (item) => String(item.categoryId) === selectedCategoryId
+      )
+    : subcategories;
 
   const columns = [
     {
@@ -113,12 +122,26 @@ const LitsSubCategory = () => {
   }, []);
   return (
     <div>
+      {/* Bộ lọc danh mục cha */}
+      <div className="mb-4 w-64">
+        <Select
+          options={categories.map((cat) => ({
+            label: cat.name,
+            value: cat.id.toString(),
+          }))}
+          placeholder="Chọn danh mục cha"
+          name="categoryId"
+          value={selectedCategoryId}
+          onChange={(value) => setSelectedCategoryId(value)}
+          fullWidth={true}
+        />
+      </div>
       <Table
         columns={columns}
-        data={subcategories}
+        data={filteredSubcategories}
         emptyText={<Empty variant="data" />}
         pagination={true}
-        pageSize={10}
+        pageSize={9}
         hover={true}
         size="small"
         striped={true}
