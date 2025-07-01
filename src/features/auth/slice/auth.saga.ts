@@ -26,7 +26,7 @@ function* loginSaga(
   try {
     const response = yield call(login, action.payload);
 
-    if (response.ok) {
+    if (response.ok && response.data.status === 200) {
       yield put(loginSuccess(response.data.data));
       toast.success("Đăng nhập thành công");
     } else {

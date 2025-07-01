@@ -27,6 +27,7 @@ const LitsSubCategory = () => {
     handleDeleteSubcategoryAction,
     getAllSubcategoriesAction,
   } = useSubcategory();
+  const { getCategoriesAction } = useCategory();
   const [editSubcategory, setEditSubcategory] = useState<Subcategory | null>(
     null
   );
@@ -108,6 +109,7 @@ const LitsSubCategory = () => {
   ];
   useEffect(() => {
     getAllSubcategoriesAction();
+    getCategoriesAction();
   }, []);
   return (
     <div>
