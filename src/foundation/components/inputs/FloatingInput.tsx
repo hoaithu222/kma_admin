@@ -58,7 +58,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
       isFocused || hasValue || (value && value.toString().length > 0);
 
     const baseClasses =
-      "transition-all duration-200 focus:outline-none text-text-primary placeholder:text-text-muted";
+      "transition-all duration-200 focus:outline-none placeholder:text-text-muted text-secondary";
 
     const variantClasses = {
       default:
@@ -150,7 +150,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
       <div className={`${fullWidth ? "w-full" : ""}`}>
         <div className="relative">
           {iconLeft && (
-            <div className="absolute transform -translate-y-1/2 text-text-muted left-3 top-1/2">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-muted">
               {iconLeft}
             </div>
           )}
@@ -205,7 +205,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
               {label}
             </label>
           )}
-          <div className="absolute flex items-center space-x-1 transform -translate-y-1/2 right-3 top-1/2">
+          <div className="flex absolute right-3 top-1/2 items-center space-x-1 transform -translate-y-1/2">
             {showPasswordToggle && (
               <button
                 type="button"
@@ -226,7 +226,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
           </div>
         </div>
         {helperText && (
-          <p className={`mt-1 text-xs ${helperTextColor[status]} `}>
+          <p className={`mt-1 text-xs ${helperTextColor[status]}`}>
             {helperText}
           </p>
         )}

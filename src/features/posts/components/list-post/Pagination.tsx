@@ -32,21 +32,21 @@ const Pagination = ({
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex flex-col items-center justify-between gap-2 mt-4 sm:flex-row">
+    <div className="flex flex-col gap-2 justify-between items-center mt-4 sm:flex-row">
       {/* Info */}
-      <div className="text-xs text-gray-600">
+      <div className="text-xs text-secondary">
         Hiển thị {currentPage * pageSize + 1} -{" "}
         {Math.min((currentPage + 1) * pageSize, totalItems)} của {totalItems}{" "}
         kết quả
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex items-center gap-1">
+      <div className="flex gap-1 items-center">
         {/* Previous Button */}
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 0}
-          className="px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-2 py-1 text-xs rounded border border-secondary hover:bg-background-muted disabled:opacity-50 disabled:cursor-not-allowed text-secondary"
         >
           Trước
         </button>
@@ -56,7 +56,7 @@ const Pagination = ({
           <>
             <button
               onClick={() => onPageChange(0)}
-              className="px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50"
+              className="px-2 py-1 text-xs rounded border border-secondary hover:bg-background-muted text-secondary"
             >
               1
             </button>
@@ -71,8 +71,8 @@ const Pagination = ({
             onClick={() => onPageChange(page)}
             className={`px-2 py-1 text-xs border rounded ${
               page === currentPage
-                ? "bg-blue-600 text-white border-blue-600"
-                : "border-gray-300 hover:bg-gray-50"
+                ? "bg-secondary text-white border-secondary"
+                : "border-secondary hover:bg-background-muted text-secondary"
             }`}
           >
             {page + 1}
@@ -87,7 +87,7 @@ const Pagination = ({
             )}
             <button
               onClick={() => onPageChange(totalPages - 1)}
-              className="px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50"
+              className="px-2 py-1 text-xs rounded border border-secondary hover:bg-background-muted text-secondary"
             >
               {totalPages}
             </button>
@@ -98,7 +98,7 @@ const Pagination = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages - 1}
-          className="px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-2 py-1 text-xs rounded border border-secondary hover:bg-background-muted disabled:opacity-50 disabled:cursor-not-allowed text-secondary"
         >
           Sau
         </button>

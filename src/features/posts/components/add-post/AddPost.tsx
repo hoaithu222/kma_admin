@@ -113,6 +113,21 @@ export default function AddPost() {
     }));
   }, []);
 
+  // Ensure subCategoryId is always in sync with subCategoriesWithCategoryId
+  useEffect(() => {
+    if (subCategoriesWithCategoryId.length > 0) {
+      setFormData((prev) => ({
+        ...prev,
+        subCategoryId: subCategoriesWithCategoryId[0]?.id,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        subCategoryId: null,
+      }));
+    }
+  }, [subCategoriesWithCategoryId, formData.categoryId]);
+
   // Add this function to get random icon
   const getRandomIcon = (id: number) => {
     const icons = [

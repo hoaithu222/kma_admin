@@ -232,6 +232,9 @@ const OrderInput: React.FC<OrderInputProps> = ({
     "pr-10",
     "text-center text-text-primary", // Căn giữa cho số thứ tự
     className,
+    _isFocused
+      ? "border-secondary focus:border-secondary focus:ring-secondary/20"
+      : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -279,7 +282,7 @@ const OrderInput: React.FC<OrderInputProps> = ({
             <button
               type="button"
               onClick={applySuggestion}
-              className="inline-flex items-center px-2 py-1 text-xs text-secondary bg-secondary/10 rounded transition-colors hover:bg-secondary/20"
+              className="inline-flex items-center px-2 py-1 text-xs rounded transition-colors text-secondary bg-secondary/10 hover:bg-secondary/20"
             >
               <ArrowUp className="mr-1 w-3 h-3" />
               Gợi ý: {suggestedOrder}
@@ -296,7 +299,7 @@ const OrderInput: React.FC<OrderInputProps> = ({
 
       {/* Order List */}
       {showOrderList && filteredExistingOrders.length > 0 && (
-        <div className="p-3 mt-3 bg-background-muted rounded-lg">
+        <div className="p-3 mt-3 rounded-lg bg-background-muted">
           <div className="flex gap-1 items-center mb-2">
             <List className="w-4 h-4 text-text-muted" />
             <span className="text-sm font-medium text-text-primary">
@@ -309,7 +312,7 @@ const OrderInput: React.FC<OrderInputProps> = ({
               .map((item) => (
                 <span
                   key={item.id}
-                  className="inline-flex items-center px-2 py-1 text-xs bg-background-surface rounded border border-border-primary"
+                  className="inline-flex items-center px-2 py-1 text-xs rounded border bg-background-surface border-border-primary"
                   title={item.label || `ID: ${item.id}`}
                 >
                   #{item.order}

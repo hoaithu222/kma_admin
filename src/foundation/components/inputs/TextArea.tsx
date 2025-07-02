@@ -83,7 +83,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       resizeClasses[resize],
       fullWidth ? "w-full" : "",
       disabled ? "opacity-50 cursor-not-allowed bg-background-muted" : "",
-      isFocused ? "border-primary" : "",
+      isFocused
+        ? "border-secondary focus:border-secondary focus:ring-secondary/20"
+        : "",
       className,
     ]
       .filter(Boolean)

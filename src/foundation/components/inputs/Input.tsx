@@ -99,7 +99,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       disabled ? "opacity-50 cursor-not-allowed bg-background-muted" : "",
       iconLeft || iconRight || showPasswordToggle || statusIcon ? "pr-10" : "",
       iconLeft ? "pl-10" : "",
-      isFocused ? "border-primary" : "",
+      isFocused
+        ? "border-secondary focus:border-secondary focus:ring-secondary/20"
+        : "",
       className,
     ]
       .filter(Boolean)
@@ -121,7 +123,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className="relative">
           {iconLeft && (
-            <div className="absolute text-text-muted transform -translate-y-1/2 left-3 top-1/2">
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-muted">
               {iconLeft}
             </div>
           )}
@@ -134,7 +136,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onBlur={() => setIsFocused(false)}
             {...props}
           />
-          <div className="absolute flex items-center space-x-1 transform -translate-y-1/2 right-3 top-1/2">
+          <div className="flex absolute right-3 top-1/2 items-center space-x-1 transform -translate-y-1/2">
             {showPasswordToggle && (
               <button
                 type="button"
@@ -155,7 +157,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </div>
         </div>
         {helperText && (
-          <p className={`mt-1 text-xs ${helperTextColor[status]} `}>
+          <p className={`mt-1 text-xs ${helperTextColor[status]}`}>
             {helperText}
           </p>
         )}

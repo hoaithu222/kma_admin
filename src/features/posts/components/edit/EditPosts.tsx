@@ -83,6 +83,21 @@ export default function EditPosts({ post }: EditPostsProps) {
     }
   }, [formData.categoryId]);
 
+  // Ensure subCategoryId is always in sync with subCategoriesWithCategoryId
+  useEffect(() => {
+    if (subCategoriesWithCategoryId.length > 0) {
+      setFormData((prev) => ({
+        ...prev,
+        subCategoryId: subCategoriesWithCategoryId[0]?.id,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        subCategoryId: null,
+      }));
+    }
+  }, [subCategoriesWithCategoryId, formData.categoryId]);
+
   const handleSubmit = (status: "draft" | "published") => {
     if (!formData.title) {
       toast.error("Vui lòng nhập tiêu đề bài viết");

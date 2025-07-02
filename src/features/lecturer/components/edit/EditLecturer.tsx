@@ -335,7 +335,7 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
               }}
             />
           </div>
-          <div className="p-4 bg-white rounded-lg border">
+          <div className="p-4 rounded-lg border bg-background-elevated">
             <h3 className="mb-4 text-lg font-semibold">Thêm item mới</h3>
             <div className="flex gap-4 items-end">
               <div className="flex-1">

@@ -103,7 +103,9 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       fullWidth ? "w-full" : "",
       disabled ? "opacity-50 cursor-not-allowed bg-background-muted" : "",
       iconLeft ? "pl-10" : "",
-      isFocused ? "border-secondary" : "",
+      isFocused
+        ? "border-secondary focus:border-secondary focus:ring-secondary/20"
+        : "",
       "pr-10",
       className,
     ]
@@ -207,7 +209,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           // Normal select mode
           <div className="relative">
             {iconLeft && (
-              <div className="absolute left-3 top-1/2 text-text-muted transform -translate-y-1/2">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-muted">
                 {iconLeft}
               </div>
             )}
