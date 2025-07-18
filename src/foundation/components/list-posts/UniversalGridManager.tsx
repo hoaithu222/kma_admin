@@ -130,7 +130,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
       <div className="space-y-3 text-sm">
         {/* Categories */}
         {(item.categoryName || item.subCategoryName) && (
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap gap-2 items-center">
             {item.categoryName && (
               <div className="flex items-center gap-1.5 text-secondary px-3 py-1.5 rounded-lg border border-secondary/20 bg-secondary/10">
                 <Tag size={12} />
@@ -148,7 +148,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
         )}
 
         {/* Stats and info */}
-        <div className="flex items-center justify-between">
+        <div className="flex justify-between items-center">
           {item.viewCount !== undefined && (
             <div className="flex items-center gap-1.5 text-text-secondary">
               <Eye size={14} className="text-secondary" />
@@ -195,11 +195,11 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
     return (
       <div
         key={item.id || index}
-        className="relative overflow-hidden transition-all duration-500 border border-border-primary shadow-sm bg-background-surface group rounded-2xl hover:shadow-xl hover:border-secondary hover:-translate-y-2"
+        className="overflow-hidden relative rounded-2xl border shadow-sm transition-all duration-500 border-border-primary bg-background-surface group hover:shadow-xl hover:border-secondary hover:-translate-y-2"
       >
         {/* Image */}
         {cardConfig.showImage && (
-          <div className="relative h-56 overflow-hidden bg-gradient-to-br from-background-subtle via-background-muted to-background-elevated">
+          <div className="overflow-hidden relative h-56 bg-gradient-to-br from-background-subtle via-background-muted to-background-elevated">
             <img
               src={imageUrl}
               alt={item[cardConfig.titleKey || "title"]}
@@ -212,17 +212,17 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
             />
 
             {/* Gradient overlay */}
-            <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:opacity-100"></div>
+            <div className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-300 from-black/30 group-hover:opacity-100"></div>
 
             {/* Badge */}
             {cardConfig.showBadge && (
-              <div className="absolute transition-all duration-300 transform translate-y-2 opacity-0 top-4 right-4 group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="absolute top-4 right-4 opacity-0 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 group-hover:opacity-100">
                 {renderBadge(item)}
               </div>
             )}
 
             {/* Quick actions */}
-            <div className="absolute flex gap-2 transition-all duration-300 delay-100 transform translate-y-4 opacity-0 bottom-4 right-4 group-hover:translate-y-0 group-hover:opacity-100">
+            <div className="flex absolute right-4 bottom-4 gap-2 opacity-0 transition-all duration-300 delay-100 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100">
               {enableView && (
                 <button
                   onClick={() => onView?.(item)}
@@ -251,7 +251,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
         {/* Content */}
         <div className="p-6">
           {/* Title */}
-          <h3 className="mb-3 text-xl font-bold text-text-primary transition-colors duration-200 line-clamp-2 group-hover:text-secondary">
+          <h3 className="mb-3 text-xl font-bold transition-colors duration-200 text-text-primary line-clamp-2 group-hover:text-secondary">
             {truncateText(
               item[cardConfig.titleKey || "title"] || "Không có tiêu đề",
               60
@@ -259,6 +259,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
           </h3>
 
           {/* Description */}
+
           {item[cardConfig.descriptionKey || "summary"] && (
             <p className="mb-4 text-sm leading-relaxed text-text-secondary line-clamp-3">
               {truncateText(item[cardConfig.descriptionKey || "summary"], 120)}
@@ -273,12 +274,12 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
           {/* Actions */}
           {cardConfig.showActions &&
             (enableView || enableEdit || enableDelete) && (
-              <div className="flex items-center justify-between pt-5 border-t border-border-primary">
-                <div className="flex items-center gap-2">
+              <div className="flex justify-between items-center pt-5 border-t border-border-primary">
+                <div className="flex gap-2 items-center">
                   {enableView && (
                     <button
                       onClick={() => onView?.(item)}
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary transition-all duration-200 hover:bg-secondary/10 rounded-xl hover:scale-105"
+                      className="flex gap-2 items-center px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 text-secondary hover:bg-secondary/10 hover:scale-105"
                     >
                       <BookOpen size={14} />
                       Xem
@@ -287,7 +288,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
                   {enableEdit && (
                     <button
                       onClick={() => onEdit?.(item)}
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-200 text-success hover:bg-success/10 rounded-xl hover:scale-105"
+                      className="flex gap-2 items-center px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 text-success hover:bg-success/10 hover:scale-105"
                     >
                       <Edit2 size={14} />
                       Sửa
@@ -295,9 +296,9 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
                   )}
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex gap-2 items-center">
                   <button
-                    className="p-2 text-text-muted transition-all duration-200 rounded-lg hover:text-secondary hover:bg-secondary/10"
+                    className="p-2 rounded-lg transition-all duration-200 text-text-muted hover:text-secondary hover:bg-secondary/10"
                     title="Liên kết ngoài"
                   >
                     <ExternalLink size={16} />
@@ -306,7 +307,7 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
                   {enableDelete && (
                     <button
                       onClick={() => handleDelete(item)}
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-error transition-all duration-200 hover:bg-error/10 rounded-xl hover:scale-105"
+                      className="flex gap-2 items-center px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 text-error hover:bg-error/10 hover:scale-105"
                     >
                       <Trash2 size={14} />
                       Xóa
@@ -321,13 +322,13 @@ const SimpleGridDisplay: React.FC<SimpleGridDisplayProps> = ({
   };
 
   return (
-    <div className={`min-h-screen  ${className} `}>
+    <div className={`min-h-screen ${className}`}>
       <div className="p-6 mx-auto max-w-7xl">
         {/* Grid Content */}
         {data.length === 0 ? (
           <div className="py-20 text-center">
-            <div className="max-w-md mx-auto">
-              <div className="flex items-center justify-center w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-background-muted to-background-elevated">
+            <div className="mx-auto max-w-md">
+              <div className="flex justify-center items-center mx-auto mb-8 w-32 h-32 bg-gradient-to-br rounded-full from-background-muted to-background-elevated">
                 <BookOpen size={48} className="text-text-muted" />
               </div>
               {typeof emptyMessage === "string" ? (

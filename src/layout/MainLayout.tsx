@@ -3,8 +3,14 @@ import Navbar from "@/foundation/components/navbar/Navbar";
 import clsx from "clsx";
 
 import { Outlet } from "react-router-dom";
+import { useMenu } from "@/features/menu/hooks/useMenu";
+import { useEffect } from "react";
 
 const MainLayout = () => {
+  const { handleGetMenu } = useMenu();
+  useEffect(() => {
+    handleGetMenu();
+  }, []);
   return (
     <div className="">
       <Header />

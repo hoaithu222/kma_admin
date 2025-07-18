@@ -35,12 +35,13 @@ export default function AddPost({ categoryId, subCategoryId }: AddPropPost) {
     filter,
     handleGetArticle,
   } = useBase();
+  console.log(categoryId);
 
   const [formData, setFormData] = useState<FormData>({
     title: "",
     content: "",
-    categoryId: categoryId,
-    subCategoryId: subCategoryId,
+    categoryId: subCategoryId,
+    // subCategoryId: subCategoryId,
     tagIds: [],
     isPrivate: false,
     status: "draft",

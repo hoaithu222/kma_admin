@@ -59,7 +59,7 @@ const DetailPost = () => {
 
   if (!post) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex justify-center items-center h-screen">
         <LoadingSpinner />
       </div>
     );
@@ -72,13 +72,13 @@ const DetailPost = () => {
   const thumbnail = `${import.meta.env.VITE_API_URL_FILE}/${post.thumbnailUrl}`;
 
   return (
-    <div className="min-h-screen overflow-hidden rounded-lg bg-gradient-to-br from-background-muted to-background-muted">
+    <div className="overflow-hidden min-h-screen bg-gradient-to-br rounded-lg from-background-muted to-background-muted">
       {/* Header với background gradient */}
       <div className="text-white bg-gradient-to-r from-primary to-secondary">
         <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div
-              className="flex items-center gap-2 cursor-pointer"
+              className="flex gap-2 items-center cursor-pointer"
               onClick={() => navigate("/posts")}
             >
               <FaArrowAltCircleLeft className="w-4 h-4" />
@@ -101,11 +101,11 @@ const DetailPost = () => {
           {/* Main Content */}
           <div className="lg:col-span-2">
             {/* Article Header */}
-            <div className="mb-8 overflow-hidden shadow-lg bg-background-surface rounded-2xl">
+            <div className="overflow-hidden mb-8 rounded-2xl shadow-lg bg-background-surface">
               {/* Thumbnail */}
-              <div className="relative flex items-center justify-center h-64 bg-gradient-to-r from-primary to-accent">
+              <div className="flex relative justify-center items-center h-64 bg-gradient-to-r from-primary to-accent">
                 <div className="text-6xl text-text-on-primary">📚</div>
-                <div className="absolute px-3 py-1 text-sm font-medium rounded-full text-text-on-primary top-4 right-4 bg-background-surface/20 backdrop-blur-sm">
+                <div className="absolute top-4 right-4 px-3 py-1 text-sm font-medium rounded-full backdrop-blur-sm text-text-on-primary bg-background-surface/20">
                   {post.categoryName}
                 </div>
                 <img
@@ -121,37 +121,39 @@ const DetailPost = () => {
                   {post.title}
                 </h2>
 
-                <div className="flex flex-wrap items-center gap-6 mb-6 text-sm text-text-secondary">
-                  <div className="flex items-center gap-2">
+                <div className="flex flex-wrap gap-6 items-center mb-6 text-sm text-text-secondary">
+                  <div className="flex gap-2 items-center">
                     <Calendar className="w-4 h-4" />
                     <span>{formatDate(post.publishedAt)}</span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex gap-2 items-center">
                     <Eye className="w-4 h-4" />
                     <span>{post.viewCount.toLocaleString()} lượt xem</span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex gap-2 items-center">
                     <Clock className="w-4 h-4" />
                     <span>Cập nhật: {formatDate(post.updatedAt)}</span>
                   </div>
                 </div>
 
                 {/* Summary */}
-                <div className="p-4 mb-6 border-l-4 rounded-r-lg border-primary bg-primary-light">
-                  <p className="leading-relaxed text-text-primary">
-                    {post.summary}
-                  </p>
-                </div>
-
+                {/* Phải có mới hiển thị */}
+                {post.summary && (
+                  <div className="p-4 mb-6 rounded-r-lg border-l-4 border-primary bg-primary-light">
+                    <p className="leading-relaxed text-text-primary">
+                      {post.summary}
+                    </p>
+                  </div>
+                )}
                 {/* Tags */}
                 {post.tag && post.tag.length > 0 && (
-                  <div className="flex items-center gap-2 mb-6">
+                  <div className="flex gap-2 items-center mb-6">
                     <Tag className="w-4 h-4 text-text-secondary" />
                     <div className="flex flex-wrap gap-2">
                       {post.tag.map((tag: ITag, index: number) => (
                         <span
                           key={index}
-                          className="inline-flex items-center px-3 py-1 text-sm font-medium transition-colors rounded-full cursor-pointer text-text-primary bg-background-muted hover:bg-background-surface"
+                          className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full transition-colors cursor-pointer text-text-primary bg-background-muted hover:bg-background-surface"
                         >
                           #{tag.name}
                         </span>
@@ -163,9 +165,9 @@ const DetailPost = () => {
             </div>
 
             {/* Content */}
-            <div className="p-8 mb-8 shadow-lg bg-background-surface rounded-2xl">
+            <div className="p-8 mb-8 rounded-2xl shadow-lg bg-background-surface">
               <div
-                className="prose prose-lg max-w-none prose-headings:text-text-primary prose-p:text-text-secondary prose-a:text-primary prose-strong:text-text-primary prose-ul:text-text-secondary prose-ol:text-text-secondary"
+                className="max-w-none prose prose-lg prose-headings:text-text-primary prose-p:text-text-secondary prose-a:text-primary prose-strong:text-text-primary prose-ul:text-text-secondary prose-ol:text-text-secondary"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </div>
@@ -174,33 +176,33 @@ const DetailPost = () => {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Quick Info */}
-            <div className="sticky p-4 mb-6 shadow-lg bg-background-surface rounded-2xl top-8">
-              <h3 className="flex items-center gap-2 mb-4 text-lg font-semibold text-text-primary">
+            <div className="sticky top-8 p-4 mb-6 rounded-2xl shadow-lg bg-background-surface">
+              <h3 className="flex gap-2 items-center mb-4 text-lg font-semibold text-text-primary">
                 <FileText className="w-5 h-5 text-primary" />
                 Thông tin bài viết
               </h3>
 
               <div className="space-y-4">
-                <div className="flex items-center justify-between py-2 border-b border-border-primary">
+                <div className="flex justify-between items-center py-2 border-b border-border-primary">
                   <span className="text-text-secondary">Danh mục:</span>
                   <span className="font-medium text-text-primary">
                     {post.categoryName}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2 border-b border-border-primary">
+                <div className="flex justify-between items-center py-2 border-b border-border-primary">
                   <span className="text-text-secondary">Danh mục con:</span>
                   <span className="font-medium text-text-primary">
                     {post.subCategoryName}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between py-2 border-b border-border-primary">
+                <div className="flex justify-between items-center py-2 border-b border-border-primary">
                   <span className="text-text-secondary">Trạng thái:</span>
                   {getStatusBadge(post.status)}
                 </div>
 
-                <div className="flex items-center justify-between py-2">
+                <div className="flex justify-between items-center py-2">
                   <span className="text-text-secondary">Lượt xem:</span>
                   <span className="font-medium text-text-primary">
                     {post.viewCount.toLocaleString()}
@@ -211,8 +213,8 @@ const DetailPost = () => {
 
             {/* Files Section */}
             {post.files && post.files.length > 0 && (
-              <div className="p-4 shadow-lg bg-background-surface rounded-2xl">
-                <h3 className="flex items-center gap-2 mb-4 text-lg font-semibold text-text-primary">
+              <div className="p-4 rounded-2xl shadow-lg bg-background-surface">
+                <h3 className="flex gap-2 items-center mb-4 text-lg font-semibold text-text-primary">
                   <Download className="w-5 h-5 text-success" />
                   Tài liệu đính kèm
                 </h3>
@@ -221,7 +223,7 @@ const DetailPost = () => {
                   {post.files.map((file: IFile) => (
                     <div
                       key={file.id}
-                      className="flex items-center justify-between p-2 transition-colors bg-background-muted rounded-xl hover:bg-background-surface"
+                      className="flex justify-between items-center p-2 rounded-xl transition-colors bg-background-muted hover:bg-background-surface"
                     >
                       <div className="flex items-center">
                         <span className="text-xl">

@@ -43,7 +43,7 @@ export default function EditPosts({ post }: EditPostsProps) {
     title: post.title,
     content: post.content,
     categoryId: post.categoryId,
-    subCategoryId: post.subCategoryId || null,
+    // subCategoryId: post.subCategoryId || null,
     tagIds: post.tag.map((tag: any) => tag.id.toString()),
     isPrivate: post.isPrivate,
     status: post.status as "draft" | "published",

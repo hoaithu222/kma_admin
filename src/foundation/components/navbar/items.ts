@@ -6,26 +6,14 @@ import {
   TagsIcon,
   ImageIcon,
   BookOpenIcon,
-  CalendarIcon,
   HomeIcon,
   GraduationCapIcon,
-  BriefcaseIcon,
-  GlobeIcon,
-  AwardIcon,
-  ShieldIcon,
   NewspaperIcon,
-  BellIcon,
-  DatabaseIcon,
-  VideoIcon,
   FileImageIcon,
   SchoolIcon,
-  BookMarkedIcon,
-  LightbulbIcon,
   Users2Icon,
   CalendarDaysIcon,
-  MegaphoneIcon,
   HandshakeIcon,
-  FlaskConicalIcon,
   UserCogIcon,
   Building2Icon,
   MailIcon,
@@ -135,135 +123,135 @@ export const NavbarItems: NavbarItem[] = [
     ],
   },
   // tuyển sinh
-  {
-    label: "Tuyển sinh",
-    icon: BookMarkedIcon,
-    path: "/admission",
-    children: [
-      {
-        label: "Tuyển sinh công nghệ thông tin",
-        icon: DatabaseIcon,
-        path: "/admission",
-      },
-      {
-        label: "Tuyển sinh an toàn thông tin",
-        icon: ShieldIcon,
-        path: "/admission-security",
-      },
-      {
-        label: "Tuyển sinh điện tử viễn thông",
-        icon: VideoIcon,
-        path: "/admission-telecommunication",
-      },
-    ],
-  },
-  // nghiên cứu
-  {
-    label: "Nghiên cứu",
-    icon: LightbulbIcon,
-    path: "/research",
-    children: [
-      {
-        label: "Nghiên cứu khoa học",
-        icon: FlaskConicalIcon,
-        path: "/research",
-      },
-      {
-        label: "Đề tài nghiên cứu",
-        icon: BookOpenIcon,
-        path: "/research-topic",
-      },
-    ],
-  },
-  // sinh viên
-  {
-    label: "Sinh viên",
-    icon: Users2Icon,
-    path: "/student-activity",
-    children: [
-      {
-        label: "Hoạt động ngoại khóa",
-        icon: AwardIcon,
-        path: "/student-activity",
-      },
-      {
-        label: "Việc làm thực tập",
-        icon: BriefcaseIcon,
-        path: "/student-job",
-      },
-      {
-        label: "Hỗ trợ sinh viên",
-        icon: UsersIcon,
-        path: "/student-support",
-      },
-      {
-        label: "Hướng dẫn thủ tục",
-        icon: FileTextIcon,
-        path: "/student-guide",
-      },
-      {
-        label: "Đồ án thực hành",
-        icon: BookOpenIcon,
-        path: "/student-practice",
-      },
-      {
-        label: "Đào tạo tuyển sinh",
-        icon: GraduationCapIcon,
-        path: "/student-education",
-      },
-      {
-        label: "Cựu sinh viên",
-        icon: UsersIcon,
-        path: "/student-alumni",
-      },
-    ],
-  },
-  // sự kiện
-  {
-    label: "Sự kiện",
-    icon: CalendarIcon,
-    path: "/event",
-    children: [
-      {
-        label: "Sự kiện mới",
-        icon: CalendarDaysIcon,
-        path: "/event-new",
-      },
-      {
-        label: "Sự kiện sắp tới",
-        icon: CalendarIcon,
-        path: "/event-fall",
-      },
-      {
-        label: "Sự kiện đã diễn ra",
-        icon: CalendarIcon,
-        path: "/event-spring",
-      },
-    ],
-  },
-  // tin tức
-  {
-    label: "Tin tức",
-    icon: MegaphoneIcon,
-    path: "/news",
-    children: [
-      {
-        label: "Thông báo chung",
-        icon: BellIcon,
-        path: "/news-notice",
-      },
-      {
-        label: "Hợp tác đối ngoại",
-        icon: GlobeIcon,
-        path: "/news-cooperation",
-      },
-      {
-        label: "Nghiên cứu khoa học",
-        icon: LightbulbIcon,
-        path: "/news-research",
-      },
-    ],
-  },
+  // {
+  //   label: "Tuyển sinh",
+  //   icon: BookMarkedIcon,
+  //   path: "/admission",
+  //   children: [
+  //     {
+  //       label: "Tuyển sinh công nghệ thông tin",
+  //       icon: DatabaseIcon,
+  //       path: "/admission",
+  //     },
+  //     {
+  //       label: "Tuyển sinh an toàn thông tin",
+  //       icon: ShieldIcon,
+  //       path: "/admission-security",
+  //     },
+  //     {
+  //       label: "Tuyển sinh điện tử viễn thông",
+  //       icon: VideoIcon,
+  //       path: "/admission-telecommunication",
+  //     },
+  //   ],
+  // },
+  // // nghiên cứu
+  // {
+  //   label: "Nghiên cứu",
+  //   icon: LightbulbIcon,
+  //   path: "/research",
+  //   children: [
+  //     {
+  //       label: "Nghiên cứu khoa học",
+  //       icon: FlaskConicalIcon,
+  //       path: "/research",
+  //     },
+  //     {
+  //       label: "Đề tài nghiên cứu",
+  //       icon: BookOpenIcon,
+  //       path: "/research-topic",
+  //     },
+  //   ],
+  // },
+  // // sinh viên
+  // {
+  //   label: "Sinh viên",
+  //   icon: Users2Icon,
+  //   path: "/student-activity",
+  //   children: [
+  //     {
+  //       label: "Hoạt động ngoại khóa",
+  //       icon: AwardIcon,
+  //       path: "/student-activity",
+  //     },
+  //     {
+  //       label: "Việc làm thực tập",
+  //       icon: BriefcaseIcon,
+  //       path: "/student-job",
+  //     },
+  //     {
+  //       label: "Hỗ trợ sinh viên",
+  //       icon: UsersIcon,
+  //       path: "/student-support",
+  //     },
+  //     {
+  //       label: "Hướng dẫn thủ tục",
+  //       icon: FileTextIcon,
+  //       path: "/student-guide",
+  //     },
+  //     {
+  //       label: "Đồ án thực hành",
+  //       icon: BookOpenIcon,
+  //       path: "/student-practice",
+  //     },
+  //     {
+  //       label: "Đào tạo tuyển sinh",
+  //       icon: GraduationCapIcon,
+  //       path: "/student-education",
+  //     },
+  //     {
+  //       label: "Cựu sinh viên",
+  //       icon: UsersIcon,
+  //       path: "/student-alumni",
+  //     },
+  //   ],
+  // },
+  // // sự kiện
+  // {
+  //   label: "Sự kiện",
+  //   icon: CalendarIcon,
+  //   path: "/event",
+  //   children: [
+  //     {
+  //       label: "Sự kiện mới",
+  //       icon: CalendarDaysIcon,
+  //       path: "/event-new",
+  //     },
+  //     {
+  //       label: "Sự kiện sắp tới",
+  //       icon: CalendarIcon,
+  //       path: "/event-fall",
+  //     },
+  //     {
+  //       label: "Sự kiện đã diễn ra",
+  //       icon: CalendarIcon,
+  //       path: "/event-spring",
+  //     },
+  //   ],
+  // },
+  // // tin tức
+  // {
+  //   label: "Tin tức",
+  //   icon: MegaphoneIcon,
+  //   path: "/news",
+  //   children: [
+  //     {
+  //       label: "Thông báo chung",
+  //       icon: BellIcon,
+  //       path: "/news-notice",
+  //     },
+  //     {
+  //       label: "Hợp tác đối ngoại",
+  //       icon: GlobeIcon,
+  //       path: "/news-cooperation",
+  //     },
+  //     {
+  //       label: "Nghiên cứu khoa học",
+  //       icon: LightbulbIcon,
+  //       path: "/news-research",
+  //     },
+  //   ],
+  // },
   // // chuyên ngành
   // {
   //   label: "Chuyên ngành",

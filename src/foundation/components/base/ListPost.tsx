@@ -22,10 +22,10 @@ import {
 } from "./slice/base-post.slice";
 
 interface ListPostProps {
-  categoryId: number;
+  categoryId?: number;
   subCategoryId: number;
 }
-const ListPost = ({ categoryId, subCategoryId }: ListPostProps) => {
+const ListPost = ({ subCategoryId, categoryId }: ListPostProps) => {
   const {
     posts,
     handleGetArticle,
@@ -38,6 +38,7 @@ const ListPost = ({ categoryId, subCategoryId }: ListPostProps) => {
   } = useBase();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  console.log(categoryId);
 
   const handlePageChange = (page: number) => {
     setFilter((prev) => ({ ...prev, page }));
@@ -54,15 +55,15 @@ const ListPost = ({ categoryId, subCategoryId }: ListPostProps) => {
     if (getStatusAddPost === ReduxStateType.SUCCESS) {
       handleGetArticle({
         ...filter,
-        categoryId: categoryId,
-        subCategoryId: subCategoryId.toString(),
+        categoryId: subCategoryId,
+        // subCategoryId: subCategoryId.toString(),
       });
     }
     if (getStatusEditPost === ReduxStateType.SUCCESS) {
       handleGetArticle({
         ...filter,
-        categoryId: categoryId,
-        subCategoryId: subCategoryId.toString(),
+        categoryId: subCategoryId,
+        // subCategoryId: subCategoryId.toString(),
       });
     }
   }, [getStatusAddPost, getStatusEditPost]);
@@ -71,18 +72,18 @@ const ListPost = ({ categoryId, subCategoryId }: ListPostProps) => {
   useEffect(() => {
     handleGetArticle({
       ...filter,
-      categoryId: categoryId,
-      subCategoryId: subCategoryId.toString(),
+      categoryId: subCategoryId,
+      // subCategoryId: subCategoryId.toString(),
     });
   }, []);
   // call lại khi filter thay đổi
   useEffect(() => {
     handleGetArticle({
       ...filter,
-      categoryId: categoryId,
-      subCategoryId: subCategoryId.toString(),
+      categoryId: subCategoryId,
+      // subCategoryId: subCategoryId.toString(),
     });
-  }, [filter]);
+  }, [filter, subCategoryId]);
 
   // Move the early return after all hooks have been called
   if (statusGetListPost === ReduxStateType.LOADING) {

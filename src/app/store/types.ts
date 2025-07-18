@@ -31,6 +31,7 @@ export enum AppReducerType {
   LECTURER = "lecturer",
   BASE_POST = "basePost",
   USER = "user",
+  MENU = "menu",
 }
 export enum ReduxStateType {
   INIT = "init",

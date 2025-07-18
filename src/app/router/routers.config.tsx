@@ -111,7 +111,9 @@ const TrainingMaster = lazy(
 );
 // liên hệ
 const ContactPage = lazy(() => import("@/features/contact/ContactPage"));
-
+const BasePostPage = lazy(
+  () => import("@/foundation/components/base/HomePage")
+);
 const defaultOptions = {
   requireAuth: true,
   hideInMenu: false,
@@ -189,7 +191,12 @@ export const ROUTE = {
     layout: "main",
     options: defaultAuthOptions,
   },
-
+  basePost: {
+    path: "/base-post/:id",
+    element: <BasePostPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
   tags: {
     path: "/tags",
     element: <TagPage />,

@@ -2,7 +2,7 @@ import { IResponse } from "@/core/base/Response";
 
 export interface IRequestAddArticle {
   categoryId: number | null | string;
-  subCategoryId: number | null | string;
+  subCategoryId?: number | null | string;
   title: string;
   description: string;
   summary: string;

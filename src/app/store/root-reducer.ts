@@ -15,7 +15,7 @@ import submajorReducer from "@/features/submajor/slice/submajor.slice.ts";
 import lecturerReducer from "@/features/lecturer/slice/lecturer.slice.ts";
 import basePostReducer from "@/foundation/components/base/slice/base-post.slice";
 import userReducer from "@/features/user-management/slice/user.slice";
-
+import menuReducer from "@/features/menu/slice/menu.slice";
 export const rootReducer = combineReducers({
   [AppReducerType.LANGUAGE]: languageReducer,
   [AppReducerType.THEME]: themeReducer,
@@ -32,4 +32,5 @@ export const rootReducer = combineReducers({
   [AppReducerType.LECTURER]: lecturerReducer,
   [AppReducerType.BASE_POST]: basePostReducer,
   [AppReducerType.USER]: userReducer,
+  [AppReducerType.MENU]: menuReducer,
 });

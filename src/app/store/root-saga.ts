@@ -11,6 +11,7 @@ import { submajorSaga } from "@/features/submajor/slice/submajor.saga";
 import { lecturerSaga } from "@/features/lecturer/slice/lecturer.saga";
 import basePostSaga from "@/foundation/components/base/slice/base-post.saga";
 import { userSaga } from "@/features/user-management/slice/user.saga";
+import menuSaga from "@/features/menu/slice/menu.saga";
 export const rootSage = function* () {
   try {
     yield all([
@@ -25,6 +26,7 @@ export const rootSage = function* () {
       lecturerSaga(),
       basePostSaga(),
       userSaga(),
+      menuSaga(),
     ]);
   } catch (error) {
     console.error(error);
