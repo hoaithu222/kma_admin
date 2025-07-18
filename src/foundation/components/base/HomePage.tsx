@@ -31,7 +31,7 @@ const HomePage = () => {
       <div className="flex justify-between items-center border-b-2 border-border-primary">
         <div className="flex gap-2 items-center p-2">
           <h2 className="text-2xl font-bold text-secondary">
-            {`Quản lý bài viết`}
+            Quản lý bài viết
           </h2>
         </div>
         <Button
@@ -39,7 +39,7 @@ const HomePage = () => {
           iconLeft={<PlusIcon className="w-4 h-4 hover:animate-spin" />}
           onClick={() => handleAddPost(true)}
         >
-          Thêm bài viết về
+          Thêm bài viết
         </Button>
       </div>
       <div className="mt-4">
