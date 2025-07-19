@@ -16,6 +16,21 @@ import {
   HomeIcon,
   ShieldIcon,
   UserIcon,
+  GraduationCapIcon,
+  NewspaperIcon,
+  CalendarDaysIcon,
+  HandshakeIcon,
+  UserCogIcon,
+  Building2Icon,
+  MailIcon,
+  PhoneIcon,
+  MapPinIcon,
+  GroupIcon,
+  UserPlusIcon,
+  UserMinusIcon,
+  UserCheckIcon,
+  UserXIcon,
+  UserCircleIcon,
 } from "lucide-react";
 
 const Navbar = () => {
@@ -34,8 +49,23 @@ const Navbar = () => {
       GlobeIcon,
       AwardIcon,
       ShieldIcon,
+      GraduationCapIcon,
+      NewspaperIcon,
+      CalendarDaysIcon,
+      HandshakeIcon,
+      UserCogIcon,
+      Building2Icon,
+      MailIcon,
+      PhoneIcon,
+      MapPinIcon,
+      GroupIcon,
+      UserPlusIcon,
+      UserMinusIcon,
+      UserCheckIcon,
+      UserXIcon,
+      UserCircleIcon,
     ];
-    return icons[index];
+    return icons[index % icons.length];
   };
   const getRandomIconChild = (index: number) => {
     const icons = [
@@ -44,10 +74,27 @@ const Navbar = () => {
       UserIcon,
       FileTextIcon,
       FileImageIcon,
-      FileTextIcon,
-      FileImageIcon,
+      BriefcaseIcon,
+      GlobeIcon,
+      AwardIcon,
+      ShieldIcon,
+      GraduationCapIcon,
+      NewspaperIcon,
+      CalendarDaysIcon,
+      HandshakeIcon,
+      UserCogIcon,
+      Building2Icon,
+      MailIcon,
+      PhoneIcon,
+      MapPinIcon,
+      GroupIcon,
+      UserPlusIcon,
+      UserMinusIcon,
+      UserCheckIcon,
+      UserXIcon,
+      UserCircleIcon,
     ];
-    return icons[index];
+    return icons[index % icons.length];
   };
 
   // // lấy items khác từ menu
