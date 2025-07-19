@@ -2,7 +2,7 @@ import Modal from "@/foundation/components/modal/Modal";
 import { usePost } from "../../hooks/usePost";
 import { useState, useEffect } from "react";
 
-import Select from "@/foundation/components/inputs/SelectOption";
+// import Select from "@/foundation/components/inputs/SelectOption";
 import Button from "@/foundation/components/buttons/Button";
 import Input from "@/foundation/components/inputs/Input";
 import SelectMany from "@/foundation/components/inputs/SelectMany";
@@ -34,6 +34,7 @@ import CustomSwitch from "@/foundation/components/inputs/CustomSwitch";
 import { ReduxStateType } from "@/app/store/types";
 import { toast } from "react-toastify";
 import CustomReactQuill from "@/foundation/components/inputs/CustomReactQuill";
+import CategorySelect from "@/foundation/components/inputs/CategorySelect";
 
 interface FormData extends Omit<IRequestAddArticle, "tagIds"> {
   tagIds: string[];
@@ -55,7 +56,7 @@ export default function AddPost() {
   const subCategoriesWithCategoryId = useSelector(
     subCategoriesWithCategoryIdSelector
   );
-  const { handleGetSubCategories } = usePost();
+  // const { handleGetSubCategories } = usePost();
   const tags = useSelector(selectTags);
 
   const [formData, setFormData] = useState<FormData>({
@@ -79,10 +80,6 @@ export default function AddPost() {
     }
     if (!formData.categoryId) {
       toast.error("Vui lòng chọn chuyên mục");
-      return;
-    }
-    if (!formData.subCategoryId) {
-      toast.error("Vui lòng chọn chuyên mục con");
       return;
     }
 
@@ -193,7 +190,17 @@ export default function AddPost() {
 
             {/* Chuyên mục và Tags */}
             <div className="grid grid-cols-1 gap-3">
-              <Select
+              <CategorySelect
+                value={formData.categoryId}
+                onChange={(value: number) => {
+                  setFormData({ ...formData, categoryId: value });
+                }}
+                placeholder="Chọn chuyên mục *"
+                label="Chuyên mục"
+                fullWidth={true}
+              />
+
+              {/* <Select
                 options={categories.map((category) => ({
                   value: category.id,
                   label: category.name,
@@ -228,7 +235,7 @@ export default function AddPost() {
                   label="Chuyên mục con"
                   fullWidth={true}
                 />
-              )}
+              )} */}
 
               <SelectMany
                 options={tags.map((tag) => ({

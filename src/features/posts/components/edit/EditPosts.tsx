@@ -2,7 +2,6 @@ import Modal from "@/foundation/components/modal/Modal";
 import { usePost } from "../../hooks/usePost";
 import { useState, useEffect } from "react";
 
-import Select from "@/foundation/components/inputs/SelectOption";
 import Button from "@/foundation/components/buttons/Button";
 import Input from "@/foundation/components/inputs/Input";
 import SelectMany from "@/foundation/components/inputs/SelectMany";
@@ -11,7 +10,6 @@ import UploadImage from "@/foundation/components/upload/UploadImage";
 import Textarea from "@/foundation/components/inputs/TextArea";
 
 import { useSelector } from "react-redux";
-import { selectCategories } from "@/features/category/slice/category.selector";
 import { subCategoriesWithCategoryIdSelector } from "@/features/subcategory/slice/subcategory.selector";
 import {
   IRequestAddArticle,
@@ -36,6 +34,7 @@ import { ReduxStateType } from "@/app/store/types";
 import { toast } from "react-toastify";
 import CustomReactQuill from "@/foundation/components/inputs/CustomReactQuill";
 import { uploadFileFromQuill } from "@/shared/utils/fileUploadHelper";
+import CategorySelect from "@/foundation/components/inputs/CategorySelect";
 
 interface FormData extends Omit<IRequestAddArticle, "tagIds"> {
   tagIds: string[];
@@ -57,7 +56,6 @@ export default function EditPosts({ post }: EditPostsProps) {
     filter,
   } = usePost();
 
-  const categories = useSelector(selectCategories);
   const subCategoriesWithCategoryId = useSelector(
     subCategoriesWithCategoryIdSelector
   );
@@ -105,10 +103,6 @@ export default function EditPosts({ post }: EditPostsProps) {
     }
     if (!formData.categoryId || formData?.categoryId === "0") {
       toast.error("Vui lòng chọn chuyên mục");
-      return;
-    }
-    if (!formData.subCategoryId || formData?.subCategoryId === "0") {
-      toast.error("Vui lòng chọn chuyên mục con");
       return;
     }
 
@@ -197,25 +191,20 @@ export default function EditPosts({ post }: EditPostsProps) {
 
             {/* Chuyên mục và Tags */}
             <div className="grid grid-cols-1 gap-3">
-              <Select
-                options={categories.map((category) => ({
-                  value: category.id,
-                  label: category.name,
-                }))}
-                value={formData.categoryId?.toString()}
-                defaultValue={formData.categoryId?.toString()}
-                onChange={(value: any) =>
+              <CategorySelect
+                value={formData.categoryId}
+                onChange={(value: number) => {
                   setFormData({
                     ...formData,
-                    categoryId: +value,
+                    categoryId: value,
                     subCategoryId: subCategoriesWithCategoryId[0]?.id,
-                  })
-                }
+                  });
+                }}
                 placeholder="Chọn chuyên mục *"
                 label="Chuyên mục"
                 fullWidth={true}
               />
-
+              {/*
               {formData.categoryId && (
                 <Select
                   options={subCategoriesWithCategoryId.map((subCategory) => ({
@@ -234,7 +223,7 @@ export default function EditPosts({ post }: EditPostsProps) {
                   label="Chuyên mục con"
                   fullWidth={true}
                 />
-              )}
+              )} */}
 
               <SelectMany
                 options={tags.map((tag) => ({
