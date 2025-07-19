@@ -22,8 +22,8 @@ const Navbar = () => {
   const { t } = useTranslation("home");
   const { menu } = useMenu();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
-  // render ICon ngẫu nhiên
-  const getRandomIcon = () => {
+  // lấy theo icon thứ tự
+  const getRandomIcon = (index: number) => {
     const icons = [
       BookOpenIcon,
       HomeIcon,
@@ -35,20 +35,32 @@ const Navbar = () => {
       AwardIcon,
       ShieldIcon,
     ];
-    return icons[Math.floor(Math.random() * icons.length)];
+    return icons[index];
+  };
+  const getRandomIconChild = (index: number) => {
+    const icons = [
+      BookOpenIcon,
+      HomeIcon,
+      UserIcon,
+      FileTextIcon,
+      FileImageIcon,
+      FileTextIcon,
+      FileImageIcon,
+    ];
+    return icons[index];
   };
 
   // // lấy items khác từ menu
-  const items = menu?.map((item) => {
+  const items = menu?.map((item, index) => {
     return {
       label: item.name,
       path: `/base-post/${item.id}`,
-      icon: getRandomIcon(),
-      children: item.children.map((child) => {
+      icon: getRandomIcon(index),
+      children: item.children.map((child, indexChild) => {
         return {
           label: child.name,
           path: `/base-post/${child.id}`,
-          icon: getRandomIcon(),
+          icon: getRandomIconChild(indexChild),
         };
       }),
     };
