@@ -114,6 +114,7 @@ const ContactPage = lazy(() => import("@/features/contact/ContactPage"));
 const BasePostPage = lazy(
   () => import("@/foundation/components/base/HomePage")
 );
+const MenuPage = lazy(() => import("@/features/menu/pages/MenuPage"));
 const defaultOptions = {
   requireAuth: true,
   hideInMenu: false,
@@ -203,7 +204,12 @@ export const ROUTE = {
     layout: "main",
     options: defaultAuthOptions,
   },
-
+  menu: {
+    path: "/menu",
+    element: <MenuPage />,
+    layout: "main",
+    options: defaultAuthOptions,
+  },
   teachers: {
     path: "/teachers",
     element: <LecturerPage />,

@@ -103,7 +103,7 @@ const Navbar = () => {
       label: item.name,
       path: `/base-post/${item.id}`,
       icon: getRandomIcon(index),
-      children: item.children.map((child, indexChild) => {
+      children: item?.children?.map((child, indexChild) => {
         return {
           label: child.name,
           path: `/base-post/${child.id}`,

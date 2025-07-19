@@ -85,8 +85,13 @@ export const NavbarItems: NavbarItem[] = [
   {
     label: "Cài đặt menu",
     icon: FolderKanbanIcon,
-    path: "/categories",
+    path: "/menu",
     children: [
+      {
+        label: "Danh mục menu",
+        icon: FolderKanbanIcon,
+        path: "/menu",
+      },
       {
         label: "Danh mục",
         icon: FolderKanbanIcon,
