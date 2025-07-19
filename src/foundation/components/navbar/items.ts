@@ -280,6 +280,121 @@ export const NavbarItems: NavbarItem[] = [
   //   ],
   // },
 
+  // // Giới thiệu
+  // {
+  //   label: "Giới thiệu",
+  //   icon: BookOpenIcon,
+  //   path: "/introduction",
+  //   role: "ADMIN",
+  //   children: [
+  //     {
+  //       label: "Tổng quan",
+  //       icon: BookOpenIcon,
+  //       path: "/introduction",
+  //       role: "ADMIN",
+  //     },
+  //     {
+  //       label: "Cơ cấu đào tạo",
+  //       icon: Building2Icon,
+  //       path: "/training-structure",
+  //       role: "ADMIN",
+  //     },
+  //     {
+  //       label: "Tổ chức",
+  //       icon: Building2Icon,
+  //       path: "/organization",
+  //       role: "ADMIN",
+  //     },
+  //   ],
+  // },
+  // // đào tạo
+  // {
+  //   label: "Đào tạo",
+  //   icon: BookOpenIcon,
+  //   path: "/training",
+  //   role: "ADMIN",
+  //   children: [
+  //     {
+  //       label: "Chương trình đào tạo đại học",
+  //       icon: BookOpenIcon,
+  //       path: "/training",
+  //       role: "ADMIN",
+  //     },
+  //     {
+  //       label: "Chương trình đào tạo thạc sĩ",
+  //       icon: BookOpenIcon,
+  //       path: "/training-master",
+  //       role: "ADMIN",
+  //     },
+  //   ],
+  // },
+  // // liên hệ
+  // {
+  //   label: "Liên hệ",
+  //   icon: MailIcon,
+  //   path: "/contact",
+  //   role: "ADMIN",
+  // },
+
+  // // đào tạo
+  // {
+  //   label: "Đào tạo",
+  //   icon: BookOpenIcon,
+  //   path: "/training",
+  //   children: [
+  //     {
+  //       label: "Chương trình đại học",
+  //       icon: BookOpenIcon,
+  //       path: "/training-list",
+  //     },
+  //     {
+  //       label: "Chương trình thạc sĩ",
+  //       icon: BookOpenIcon,
+  //       path: "/training-list",
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: "Chương trình đào tạo",
+  //   icon: FolderTreeIcon,
+  //   path: "/department",
+  //   children: [
+  //     {
+  //       label: "Chương trình đào tạo ngành công nghệ thông tin",
+  //       icon: BookOpenIcon,
+  //       path: "/department-list",
+  //     },
+  //     {
+  //       label: "Chương trình đào tạo ngành an toàn thông tin",
+  //       icon: BookOpenIcon,
+  //       path: "/department-list",
+  //     },
+  //     {
+  //       label: "Chương trình đào tạo ngành công điện tử viễn thông",
+  //       icon: BookOpenIcon,
+  //       path: "/department-list",
+  //     },
+  //   ],
+  // },
+  // {
+  //   label: "Quản lý người dùng",
+  //   icon: UserCogIcon,
+  //   path: "/user-management",
+  //   role: "ADMIN",
+  // },
+  // {
+  //   label: "Sự kiện sắp tới",
+  //   icon: CalendarClockIcon, // Đổi từ ClipboardIcon
+  //   path: "/event",
+  // },
+  // {
+  //   label: "Cài đặt hệ thống",
+  //   icon: SettingsIcon, // Đổi từ CogIcon
+  //   path: "/setting",
+  // },
+];
+// menu item cuối cùng
+export const menuItemLast = [
   // Giới thiệu
   {
     label: "Giới thiệu",
@@ -335,61 +450,10 @@ export const NavbarItems: NavbarItem[] = [
     path: "/contact",
     role: "ADMIN",
   },
-
-  // // đào tạo
-  // {
-  //   label: "Đào tạo",
-  //   icon: BookOpenIcon,
-  //   path: "/training",
-  //   children: [
-  //     {
-  //       label: "Chương trình đại học",
-  //       icon: BookOpenIcon,
-  //       path: "/training-list",
-  //     },
-  //     {
-  //       label: "Chương trình thạc sĩ",
-  //       icon: BookOpenIcon,
-  //       path: "/training-list",
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: "Chương trình đào tạo",
-  //   icon: FolderTreeIcon,
-  //   path: "/department",
-  //   children: [
-  //     {
-  //       label: "Chương trình đào tạo ngành công nghệ thông tin",
-  //       icon: BookOpenIcon,
-  //       path: "/department-list",
-  //     },
-  //     {
-  //       label: "Chương trình đào tạo ngành an toàn thông tin",
-  //       icon: BookOpenIcon,
-  //       path: "/department-list",
-  //     },
-  //     {
-  //       label: "Chương trình đào tạo ngành công điện tử viễn thông",
-  //       icon: BookOpenIcon,
-  //       path: "/department-list",
-  //     },
-  //   ],
-  // },
   {
     label: "Quản lý người dùng",
     icon: UserCogIcon,
     path: "/user-management",
     role: "ADMIN",
   },
-  // {
-  //   label: "Sự kiện sắp tới",
-  //   icon: CalendarClockIcon, // Đổi từ ClipboardIcon
-  //   path: "/event",
-  // },
-  // {
-  //   label: "Cài đặt hệ thống",
-  //   icon: SettingsIcon, // Đổi từ CogIcon
-  //   path: "/setting",
-  // },
 ];

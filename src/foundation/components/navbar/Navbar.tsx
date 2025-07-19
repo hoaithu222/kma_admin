@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import { NavbarItems } from "./items";
+import { menuItemLast, NavbarItems } from "./items";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
 import { selectUser } from "@/features/auth/slice/auth.selector";
@@ -49,11 +49,6 @@ const Navbar = () => {
           label: child.name,
           path: `/base-post/${child.id}`,
           icon: getRandomIcon(),
-          children: child.children?.map((subchild) => ({
-            label: subchild.name,
-            path: `/base-post/${subchild.id}`,
-            icon: getRandomIcon(),
-          })),
         };
       }),
     };
@@ -86,8 +81,7 @@ const Navbar = () => {
         ? "bg-primary/10 text-primary font-semibold border-l-4 border-primary shadow-sm"
         : "text-text-navbar/80 font-normal hover:bg-background-subtle hover:text-primary"
     );
-  const navItems = [...NavbarItems, ...items];
-  console.log(navItems);
+  const navItems = [...NavbarItems, ...items, ...menuItemLast];
 
   return (
     <nav
