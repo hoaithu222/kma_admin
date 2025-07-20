@@ -20,6 +20,18 @@ interface ChildCategory {
   children: dataMenu[];
 }
 
+interface GrandChildCategory {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  parentId: number;
+  displayOrder: number;
+  level: number;
+  isVisible: boolean;
+  children: dataMenu[];
+}
+
 interface FormErrors {
   name?: string;
   displayOrder?: string;
@@ -100,7 +112,15 @@ const AddMenu = () => {
           displayOrder: child.displayOrder,
           level: formData.level + 1,
           isVisible: child.isVisible,
-          children: [],
+          children: child.children.map((grandChild) => ({
+            name: grandChild.name,
+            description: grandChild.description,
+            parentId: 0,
+            displayOrder: grandChild.displayOrder,
+            level: formData.level + 2,
+            isVisible: grandChild.isVisible,
+            children: [],
+          })),
         })),
       };
 
@@ -152,6 +172,51 @@ const AddMenu = () => {
   ) => {
     const updated = [...childrenData];
     updated[index] = { ...updated[index], [field]: value };
+    setChildrenData(updated);
+  };
+
+  const addGrandChildCategory = (childIndex: number) => {
+    const updated = [...childrenData];
+    const newGrandChild: GrandChildCategory = {
+      id: Date.now() + Math.random(),
+      name: "",
+      slug: "",
+      description: "",
+      parentId: 0,
+      displayOrder: updated[childIndex].children.length + 1,
+      level: formData.level + 2,
+      isVisible: true,
+      children: [],
+    };
+    updated[childIndex].children = [
+      ...updated[childIndex].children,
+      newGrandChild,
+    ];
+    setChildrenData(updated);
+  };
+
+  const removeGrandChildCategory = (
+    childIndex: number,
+    grandChildIndex: number
+  ) => {
+    const updated = [...childrenData];
+    updated[childIndex].children = updated[childIndex].children.filter(
+      (_, i) => i !== grandChildIndex
+    );
+    setChildrenData(updated);
+  };
+
+  const updateGrandChildCategory = (
+    childIndex: number,
+    grandChildIndex: number,
+    field: keyof GrandChildCategory,
+    value: any
+  ) => {
+    const updated = [...childrenData];
+    updated[childIndex].children[grandChildIndex] = {
+      ...updated[childIndex].children[grandChildIndex],
+      [field]: value,
+    };
     setChildrenData(updated);
   };
 
@@ -316,19 +381,19 @@ const AddMenu = () => {
                 </div>
               ) : (
                 <div className="space-y-3">
-                  {childrenData.map((child, index) => (
+                  {childrenData.map((child, childIndex) => (
                     <div
                       key={child.id}
                       className="p-4 bg-gradient-to-r rounded-lg border from-background-elevated to-background-muted border-border-secondary"
                     >
                       <div className="flex justify-between items-center mb-3">
                         <h4 className="font-medium text-text-primary">
-                          Danh mục con #{index + 1}
+                          Danh mục con #{childIndex + 1}
                         </h4>
                         <Button
                           variant="outlined"
                           size="small"
-                          onClick={() => removeChildCategory(index)}
+                          onClick={() => removeChildCategory(childIndex)}
                           iconLeft={<Minus size={16} />}
                         >
                           Xóa
@@ -339,7 +404,11 @@ const AddMenu = () => {
                         <Input
                           value={child.name}
                           onChange={(e) =>
-                            updateChildCategory(index, "name", e.target.value)
+                            updateChildCategory(
+                              childIndex,
+                              "name",
+                              e.target.value
+                            )
                           }
                           placeholder="Nhập tên danh mục con..."
                           label="Tên danh mục con *"
@@ -352,7 +421,7 @@ const AddMenu = () => {
                           value={child.displayOrder}
                           onChange={(e) =>
                             updateChildCategory(
-                              index,
+                              childIndex,
                               "displayOrder",
                               Number(e.target.value)
                             )
@@ -367,7 +436,7 @@ const AddMenu = () => {
                             value={child.description}
                             onChange={(e) =>
                               updateChildCategory(
-                                index,
+                                childIndex,
                                 "description",
                                 e.target.value
                               )
@@ -385,7 +454,7 @@ const AddMenu = () => {
                               checked={child.isVisible}
                               onChange={(e) =>
                                 updateChildCategory(
-                                  index,
+                                  childIndex,
                                   "isVisible",
                                   e.target.checked
                                 )
@@ -397,6 +466,135 @@ const AddMenu = () => {
                             </span>
                           </label>
                         </div>
+                      </div>
+
+                      {/* Danh mục cháu (cấp 2) */}
+                      <div className="mt-4 space-y-3">
+                        <div className="flex justify-between items-center pb-1 border-b border-border-secondary">
+                          <h5 className="text-sm font-medium text-text-secondary">
+                            Danh mục con (cấp 2)
+                          </h5>
+                          <Button
+                            variant="secondary"
+                            size="small"
+                            onClick={() => addGrandChildCategory(childIndex)}
+                            iconLeft={<Plus size={14} />}
+                          >
+                            Thêm danh mục con (cấp 2)
+                          </Button>
+                        </div>
+
+                        {child.children.length === 0 ? (
+                          <div className="py-4 text-center text-text-muted">
+                            <p className="text-sm">Chưa có danh mục nào</p>
+                          </div>
+                        ) : (
+                          <div className="space-y-3">
+                            {child.children.map(
+                              (grandChild, grandChildIndex) => (
+                                <div
+                                  key={grandChild.id}
+                                  className="p-3 ml-4 bg-gradient-to-r rounded-lg border from-background-muted to-background-elevated border-border-secondary"
+                                >
+                                  <div className="flex justify-between items-center mb-2">
+                                    <h6 className="text-sm font-medium text-text-secondary">
+                                      Danh mục con (cấp 2) #
+                                      {grandChildIndex + 1}
+                                    </h6>
+                                    <Button
+                                      variant="outlined"
+                                      size="small"
+                                      onClick={() =>
+                                        removeGrandChildCategory(
+                                          childIndex,
+                                          grandChildIndex
+                                        )
+                                      }
+                                      iconLeft={<Minus size={14} />}
+                                    >
+                                      Xóa
+                                    </Button>
+                                  </div>
+
+                                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                                    <Input
+                                      value={grandChild.name}
+                                      onChange={(e) =>
+                                        updateGrandChildCategory(
+                                          childIndex,
+                                          grandChildIndex,
+                                          "name",
+                                          e.target.value
+                                        )
+                                      }
+                                      placeholder="Nhập tên danh mục con (cấp 2)..."
+                                      label="Tên danh mục con (cấp 2) *"
+                                      fullWidth={true}
+                                      size="small"
+                                    />
+
+                                    <Input
+                                      type="number"
+                                      min="1"
+                                      value={grandChild.displayOrder}
+                                      onChange={(e) =>
+                                        updateGrandChildCategory(
+                                          childIndex,
+                                          grandChildIndex,
+                                          "displayOrder",
+                                          Number(e.target.value)
+                                        )
+                                      }
+                                      placeholder="Thứ tự"
+                                      label="Thứ tự"
+                                      fullWidth={true}
+                                      size="small"
+                                    />
+
+                                    <div className="md:col-span-2">
+                                      <Textarea
+                                        value={grandChild.description}
+                                        onChange={(e) =>
+                                          updateGrandChildCategory(
+                                            childIndex,
+                                            grandChildIndex,
+                                            "description",
+                                            e.target.value
+                                          )
+                                        }
+                                        placeholder="Mô tả danh mục con (cấp 2)..."
+                                        label="Mô tả"
+                                        fullWidth={true}
+                                        size="small"
+                                      />
+                                    </div>
+
+                                    <div className="flex items-center space-x-3">
+                                      <label className="flex items-center cursor-pointer">
+                                        <input
+                                          type="checkbox"
+                                          checked={grandChild.isVisible}
+                                          onChange={(e) =>
+                                            updateGrandChildCategory(
+                                              childIndex,
+                                              grandChildIndex,
+                                              "isVisible",
+                                              e.target.checked
+                                            )
+                                          }
+                                          className="w-4 h-4 rounded text-primary border-border-secondary focus:ring-primary"
+                                        />
+                                        <span className="ml-2 text-sm text-text-primary">
+                                          Hiển thị
+                                        </span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}

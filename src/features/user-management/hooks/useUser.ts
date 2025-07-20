@@ -7,6 +7,8 @@ import {
   setIsDeleteUser,
   setIsUpdateUser,
   setEditUser,
+  setIsLockUser,
+  setLockUser,
 } from "../slice/user.slice";
 import {
   selectIsAddUser,
@@ -20,9 +22,11 @@ import {
   selectStatusDelete,
   selectStatusAdd,
   selectStatusUpdate,
+  selectIsLockUser,
+  selectLockUser,
 } from "../slice/user.selector";
-import { IUser } from "@/features/auth/slice/auth.types";
 import { IRequestUpdateUser } from "@/core/api/auth/types";
+import { IUser } from "../slice/user.types";
 
 export const useUser = () => {
   const dispatch = useDispatch();
@@ -38,6 +42,8 @@ export const useUser = () => {
   const statusDelete = useSelector(selectStatusDelete);
 
   const editUser = useSelector(selectEditUser);
+  const isLockUser = useSelector(selectIsLockUser);
+  const lockUser = useSelector(selectLockUser);
 
   const addUser = (username: string, password: string, fullName: string) => {
     dispatch(addUserRequest({ username, password, fullName, active: true }));
@@ -62,6 +68,15 @@ export const useUser = () => {
   const handleDeleteUser = (isOpen: boolean) => {
     dispatch(setIsDeleteUser(isOpen));
   };
+
+  const handleLockUser = (isOpen: boolean) => {
+    dispatch(setIsLockUser(isOpen));
+  };
+
+  const handleSetLockUser = (user: IUser) => {
+    dispatch(setLockUser(user));
+  };
+
   // cập nhật active user
   const handleChangeActive = (user: IUser) => {
     dispatch(
@@ -103,5 +118,9 @@ export const useUser = () => {
 
     setEditUserDispatch,
     handleChangeActive,
+    handleLockUser,
+    handleSetLockUser,
+    isLockUser,
+    lockUser,
   };
 };

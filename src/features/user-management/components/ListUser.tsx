@@ -28,8 +28,11 @@ const ListUser = () => {
     statusDelete,
     statusAdd,
     idDelete,
-
     handleChangeActive,
+    handleLockUser,
+    handleSetLockUser,
+    isLockUser,
+    lockUser,
   } = useUser();
 
   useEffect(() => {
@@ -51,6 +54,18 @@ const ListUser = () => {
       dispatch(deleteUserRequest(Number(idDelete)));
     }
     handleDeleteUser(false);
+  };
+
+  const handleLockClick = (user: any) => {
+    handleSetLockUser(user);
+    handleLockUser(true);
+  };
+
+  const handleConfirmLock = () => {
+    if (lockUser) {
+      handleChangeActive(lockUser);
+    }
+    handleLockUser(false);
   };
   // call lại getUser khi sửa hoặc xóa
   useEffect(() => {
@@ -130,7 +145,7 @@ const ListUser = () => {
                   <UnlockIcon className="w-4 h-4" />
                 )
               }
-              onClick={() => handleChangeActive(record)}
+              onClick={() => handleLockClick(record)}
             />
           </div>
         );
@@ -165,6 +180,19 @@ const ListUser = () => {
           onConfirm={handleConfirmDelete}
           title="Xác nhận xóa"
           message="Bạn có chắc chắn muốn xóa người dùng này không?"
+        />
+      )}
+      {isLockUser && lockUser && (
+        <ModalConfirm
+          isOpen={true}
+          onClose={() => handleLockUser(false)}
+          onConfirm={handleConfirmLock}
+          title={lockUser.active ? "Xác nhận khóa" : "Xác nhận mở khóa"}
+          message={
+            lockUser.active
+              ? "Bạn có chắc chắn muốn khóa người dùng này không?"
+              : "Bạn có chắc chắn muốn mở khóa người dùng này không?"
+          }
         />
       )}
     </div>

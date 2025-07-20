@@ -55,3 +55,13 @@ export const selectStatusDelete = createSelector(
   [selectUser],
   (state) => state.statusDelete === ReduxStateType.SUCCESS
 );
+
+export const selectIsLockUser = createSelector(
+  [selectUser],
+  (state) => state.isLockUser
+);
+
+export const selectLockUser = createSelector(
+  [selectUser],
+  (state) => state.lockUser
+);

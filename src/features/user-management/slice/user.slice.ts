@@ -1,6 +1,5 @@
-import { IUserState } from "./user.types";
+import { IUserState, IUser } from "./user.types";
 import { createResettableSlice } from "@/app/store/create-resettabable-slice";
-import { IUser } from "@/features/auth/slice/auth.types";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { IRegister, IRequestGetList } from "@/core/api/auth/types";
 import { ReduxStateType } from "@/app/store/types";
@@ -17,6 +16,8 @@ const initialState: IUserState = {
   statusAdd: ReduxStateType.INIT,
   statusUpdate: ReduxStateType.INIT,
   statusDelete: ReduxStateType.INIT,
+  isLockUser: false,
+  lockUser: null,
 };
 
 const { slice, reducer } = createResettableSlice({
@@ -113,6 +114,12 @@ const { slice, reducer } = createResettableSlice({
     setEditUser: (state, action: PayloadAction<IUser>) => {
       state.editUser = action.payload;
     },
+    setIsLockUser: (state, action: PayloadAction<boolean>) => {
+      state.isLockUser = action.payload;
+    },
+    setLockUser: (state, action: PayloadAction<IUser>) => {
+      state.lockUser = action.payload;
+    },
   },
 });
 
@@ -135,5 +142,7 @@ export const {
   getUserFailed,
   updateDeleteId,
   setEditUser,
+  setIsLockUser,
+  setLockUser,
 } = slice.actions;
 export default reducer;

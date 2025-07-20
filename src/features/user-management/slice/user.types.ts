@@ -1,11 +1,14 @@
 import { ReduxStateType } from "@/app/store/types";
 
-interface IUser {
+export interface IUser {
   id: string;
   username: string;
   active: boolean;
   role: string;
   fullName: string;
+  token?: string;
+  createdAt?: string;
+  session?: any;
 }
 
 export interface IUserState {
@@ -20,4 +23,6 @@ export interface IUserState {
   statusAdd: ReduxStateType;
   statusUpdate: ReduxStateType;
   statusDelete: ReduxStateType;
+  isLockUser: boolean;
+  lockUser: IUser | null;
 }
