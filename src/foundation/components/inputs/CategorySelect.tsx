@@ -6,7 +6,7 @@ import { dataMenu } from "@/features/menu/slice/menu.types";
 
 interface CategorySelectProps {
   value?: number | null | string;
-  onChange?: (value: number) => void;
+  onChange?: (value: number | null) => void;
   placeholder?: string;
   label?: string;
   fullWidth?: boolean;
@@ -41,8 +41,8 @@ const CategorySelect = ({
   };
 
   // Xử lý khi chọn danh mục
-  const handleSelect = (categoryId: number) => {
-    onChange?.(categoryId);
+  const handleSelect = (categoryId: number | null) => {
+    onChange?.(categoryId || 0);
     setIsOpen(false);
   };
 
@@ -110,9 +110,8 @@ const CategorySelect = ({
     );
   };
 
-  const selectedCategory = value
-    ? findCategoryById(categories, Number(value))
-    : null;
+  const selectedCategory =
+    value && value !== 0 ? findCategoryById(categories, Number(value)) : null;
 
   return (
     <div className={`${fullWidth ? "w-full" : ""} ${className}`}>
@@ -131,10 +130,16 @@ const CategorySelect = ({
         >
           <span
             className={
-              selectedCategory ? "text-text-primary" : "text-text-muted"
+              selectedCategory || value === 0
+                ? "text-text-primary"
+                : "text-text-muted"
             }
           >
-            {selectedCategory ? selectedCategory.name : placeholder}
+            {selectedCategory
+              ? selectedCategory.name
+              : value === 0
+                ? "Danh mục gốc"
+                : placeholder}
           </span>
           <ChevronDown
             className={`w-4 h-4 transition-transform text-text-muted ${isOpen ? "rotate-180" : ""}`}
@@ -144,6 +149,27 @@ const CategorySelect = ({
         {/* Dropdown */}
         {isOpen && (
           <div className="overflow-y-auto absolute z-10 mt-1 w-full max-h-80 rounded-lg border shadow-lg bg-background-elevated border-border-secondary">
+            {/* Root category option */}
+            <div
+              className={`flex items-center px-3 py-2 cursor-pointer transition-all duration-200 hover:bg-background-muted ${
+                value === 0
+                  ? "border-l-2 text-secondary bg-secondary/10 border-secondary"
+                  : "text-text-primary"
+              }`}
+              onClick={() => handleSelect(null)}
+            >
+              <div className="flex flex-1 items-center">
+                <span className="text-sm font-medium">Danh mục gốc</span>
+              </div>
+              <span className="ml-2 text-xs text-text-muted">
+                (Không có danh mục cha)
+              </span>
+            </div>
+
+            {/* Divider */}
+            <div className="my-1 border-t border-border-secondary" />
+
+            {/* Existing categories */}
             {categories.map((category: dataMenu) => renderCategory(category))}
           </div>
         )}

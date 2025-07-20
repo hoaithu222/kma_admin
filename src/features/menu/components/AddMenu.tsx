@@ -5,8 +5,9 @@ import { dataMenu } from "../slice/menu.types";
 import Modal from "@/foundation/components/modal/Modal";
 import Input from "@/foundation/components/inputs/Input";
 import Textarea from "@/foundation/components/inputs/TextArea";
-import Select from "@/foundation/components/inputs/SelectOption";
+// import Select from "@/foundation/components/inputs/SelectOption";
 import Button from "@/foundation/components/buttons/Button";
+import CategorySelect from "@/foundation/components/inputs/CategorySelect";
 
 interface ChildCategory {
   id: number;
@@ -35,6 +36,7 @@ interface GrandChildCategory {
 interface FormErrors {
   name?: string;
   displayOrder?: string;
+  parentId?: string;
 }
 
 const AddMenu = () => {
@@ -98,6 +100,7 @@ const AddMenu = () => {
     setLoading(true);
 
     try {
+      // Create the main menu first
       const newMenu = {
         name: formData.name,
         description: formData.description,
@@ -108,14 +111,14 @@ const AddMenu = () => {
         children: childrenData.map((child) => ({
           name: child.name,
           description: child.description,
-          parentId: 0,
+          parentId: 0, // Will be updated after parent creation
           displayOrder: child.displayOrder,
           level: formData.level + 1,
           isVisible: child.isVisible,
           children: child.children.map((grandChild) => ({
             name: grandChild.name,
             description: grandChild.description,
-            parentId: 0,
+            parentId: 0, // Will be updated after child creation
             displayOrder: grandChild.displayOrder,
             level: formData.level + 2,
             isVisible: grandChild.isVisible,
@@ -262,25 +265,25 @@ const AddMenu = () => {
             />
 
             {/* Danh mục cha */}
-            <Select
-              options={[
-                { value: 0, label: "Danh mục gốc" },
-                ...menu.map((item) => ({
-                  value: item.id,
-                  label: item.name,
-                })),
-              ]}
-              value={formData.parentId?.toString()}
-              onChange={(value) =>
+            <CategorySelect
+              value={formData.parentId === 0 ? 0 : formData.parentId}
+              onChange={(value: number | null) => {
                 setFormData({
                   ...formData,
-                  parentId: Number(value),
-                })
-              }
+                  parentId: value === null ? 0 : value,
+                });
+                // Clear parentId error when user changes selection
+                if (errors.parentId) {
+                  setErrors({ ...errors, parentId: undefined });
+                }
+              }}
               placeholder="Chọn danh mục cha"
               label="Danh mục cha"
               fullWidth={true}
             />
+            {errors.parentId && (
+              <p className="text-sm text-error">{errors.parentId}</p>
+            )}
 
             {/* Thứ tự hiển thị */}
             <Input

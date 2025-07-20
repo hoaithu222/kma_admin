@@ -193,7 +193,7 @@ export default function EditPosts({ post }: EditPostsProps) {
             <div className="grid grid-cols-1 gap-3">
               <CategorySelect
                 value={formData.categoryId}
-                onChange={(value: number) => {
+                onChange={(value: number | null) => {
                   setFormData({
                     ...formData,
                     categoryId: value,

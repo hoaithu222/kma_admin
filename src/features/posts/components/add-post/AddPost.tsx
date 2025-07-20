@@ -192,7 +192,7 @@ export default function AddPost() {
             <div className="grid grid-cols-1 gap-3">
               <CategorySelect
                 value={formData.categoryId}
-                onChange={(value: number) => {
+                onChange={(value: number | null) => {
                   setFormData({ ...formData, categoryId: value });
                 }}
                 placeholder="Chọn chuyên mục *"

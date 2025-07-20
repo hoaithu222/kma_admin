@@ -5,8 +5,8 @@ import { dataMenu } from "../slice/menu.types";
 import Modal from "@/foundation/components/modal/Modal";
 import Input from "@/foundation/components/inputs/Input";
 import Textarea from "@/foundation/components/inputs/TextArea";
-import Select from "@/foundation/components/inputs/SelectOption";
 import Button from "@/foundation/components/buttons/Button";
+import CategorySelect from "@/foundation/components/inputs/CategorySelect";
 
 interface ChildCategory {
   id: number;
@@ -35,6 +35,7 @@ interface GrandChildCategory {
 interface FormErrors {
   name?: string;
   displayOrder?: string;
+  parentId?: string;
 }
 
 const EditMenu = () => {
@@ -120,6 +121,11 @@ const EditMenu = () => {
       newErrors.displayOrder = "Thứ tự phải lớn hơn 0";
     }
 
+    // Validate that parent is not the same as current item
+    if (formData.parentId !== 0 && formData.parentId === menuEdit?.id) {
+      newErrors.parentId = "Không thể chọn chính mình làm danh mục cha";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -132,6 +138,7 @@ const EditMenu = () => {
     setLoading(true);
 
     try {
+      // Update the main menu with proper parent-child relationships
       const updatedMenu = {
         name: formData.name,
         description: formData.description,
@@ -142,14 +149,14 @@ const EditMenu = () => {
         children: childrenData.map((child) => ({
           name: child.name,
           description: child.description,
-          parentId: menuEdit.id,
+          parentId: menuEdit.id, // Set to current menu ID
           displayOrder: child.displayOrder,
           level: formData.level + 1,
           isVisible: child.isVisible,
           children: child.children.map((grandChild) => ({
             name: grandChild.name,
             description: grandChild.description,
-            parentId: child.id,
+            parentId: child.id, // Set to child ID (will be updated after child creation)
             displayOrder: grandChild.displayOrder,
             level: formData.level + 2,
             isVisible: grandChild.isVisible,
@@ -296,7 +303,7 @@ const EditMenu = () => {
             />
 
             {/* Danh mục cha */}
-            <Select
+            {/* <Select
               options={[
                 { value: 0, label: "Danh mục gốc" },
                 ...menu
@@ -316,7 +323,26 @@ const EditMenu = () => {
               placeholder="Chọn danh mục cha"
               label="Danh mục cha"
               fullWidth={true}
+            /> */}
+            <CategorySelect
+              value={formData.parentId === 0 ? 0 : formData.parentId}
+              onChange={(value: number | null) => {
+                setFormData({
+                  ...formData,
+                  parentId: value === null ? 0 : value,
+                });
+                // Clear parentId error when user changes selection
+                if (errors.parentId) {
+                  setErrors({ ...errors, parentId: undefined });
+                }
+              }}
+              placeholder="Chọn danh mục cha"
+              label="Danh mục cha"
+              fullWidth={true}
             />
+            {errors.parentId && (
+              <p className="text-sm text-error">{errors.parentId}</p>
+            )}
 
             {/* Thứ tự hiển thị */}
             <Input

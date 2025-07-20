@@ -31,116 +31,216 @@ import {
   UserCheckIcon,
   UserXIcon,
   UserCircleIcon,
+  ChevronRightIcon,
+  CircleIcon,
 } from "lucide-react";
+
+interface NavbarItem {
+  label: string;
+  icon: React.ElementType;
+  path: string;
+  children?: NavbarItem[];
+  role?: string;
+}
+
+interface MenuData {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  level: number;
+  children?: MenuData[];
+  isVisible: boolean;
+  displayOrder: number;
+}
 
 const Navbar = () => {
   const { t } = useTranslation("home");
   const { menu } = useMenu();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
-  // lấy theo icon thứ tự
-  const getRandomIcon = (index: number) => {
-    const icons = [
-      BookOpenIcon,
-      HomeIcon,
-      UserIcon,
-      FileTextIcon,
-      FileImageIcon,
-      BriefcaseIcon,
-      GlobeIcon,
-      AwardIcon,
-      ShieldIcon,
-      GraduationCapIcon,
-      NewspaperIcon,
-      CalendarDaysIcon,
-      HandshakeIcon,
-      UserCogIcon,
-      Building2Icon,
-      MailIcon,
-      PhoneIcon,
-      MapPinIcon,
-      GroupIcon,
-      UserPlusIcon,
-      UserMinusIcon,
-      UserCheckIcon,
-      UserXIcon,
-      UserCircleIcon,
-    ];
-    return icons[index % icons.length];
-  };
-  const getRandomIconChild = (index: number) => {
-    const icons = [
-      BookOpenIcon,
-      HomeIcon,
-      UserIcon,
-      FileTextIcon,
-      FileImageIcon,
-      BriefcaseIcon,
-      GlobeIcon,
-      AwardIcon,
-      ShieldIcon,
-      GraduationCapIcon,
-      NewspaperIcon,
-      CalendarDaysIcon,
-      HandshakeIcon,
-      UserCogIcon,
-      Building2Icon,
-      MailIcon,
-      PhoneIcon,
-      MapPinIcon,
-      GroupIcon,
-      UserPlusIcon,
-      UserMinusIcon,
-      UserCheckIcon,
-      UserXIcon,
-      UserCircleIcon,
-    ];
-    return icons[index % icons.length];
+
+  // Danh sách icon để sử dụng tuần hoán
+  const iconList = [
+    BookOpenIcon,
+    HomeIcon,
+    UserIcon,
+    FileTextIcon,
+    FileImageIcon,
+    BriefcaseIcon,
+    GlobeIcon,
+    AwardIcon,
+    ShieldIcon,
+    GraduationCapIcon,
+    NewspaperIcon,
+    CalendarDaysIcon,
+    HandshakeIcon,
+    UserCogIcon,
+    Building2Icon,
+    MailIcon,
+    PhoneIcon,
+    MapPinIcon,
+    GroupIcon,
+    UserPlusIcon,
+    UserMinusIcon,
+    UserCheckIcon,
+    UserXIcon,
+    UserCircleIcon,
+  ];
+
+  const getIconByIndex = (index: number) => {
+    return iconList[index % iconList.length];
   };
 
-  // // lấy items khác từ menu
-  const items = menu?.map((item, index) => {
-    return {
-      label: item.name,
-      path: `/base-post/${item.id}`,
-      icon: getRandomIcon(index),
-      children: item?.children?.map((child, indexChild) => {
-        return {
-          label: child.name,
-          path: `/base-post/${child.id}`,
-          icon: getRandomIconChild(indexChild),
+  // Hàm đệ quy để chuyển đổi menu data thành NavbarItem structure
+  const convertMenuToNavbarItems = (
+    menuItems: MenuData[],
+    level: number = 0
+  ): NavbarItem[] => {
+    return (
+      menuItems?.map((item, index) => {
+        const navbarItem: NavbarItem = {
+          label: item.name,
+          path: `/base-post/${item.id}`,
+          icon:
+            level === 0
+              ? getIconByIndex(index)
+              : level === 1
+                ? getIconByIndex(index + 5)
+                : CircleIcon,
         };
-      }),
-    };
-  });
 
-  const toggleExpanded = (itemLabel: string) => {
-    setExpandedItems((prev) =>
-      prev.includes(itemLabel)
-        ? prev.filter((label) => label !== itemLabel)
-        : [...prev, itemLabel]
+        // Xử lý children đệ quy
+        if (item.children && item.children.length > 0) {
+          navbarItem.children = convertMenuToNavbarItems(
+            item.children,
+            level + 1
+          );
+        }
+
+        return navbarItem;
+      }) || []
     );
   };
+
+  // Chuyển đổi menu data thành NavbarItem structure
+  const dynamicItems = convertMenuToNavbarItems(menu);
+
+  const toggleExpanded = (itemPath: string) => {
+    setExpandedItems((prev) =>
+      prev.includes(itemPath)
+        ? prev.filter((path) => path !== itemPath)
+        : [...prev, itemPath]
+    );
+  };
+
   const user = useSelector(selectUser);
   const role = user?.role;
 
-  const navClass = ({ isActive }: { isActive: boolean }) =>
-    clsx(
-      "flex items-center gap-3 p-3 rounded-lg transition-all duration-300",
-      "hover:shadow-md hover:scale-[1.02]",
-      isActive
-        ? "bg-primary text-white font-semibold border-l-4 border-primary shadow-md"
-        : "text-text-navbar font-medium hover:bg-background-subtle hover:text-primary"
-    );
+  // CSS classes cho các level khác nhau
+  const getNavClass =
+    (level: number = 0) =>
+    ({ isActive }: { isActive: boolean }) =>
+      clsx(
+        "flex items-center gap-3 p-3 rounded-lg transition-all duration-300",
+        "hover:shadow-md hover:scale-[1.02]",
+        `ml-${level * 4}`, // Tăng margin left theo level
+        isActive
+          ? "bg-primary text-white font-semibold border-l-4 border-primary shadow-md"
+          : "text-text-navbar font-medium hover:bg-background-subtle hover:text-primary"
+      );
 
-  const childNavClass = ({ isActive }: { isActive: boolean }) =>
-    clsx(
-      "flex items-center gap-2 p-2.5 ml-6 rounded-md transition-all duration-300",
-      "hover:shadow-sm hover:scale-[1.01]",
-      isActive
-        ? "bg-primary/10 text-primary font-semibold border-l-4 border-primary shadow-sm"
-        : "text-text-navbar/80 font-normal hover:bg-background-subtle hover:text-primary"
+  const getChildNavClass =
+    (level: number = 1) =>
+    ({ isActive }: { isActive: boolean }) =>
+      clsx(
+        "flex items-center gap-2 p-2.5 rounded-md transition-all duration-300",
+        "hover:shadow-sm hover:scale-[1.01]",
+        `ml-${(level + 1) * 3}`, // Tăng margin left theo level
+        isActive
+          ? "bg-primary/10 text-primary font-semibold border-l-4 border-primary shadow-sm"
+          : "text-text-navbar/80 font-normal hover:bg-background-subtle hover:text-primary"
+      );
+
+  // Component đệ quy để render menu items
+  const renderNavItem = (
+    item: NavbarItem,
+    level: number = 0,
+    parentPath: string = ""
+  ): JSX.Element => {
+    const itemKey = `${parentPath}-${item.label}-${level}`;
+    const isExpanded = expandedItems.includes(itemKey);
+    const hasChildren = item.children && item.children.length > 0;
+
+    // Filter children based on role if they exist
+    const filteredChildren = hasChildren
+      ? item.children?.filter(
+          (child) => !("role" in child) || !child.role || child.role === role
+        ) || []
+      : [];
+
+    return (
+      <div key={itemKey} className="group">
+        {hasChildren ? (
+          <button
+            onClick={() => toggleExpanded(itemKey)}
+            className={clsx(
+              "w-full",
+              getNavClass(level)({ isActive: false }),
+              "hover:bg-background-subtle/50"
+            )}
+          >
+            <item.icon
+              className={clsx(
+                "flex-shrink-0 transition-transform duration-300 group-hover:scale-110",
+                level === 0 ? "w-5 h-5" : level === 1 ? "w-4 h-4" : "w-3 h-3"
+              )}
+            />
+            <span className="flex-1 text-left text-text-primary">
+              {t(item.label)}
+            </span>
+            <ChevronRightIcon
+              className={clsx(
+                "w-4 h-4 transition-transform duration-300",
+                isExpanded ? "rotate-90" : ""
+              )}
+            />
+          </button>
+        ) : (
+          <NavLink
+            to={item.path}
+            className={
+              level === 0 ? getNavClass(level) : getChildNavClass(level - 1)
+            }
+          >
+            <item.icon
+              className={clsx(
+                "flex-shrink-0 transition-transform duration-300 group-hover:scale-110",
+                level === 0 ? "w-5 h-5" : level === 1 ? "w-4 h-4" : "w-3 h-3",
+                level > 0 && "opacity-70"
+              )}
+            />
+            <span className="text-text-primary">{t(item.label)}</span>
+          </NavLink>
+        )}
+
+        {hasChildren && isExpanded && (
+          <div
+            className={clsx(
+              "mt-1 space-y-1 animate-fadeIn",
+              level > 0 && "border-l border-border-subtle ml-4 pl-2"
+            )}
+          >
+            {filteredChildren.map((child) =>
+              renderNavItem(child, level + 1, itemKey)
+            )}
+          </div>
+        )}
+      </div>
     );
-  const navItems = [...NavbarItems, ...items, ...menuItemLast];
+  };
+
+  // Kết hợp tất cả nav items
+  const allNavItems = [...NavbarItems, ...dynamicItems, ...menuItemLast];
 
   return (
     <nav
@@ -151,77 +251,12 @@ const Navbar = () => {
         "scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent"
       )}
     >
-      {navItems
+      {allNavItems
         .filter((item) => {
           // Show item if it has no role restriction or if user's role matches item's role
           return !("role" in item) || !item.role || item.role === role;
         })
-        .map((item) => (
-          <div key={item.label} className="group">
-            {item.children ? (
-              <button
-                onClick={() => toggleExpanded(item.label)}
-                className={clsx(
-                  "w-full",
-                  navClass({ isActive: false }),
-                  "hover:bg-background-subtle/50"
-                )}
-              >
-                <item.icon className="flex-shrink-0 w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-                <span className="flex-1 text-left text-text-primary">
-                  {t(item.label)}
-                </span>
-                <svg
-                  className={clsx(
-                    "w-4 h-4 transition-transform duration-300",
-                    expandedItems.includes(item.label) ? "rotate-90" : ""
-                  )}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            ) : (
-              <NavLink to={item.path} className={navClass}>
-                <item.icon className="flex-shrink-0 w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-                <span className="flex-1 text-text-primary">
-                  {t(item.label)}
-                </span>
-              </NavLink>
-            )}
-
-            {item.children && expandedItems.includes(item.label) && (
-              <div className="mt-1 space-y-1 animate-fadeIn">
-                {item.children
-                  .filter((child) => {
-                    // Show child item if it has no role restriction or if user's role matches child's role
-                    return (
-                      !("role" in child) || !child.role || child.role === role
-                    );
-                  })
-                  .map((child) => (
-                    <NavLink
-                      to={child.path}
-                      key={child.label}
-                      className={childNavClass}
-                    >
-                      <child.icon className="flex-shrink-0 w-4 h-4 opacity-70 transition-transform duration-300 group-hover:scale-110" />
-                      <span className="text-text-primary">
-                        {t(child.label)}
-                      </span>
-                    </NavLink>
-                  ))}
-              </div>
-            )}
-          </div>
-        ))}
+        .map((item) => renderNavItem(item, 0))}
     </nav>
   );
 };
