@@ -17,6 +17,7 @@ import {
 
 import Button from "@/foundation/components/buttons/Button";
 import { stripHtml } from "@/shared/utils/stripHtml";
+import RichHtmlBox from "./RichHtmlBox";
 
 const DetailLecturer = () => {
   const { id } = useParams();
@@ -51,7 +52,7 @@ const DetailLecturer = () => {
 
   if (statusGetDetailLecturer === ReduxStateType.LOADING) {
     return (
-      <div className="flex items-center justify-center h-screen bg-background-base">
+      <div className="flex justify-center items-center h-screen bg-background-base">
         <div className="text-center animate-fade-in">
           <div className="relative">
             <LoadingSpinner />
@@ -62,22 +63,22 @@ const DetailLecturer = () => {
   }
 
   return (
-    <div className="min-h-screen overflow-y-auto rounded-lg ">
+    <div className="overflow-y-auto min-h-screen rounded-lg">
       {/* Animated Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute rounded-full -top-40 -right-40 w-96 h-96 bg-background-overlay blur-3xl animate-pulse"></div>
+      <div className="overflow-hidden fixed inset-0 pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl animate-pulse bg-background-overlay"></div>
         <div
-          className="absolute rounded-full -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-200/20 to-pink-200/20 blur-3xl animate-pulse"
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br rounded-full blur-3xl animate-pulse from-indigo-200/20 to-pink-200/20"
           style={{ animationDelay: "2s" }}
         ></div>
         <div
-          className="absolute transform -translate-x-1/2 -translate-y-1/2 rounded-full top-1/2 left-1/2 w-80 h-80 bg-gradient-to-br from-emerald-200/10 to-cyan-200/10 blur-3xl animate-pulse"
+          className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-br rounded-full blur-3xl animate-pulse transform -translate-x-1/2 -translate-y-1/2 from-emerald-200/10 to-cyan-200/10"
           style={{ animationDelay: "4s" }}
         ></div>
       </div>
 
       {/* Main Content */}
-      <div className="relative p-2 mx-auto sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 max-w-7xl">
+      <div className="relative p-2 mx-auto max-w-7xl sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12">
         <div className="p-2">
           <Button
             variant="borderIce"
@@ -88,14 +89,14 @@ const DetailLecturer = () => {
           </Button>
         </div>
         {/* Hero Section with 50-50 Layout */}
-        <div className="p-2 mb-8 overflow-hidden transition-all duration-700 rounded-lg shadow-2xl sm:mb-12 md:mb-16 bg-background-overlay backdrop-blur-xl sm:rounded-xl md:rounded-2xl lg:rounded-3xl hover:shadow-3xl hover:bg-background-overlay animate-fade-in sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12">
+        <div className="overflow-hidden p-2 mb-8 rounded-lg shadow-2xl backdrop-blur-xl transition-all duration-700 sm:mb-12 md:mb-16 bg-background-overlay sm:rounded-xl md:rounded-2xl lg:rounded-3xl hover:shadow-3xl hover:bg-background-overlay animate-fade-in sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12">
           <div className="flex flex-col lg:flex-row">
             {/* Left Side - Image (50%) */}
             <div className="relative lg:w-1/2">
               <div className="relative h-60 sm:h-80 md:h-96 lg:h-[400px] xl:h-[600px] overflow-hidden bg-background-overlay rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl">
                 {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 rounded-bl-full bg-gradient-to-br from-white/20 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 rounded-tr-full bg-gradient-to-tr from-white/20 to-transparent"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br to-transparent rounded-bl-full from-white/20"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr to-transparent rounded-tr-full from-white/20"></div>
 
                 {detailLecturer?.filePath ? (
                   <img
@@ -104,17 +105,17 @@ const DetailLecturer = () => {
                     className="object-cover w-full h-full transition-all duration-700 hover:scale-110"
                   />
                 ) : (
-                  <div className="flex items-center justify-center w-full h-full">
+                  <div className="flex justify-center items-center w-full h-full">
                     <User className="w-32 h-32 text-blue-600/50" />
                   </div>
                 )}
 
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent from-black/30"></div>
 
                 {/* Bottom info overlay */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="p-4 shadow-lg bg-white/90 backdrop-blur-sm rounded-2xl">
+                <div className="absolute right-6 bottom-6 left-6">
+                  <div className="p-4 rounded-2xl shadow-lg backdrop-blur-sm bg-white/90">
                     <h4 className="mb-1 text-sm font-semibold text-gray-800">
                       Chuyên ngành
                     </h4>
@@ -134,24 +135,24 @@ const DetailLecturer = () => {
             {/* Right Side - Info (50%) */}
             <div className="relative p-2 sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 lg:w-1/2">
               {/* Background decorations */}
-              <div className="absolute top-0 right-0 w-20 h-20 translate-x-10 -translate-y-10 rounded-full opacity-50 bg-gradient-to-br from-blue-100 to-indigo-100"></div>
-              <div className="absolute bottom-0 left-0 w-16 h-16 -translate-x-8 translate-y-8 rounded-full opacity-50 bg-gradient-to-br from-purple-100 to-pink-100"></div>
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full opacity-50 translate-x-10 -translate-y-10"></div>
+              <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-50 -translate-x-8 translate-y-8"></div>
 
-              <div className="relative z-10 flex flex-col h-full">
+              <div className="flex relative z-10 flex-col h-full">
                 {/* Title Section */}
                 <div className="mb-8">
-                  <h3 className="mb-4 text-xl font-bold leading-tight text-transparent sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-800 bg-clip-text">
+                  <h3 className="mb-4 text-xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-800 sm:text-2xl md:text-3xl lg:text-4xl lg:text-5xl">
                     {detailLecturer?.name}
                   </h3>
 
                   <div className="flex flex-wrap gap-3 mb-4">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-white transition-all duration-300 transform shadow-lg bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl hover:scale-105 hover:shadow-xl sm:text-base md:text-lg">
+                    <div className="inline-flex gap-2 items-center px-4 py-2 text-sm font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl sm:text-base md:text-lg">
                       <GraduationCap className="w-5 h-5" />
                       {detailLecturer?.title}
                     </div>
 
                     {detailLecturer?.position && (
-                      <div className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-purple-700 transition-all duration-300 transform bg-purple-100 rounded-2xl hover:scale-105 hover:bg-purple-200 sm:text-sm md:text-base">
+                      <div className="inline-flex gap-2 items-center px-4 py-2 text-xs font-semibold text-purple-700 bg-purple-100 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:bg-purple-200 sm:text-sm md:text-base">
                         <Award className="w-4 h-4" />
                         {stripHtml(detailLecturer.position)}
                       </div>
@@ -162,8 +163,8 @@ const DetailLecturer = () => {
                 {/* Quick Info Cards */}
                 <div className="flex-1 mb-4 space-y-4">
                   {detailLecturer?.email && (
-                    <div className="flex items-center gap-4 p-4 text-xs transition-all duration-300 group bg-white/60 backdrop-blur-sm rounded-2xl hover:bg-blue-50 hover:scale-105 hover:shadow-lg sm:text-sm md:text-base">
-                      <div className="p-3 transition-all duration-300 bg-blue-100 rounded-xl group-hover:bg-blue-200 group-hover:scale-110">
+                    <div className="flex gap-4 items-center p-4 text-xs rounded-2xl backdrop-blur-sm transition-all duration-300 group bg-white/60 hover:bg-blue-50 hover:scale-105 hover:shadow-lg sm:text-sm md:text-base">
+                      <div className="p-3 bg-blue-100 rounded-xl transition-all duration-300 group-hover:bg-blue-200 group-hover:scale-110">
                         <Mail className="w-5 h-5 text-blue-600" />
                       </div>
                       <div>
@@ -182,17 +183,19 @@ const DetailLecturer = () => {
 
                   {/* Quick Bio Preview */}
                   {detailLecturer?.bio && (
-                    <div className="p-2 transition-all duration-300 border-4 border-gray-200 border-dashed rounded-lg sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-gradient-to-br from-gray-50/80 to-blue-50/80 sm:rounded-xl md:rounded-2xl lg:rounded-3xl hover:border-blue-300 hover:bg-gradient-to-br hover:from-blue-50/80 hover:to-indigo-50/80">
-                      <h4 className="flex items-center gap-2 mb-3 text-xs font-bold text-gray-800 sm:text-sm">
+                    <div className="p-2 bg-gradient-to-br rounded-lg border-4 border-gray-200 border-dashed transition-all duration-300 sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 from-gray-50/80 to-blue-50/80 sm:rounded-xl md:rounded-2xl lg:rounded-3xl hover:border-blue-300 hover:bg-gradient-to-br hover:from-blue-50/80 hover:to-indigo-50/80">
+                      <h4 className="flex gap-2 items-center mb-3 text-xs font-bold text-gray-800 sm:text-sm">
                         <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                         Giới thiệu nhanh
                       </h4>
-                      <p
-                        className="text-xs leading-relaxed text-gray-700 sm:text-sm line-clamp-4"
-                        dangerouslySetInnerHTML={{
-                          __html: detailLecturer.bio,
-                        }}
-                      ></p>
+                      <div className="max-w-none prose">
+                        <p
+                          className="text-xs leading-relaxed text-gray-700 sm:text-sm line-clamp-4"
+                          dangerouslySetInnerHTML={{
+                            __html: detailLecturer.bio,
+                          }}
+                        ></p>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -202,7 +205,7 @@ const DetailLecturer = () => {
                   className="flex gap-4"
                   onClick={() => handleSendMail(detailLecturer?.email || "")}
                 >
-                  <button className="flex items-center justify-center flex-1 gap-3 px-6 py-4 font-bold text-white transition-all duration-300 transform bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 hover:scale-105 hover:shadow-2xl active:scale-95">
+                  <button className="flex flex-1 gap-3 justify-center items-center px-6 py-4 font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl transition-all duration-300 transform hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 hover:scale-105 hover:shadow-2xl active:scale-95">
                     <Mail className="w-5 h-5" />
                     Liên hệ ngay
                   </button>
@@ -217,21 +220,16 @@ const DetailLecturer = () => {
           {/* Bio */}
           {detailLecturer?.bio && (
             <div className="group lg:col-span-2 p-2 sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-background-overlay backdrop-blur-xl border border-white/30 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl transition-all duration-500 hover:bg-background-muted hover:shadow-2xl hover:scale-[1.01] animate-fade-in">
-              <div className="absolute inset-0 transition-opacity duration-500 rounded-lg opacity-0 bg-gradient-to-br from-purple-500/3 to-pink-500/3 sm:rounded-xl md:rounded-2xl lg:rounded-3xl group-hover:opacity-100"></div>
-              <h3 className="relative flex items-center gap-4 mb-8 text-lg font-bold sm:text-xl md:text-2xl lg:text-3xl text-text-primary">
-                <div className="p-4 shadow-lg bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br rounded-lg opacity-0 transition-opacity duration-500 from-purple-500/3 to-pink-500/3 sm:rounded-xl md:rounded-2xl lg:rounded-3xl group-hover:opacity-100"></div>
+              <h3 className="flex relative gap-4 items-center mb-8 text-lg font-bold sm:text-xl md:text-2xl lg:text-3xl text-text-primary">
+                <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-lg">
                   <User className="w-8 h-8 text-white" />
                 </div>
                 Thông tin cá nhân
-                <div className="flex-1 h-px bg-gradient-to-r from-background-subtle to-transparent"></div>
+                <div className="flex-1 h-px bg-gradient-to-r to-transparent from-background-subtle"></div>
               </h3>
-              <div className="relative p-2 border-2 rounded-lg shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-gradient-to-br from-purple-50/50 to-pink-50/50 sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-purple-200/30">
-                <p
-                  className="text-sm font-medium leading-relaxed text-gray-700 whitespace-pre-line sm:text-base"
-                  dangerouslySetInnerHTML={{
-                    __html: detailLecturer.bio,
-                  }}
-                ></p>
+              <div className="relative p-2 bg-gradient-to-br rounded-lg border-2 shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 from-purple-50/50 to-pink-50/50 sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-purple-200/30">
+                <RichHtmlBox html={detailLecturer.bio} />
               </div>
             </div>
           )}
@@ -239,19 +237,14 @@ const DetailLecturer = () => {
           {/* Education */}
           {detailLecturer?.education && (
             <div className="group p-2 sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-background-overlay backdrop-blur-xl border border-white/30 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl transition-all duration-500 hover:bg-background-muted hover:shadow-2xl hover:scale-[1.02] animate-fade-in">
-              <h3 className="flex items-center gap-4 mb-6 text-base font-bold sm:text-lg md:text-xl text-text-primary">
-                <div className="p-3 shadow-lg bg-gradient-to-br from-secondary to-secondary-dark rounded-2xl">
+              <h3 className="flex gap-4 items-center mb-6 text-base font-bold sm:text-lg md:text-xl text-text-primary">
+                <div className="p-3 bg-gradient-to-br rounded-2xl shadow-lg from-secondary to-secondary-dark">
                   <GraduationCap className="w-6 h-6 text-white" />
                 </div>
                 Học vấn
               </h3>
-              <div className="p-2 border-2 rounded-lg shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-gradient-to-br from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
-                <p
-                  className="text-sm font-medium leading-relaxed sm:text-base text-text-secondary"
-                  dangerouslySetInnerHTML={{
-                    __html: detailLecturer.education,
-                  }}
-                ></p>
+              <div className="p-2 bg-gradient-to-br rounded-lg border-2 shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
+                <RichHtmlBox html={detailLecturer.education} />
               </div>
             </div>
           )}
@@ -259,19 +252,14 @@ const DetailLecturer = () => {
           {/* Research Interests */}
           {detailLecturer?.researchInterests && (
             <div className="group p-2 sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-background-overlay backdrop-blur-xl border border-white/30 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl transition-all duration-500 hover:bg-background-muted hover:shadow-2xl hover:scale-[1.02] animate-fade-in">
-              <h3 className="flex items-center gap-4 mb-6 text-base font-bold sm:text-lg md:text-xl text-text-primary">
-                <div className="p-3 shadow-lg bg-gradient-to-br from-accent to-accent-dark rounded-2xl">
+              <h3 className="flex gap-4 items-center mb-6 text-base font-bold sm:text-lg md:text-xl text-text-primary">
+                <div className="p-3 bg-gradient-to-br rounded-2xl shadow-lg from-accent to-accent-dark">
                   <Lightbulb className="w-6 h-6 text-white" />
                 </div>
                 Lĩnh vực nghiên cứu
               </h3>
-              <div className="p-2 border-2 rounded-lg shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-gradient-to-br from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
-                <p
-                  className="text-sm font-medium leading-relaxed sm:text-base text-text-secondary"
-                  dangerouslySetInnerHTML={{
-                    __html: detailLecturer.researchInterests,
-                  }}
-                ></p>
+              <div className="p-2 bg-gradient-to-br rounded-lg border-2 shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
+                <RichHtmlBox html={detailLecturer.researchInterests} />
               </div>
             </div>
           )}
@@ -279,16 +267,14 @@ const DetailLecturer = () => {
           {/* Teaching Areas */}
           {detailLecturer?.teachingAreas && (
             <div className="group p-2 sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-background-overlay backdrop-blur-xl border border-white/30 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl transition-all duration-500 hover:bg-background-muted hover:shadow-2xl hover:scale-[1.02] animate-fade-in">
-              <h3 className="flex items-center gap-4 mb-6 text-base font-bold sm:text-lg md:text-xl text-text-primary">
-                <div className="p-3 shadow-lg bg-gradient-to-br from-success to-success rounded-2xl">
+              <h3 className="flex gap-4 items-center mb-6 text-base font-bold sm:text-lg md:text-xl text-text-primary">
+                <div className="p-3 bg-gradient-to-br rounded-2xl shadow-lg from-success to-success">
                   <Target className="w-6 h-6 text-white" />
                 </div>
                 Lĩnh vực giảng dạy
               </h3>
-              <div className="p-2 border-2 rounded-lg shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-gradient-to-br from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
-                <p className="text-sm font-medium leading-relaxed sm:text-base text-text-secondary">
-                  {stripHtml(detailLecturer.teachingAreas)}
-                </p>
+              <div className="p-2 bg-gradient-to-br rounded-lg border-2 shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
+                <RichHtmlBox html={detailLecturer.teachingAreas} />
               </div>
             </div>
           )}
@@ -296,19 +282,14 @@ const DetailLecturer = () => {
           {/* Scientific Works */}
           {detailLecturer?.scientificWorks && (
             <div className="group p-2 sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-background-overlay backdrop-blur-xl border border-white/30 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl transition-all duration-500 hover:bg-background-muted hover:shadow-2xl hover:scale-[1.02] animate-fade-in">
-              <h3 className="flex items-center gap-4 mb-6 text-base font-bold sm:text-lg md:text-xl text-text-primary">
-                <div className="p-3 shadow-lg bg-gradient-to-br from-info to-info rounded-2xl">
+              <h3 className="flex gap-4 items-center mb-6 text-base font-bold sm:text-lg md:text-xl text-text-primary">
+                <div className="p-3 bg-gradient-to-br rounded-2xl shadow-lg from-info to-info">
                   <FileText className="w-6 h-6 text-white" />
                 </div>
                 Công trình khoa học
               </h3>
-              <div className="p-2 border-2 rounded-lg shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-gradient-to-br from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
-                <p
-                  className="text-sm font-medium leading-relaxed sm:text-base text-text-secondary"
-                  dangerouslySetInnerHTML={{
-                    __html: detailLecturer.scientificWorks,
-                  }}
-                ></p>
+              <div className="p-2 bg-gradient-to-br rounded-lg border-2 shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
+                <RichHtmlBox html={detailLecturer.scientificWorks} />
               </div>
             </div>
           )}
@@ -316,20 +297,15 @@ const DetailLecturer = () => {
           {/* Awards */}
           {detailLecturer?.awards && (
             <div className="group lg:col-span-2 p-2 sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-background-overlay backdrop-blur-xl border border-white/30 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl transition-all duration-500 hover:bg-background-muted hover:shadow-2xl hover:scale-[1.01] animate-fade-in">
-              <h3 className="flex items-center gap-4 mb-8 text-lg font-bold sm:text-xl md:text-2xl lg:text-3xl text-text-primary">
-                <div className="p-4 shadow-lg bg-gradient-to-br from-warning to-warning rounded-2xl">
+              <h3 className="flex gap-4 items-center mb-8 text-lg font-bold sm:text-xl md:text-2xl lg:text-3xl text-text-primary">
+                <div className="p-4 bg-gradient-to-br rounded-2xl shadow-lg from-warning to-warning">
                   <Trophy className="w-8 h-8 text-white" />
                 </div>
                 Giải thưởng & Danh hiệu
-                <div className="flex-1 h-px bg-gradient-to-r from-background-subtle to-transparent"></div>
+                <div className="flex-1 h-px bg-gradient-to-r to-transparent from-background-subtle"></div>
               </h3>
-              <div className="p-2 border-2 rounded-lg shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 bg-gradient-to-br from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
-                <p
-                  className="text-sm font-semibold leading-relaxed sm:text-base text-text-secondary"
-                  dangerouslySetInnerHTML={{
-                    __html: detailLecturer.awards,
-                  }}
-                ></p>
+              <div className="p-2 bg-gradient-to-br rounded-lg border-2 shadow-inner sm:px-3 sm:py-5 md:px-4 md:py-8 lg:px-6 lg:py-12 from-background-surface to-background-elevated sm:rounded-xl md:rounded-2xl lg:rounded-3xl border-border-primary">
+                <RichHtmlBox html={detailLecturer.awards} />
               </div>
             </div>
           )}
