@@ -73,6 +73,7 @@ export default function AddLecturer() {
     majorId: 0,
     subMajorId: 0,
     displayOrder: 0,
+    subMajorName: "",
   });
 
   const tabs = [
@@ -279,18 +280,22 @@ export default function AddLecturer() {
                     placeholder="Chọn chuyên ngành con"
                     label="Chuyên ngành con"
                     fullWidth={true}
-                    allowAddNew={true}
-                    addNewText="Thêm chuyên ngành con"
-                    addNewPlaceholder="Nhập tên chuyên ngành con"
-                    onAddNew={(newValue: string) => {
-                      setFormData((prevFormData) => ({
-                        ...prevFormData,
-                        subMajorId: +newValue, // lấy nội dung của value text của value
-                      }));
-                    }}
                   />
                 )}
             </div>
+            <Input
+              value={formData.subMajorName}
+              onChange={(e) =>
+                setFormData((prevFormData) => ({
+                  ...prevFormData,
+                  subMajorName: e.target.value,
+                }))
+              }
+              placeholder="Nhập tên chuyên ngành con(nếu có)"
+              label="Tên chuyên ngành con(nếu có)"
+              fullWidth={true}
+              className="text-lg"
+            />
           </div>
 
           {/* Ảnh tải lên */}
@@ -321,7 +326,7 @@ export default function AddLecturer() {
             />
           </div>
 
-          <div className="p-4 bg-background-elevated rounded-lg border">
+          <div className="p-4 rounded-lg border bg-background-elevated">
             <h3 className="mb-4 text-lg font-semibold">Thêm item mới</h3>
             <div className="flex gap-4 items-end">
               <div className="flex-1">

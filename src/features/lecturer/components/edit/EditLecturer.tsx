@@ -41,6 +41,7 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
     majorId: lecturer.majorId,
     subMajorId: lecturer.subMajorId,
     displayOrder: lecturer.displayOrder,
+    subMajorName: lecturer.subMajorName,
   });
 
   const tabs = [
@@ -285,18 +286,22 @@ export default function EditLecturer({ lecturer }: EditLecturerProps) {
                     placeholder="Chọn chuyên ngành con"
                     label="Chuyên ngành con"
                     fullWidth={true}
-                    allowAddNew={true}
-                    addNewText="Thêm chuyên ngành con"
-                    addNewPlaceholder="Nhập tên chuyên ngành con"
-                    onAddNew={(newValue: string) => {
-                      setFormData((prevFormData) => ({
-                        ...prevFormData,
-                        subMajorId: +newValue,
-                      }));
-                    }}
                   />
                 )}
             </div>
+            <Input
+              value={formData.subMajorName}
+              onChange={(e) =>
+                setFormData((prevFormData) => ({
+                  ...prevFormData,
+                  subMajorName: e.target.value,
+                }))
+              }
+              placeholder="Nhập tên chuyên ngành con(nếu có)"
+              label="Tên chuyên ngành con(nếu có)"
+              fullWidth={true}
+              className="text-lg"
+            />
           </div>
 
           {/* Ảnh tải lên */}

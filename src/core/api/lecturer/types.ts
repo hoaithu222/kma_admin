@@ -32,6 +32,7 @@ export interface IRequestCreateLecturer {
   majorId: number; // ID chuyên ngành
   subMajorId: number | null | string; // ID chuyên ngành con
   displayOrder?: number;
+  subMajorName: string;
 }
 export interface IRequestUpdateLecturer {
   id: number;
